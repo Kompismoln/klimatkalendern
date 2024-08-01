@@ -55,7 +55,7 @@ defmodule Mobilizon.Service.Workers.RefreshInstances do
            :ok <- Logger.debug("Ready to save instance actor details #{inspect(args)}"),
            {:ok, %InstanceActor{}} <-
              Instances.create_instance_actor(args) do
-        Logger.info("Saved instance actor details for domain #{host}")
+        Logger.info("Saved instance actor details for domain #{domain}")
       else
         {:error, %Ecto.Changeset{} = changeset} ->
           Logger.error("Unable to save instance \"#{domain}\" metadata")
