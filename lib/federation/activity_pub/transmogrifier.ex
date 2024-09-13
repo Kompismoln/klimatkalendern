@@ -380,6 +380,40 @@ defmodule Mobilizon.Federation.ActivityPub.Transmogrifier do
   end
 
   def handle_incoming(
+        %{
+          "type" => "Announce",
+          "object" => %{
+            "type" => "Delete",
+            "object" =>
+              %{
+                "type" => type
+              } = object
+          },
+          "actor" => _actor,
+          "id" => _id
+        } = data
+      )
+      when type in ["Event", "Note"] do
+    Logger.info("Got an announce with an delete activity.")
+
+    actor_url = Utils.get_actor(data)
+    object_id = Utils.get_url(object)
+
+    case ActivityPubActor.get_or_fetch_actor_by_url(actor_url) do
+      {:error, _err} ->
+        {:error, :unknown_actor}
+
+      {:ok, %Actor{} = actor} ->
+        # If the actor itself is being deleted, no need to check anything other than the object being remote
+        if remote_actor_is_being_deleted(data) do
+          Actions.Delete.delete(actor, actor, false)
+        else
+          handle_group_being_gone(actor, actor_url, object_id)
+        end
+    end
+  end
+
+  def handle_incoming(
         %{"type" => "Announce", "object" => object, "actor" => _actor, "id" => _id} = data
       ) do
     with actor_url <- Utils.get_actor(data),
@@ -1005,6 +1039,30 @@ defmodule Mobilizon.Federation.ActivityPub.Transmogrifier do
   defp fetch_object_optionally_authenticated(url, _),
     do: ActivityPub.fetch_object_from_url(url, force: true)
 
+  # Hotfix for issue #1549: If we receive a share with an Create or Update Activity we add the contained object.
+  defp eventually_create_share(
+         %{
+           "type" => type,
+           "object" =>
+             %{
+               "type" => object_type
+             } = contained_object
+         } = _object,
+         entity,
+         actor_id
+       )
+       when type in ["Create", "Update"] and object_type in ["Event", "Note"] do
+    Logger.info("Maybe adding the contained object of a create/update activity to the share.")
+
+    with object_id <- contained_object |> Utils.get_url(),
+         %Actor{id: object_owner_actor_id} <- Ownable.actor(entity) do
+      {:ok, %Mobilizon.Share{} = _share} =
+        Mobilizon.Share.create(object_id, actor_id, object_owner_actor_id)
+    end
+
+    :ok
+  end
+
   defp eventually_create_share(object, entity, actor_id) do
     with object_id <- object |> Utils.get_url(),
          %Actor{id: object_owner_actor_id} <- Ownable.actor(entity) do
@@ -1159,6 +1217,10 @@ defmodule Mobilizon.Federation.ActivityPub.Transmogrifier do
 
       {:error, :http_gone, object} ->
         Logger.debug("object is really gone")
+        {:ok, object}
+
+      {:error, :http_not_found, object} ->
+        Logger.debug("object can not be found any longer")
         {:ok, object}
 
       {:ok, %{url: url} = object} ->
