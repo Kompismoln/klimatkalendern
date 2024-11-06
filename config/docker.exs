@@ -47,7 +47,7 @@ config :mobilizon, Mobilizon.Web.Auth.Guardian,
 
 config :mobilizon, :instance,
   name: System.get_env("MOBILIZON_INSTANCE_NAME", "Mobilizon"),
-  description: "Change this to a proper description of your instance",
+  description: System.get_env("MOBILIZON_INSTANCE_DESCRIPTION", "Change this to a proper description of your instance"),
   hostname: System.get_env("MOBILIZON_INSTANCE_HOST", "mobilizon.lan"),
   registrations_open: System.get_env("MOBILIZON_INSTANCE_REGISTRATIONS_OPEN", "false") == "true",
   registration_email_allowlist:
