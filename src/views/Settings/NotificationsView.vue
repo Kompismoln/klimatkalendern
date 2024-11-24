@@ -104,7 +104,7 @@
       >
         <o-select
           v-model="groupNotifications"
-          @update:modelValue="updateSetting({ groupNotifications })"
+          @update:modelValue="updateSetting(updatedSettings)"
           id="groupNotifications"
         >
           <option
@@ -132,7 +132,7 @@
       <div class="field">
         <o-checkbox
           v-model="notificationOnDay"
-          @input="updateSetting({ notificationOnDay })"
+          @update:modelValue="updateSetting(updatedSettings)"
         >
           <strong>{{ $t("Notification on the day of the event") }}</strong>
           <p>
@@ -162,7 +162,7 @@
       <div class="field">
         <o-checkbox
           v-model="notificationEachWeek"
-          @input="updateSetting({ notificationEachWeek })"
+          @update:modelValue="updateSetting(updatedSettings)"
         >
           <strong>{{ $t("Recap every week") }}</strong>
           <p>
@@ -177,7 +177,7 @@
       <div class="field">
         <o-checkbox
           v-model="notificationBeforeEvent"
-          @input="updateSetting({ notificationBeforeEvent })"
+          @update:modelValue="updateSetting(updatedSettings)"
         >
           <strong>{{ $t("Notification before the event") }}</strong>
           <p>
@@ -210,7 +210,7 @@
         <o-select
           v-model="notificationPendingParticipation"
           id="notificationPendingParticipation"
-          @input="updateSetting({ notificationPendingParticipation })"
+          @update:modelValue="updateSetting(updatedSettings)"
         >
           <option
             v-for="(value, key) in notificationPendingParticipationValues"
@@ -329,6 +329,7 @@ import {
   IActivitySetting,
   IActivitySettingMethod,
   IUser,
+  IUserSettings,
 } from "../../types/current-user.model";
 import RouteName from "../../router/name";
 import { IFeedToken } from "@/types/feedtoken.model";
@@ -615,6 +616,15 @@ const notificationValues = computed(
   }
 );
 
+const updatedSettings = computed(() => ({
+  ...loggedUser.value?.settings,
+  notificationOnDay: notificationOnDay.value,
+  notificationEachWeek: notificationEachWeek.value,
+  notificationBeforeEvent: notificationBeforeEvent.value,
+  notificationPendingParticipation: notificationPendingParticipation.value,
+  groupNotifications: groupNotifications.value,
+}));
+
 onMounted(async () => {
   notificationPendingParticipationValues.value = {
     [INotificationPendingEnum.NONE]: t("Do not receive any mail"),
@@ -631,24 +641,29 @@ onMounted(async () => {
     [INotificationPendingEnum.ONE_WEEK]: t("Weekly email summary"),
   };
   canShowWebPush.value = await checkCanShowWebPush();
+  setNotificationSettings(loggedUser.value?.settings);
 });
 
 watch(loggedUser, () => {
   if (loggedUser.value?.settings) {
-    notificationOnDay.value = loggedUser.value.settings.notificationOnDay;
-    notificationEachWeek.value = loggedUser.value.settings.notificationEachWeek;
-    notificationBeforeEvent.value =
-      loggedUser.value.settings.notificationBeforeEvent;
-    notificationPendingParticipation.value =
-      loggedUser.value.settings.notificationPendingParticipation;
-    groupNotifications.value = loggedUser.value.settings.groupNotifications;
+    setNotificationSettings(loggedUser.value?.settings);
   }
 });
 
-const { mutate: updateSetting } = useMutation<{ setUserSettings: string }>(
-  SET_USER_SETTINGS,
-  () => ({ refetchQueries: [{ query: USER_NOTIFICATIONS }] })
-);
+const { mutate: updateSetting } = useMutation<{
+  setUserSettings: IUserSettings;
+}>(SET_USER_SETTINGS, () => ({
+  refetchQueries: [{ query: USER_NOTIFICATIONS }],
+}));
+
+const setNotificationSettings = (settings: IUserSettings) => {
+  notificationOnDay.value = settings.notificationOnDay;
+  notificationEachWeek.value = settings.notificationEachWeek;
+  notificationBeforeEvent.value = settings.notificationBeforeEvent;
+  notificationPendingParticipation.value =
+    settings.notificationPendingParticipation;
+  groupNotifications.value = settings.groupNotifications;
+};
 
 const dialog = inject<Dialog>("dialog");
 
@@ -790,7 +805,9 @@ const { mutate: updateNotificationValue } = useMutation<
     method: IActivitySettingMethod;
     enabled: boolean;
   }
->(UPDATE_ACTIVITY_SETTING);
+>(UPDATE_ACTIVITY_SETTING, () => ({
+  refetchQueries: [{ query: USER_NOTIFICATIONS }],
+}));
 
 const isSubscribed = async (): Promise<boolean> => {
   try {
