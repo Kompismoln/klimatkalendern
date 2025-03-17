@@ -57,3 +57,6 @@ stats.html
 /playwright-report/
 .histoire
 
+.envrc
+.direnv/
+priv/

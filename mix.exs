@@ -176,7 +176,7 @@ defmodule Mobilizon.Mixfile do
       {:mogrify, "~> 0.9"},
       {:linkify, "~> 0.3"},
       {:http_signatures, "~> 0.1.0"},
-      {:ex_cldr, "~> 2.33"},
+      {:ex_cldr, "~> 2.40"},
       {:ex_cldr_dates_times, "~> 2.2"},
       {:ex_cldr_plugs, "~> 1.0"},
       {:ex_optimizer, "~> 0.1"},
