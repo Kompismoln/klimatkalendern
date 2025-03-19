@@ -9,7 +9,7 @@
         class="flex items-center"
         :class="{ 'flex-1': !currentActor?.id }"
       >
-        <MobilizonLogo class="w-40" />
+        <MobilizonLogo />
       </router-link>
       <div
         class="flex items-center md:order-2 ml-auto gap-2"

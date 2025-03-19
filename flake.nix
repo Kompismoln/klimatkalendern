@@ -49,6 +49,13 @@
             unzip
             openssl
             file
+	    imagemagick
+	    libwebp
+	    gifsicle 
+	    jpegoptim 
+	    optipng 
+	    pngquant
+	    inotify-tools
           ];
         };
       };
