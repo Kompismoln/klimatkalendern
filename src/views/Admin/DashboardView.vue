@@ -36,7 +36,7 @@
         <LinkedNumberDashboardTile
           :number="dashboard?.numberOfUsers"
           :subtitle="t('Users', dashboard?.numberOfUsers ?? 0)"
-          :to="{ name: RouteName.ADMIN_GROUPS }"
+          :to="{ name: RouteName.ADMIN_USER_PROFILE }"
         />
         <LinkedNumberDashboardTile
           :number="dashboard?.numberOfReports"
