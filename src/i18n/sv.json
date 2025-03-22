@@ -878,7 +878,7 @@
   "Postal Code": "Postkod",
   "Posts": "Inlägg",
   "Powered by Mobilizon": "Drivs av Mobilizon",
-  "Powered by {mobilizon}. © 2018 - {date} The Mobilizon Contributors - Made with the financial support of {contributors}.": "Drivs av {mobilizon}. © 2018 - {datum} Mobilizon bidragsgivare - Gjord med ekonomiskt stöd av {bidragsgivare}.",
+  "Powered by {mobilizon}. © 2018 - {date} The Mobilizon Contributors - Made with the financial support of {contributors}.": "Drivs av {mobilizon}. © 2018 - {datum} Mobilizon bidragsgivare - Gjord med ekonomiskt stöd av {contributors}.",
   "Preferences": "Egenskaper",
   "Previous": "Föregående",
   "Previous email": "Tidigare e-postadress",
@@ -1637,5 +1637,7 @@
   "{username} was invited to {group}": "{användarnamn} blev inbjuden till {grupp}",
   "{user}'s follow request was accepted": "{user}s följarförfrågan accepterades",
   "{user}'s follow request was rejected": "{user}s följarförfrågan avvisades",
-  "© The OpenStreetMap Contributors": "© Alla bidragsgivare till OpenStreetMap"
+  "© The OpenStreetMap Contributors": "© Alla bidragsgivare till OpenStreetMap",
+  "Calendar": "Kalender",
+  "more than 1360 contributors": "över 1360 individuella sponsorer"
 }

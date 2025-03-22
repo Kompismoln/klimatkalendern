@@ -2,45 +2,14 @@
   <!-- <o-loading v-model:active="$apollo.loading" /> -->
 
   <!-- Quick publish -->
-  <quick-publish></quick-publish>
+  <!-- Quick publish -->
 
   <!-- Nice looking SVGs -->
-  <section class="mt-5 sm:mt-24">
-    <div class="-z-10 overflow-hidden">
-      <img
-        alt=""
-        src="/img/shape-1.svg"
-        class="-z-10 absolute left-[2%] top-36"
-        width="300"
-      />
-      <img
-        alt=""
-        src="/img/shape-2.svg"
-        class="-z-10 absolute left-[50%] top-[5%] -translate-x-2/4 opacity-60"
-        width="800"
-      />
-      <img
-        alt=""
-        src="/img/shape-3.svg"
-        class="-z-10 absolute top-0 right-36"
-        width="200"
-      />
-    </div>
-  </section>
   <!-- Unlogged introduction -->
   <unlogged-introduction :config="config" v-if="config && !isLoggedIn" />
 
   <!-- Search fields -->
   <short-search></short-search>
-  <search-fields
-    v-model:search="search"
-    v-model:address="userAddress"
-    v-model:distance="distance"
-    v-on:update:address="updateAddress"
-    :fromLocalStorage="true"
-    :addressDefaultText="userLocation?.name"
-    :key="increated"
-  />
   <!-- Welcome back -->
   <section
     class="container mx-auto"
