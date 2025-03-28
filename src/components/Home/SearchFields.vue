@@ -60,14 +60,6 @@
         {{ t("Events") + number_result("EVENTS") }}
       </o-button>
       <o-button
-        :class="'search-Activity min-w-40 ' + select_button_class('LONGEVENTS')"
-        native-type="submit"
-        icon-left="calendar-star"
-        v-if="isLongEvents"
-      >
-        {{ t("Activities") + number_result("LONGEVENTS") }}
-      </o-button>
-      <o-button
         :class="'search-Group min-w-40 ' + select_button_class('GROUPS')"
         native-type="submit"
         icon-left="account-multiple"

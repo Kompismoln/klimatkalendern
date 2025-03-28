@@ -71,7 +71,7 @@ module.exports = {
         "purple-1": "#757199",
         "purple-2": "#cdcaea",
         "purple-3": "#e6e4f4",
-        "mbz-info": "#36bcd4",
+        "mbz-info": "rgb(74, 222, 128)",
         "mbz-danger": "#cd2026",
         "mbz-success": "#0d8758",
         "mbz-warning": "#ffe08a",
