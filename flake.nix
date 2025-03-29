@@ -7,8 +7,8 @@
 
   outputs =
     {
+      self,
       nixpkgs,
-      ...
     }:
     let
       name = "klimatkalendern";
@@ -20,6 +20,7 @@
       inherit (pkgs.beamPackages) buildMix;
     in
     {
+      inherit self;
 
       packages.${system} = {
         default = buildMix {
@@ -49,13 +50,13 @@
             unzip
             openssl
             file
-	    imagemagick
-	    libwebp
-	    gifsicle 
-	    jpegoptim 
-	    optipng 
-	    pngquant
-	    inotify-tools
+            imagemagick
+            libwebp
+            gifsicle
+            jpegoptim
+            optipng
+            pngquant
+            inotify-tools
           ];
         };
       };
