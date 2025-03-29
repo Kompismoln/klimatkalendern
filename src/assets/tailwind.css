@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply bg-green-200 dark:bg-gray-900; 
+    @apply dark:bg-gray-900; 
   }
 
   h1 {

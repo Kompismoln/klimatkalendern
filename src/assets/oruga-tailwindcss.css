@@ -1,5 +1,5 @@
 body {
-  @apply bg-body-background-color bg-green-200 dark:bg-zinc-800 dark:text-white;
+  @apply bg-body-background-color dark:bg-zinc-800 dark:text-white;
 }
 
 .out {
@@ -341,7 +341,7 @@ button.menubar__button {
   @apply flex items-center justify-center px-2 py-2 rounded-t border-transparent;
 }
 .tabs-nav-item-active-boxed {
-  @apply bg-green-400 border-gray-300 text-primary;
+  @apply border-gray-300 text-primary;
 }
 
 /** Tooltip */

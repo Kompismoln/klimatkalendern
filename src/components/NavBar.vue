@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="bg-green-400 border-green-900 px-2 sm:px-4 py-2.5 dark:bg-zinc-900"
+    class="px-2 sm:px-4 py-2.5 dark:bg-zinc-900"
     id="navbar"
   >
     <div class="container mx-auto flex flex-wrap items-center gap-2 sm:gap-4">
