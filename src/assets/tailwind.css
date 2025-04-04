@@ -30,7 +30,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --oruga-variant-primary: #1e7d97;
+    --oruga-variant-primary: rgb(22,101,52);
 
     --oruga-field-label-color: white;
 
