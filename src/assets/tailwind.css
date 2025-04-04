@@ -24,7 +24,7 @@
 
 @layer components {
   .mbz-card {
-    @apply block bg-mbz-yellow-alt-300 hover:bg-mbz-yellow-alt-200 text-violet-title dark:text-white dark:hover:text-white rounded-lg dark:border-violet-title shadow-md dark:bg-mbz-purple dark:hover:dark:bg-mbz-purple-400 dark:text-white dark:hover:text-white;
+    @apply block bg-mbz-yellow-alt-300 hover:bg-mbz-yellow-alt-200 dark:text-white dark:hover:text-white rounded-lg dark:border-violet-title shadow-md dark:bg-mbz-purple dark:hover:dark:bg-mbz-purple-400 dark:text-white dark:hover:text-white;
   }
 }
 

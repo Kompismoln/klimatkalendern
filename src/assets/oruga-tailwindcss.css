@@ -1,5 +1,5 @@
 body {
-  @apply bg-body-background-color dark:bg-zinc-800 dark:text-white;
+  @apply bg-body-background-color bg-teal-100 dark:bg-zinc-800 dark:text-white;
 }
 
 .out {
