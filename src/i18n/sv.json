@@ -1248,6 +1248,8 @@
   "To follow groups and be informed of their latest events": "Att följa grupper och få information om deras senaste händelser",
   "To register for an event by choosing one of your identities": "För att registrera dig för ett evenemang genom att välja en av dina identiteter",
   "Today": "Idag",
+  "Week": "Vecka",
+  "Month": "Månad",
   "Tomorrow": "Imorgon",
   "Tools": "Verktyg",
   "Total number of participations": "Totalt antal deltagningar",
@@ -1522,7 +1524,7 @@
   "create an event": "skapa ett evenemang",
   "default Mobilizon privacy policy": "Standard-integritetspolicy för Mobilizon",
   "default Mobilizon terms": "standardvillkor för Mobilizon",
-  "e.g. 10 Rue Jangot": "e.g. 10 Rue Jangot",
+  "e.g. 10 Rue Jangot": "t.ex. Sveagatan 10",
   "e.g. Accessibility, Twitch, PeerTube": "t.ex. Accessibility, Twitch, PeerTube",
   "e.g. Nantes, Berlin, Cork, …": "t.ex. Göteborg, Malmö, …",
   "enable the feature": "aktivera funktionen",
@@ -1644,5 +1646,7 @@
   "Last event activity": "Efter senaste evenemang",
   "Decreasing number of members": "Flest medlemmar först",
   "Decreasing creation date": "Senast skapade först",
-  "Last event activity": "Efter senaste evenemang"
+  "Last event activity": "Efter senaste evenemang",
+  "From this instance only": "Endast från denna instans",
+  "No location yet": "Ingen plats anginven"
 }
