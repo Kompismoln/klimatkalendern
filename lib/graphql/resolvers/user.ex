@@ -14,7 +14,7 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
   alias Mobilizon.Users.{Setting, User}
 
   alias Mobilizon.Web.{Auth, Email}
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   require Logger
 

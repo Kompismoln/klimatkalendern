@@ -9,7 +9,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Report do
   alias Mobilizon.Actors.Actor
   alias Mobilizon.Reports.{Note, Report}
   alias Mobilizon.Users.User
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   alias Mobilizon.GraphQL.API
 

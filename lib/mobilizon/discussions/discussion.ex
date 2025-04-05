@@ -28,7 +28,7 @@ defmodule Mobilizon.Discussions.Discussion do
   alias Mobilizon.Discussions.Comment
   alias Mobilizon.Discussions.Discussion.TitleSlug
   use Mobilizon.Web, :verified_routes
-  import Mobilizon.Web.Gettext, only: [dgettext: 2]
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   @type t :: %__MODULE__{
           id: String.t(),

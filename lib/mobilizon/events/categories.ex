@@ -2,7 +2,7 @@ defmodule Mobilizon.Events.Categories do
   @moduledoc """
   Module that handles event categories
   """
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   @default "MEETING"
 

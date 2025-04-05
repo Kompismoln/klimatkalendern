@@ -6,7 +6,7 @@ defmodule Mobilizon.Service.Activity.Renderer.Post do
   alias Mobilizon.Actors.Actor
   alias Mobilizon.Service.Activity.Renderer
   use Mobilizon.Web, :verified_routes
-  import Mobilizon.Web.Gettext, only: [dgettext: 3]
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   @behaviour Renderer
 

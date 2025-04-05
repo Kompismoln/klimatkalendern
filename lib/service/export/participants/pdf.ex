@@ -9,7 +9,7 @@ defmodule Mobilizon.Service.Export.Participants.PDF do
   alias Mobilizon.Web.ExportView
   alias Mobilizon.Web.Gettext, as: GettextBackend
   alias Phoenix.HTML.Safe
-  import Mobilizon.Web.Gettext, only: [gettext: 2]
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   import Mobilizon.Service.Export.Participants.Common,
     only: [

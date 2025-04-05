@@ -4,7 +4,7 @@ defmodule Mobilizon.Web.ApplicationController do
   alias Mobilizon.Applications.Application
   alias Mobilizon.Service.Auth.Applications
   plug(:put_layout, false)
-  import Mobilizon.Web.Gettext, only: [dgettext: 2]
+  use Gettext, backend: Mobilizon.Web.Gettext
   require Logger
 
   @doc """

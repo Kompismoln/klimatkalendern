@@ -8,7 +8,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Application do
   alias Mobilizon.GraphQL.Error
   alias Mobilizon.Service.Auth.Applications
   alias Mobilizon.Users.User
-  import Mobilizon.Web.Gettext, only: [dgettext: 2]
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   require Logger
 

@@ -7,7 +7,7 @@ defmodule Mobilizon.Service.Export.Participants.ODS do
   alias Mobilizon.Events.Event
   alias Mobilizon.Storage.Repo
   alias Mobilizon.Web.Gettext, as: GettextBackend
-  import Mobilizon.Web.Gettext, only: [gettext: 2]
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   import Mobilizon.Service.Export.Participants.Common,
     only: [

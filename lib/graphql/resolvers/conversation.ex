@@ -11,7 +11,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Conversation do
   alias Mobilizon.Storage.Page
   alias Mobilizon.Users.User
   alias Mobilizon.Web.Endpoint
-  import Mobilizon.Web.Gettext, only: [dgettext: 2]
+  use Gettext, backend: Mobilizon.Web.Gettext
   require Logger
 
   @spec find_conversations_for_event(Event.t(), map(), Absinthe.Resolution.t()) ::

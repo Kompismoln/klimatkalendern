@@ -7,7 +7,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Media do
   alias Mobilizon.Medias
   alias Mobilizon.Medias.Media
   alias Mobilizon.Users.User
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   @doc """
   Get media for an event

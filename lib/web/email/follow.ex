@@ -4,7 +4,7 @@ defmodule Mobilizon.Web.Email.Follow do
   """
   use Phoenix.Swoosh, view: Mobilizon.Web.EmailView
 
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   alias Mobilizon.Users
   alias Mobilizon.Actors.{Actor, Follower}

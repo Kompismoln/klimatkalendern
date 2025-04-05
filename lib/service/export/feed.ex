@@ -3,7 +3,7 @@ defmodule Mobilizon.Service.Export.Feed do
   Serve Atom Syndication Feeds.
   """
 
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   alias Atomex.{Entry, Feed}
 
