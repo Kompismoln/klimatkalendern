@@ -7,7 +7,6 @@ defmodule Mobilizon.Service.Export.Participants.CSV do
   alias Mobilizon.{Events, Export}
   alias Mobilizon.Events.Event
   alias Mobilizon.Storage.Repo
-  alias Mobilizon.Web.Gettext
   require Logger
 
   import Mobilizon.Service.Export.Participants.Common,
@@ -86,7 +85,7 @@ defmodule Mobilizon.Service.Export.Participants.CSV do
   @spec save_csv_upload(String.t(), String.t(), Event.t()) ::
           {:ok, Export.t()} | {:error, atom() | Ecto.Changeset.t()}
   defp save_csv_upload(full_path, filename, %Event{id: event_id, title: title}) do
-    Gettext.gettext_comment(
+    gettext_comment(
       "File name template for exported list of participants. Should NOT contain spaces. Make sure the output is going to be something standardized that is acceptable as a file name on most systems."
     )
 
