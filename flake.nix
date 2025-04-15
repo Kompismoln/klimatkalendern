@@ -2,7 +2,7 @@
   description = "build klimatkalendern";
 
   inputs = {
-    nixpkgs.url = "github:ahbk/nixpkgs/my-nixos";
+    nixpkgs.url = "github:kompismoln/nixpkgs/nixos-unstable";
   };
 
   outputs =
@@ -16,11 +16,12 @@
       src = ./.;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      mixNix = import ./mix.nix;
 
       inherit (pkgs.beamPackages) buildMix;
     in
     {
-      inherit self;
+      inherit self mixNix;
 
       packages.${system} = {
         default = buildMix {
