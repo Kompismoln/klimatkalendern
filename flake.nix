@@ -16,25 +16,16 @@
       src = ./.;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-      mixNix = import ./mix.nix;
-
-      inherit (pkgs.beamPackages) buildMix;
     in
     {
-      inherit self mixNix;
-
-      packages.${system} = {
-        default = buildMix {
-          inherit name version src;
-          patches = [ ];
-          nativeBuildInputs = [
-            pkgs.git
-            pkgs.cmake
-          ];
-          beamDeps = import ./mix.nix {
-            inherit (pkgs) lib beamPackages;
-          };
+      packages.${system}.default = pkgs.callPackage ./pkgs/mobilizon {
+        mixNix = import ./mix.nix;
+        elixir = pkgs.beam.packages.erlang_26.elixir_1_15;
+        beamPackages = pkgs.beam.packages.erlang_26.extend (self: super: { elixir = self.elixir_1_15; });
+        mobilizon-frontend = pkgs.callPackage ./pkgs/mobilizon/frontend.nix {
+          mobilizon-src = self;
         };
+        mobilizon-src = self;
       };
 
       nixosModules.mobilizon = { };
