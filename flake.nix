@@ -17,7 +17,8 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in
-    {
+    rec {
+      packages."aarch64-darwin".default = packages.${system}.default;
       packages.${system}.default = pkgs.callPackage ./pkgs/mobilizon {
         mixNix = import ./mix.nix;
         elixir = pkgs.beam.packages.erlang_26.elixir_1_15;
