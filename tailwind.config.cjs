@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "var(--custom-primary, #1e7d97)",
+        primary: "var(--custom-primary, #000000)",
         secondary: "var(--custom-secondary, #ffd599)",
         "violet-title": "#3c376e",
         tag: "rgb(var(--color-tag) / <alpha-value>)",
