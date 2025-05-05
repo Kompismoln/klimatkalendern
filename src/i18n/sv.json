@@ -527,7 +527,7 @@
   "Homepage": "Hemsida",
   "Hourly email summary": "Timvis mejlsammanfattning",
   "I agree to the {instanceRules} and {termsOfService}": "Jag godkänner {instanceRules} och {termsOfService}",
-  "I create an identity": "Jag skapar en identitet",
+  "I create an identity": "Skapa en identitet",
   "I don't have a Mobilizon account": "Jag har inget Mobilizon konto",
   "I have a Mobilizon account": "Jag har ett Mobilizon konto",
   "I have an account on another Mobilizon instance.": "Jag har ett konto i en annan Mobilizon instans.",
@@ -1648,5 +1648,11 @@
   "Decreasing creation date": "Senast skapade först",
   "Last event activity": "Efter senaste evenemang",
   "From this instance only": "Endast från denna instans",
-  "No location yet": "Ingen plats anginven"
+  "No location yet": "Ingen plats anginven",
+  "Activities are disabled on this instance.|An event with a duration of more than one day will be categorized as an activity.|An event with a duration of more than {number} days will be categorized as an activity.": "Aktiviteter är avstängda på den här instansen.|Ett evenemang längre än en dag kommer räknas som en aktivitet.|Ett evenemang längre än {number} dagar kommer räknas som en aktivitet.",
+  "Timezone parameters": "Inställningar för tidszoner",
+  "How to register": "Hur man registrerar sig",
+  "I want to manage the registration on Mobilizon": "Jag vill hantera registreringar genom Mobilizon",
+  "Showing participants": "Visning av antal registrerade",
+  "Hide the number of participants": "Dölj antal registrerade"
 }
