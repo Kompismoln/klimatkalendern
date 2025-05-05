@@ -1654,5 +1654,10 @@
   "How to register": "Hur man registrerar sig",
   "I want to manage the registration on Mobilizon": "Jag vill hantera registreringar genom Mobilizon",
   "Showing participants": "Visning av antal registrerade",
-  "Hide the number of participants": "Dölj antal registrerade"
+  "Hide the number of participants": "Dölj antal registrerade",
+  "Logo": "Logga",
+  "Logo of the instance. Defaults to the upstream Mobilizon logo.": "Instansens logga. Om ingen anges så används Mobilizon-loggan.",
+  "Browser tab icon and PWA icon of the instance. Defaults to the upstream Mobilizon icon.": "Bilden som syns i webbläsartabben och även som ikon i den progressiva webappen. Om ingen anges så används Mobilizon-loggan.",
+  "Default Picture": "Standardbild",
+  "Default picture when an event or group doesn't have one.": "Bild som används när en grupp eller ett event inte nar någon bild."
 }
