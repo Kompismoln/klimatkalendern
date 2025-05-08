@@ -4,10 +4,13 @@ defmodule Mobilizon.Cldr do
   """
 
   use Cldr,
-    otp_app: :mobilizon,
-    locales: [:en],
+    locales: Application.compile_env(:mobilizon, :cldr)[:locales],
     add_fallback_locales: true,
-    gettext: Mobilizon.Web.Gettext,
+    gettext:
+      if(Application.compile_env(:mobilizon, :env) == :prod,
+        do: Mobilizon.Web.Gettext,
+        else: nil
+      ),
     providers: [Cldr.Number, Cldr.Calendar, Cldr.DateTime, Cldr.Language],
     precompile_transliterations: [{:latn, :arabext}]
 
