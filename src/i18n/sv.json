@@ -1648,7 +1648,7 @@
   "Decreasing creation date": "Senast skapade först",
   "Last event activity": "Efter senaste evenemang",
   "From this instance only": "Endast från denna instans",
-  "No location yet": "Ingen plats anginven",
+  "No location yet": "Ingen plats angiven",
   "Activities are disabled on this instance.|An event with a duration of more than one day will be categorized as an activity.|An event with a duration of more than {number} days will be categorized as an activity.": "Aktiviteter är avstängda på den här instansen.|Ett evenemang längre än en dag kommer räknas som en aktivitet.|Ett evenemang längre än {number} dagar kommer räknas som en aktivitet.",
   "Timezone parameters": "Inställningar för tidszoner",
   "How to register": "Hur man registrerar sig",
