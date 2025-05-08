@@ -86,17 +86,6 @@ export const routes = [
         },
       },
       {
-        path: "instance2",
-        name: RouteName.ABOUT_INSTANCE,
-        component: (): Promise<any> =>
-          import("@/views/About/AboutInstanceView.vue"),
-        meta: {
-          announcer: {
-            message: (): string => t("About instance") as string,
-          },
-        },
-      },
-      {
         path: "/terms",
         name: RouteName.TERMS,
         component: (): Promise<any> => import("@/views/About/TermsView.vue"),
