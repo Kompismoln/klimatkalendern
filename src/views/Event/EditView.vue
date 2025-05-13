@@ -36,27 +36,6 @@
       </o-field>
 
       <div class="flex flex-wrap gap-4">
-        <o-field
-          v-if="orderedCategories"
-          :label="t('Category')"
-          label-for="categoryField"
-          class="w-full md:max-w-fit"
-        >
-          <o-select
-            :placeholder="t('Select a category')"
-            v-model="event.category"
-            id="categoryField"
-            expanded
-          >
-            <option
-              v-for="category in orderedCategories"
-              :value="category.id"
-              :key="category.id"
-            >
-              {{ category.label }}
-            </option>
-          </o-select>
-        </o-field>
         <tag-input v-model="event.tags" class="flex-1" />
       </div>
 
@@ -648,7 +627,6 @@ import { useI18n } from "vue-i18n";
 import { useGroup } from "@/composition/apollo/group";
 import {
   useAnonymousParticipationConfig,
-  useEventCategories,
   useFeatures,
   useTimezones,
 } from "@/composition/apollo/config";
@@ -657,13 +635,11 @@ import { Dialog } from "@/plugins/dialog";
 import { Notifier } from "@/plugins/notifier";
 import { useHead } from "@/utils/head";
 import { useOruga } from "@oruga-ui/oruga-next";
-import sortBy from "lodash/sortBy";
 import { escapeHtml } from "@/utils/html";
 import EventDatePicker from "@/components/Event/EventDatePicker.vue";
 
 const DEFAULT_LIMIT_NUMBER_OF_PLACES = 10;
 
-const { eventCategories } = useEventCategories();
 const { anonymousParticipationConfig } = useAnonymousParticipationConfig();
 const { currentActor } = useCurrentActorClient();
 const { loggedUser } = useLoggedUser();
@@ -1288,7 +1264,7 @@ watch(endsOn, (newEndsOn) => {
   updateEventDateRelatedToTimezone();
 });
 
-/* 
+/*
 For endsOn, we need to check consistencyBeginsOnBeforeEndsOn() at blur
 because the datetime-local component update itself immediately
 Ex : your event start at 10:00 and stops at 12:00
@@ -1482,11 +1458,6 @@ watch(group, () => {
   if (!props.isUpdate && group.value?.visibility == GroupVisibility.PUBLIC) {
     event.value.visibility = EventVisibility.PUBLIC;
   }
-});
-
-const orderedCategories = computed(() => {
-  if (!eventCategories.value) return undefined;
-  return sortBy(eventCategories.value, ["label"]);
 });
 
 const RegisterOption = {
