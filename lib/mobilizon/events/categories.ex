@@ -28,120 +28,36 @@ defmodule Mobilizon.Events.Categories do
   defp build_in_categories do
     [
       %{
-        id: :arts,
-        label: gettext("Arts")
+        id: :lecture,
+        label: gettext("Lecture")
       },
       %{
-        id: :book_clubs,
-        label: gettext("Book clubs")
+        id: :training,
+        label: gettext("Training")
       },
       %{
-        id: :business,
-        label: gettext("Business")
+        id: :fundraising,
+        label: gettext("Fundraising")
       },
       %{
-        id: :causes,
-        label: gettext("Causes")
+        id: :workshop,
+        label: gettext("Workshop")
       },
       %{
-        id: :comedy,
-        label: gettext("Comedy")
+        id: :social,
+        label: gettext("Social")
       },
       %{
-        id: :crafts,
-        label: gettext("Crafts")
+        id: :demonstration,
+        label: gettext("Demonstration")
       },
       %{
-        id: :food_drink,
-        label: gettext("Food & Drink")
+        id: :protest,
+        label: gettext("Protest")
       },
       %{
-        id: :health,
-        label: gettext("Health")
-      },
-      %{
-        id: :music,
-        label: gettext("Music")
-      },
-      %{
-        id: :auto_boat_air,
-        label: gettext("Auto, boat and air")
-      },
-      %{
-        id: :community,
-        label: gettext("Community")
-      },
-      %{
-        id: :family_education,
-        label: gettext("Family & Education")
-      },
-      %{
-        id: :fashion_beauty,
-        label: gettext("Fashion & Beauty")
-      },
-      %{
-        id: :film_media,
-        label: gettext("Film & Media")
-      },
-      %{
-        id: :games,
-        label: gettext("Games")
-      },
-      %{
-        id: :language_culture,
-        label: gettext("Language & Culture")
-      },
-      %{
-        id: :learning,
-        label: gettext("Learning")
-      },
-      %{
-        id: :lgbtq,
-        label: gettext("LGBTQ")
-      },
-      %{
-        id: :movements_politics,
-        label: gettext("Movements and politics")
-      },
-      %{
-        id: :networking,
-        label: gettext("Networking")
-      },
-      %{
-        id: :party,
-        label: gettext("Party")
-      },
-      %{
-        id: :performing_visual_arts,
-        label: gettext("Performing & Visual Arts")
-      },
-      %{
-        id: :pets,
-        label: gettext("Pets")
-      },
-      %{
-        id: :photography,
-        label: gettext("Photography")
-      },
-      %{
-        id: :outdoors_adventure,
-        label: gettext("Outdoors & Adventure")
-      },
-      %{
-        id: :spirituality_religion_beliefs,
-        label: gettext("Spirituality, Religion & Beliefs")
-      },
-      %{
-        id: :science_tech,
-        label: gettext("Science & Tech")
-      },
-      %{
-        id: :sports,
-        label: gettext("Sports")
-      },
-      %{
-        id: :theatre,
-        label: gettext("Theatre")
+        id: :action,
+        label: gettext("Action")
       },
       # Legacy default value
       %{

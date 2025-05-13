@@ -534,7 +534,7 @@
       >
         <!-- Public thing: Long Events -->
         <Events
-          v-if="isLongEvents"
+          v-if="isLongEvents && false"
           :group="group"
           :isModerator="isCurrentActorAGroupModerator && !previewPublic"
           :longEvent="true"

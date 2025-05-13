@@ -3,6 +3,7 @@
 /db
 /deps
 /*.ez
+/result
 
 # Generated on crash by the VM
 erl_crash.dump
@@ -57,3 +58,6 @@ stats.html
 /playwright-report/
 .histoire
 
+.envrc
+.direnv/
+priv/

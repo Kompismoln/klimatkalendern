@@ -178,28 +178,6 @@ onMounted(() => {
     online.value = true;
     console.debug("online");
   });
-  document.addEventListener("refreshApp", (event: Event) => {
-    snackbar?.open({
-      queue: false,
-      indefinite: true,
-      variant: "dark",
-      actionText: t("Update app"),
-      cancelText: t("Ignore"),
-      message: t("A new version is available."),
-      onAction: async () => {
-        const registration = (
-          event as unknown as { detail: ServiceWorkerRegistration }
-        ).detail;
-        try {
-          await refreshApp(registration);
-          window.location.reload();
-        } catch (err) {
-          console.error(err);
-          notifier?.error(t("An error has occured while refreshing the page."));
-        }
-      },
-    });
-  });
   darkModePreference.addEventListener("change", changeTheme);
 });
 
