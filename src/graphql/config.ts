@@ -11,7 +11,6 @@ export const CONFIG = gql`
       registrationsAllowlist
       demoMode
       longEvents
-      durationOfLongEvent
       countryCode
       languages
       primaryColor

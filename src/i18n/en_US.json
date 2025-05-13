@@ -247,7 +247,6 @@
   "Password reset": "Password reset",
   "Password": "Password",
   "Past events": "Passed events",
-  "Past activities": "Passed activities",
   "Pending": "Pending",
   "Pick an identity": "Pick an identity",
   "Please check your spam folder if you didn't receive the email.": "Please check your spam folder if you didn't receive the email.",
@@ -1658,11 +1657,5 @@
   "Domain or instance name": "Domain or instance name",
   "You need to enter a text": "You need to enter a text",
   "Error while adding tag: {error}": "Error while adding tag: {error}",
-  "From this instance only": "From this instance only",
-  "view more events and activities": "view more events and activities",
-  "Upcoming events nearby {position}": "Upcoming events nearby {position}",
-  "View more events and activities around {position}": "View more events and activities around {position}",
-  "Choose publishing" : "Choose publishing",
-  "Publish from a group" : "Publish from a group",
-  "Publish as individual" : "Publish as individual"
+  "From this instance only": "From this instance only"
 }

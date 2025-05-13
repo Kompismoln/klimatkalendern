@@ -91,7 +91,7 @@ defmodule Mobilizon.Admin.SettingMedia do
     put_assoc(changeset, :media, nil)
   end
 
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
   @spec upload_media(map) :: {:ok, Media.t()} | {:error, any}
   defp upload_media(%{file: %Plug.Upload{} = file} = args) do
     with {:ok,

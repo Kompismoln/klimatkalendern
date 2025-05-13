@@ -8,7 +8,7 @@ defmodule Mobilizon.Service.Export.Participants.Common do
   alias Mobilizon.Events.Participant
   alias Mobilizon.Events.Participant.Metadata
   alias Mobilizon.Storage.Repo
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext, only: [gettext: 1]
   import Mobilizon.Service.DateTime, only: [datetime_to_string: 2]
 
   @spec save_upload(String.t(), String.t(), String.t(), String.t(), String.t()) ::

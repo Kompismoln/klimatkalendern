@@ -24,7 +24,7 @@ defmodule Mobilizon.Web do
     quote do
       use Phoenix.Controller, namespace: Mobilizon.Web
       import Plug.Conn
-      use Gettext, backend: Mobilizon.Web.Gettext
+      import Mobilizon.Web.Gettext
       alias Mobilizon.Web.Router.Helpers, as: Routes
       unquote(verified_routes())
     end
@@ -42,7 +42,7 @@ defmodule Mobilizon.Web do
 
       import Phoenix.View
       import Mobilizon.Web.ErrorHelpers
-      use Gettext, backend: Mobilizon.Web.Gettext
+      import Mobilizon.Web.Gettext
       alias Mobilizon.Web.Router.Helpers, as: Routes
       unquote(verified_routes())
     end
@@ -59,7 +59,7 @@ defmodule Mobilizon.Web do
   def channel do
     quote do
       use Phoenix.Channel
-      use Gettext, backend: Mobilizon.Web.Gettext
+      import Mobilizon.Web.Gettext
     end
   end
 

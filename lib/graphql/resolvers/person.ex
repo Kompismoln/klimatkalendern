@@ -11,7 +11,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Person do
   alias Mobilizon.Service.AntiSpam
   alias Mobilizon.Storage.{Page, Repo}
   alias Mobilizon.Users.User
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   alias Mobilizon.Federation.ActivityPub.Actions
   alias Mobilizon.Federation.ActivityPub.Actor, as: ActivityPubActor

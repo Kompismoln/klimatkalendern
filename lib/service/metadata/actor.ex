@@ -8,7 +8,7 @@ defimpl Mobilizon.Service.Metadata, for: Mobilizon.Actors.Actor do
   import Mobilizon.Service.Metadata.Utils,
     only: [process_description: 2, default_description: 1, escape_text: 1]
 
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   def build_tags(_actor, _locale \\ "en")
 

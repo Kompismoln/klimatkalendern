@@ -11,35 +11,43 @@
       nixpkgs,
     }:
     let
-      name = "klimatkalendern";
-      version = "5.1.1";
+      pname = "klimatkalendern";
+      version = "5.1.2";
       src = ./.;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
+      elixirPackage = pkgs.beam.packages.erlang_26.elixir_1_15;
+      beamPackages = pkgs.beam.packages.erlang_26.extend (
+        self: super: {
+          elixir = self.elixir_1_15;
+        }
+      );
     in
     rec {
       packages."aarch64-darwin".default = packages.${system}.default;
-      packages.${system}.default = pkgs.callPackage ./pkgs/mobilizon {
-        mixNix = import ./mix.nix;
-        elixir = pkgs.beam.packages.erlang_26.elixir_1_15;
-        beamPackages = pkgs.beam.packages.erlang_26.extend (self: super: { elixir = self.elixir_1_15; });
-        mobilizon-frontend = pkgs.callPackage ./pkgs/mobilizon/frontend.nix {
-          mobilizon-src = self;
+      packages.${system}.default = pkgs.callPackage ./nixpkg {
+        mobilizon-src = {
+          inherit src pname version;
         };
-        mobilizon-src = self;
+        elixir = elixirPackage;
+        inherit beamPackages;
+        mobilizon-frontend = pkgs.callPackage ./nixpkg/frontend.nix {
+          mobilizon-src = {
+            inherit src pname version;
+          };
+        };
       };
 
       nixosModules.mobilizon = { };
 
       devShells.${system} = {
         default = pkgs.mkShell {
-          name = "${name}-dev";
+          name = "${pname}-dev";
           packages = with pkgs; [
             mix2nix
-            elixir
+            elixirPackage
             cmake
             nodejs
-            erlang
             unzip
             openssl
             file

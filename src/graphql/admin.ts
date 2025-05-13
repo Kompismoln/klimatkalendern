@@ -1,6 +1,5 @@
 import gql from "graphql-tag";
 import { ACTOR_FRAGMENT } from "./actor";
-import { EVENT_OPTIONS_FRAGMENT } from "./event_options";
 
 export const DASHBOARD = gql`
   query Dashboard {
@@ -10,9 +9,6 @@ export const DASHBOARD = gql`
         uuid
         title
         beginsOn
-        options {
-          ...EventOptions
-        }
         picture {
           id
           alt
@@ -39,7 +35,6 @@ export const DASHBOARD = gql`
     }
   }
   ${ACTOR_FRAGMENT}
-  ${EVENT_OPTIONS_FRAGMENT}
 `;
 
 export const RELAY_FRAGMENT = gql`

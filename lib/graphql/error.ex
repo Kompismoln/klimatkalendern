@@ -5,7 +5,7 @@ defmodule Mobilizon.GraphQL.Error do
 
   require Logger
   alias __MODULE__
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext, only: [dgettext: 2]
   import Mobilizon.Storage.Ecto, only: [convert_ecto_errors: 1]
 
   @type t :: %{code: atom(), message: String.t(), status_code: pos_integer(), field: atom()}
