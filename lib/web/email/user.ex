@@ -5,7 +5,7 @@ defmodule Mobilizon.Web.Email.User do
 
   use Phoenix.Swoosh, view: Mobilizon.Web.EmailView
 
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext, only: [gettext: 2]
 
   alias Mobilizon.{Config, Crypto, Users}
   alias Mobilizon.Storage.Repo

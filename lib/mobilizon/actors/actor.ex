@@ -20,7 +20,7 @@ defmodule Mobilizon.Actors.Actor do
   alias Mobilizon.Web.Endpoint
   alias Mobilizon.Web.Router.Helpers, as: Routes
   use Mobilizon.Web, :verified_routes
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext, only: [dgettext: 2]
   import Mobilizon.Service.Guards, only: [is_valid_string: 1]
 
   require Logger

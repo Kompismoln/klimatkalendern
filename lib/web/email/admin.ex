@@ -5,7 +5,7 @@ defmodule Mobilizon.Web.Email.Admin do
 
   use Phoenix.Swoosh, view: Mobilizon.Web.EmailView
 
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   alias Mobilizon.Config
   alias Mobilizon.Reports.Report

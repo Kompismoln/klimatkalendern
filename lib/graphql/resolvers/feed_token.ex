@@ -7,7 +7,7 @@ defmodule Mobilizon.GraphQL.Resolvers.FeedToken do
   alias Mobilizon.Events
   alias Mobilizon.Events.FeedToken
   alias Mobilizon.Users.User
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   require Logger
 

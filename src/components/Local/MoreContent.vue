@@ -52,7 +52,7 @@
       class="flex h-full justify-between self-end flex-col p-2 pt-1 md:p-4 md:pt-2 leading-normal w-full"
     >
       <h2
-        class="mb-2 text-xl font-bold tracking-tight dark:text-white"
+        class="mb-2 text-xl font-bold tracking-tight text-violet-title dark:text-white"
       >
         <slot name="default" />
       </h2>

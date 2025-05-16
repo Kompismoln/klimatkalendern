@@ -14,8 +14,22 @@ defmodule Mobilizon.GraphQL.Resolvers.Config do
   Gets config.
   """
   @spec get_config(any(), map(), Absinthe.Resolution.t()) :: {:ok, map()}
-  def get_config(_parent, _params, %{context: %{}}) do
-    data = Map.merge(config_cache(), %{})
+  def get_config(_parent, _params, %{context: %{ip: ip}}) do
+    geolix = Geolix.lookup(ip)
+
+    country_code =
+      case Map.get(geolix, :city) do
+        %{country: %{iso_code: country_code}} -> String.downcase(country_code)
+        _ -> nil
+      end
+
+    location =
+      case Map.get(geolix, :city) do
+        %{location: location} -> location
+        _ -> nil
+      end
+
+    data = Map.merge(config_cache(), %{location: location, country_code: country_code})
 
     {:ok, data}
   end
@@ -94,7 +108,6 @@ defmodule Mobilizon.GraphQL.Resolvers.Config do
       contact: Config.contact(),
       demo_mode: Config.instance_demo_mode?(),
       long_events: Config.instance_long_events?(),
-      duration_of_long_event: Config.instance_duration_of_long_event(),
       description: Config.instance_description(),
       long_description: Config.instance_long_description(),
       slogan: Config.instance_slogan(),

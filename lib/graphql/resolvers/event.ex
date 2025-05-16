@@ -16,7 +16,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Event do
   alias Mobilizon.Service.AntiSpam
   alias Mobilizon.Service.TimezoneDetector
   import Mobilizon.Users.Guards, only: [is_moderator: 1]
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
   import Mobilizon.GraphQL.Resolvers.Event.Utils
   require Logger
 

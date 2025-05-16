@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="px-2 sm:px-4 py-2.5 dark:bg-zinc-900"
+    class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-zinc-900"
     id="navbar"
   >
     <div class="container mx-auto flex flex-wrap items-center gap-2 sm:gap-4">
@@ -181,18 +181,9 @@
         >
           <li class="m-auto">
             <router-link
-              :to="{ name: RouteName.SEARCH }"
-              class="block relative py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Search") }}</router-link
-            >
-          </li>
-
-          <li class="m-auto">
-            <router-link
               :to="{ name: RouteName.EVENT_CALENDAR }"
               class="block relative py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Calendar")
-              }}</router-link
+              >{{ t("Calendar") }}</router-link
             >
           </li>
           <li class="m-auto" v-if="currentActor?.id">
