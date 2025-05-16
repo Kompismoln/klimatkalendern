@@ -13,7 +13,7 @@ if you want to know more about Klimatkalendern, visit
 
 Contributors are much welcome, we could use extra eyes on this.
 If you want to restore a state for testing and development, but don't have access
-to our storage, email us at hi@klimatkalendern.nu.
+to our storage, email us at hello@klimatkalendern.nu.
 
 ## Setup
 Ensure you have a machine running either linux, macOS or wsl with git installed, then:
