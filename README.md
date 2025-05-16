@@ -25,7 +25,13 @@ Ensure you have a machine running either linux, macOS or wsl with git installed,
     ```
 
 2.  **Generate configuration:**
-    Generate configuration mix mobilizon.instance gen. Answer the following for these questions:
+
+    First run:
+    ```
+    mix mobilizon.instance gen
+    ```
+
+    Then answer the following for the questions prompted:
     ```
     domain: localhost
     database host: localhost (default)
@@ -43,15 +49,16 @@ the production build process, verifying it will work as expected.
 If you don't want to use nix for some reason, all system dependencies are specified
 in `flake.nix` under `devShell`.
 
-1.  **Install Nix:**
-    Install Nix with flake support. We recommend the lix.systems
-    implementation as it allows flakes to be enabled during install.
+1.  **Install Nix with flake support:**
+
+    We recommend the lix.systems implementation as it allows flakes to be enabled during install.
 
     Follow the instructions on their respective websites.
     * Nix: [https://nixos.org/download.html](https://nixos.org/download.html)
     * Lix: [https://lix.systems/](https://lix.systems/)
 
 2.  **Enter Development Environment:**
+
     Within the cloned repository, run:
     ```bash
     nix develop
@@ -82,6 +89,7 @@ This setup assumes PostgreSQL is managed at the OS level.
     PostgreSQL service usually starts automatically after installation.
 
 * **For NixOS:**
+
     Add this to you system configuration:
     ```nix
     config.services.postgresql = {
@@ -96,6 +104,7 @@ This setup assumes PostgreSQL is managed at the OS level.
 
     ```
 * **For macOS (using Homebrew):**
+
     If you don't have Homebrew, install it first from [brew.sh](https://brew.sh).
     ```bash
     brew install postgresql@15 # Or your preferred supported version, e.g., postgresql@16
@@ -221,9 +230,11 @@ Warning: This process will delete your local mobilizon_dev database, compiled co
 and local dependencies.
 
 **Stop the Phoenix Server:**
+
 If mix phx.server is running, stop it (usually Ctrl+C twice in the terminal).
 
 **Clean Project Artifacts:**
+
 Ensure you are in the project's root directory.
 ```bash
 # Clean Elixir build artifacts and compiled dependencies
