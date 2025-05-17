@@ -7,6 +7,7 @@ module.exports = {
         primary: "var(--custom-primary, #000000)",
         secondary: "var(--custom-secondary, #ffd599)",
         "violet-title": "#3c376e",
+        "klimatkalendern-background": "#f0ebd1",
         tag: "rgb(var(--color-tag) / <alpha-value>)",
         "frama-violet": "#725794",
         "frama-orange": "#cc4e13",
