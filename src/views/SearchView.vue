@@ -117,6 +117,7 @@
         </filter-section>
 
         <filter-section
+          class="hidden"
           v-show="contentType !== 'GROUPS'"
           v-model:opened="searchFilterSectionsOpenStatus.eventCategory"
           :title="t('Categories')"
