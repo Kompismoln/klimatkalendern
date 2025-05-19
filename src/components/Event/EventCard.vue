@@ -13,7 +13,7 @@
       :class="{ 'sm:w-full sm:max-w-[20rem]': mode === 'row' }"
     >
       <div
-        class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10"
+        class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 hidden"
         :class="{
           'sm:hidden': mode === 'row',
           'calendar-simple': !isDifferentBeginsEndsDate,
@@ -78,6 +78,7 @@
           :class="{ 'sm:hidden': mode === 'row' }"
         >
           <start-time-icon
+            class="hidden"
             :small="true"
             v-if="!mergedOptions.hideDate && event.options.showStartTime"
             :date="event.beginsOn.toString()"
@@ -85,7 +86,7 @@
           />
         </div>
         <span
-          class="text-gray-700 dark:text-white font-semibold hidden"
+          class="text-gray-700 dark:text-white font-semibold"
           :class="{ 'sm:block': mode === 'row' }"
           v-if="!isDifferentBeginsEndsDate"
           >{{ formatDateTimeWithCurrentLocale }}</span
