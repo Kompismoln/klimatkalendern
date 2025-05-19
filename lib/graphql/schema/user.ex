@@ -40,14 +40,8 @@ defmodule Mobilizon.GraphQL.Schema.UserType do
       description: "The datetime the last activation/confirmation token was sent"
     )
 
-    field(:confirmation_token, :string, description: "The account activation/confirmation token")
-
     field(:reset_password_sent_at, :datetime,
       description: "The datetime last reset password email was sent"
-    )
-
-    field(:reset_password_token, :string,
-      description: "The token sent when requesting password token"
     )
 
     field(:feed_tokens, list_of(:feed_token),
