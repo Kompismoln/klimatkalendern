@@ -200,6 +200,13 @@
               >{{ t("My groups") }}</router-link
             >
           </li>
+          <li class="m-auto">
+            <a
+              href="https://www.youtube.com/watch?v=eb9_b4RB7nY"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("Instruction video") }}</a
+            >
+          </li>
           <li class="m-auto" v-if="!currentActor?.id">
             <router-link
               :to="{ name: RouteName.LOGIN }"
