@@ -35,7 +35,7 @@
         />
       </o-field>
 
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap gap-4 hidden">
         <o-field
           v-if="orderedCategories"
           :label="t('Category')"
@@ -1288,7 +1288,7 @@ watch(endsOn, (newEndsOn) => {
   updateEventDateRelatedToTimezone();
 });
 
-/* 
+/*
 For endsOn, we need to check consistencyBeginsOnBeforeEndsOn() at blur
 because the datetime-local component update itself immediately
 Ex : your event start at 10:00 and stops at 12:00
