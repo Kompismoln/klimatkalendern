@@ -20,9 +20,9 @@ defmodule Mobilizon.GraphQL.Resolvers.MediaTest do
   end
 
   @media_query """
-  query Media($id: ID!) {
-    media(id: $id) {
-      id
+  query Media($uuid: UUID!) {
+    media(uuid: $uuid) {
+      uuid
       name,
       alt,
       url,
@@ -49,11 +49,11 @@ defmodule Mobilizon.GraphQL.Resolvers.MediaTest do
 
   describe "Resolver: Get media" do
     test "media/3 returns the information on a media", %{conn: conn} do
-      %Media{id: id} = media = insert(:media)
+      %Media{uuid: uuid} = media = insert(:media)
 
       res =
         conn
-        |> AbsintheHelpers.graphql_query(query: @media_query, variables: %{id: id})
+        |> AbsintheHelpers.graphql_query(query: @media_query, variables: %{uuid: uuid})
 
       assert res["data"]["media"]["name"] == media.file.name
 
@@ -68,7 +68,10 @@ defmodule Mobilizon.GraphQL.Resolvers.MediaTest do
     test "media/3 returns nothing on a non-existent media", %{conn: conn} do
       res =
         conn
-        |> AbsintheHelpers.graphql_query(query: @media_query, variables: %{id: 3})
+        |> AbsintheHelpers.graphql_query(
+          query: @media_query,
+          variables: %{uuid: "bad0bad0-bad0-bad0-bad0-bad0bad0bad0"}
+        )
 
       assert hd(res["errors"])["message"] == "Resource not found"
       assert hd(res["errors"])["status_code"] == 404
@@ -131,30 +134,30 @@ defmodule Mobilizon.GraphQL.Resolvers.MediaTest do
 
   describe "Resolver: Remove media" do
     @remove_media_mutation """
-    mutation RemoveMedia($id: ID!) {
-      removeMedia(id: $id) {
-        id
+    mutation RemoveMedia($uuid: UUID!) {
+      removeMedia(uuid: $uuid) {
+        uuid
       }
     }
     """
 
     test "Removes a previously uploaded media", %{conn: conn, user: user, actor: actor} do
-      %Media{id: media_id} = insert(:media, actor: actor)
+      %Media{uuid: media_uuid} = insert(:media, actor: actor)
 
       res =
         conn
         |> auth_conn(user)
         |> AbsintheHelpers.graphql_query(
           query: @remove_media_mutation,
-          variables: %{id: media_id}
+          variables: %{uuid: media_uuid}
         )
 
       assert res["errors"] == nil
-      assert res["data"]["removeMedia"]["id"] == to_string(media_id)
+      assert res["data"]["removeMedia"]["uuid"] == to_string(media_uuid)
 
       res =
         conn
-        |> AbsintheHelpers.graphql_query(query: @media_query, variables: %{id: media_id})
+        |> AbsintheHelpers.graphql_query(query: @media_query, variables: %{uuid: media_uuid})
 
       assert hd(res["errors"])["message"] == "Resource not found"
       assert hd(res["errors"])["status_code"] == 404
@@ -166,7 +169,7 @@ defmodule Mobilizon.GraphQL.Resolvers.MediaTest do
         |> auth_conn(user)
         |> AbsintheHelpers.graphql_query(
           query: @remove_media_mutation,
-          variables: %{id: 400}
+          variables: %{uuid: "bad0bad0-bad0-bad0-bad0-bad0bad0bad0"}
         )
 
       assert hd(res["errors"])["message"] == "Resource not found"
@@ -174,13 +177,13 @@ defmodule Mobilizon.GraphQL.Resolvers.MediaTest do
     end
 
     test "Removes nothing if media if not logged-in", %{conn: conn, actor: actor} do
-      %Media{id: media_id} = insert(:media, actor: actor)
+      %Media{uuid: media_uuid} = insert(:media, actor: actor)
 
       res =
         conn
         |> AbsintheHelpers.graphql_query(
           query: @remove_media_mutation,
-          variables: %{id: media_id}
+          variables: %{uuid: media_uuid}
         )
 
       assert hd(res["errors"])["message"] == "You need to be logged in"

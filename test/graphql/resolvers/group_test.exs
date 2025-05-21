@@ -36,7 +36,7 @@ defmodule Mobilizon.Web.Resolvers.GroupTest do
         preferredUsername
         type
         banner {
-          id
+          uuid
           url
         }
       }

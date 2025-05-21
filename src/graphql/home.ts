@@ -31,7 +31,7 @@ export const HOME_USER_QUERIES = gql`
             uuid
             title
             picture {
-              id
+              uuid
               url
               alt
             }

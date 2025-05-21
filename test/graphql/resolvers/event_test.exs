@@ -619,7 +619,7 @@ defmodule Mobilizon.Web.Resolvers.EventTest do
         alt: $alt
         file: $file
       ) {
-          id
+          uuid
           url
           name
           content_type
@@ -628,7 +628,7 @@ defmodule Mobilizon.Web.Resolvers.EventTest do
     }
     """
 
-    test "create_event/3 creates an event with an picture ID", %{
+    test "create_event/3 creates an event with an picture UUID", %{
       conn: conn,
       actor: actor,
       user: user
@@ -656,8 +656,8 @@ defmodule Mobilizon.Web.Resolvers.EventTest do
 
       assert res["errors"] == nil
       assert res["data"]["uploadMedia"]["name"] == media.name
-      media_id = res["data"]["uploadMedia"]["id"]
-      assert media_id !== "" and not is_nil(media_id)
+      media_uuid = res["data"]["uploadMedia"]["uuid"]
+      assert media_uuid !== "" and not is_nil(media_uuid)
 
       res =
         conn
@@ -672,7 +672,7 @@ defmodule Mobilizon.Web.Resolvers.EventTest do
             organizer_actor_id: "#{actor.id}",
             category: "PARTY",
             picture: %{
-              media_id: "#{media_id}"
+              media_uuid: "#{media_uuid}"
             }
           }
         )

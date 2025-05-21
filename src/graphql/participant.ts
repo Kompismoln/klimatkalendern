@@ -27,7 +27,7 @@ export const LOGGED_USER_PARTICIPATIONS = gql`
             url
             title
             picture {
-              id
+              uuid
               url
               alt
             }
@@ -94,7 +94,7 @@ export const LOGGED_USER_UPCOMING_EVENTS = gql`
             url
             title
             picture {
-              id
+              uuid
               url
               alt
             }

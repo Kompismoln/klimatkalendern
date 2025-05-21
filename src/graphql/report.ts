@@ -25,7 +25,7 @@ export const REPORTS = gql`
           uuid
           title
           picture {
-            id
+            uuid
             url
           }
         }
@@ -61,7 +61,7 @@ const REPORT_FRAGMENT = gql`
       description
       beginsOn
       picture {
-        id
+        uuid
         url
       }
       organizerActor {

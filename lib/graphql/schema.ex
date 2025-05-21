@@ -63,6 +63,12 @@ defmodule Mobilizon.GraphQL.Schema do
     field(:id, :id)
   end
 
+  @desc "A struct containing the uuid of the deleted object"
+  object :deleted_object_by_uuid do
+    meta(:authorize, :all)
+    field(:uuid, :uuid)
+  end
+
   @desc "A JWT and the associated user ID"
   object :login do
     meta(:authorize, :all)

@@ -29,7 +29,7 @@ export const CONVERSATION_QUERY_FRAGMENT = gql`
         id
       }
       picture {
-        id
+        uuid
         url
         name
         metadata {

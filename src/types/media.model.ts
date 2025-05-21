@@ -1,7 +1,7 @@
 import type { Ref } from "vue";
 
 export interface IMedia {
-  id: string;
+  uuid: string;
   url: string;
   name: string;
   alt: string;

@@ -45,7 +45,7 @@ defmodule Mobilizon.Web.Resolvers.FollowerTest do
             name
             domain
             avatar {
-              id
+              uuid
               url
             }
           }

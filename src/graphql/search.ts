@@ -8,7 +8,7 @@ export const GROUP_RESULT_FRAGMENT = gql`
   fragment GroupResultFragment on GroupSearchResult {
     id
     avatar {
-      id
+      uuid
       url
     }
     type
@@ -72,7 +72,7 @@ export const SEARCH_EVENTS_AND_GROUPS = gql`
         endsOn
         longEvent
         picture {
-          id
+          uuid
           url
         }
         url
@@ -116,7 +116,7 @@ export const SEARCH_EVENTS_AND_GROUPS = gql`
         __typename
         id
         avatar {
-          id
+          uuid
           url
         }
         type
@@ -127,7 +127,7 @@ export const SEARCH_EVENTS_AND_GROUPS = gql`
         url
         ...GroupResultFragment
         banner {
-          id
+          uuid
           url
         }
         followersCount
@@ -178,7 +178,7 @@ export const SEARCH_EVENTS = gql`
         uuid
         beginsOn
         picture {
-          id
+          uuid
           url
         }
         status
@@ -229,7 +229,7 @@ export const SEARCH_CALENDAR_EVENTS = gql`
         beginsOn
         endsOn
         picture {
-          id
+          uuid
           url
         }
         status
@@ -277,7 +277,7 @@ export const SEARCH_GROUPS = gql`
       elements {
         ...ActorFragment
         banner {
-          id
+          uuid
           url
         }
         membersCount
@@ -317,7 +317,7 @@ export const SEARCH_PERSON_AND_GROUPS = gql`
       elements {
         ...ActorFragment
         banner {
-          id
+          uuid
           url
         }
         membersCount
@@ -342,7 +342,7 @@ export const INTERACT = gql`
         beginsOn
         status
         picture {
-          id
+          uuid
           url
         }
         tags {

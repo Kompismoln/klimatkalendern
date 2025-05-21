@@ -29,11 +29,11 @@ export const LIST_GROUPS = gql`
         ...ActorFragment
         suspended
         avatar {
-          id
+          uuid
           url
         }
         banner {
-          id
+          uuid
           url
         }
         organizedEvents {
@@ -74,7 +74,7 @@ export const GROUP_VERY_BASIC_FIELDS_FRAGMENTS = gql`
       url
     }
     avatar {
-      id
+      uuid
       url
       name
       metadata {
@@ -84,7 +84,7 @@ export const GROUP_VERY_BASIC_FIELDS_FRAGMENTS = gql`
       }
     }
     banner {
-      id
+      uuid
       url
       name
       metadata {
@@ -118,7 +118,7 @@ export const GROUP_BASIC_FIELDS_FRAGMENTS = gql`
       url
     }
     avatar {
-      id
+      uuid
       url
       name
       metadata {
@@ -128,7 +128,7 @@ export const GROUP_BASIC_FIELDS_FRAGMENTS = gql`
       }
     }
     banner {
-      id
+      uuid
       url
       name
       metadata {
@@ -167,7 +167,7 @@ export const GROUP_BASIC_FIELDS_FRAGMENTS = gql`
           ...ActorFragment
         }
         picture {
-          id
+          uuid
           url
         }
         physicalAddress {
@@ -315,7 +315,7 @@ export const CREATE_GROUP = gql`
     ) {
       ...ActorFragment
       banner {
-        id
+        uuid
         url
       }
     }
@@ -441,7 +441,7 @@ export const GROUP_TIMELINE = gql`
                 originId
               }
               banner {
-                id
+                uuid
                 url
               }
             }

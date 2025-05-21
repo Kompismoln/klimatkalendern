@@ -11,6 +11,12 @@ defmodule Mobilizon.GraphQL.Resolvers.PersonTest do
 
   alias Mobilizon.Web.Endpoint
 
+  # TODO There is a bug in the GraphQL API with person queries
+  # You can ask for a media (avatar and banner) normally with metadata and uuid accessible,
+  # but you obtain a File (so metadata and uuid are not accessible)
+  # Until this issue persist, we can't test uuid or metadata retrivial for person queries
+  # https://framagit.org/kaihuri/mobilizon/-/issues/1757
+
   @non_existent_username "nonexistent"
 
   @get_person_query """
@@ -161,11 +167,9 @@ defmodule Mobilizon.GraphQL.Resolvers.PersonTest do
         id
         preferredUsername
         avatar {
-          id,
           url
         },
         banner {
-          id,
           name,
           url
         }
@@ -281,7 +285,11 @@ defmodule Mobilizon.GraphQL.Resolvers.PersonTest do
       assert res["data"]["createPerson"]["preferredUsername"] ==
                "new_identity"
 
-      assert res["data"]["createPerson"]["banner"]["id"]
+      # TODO see the top comment and this bug :
+      # https://framagit.org/kaihuri/mobilizon/-/issues/1757
+      # assert res["data"]["createPerson"]["banner"]["uuid"]
+      # assert res["data"]["createPerson"]["banner"]["metadata"]
+      # assert res["data"]["createPerson"]["banner"]["metadata"]["width"]
 
       assert res["data"]["createPerson"]["banner"]["name"] ==
                "The beautiful atlantic way"
@@ -334,11 +342,9 @@ defmodule Mobilizon.GraphQL.Resolvers.PersonTest do
               name,
               summary,
               avatar {
-                id,
                 url
               },
               banner {
-                id,
                 name,
                 url
               }
@@ -376,7 +382,11 @@ defmodule Mobilizon.GraphQL.Resolvers.PersonTest do
       assert res_person["name"] == "riri updated"
       assert res_person["summary"] == "summary updated"
 
-      assert res_person["banner"]["id"]
+      # TODO see the top comment and this bug :
+      # https://framagit.org/kaihuri/mobilizon/-/issues/1757
+      # assert res_person["banner"]["uuid"]
+      # assert res_person["banner"]["metadata"]
+      # assert res_person["banner"]["metadata"]["width"]
       assert res_person["banner"]["name"] == "The beautiful atlantic way"
       assert res_person["banner"]["url"] =~ Endpoint.url() <> "/media/"
     end

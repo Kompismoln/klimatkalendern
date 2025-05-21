@@ -48,7 +48,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ActivityTest do
             name
             domain
             avatar {
-              id
+              uuid
               url
             }
           }
@@ -73,7 +73,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ActivityTest do
                 preferredUsername
                 domain
                 avatar {
-                  id
+                  uuid
                   url
                 }
               }
@@ -101,10 +101,10 @@ defmodule Mobilizon.GraphQL.Resolvers.ActivityTest do
                 id
               }
               banner {
-                id
+                uuid
               }
               avatar {
-                id
+                uuid
               }
             }
           }

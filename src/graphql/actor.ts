@@ -4,7 +4,7 @@ export const ACTOR_FRAGMENT = gql`
   fragment ActorFragment on Actor {
     id
     avatar {
-      id
+      uuid
       url
     }
     type
@@ -26,12 +26,12 @@ export const FETCH_PERSON = gql`
       ...ActorFragment
       suspended
       avatar {
-        id
+        uuid
         name
         url
       }
       banner {
-        id
+        uuid
         url
       }
       feedTokens {
@@ -57,12 +57,12 @@ export const GET_PERSON = gql`
       suspended
       mediaSize
       avatar {
-        id
+        uuid
         name
         url
       }
       banner {
-        id
+        uuid
         url
       }
       feedTokens {
@@ -118,7 +118,7 @@ export const PERSON_FRAGMENT = gql`
   fragment PersonFragment on Person {
     id
     avatar {
-      id
+      uuid
       url
     }
     type
@@ -215,7 +215,7 @@ export const LOGGED_USER_DRAFTS = gql`
           title
           draft
           picture {
-            id
+            uuid
             url
             alt
           }
@@ -266,7 +266,7 @@ export const LOGGED_USER_MEMBERSHIPS = gql`
                 id
                 title
                 picture {
-                  id
+                  uuid
                   url
                 }
               }

@@ -30,6 +30,16 @@ defmodule Mobilizon.GraphQL.Resolvers.Media do
     {:ok, Enum.map(medias, &transform_media/1)}
   end
 
+  def get_media_by_uuid(_parent, %{uuid: uuid}, _resolution) do
+    case Medias.get_media_by_uuid(uuid) do
+      %Media{} = media ->
+        {:ok, transform_media(media)}
+
+      nil ->
+        {:error, :not_found}
+    end
+  end
+
   @spec do_fetch_media(nil) :: {:error, nil}
   defp do_fetch_media(nil), do: {:error, nil}
 
@@ -103,6 +113,22 @@ defmodule Mobilizon.GraphQL.Resolvers.Media do
 
   def remove_media(_parent, _args, _resolution), do: {:error, :unauthenticated}
 
+  def remove_media_by_uuid(_parent, %{uuid: media_uuid}, %{
+        context: %{current_user: %User{} = user}
+      }) do
+    with {:media, %Media{actor_id: actor_id} = media} <-
+           {:media, Medias.get_media_by_uuid(media_uuid)},
+         {:is_owned, %Actor{} = _actor} <- User.owns_actor(user, actor_id) do
+      Medias.delete_media(media)
+    else
+      {:media, nil} -> {:error, :not_found}
+      {:is_owned, _} -> {:error, :unauthorized}
+      {:error, :enofile} -> {:error, "File not found"}
+    end
+  end
+
+  def remove_media_by_uuid(_parent, _args, _resolution), do: {:error, :unauthenticated}
+
   @doc """
   Return the total media size for an actor
   """
@@ -140,11 +166,12 @@ defmodule Mobilizon.GraphQL.Resolvers.Media do
   @spec transform_media(Media.t() | nil) :: map() | nil
   def transform_media(nil), do: nil
 
-  def transform_media(%Media{id: id, file: file, metadata: metadata}) do
+  def transform_media(%Media{id: id, uuid: uuid, file: file, metadata: metadata}) do
     %{
       name: file.name,
       url: file.url,
       id: id,
+      uuid: uuid,
       content_type: file.content_type,
       size: file.size,
       metadata: metadata

@@ -54,7 +54,7 @@ defmodule Mobilizon.GraphQL.API.Events do
   end
 
   defp process_picture(nil, _), do: nil
-  defp process_picture(%{media_id: _picture_id} = args, _), do: args
+  defp process_picture(%{media_uuid: _picture_id} = args, _), do: args
 
   defp process_picture(%{media: media}, %Actor{id: actor_id}) do
     # case url

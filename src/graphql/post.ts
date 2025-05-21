@@ -26,7 +26,7 @@ export const POST_FRAGMENT = gql`
       ...TagFragment
     }
     picture {
-      id
+      uuid
       url
       name
       metadata {
@@ -59,7 +59,7 @@ export const POST_BASIC_FIELDS = gql`
     visibility
     language
     picture {
-      id
+      uuid
       url
       name
     }

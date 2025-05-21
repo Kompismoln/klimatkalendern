@@ -20,7 +20,7 @@ export const CONFIG = gql`
         url
       }
       defaultPicture {
-        id
+        uuid
         url
         name
         metadata {
@@ -502,7 +502,7 @@ export const DEFAULT_PICTURE = gql`
   query DefaultPicture {
     config {
       defaultPicture {
-        id
+        uuid
         url
         name
         metadata {

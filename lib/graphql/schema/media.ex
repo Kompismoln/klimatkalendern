@@ -12,7 +12,7 @@ defmodule Mobilizon.GraphQL.Schema.MediaType do
   @desc "A media"
   object :media do
     meta(:authorize, :all)
-    field(:id, :id, description: "The media's ID")
+    field(:uuid, :uuid, description: "The media's UUID")
     field(:alt, :string, description: "The media's alternative text")
     field(:name, :string, description: "The media's name")
     field(:url, :string, description: "The media's full URL")
@@ -44,8 +44,8 @@ defmodule Mobilizon.GraphQL.Schema.MediaType do
   input_object :media_input do
     # Either a full media object
     field(:media, :media_input_object, description: "A full media attached")
-    # Or directly the ID of an existing media
-    field(:media_id, :id, description: "The ID of an existing media")
+    # Or directly the UUID of an existing media
+    field(:media_uuid, :uuid, description: "The UUID of an existing media")
   end
 
   @desc "An attached media"
@@ -58,11 +58,11 @@ defmodule Mobilizon.GraphQL.Schema.MediaType do
   end
 
   object :media_queries do
-    @desc "Get a media"
+    @desc "Get a media by uuid"
     field :media, :media do
-      arg(:id, non_null(:id), description: "The media ID")
+      arg(:uuid, non_null(:uuid), description: "The media UUID")
       middleware(Rajska.QueryAuthorization, permit: :all)
-      resolve(&Media.media/3)
+      resolve(&Media.get_media_by_uuid/3)
     end
   end
 
@@ -89,16 +89,17 @@ defmodule Mobilizon.GraphQL.Schema.MediaType do
     @desc """
     Remove a media
     """
-    field :remove_media, :deleted_object do
-      arg(:id, non_null(:id), description: "The media's ID")
+    field :remove_media, :deleted_object_by_uuid do
+      arg(:uuid, non_null(:uuid), description: "The media's UUID")
 
       middleware(Rajska.QueryAuthorization,
         permit: :user,
         scope: Mobilizon.Medias.Media,
-        rule: :"write:media:remove"
+        rule: :"write:media:remove",
+        args: :uuid
       )
 
-      resolve(&Media.remove_media/3)
+      resolve(&Media.remove_media_by_uuid/3)
     end
   end
 

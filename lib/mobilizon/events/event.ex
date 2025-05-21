@@ -258,9 +258,14 @@ defmodule Mobilizon.Events.Event do
 
   # In case the provided picture is an existing one
   @spec put_picture(Changeset.t(), map) :: Changeset.t()
-  defp put_picture(%Changeset{} = changeset, %{picture: %{media_id: id} = _picture}) do
-    %Media{} = picture = Medias.get_media!(id)
-    put_assoc(changeset, :picture, picture)
+  defp put_picture(%Changeset{} = changeset, %{picture: %{media_uuid: uuid} = _picture}) do
+    case Medias.get_media_by_uuid(uuid) do
+      %Media{} = picture ->
+        put_assoc(changeset, :picture, picture)
+
+      nil ->
+        add_error(changeset, :picture, "Media with UUID #{uuid} not found")
+    end
   end
 
   # In case it's a new picture

@@ -27,7 +27,7 @@ const FULL_EVENT_FRAGMENT = gql`
     language
     category
     picture {
-      id
+      uuid
       url
       name
       metadata {
@@ -135,7 +135,7 @@ export const FETCH_EVENTS = gql`
         insertedAt
         language
         picture {
-          id
+          uuid
           url
         }
         publishAt
@@ -454,8 +454,8 @@ export const FETCH_GROUP_EVENTS = gql`
             ...AdressFragment
           }
           picture {
+            uuid
             url
-            id
           }
         }
         total

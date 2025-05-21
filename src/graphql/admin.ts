@@ -14,7 +14,7 @@ export const DASHBOARD = gql`
           ...EventOptions
         }
         picture {
-          id
+          uuid
           alt
           url
         }
@@ -201,17 +201,17 @@ export const ADMIN_SETTINGS_FRAGMENT = gql`
     instanceSlogan
     contact
     instanceLogo {
-      id
+      uuid
       url
       name
     }
     instanceFavicon {
-      id
+      uuid
       url
       name
     }
     defaultPicture {
-      id
+      uuid
       url
       name
     }
