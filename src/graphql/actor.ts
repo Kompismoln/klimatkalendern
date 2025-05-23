@@ -451,29 +451,6 @@ export const DELETE_PERSON = gql`
   }
 `;
 
-/**
- * This one is used only to register the first account.
- * Prefer CREATE_PERSON when creating another identity
- */
-export const REGISTER_PERSON = gql`
-  mutation RegisterPerson(
-    $preferredUsername: String!
-    $name: String!
-    $summary: String!
-    $email: String!
-  ) {
-    registerPerson(
-      preferredUsername: $preferredUsername
-      name: $name
-      summary: $summary
-      email: $email
-    ) {
-      ...ActorFragment
-    }
-  }
-  ${ACTOR_FRAGMENT}
-`;
-
 export const SUSPEND_PROFILE = gql`
   mutation SuspendProfile($id: ID!) {
     suspendProfile(id: $id) {

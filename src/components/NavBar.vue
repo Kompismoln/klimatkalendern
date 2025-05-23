@@ -13,7 +13,7 @@
       </router-link>
       <div
         class="flex items-center md:order-2 ml-auto gap-2"
-        v-if="currentActor?.id"
+        v-if="currentUser?.isLoggedIn"
       >
         <router-link
           :to="{ name: RouteName.CONVERSATION_LIST }"
@@ -60,7 +60,7 @@
             <o-dropdown-item aria-role="listitem">
               <div class="px-4">
                 <span class="block text-sm text-zinc-900 dark:text-white">{{
-                  displayName(currentActor)
+                  displayName(currentActor) || currentUser.email
                 }}</span>
                 <span
                   class="block text-sm font-medium text-zinc-500 truncate dark:text-zinc-400"
@@ -76,7 +76,7 @@
             </o-dropdown-item>
             <o-dropdown-item
               v-for="identity in identities"
-              :active="identity.id === currentActor.id"
+              :active="identity.id === currentActor?.id"
               :key="identity.id"
               tabindex="0"
               @click="
@@ -211,14 +211,14 @@
               >{{ t("My groups") }}</router-link
             >
           </li>
-          <li class="m-auto" v-if="!currentActor?.id">
+          <li class="m-auto" v-if="!currentUser?.isLoggedIn">
             <router-link
               :to="{ name: RouteName.LOGIN }"
               class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >{{ t("Login") }}</router-link
             >
           </li>
-          <li class="m-auto" v-if="!currentActor?.id && canRegister">
+          <li class="m-auto" v-if="!currentUser?.isLoggedIn && canRegister">
             <router-link
               :to="{ name: RouteName.REGISTER }"
               class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -235,7 +235,7 @@
 import MobilizonLogo from "@/components/MobilizonLogo.vue";
 import { ICurrentUserRole } from "@/types/enums";
 import { logout } from "../utils/auth";
-import { displayName } from "../types/actor";
+import { displayName, IPerson } from "../types/actor";
 import RouteName from "../router/name";
 import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -341,13 +341,9 @@ watch(identities, () => {
       "We have no identities listed for current user",
       identities.value
     );
-    console.info("Pushing route to REGISTER_PROFILE");
+    console.info("Pushing route to CREATE_IDENTITY");
     router.push({
-      name: RouteName.REGISTER_PROFILE,
-      params: {
-        email: currentUser.value?.email,
-        userAlreadyActivated: "true",
-      },
+      name: RouteName.CREATE_IDENTITY,
     });
   }
 });

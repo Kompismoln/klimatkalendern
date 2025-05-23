@@ -268,11 +268,7 @@ const loginAction = async (e: Event) => {
     if (err instanceof NoIdentitiesException && currentUser.value) {
       console.debug("No identities, redirecting to profile registration");
       await router.push({
-        name: RouteName.REGISTER_PROFILE,
-        params: {
-          email: currentUser.value.email,
-          userAlreadyActivated: "true",
-        },
+        name: RouteName.CREATE_IDENTITY,
       });
     } else {
       console.error(err);

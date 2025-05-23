@@ -1475,7 +1475,7 @@
   "Your account has been successfully deleted": "Borttagningen av ditt konto lyckades",
   "Your account has been validated": "Ditt konto har validerats",
   "Your account is being validated": "Ditt konto håller på att valideras",
-  "Your account is nearly ready, {username}": "Ditt konto är nästan redo, {username}",
+  "Your account is nearly ready": "Ditt konto är nästan redo",
   "Your application code": "Din applikationskod",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "Din stad eller region och radien kommer endast att användas för att föreslå evenemang i närheten. Evenemangets radie kommer att ta hänsyn till områdets administrativa centrum.",
   "Your current email is {email}. You use it to log in.": "Din nuvarande e-postadress är {email}. Du använder den för att logga in.",

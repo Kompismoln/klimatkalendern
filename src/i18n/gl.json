@@ -1497,7 +1497,7 @@
   "Your account has been successfully deleted": "A túa conta foi eliminada",
   "Your account has been validated": "A túa conta foi validada",
   "Your account is being validated": "A túa conta está sendo validada",
-  "Your account is nearly ready, {username}": "A túa conta xa case está preparada, {username}",
+  "Your account is nearly ready": "A túa conta xa case está preparada",
   "Your application code": "O teu código de aplicación",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "A túa cidade ou rexión e o radio só se utilizará para suxerirche eventos próximos. O radio do evento será considerado desde o centro da área administrativa.",
   "Your current email is {email}. You use it to log in.": "O teu correo é {email}. Utilízao para acceder.",

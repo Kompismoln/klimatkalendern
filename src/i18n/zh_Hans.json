@@ -1289,7 +1289,7 @@
   "Your account has been successfully deleted": "您的账户已被成功删除",
   "Your account has been validated": "您的账户已被验证",
   "Your account is being validated": "您的账户正在验证中",
-  "Your account is nearly ready, {username}": "您的账户已接近准备就绪，{username}",
+  "Your account is nearly ready": "您的账户已接近准备就绪",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "你的城市或地区和半径将只用于向你推荐附近的活动。活动半径将从该地区的行政中心算起。",
   "Your current email is {email}. You use it to log in.": "你目前的电子邮件地址是{email}。你需要用它来登录。",
   "Your email": "你的电子邮件",

@@ -50,7 +50,7 @@ onUpdateCurrentUserClientDone(async () => {
       await changeIdentity(loggedUser.defaultActor);
       await router.push({ name: RouteName.HOME });
     } else {
-      // No need to push to REGISTER_PROFILE, the navbar will do it for us
+      // No need to push to CREATE_IDENTITY, the navbar will do it for us
     }
   } catch (e) {
     console.error(e);

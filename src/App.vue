@@ -151,11 +151,7 @@ onBeforeMount(async () => {
     } catch (err) {
       if (err instanceof NoIdentitiesException) {
         await router.push({
-          name: RouteName.REGISTER_PROFILE,
-          params: {
-            email: localStorage.getItem(AUTH_USER_EMAIL),
-            userAlreadyActivated: "true",
-          },
+          name: RouteName.CREATE_IDENTITY,
         });
       } else {
         throw err;

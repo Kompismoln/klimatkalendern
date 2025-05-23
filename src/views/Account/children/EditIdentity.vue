@@ -6,9 +6,13 @@
         <span v-if="isUpdate" class="line-clamp-2">{{
           displayName(identity)
         }}</span>
-        <span v-else>{{ t("I create an identity") }}</span>
+        <span v-else>{{ t("Create a new profile") }}</span>
       </h1>
-      <o-field horizontal :label="t('Avatar')">
+      <div v-if="identities?.length == 0">
+        {{ t("Congratulations, your account is now created!") }}
+        {{ t("Now, create your first profile:") }}
+      </div>
+      <o-field :label="t('Avatar')">
         <picture-upload
           v-model="avatarFile"
           :defaultImage="identity.avatar"
@@ -16,11 +20,7 @@
         />
       </o-field>
 
-      <o-field
-        horizontal
-        :label="t('Display name')"
-        label-for="identity-display-name"
-      >
+      <o-field :label="t('Display name')" label-for="identity-display-name">
         <o-input
           aria-required="true"
           required
@@ -33,7 +33,6 @@
       </o-field>
 
       <o-field
-        horizontal
         class="username-field"
         :label="t('Username')"
         label-for="identity-username"
@@ -59,11 +58,15 @@
         </o-field>
       </o-field>
 
-      <o-field
-        horizontal
-        :label="t('Description')"
-        label-for="identity-summary"
-      >
+      <p class="prose dark:prose-invert">
+        {{
+          t(
+            "This identifier is unique to your profile. It allows others to find you."
+          )
+        }}
+      </p>
+
+      <o-field :label="t('Description')" label-for="identity-summary">
         <o-input
           type="textarea"
           dir="auto"
@@ -87,7 +90,7 @@
       <o-field class="flex justify-center !my-6">
         <div class="control">
           <o-button type="button" variant="primary" @click="submit()">
-            {{ t("Save") }}
+            {{ t("Create my profile") }}
           </o-button>
         </div>
       </o-field>
@@ -107,7 +110,9 @@
         <p>
           {{
             t(
-              "These feeds contain event data for the events for which this specific profile is a participant or creator. You should keep these private. You can find feeds for all of your profiles into your notification settings."
+              "These feeds contain event data for the events for which this specific profile is a participant or creator." +
+                "You should keep these private." +
+                " You can find feeds for all of your profiles into your notification settings."
             )
           }}
         </p>
@@ -214,7 +219,10 @@ import { ApolloCache, FetchResult, InMemoryCache } from "@apollo/client/core";
 import pick from "lodash/pick";
 import { ActorType } from "@/types/enums";
 import { useRouter } from "vue-router";
-import { useCurrentActorClient } from "@/composition/apollo/actor";
+import {
+  useCurrentActorClient,
+  useCurrentUserIdentities,
+} from "@/composition/apollo/actor";
 import { useMutation, useQuery, useApolloClient } from "@vue/apollo-composable";
 import { useAvatarMaxSize } from "@/composition/config";
 import { computed, inject, reactive, ref, watch } from "vue";
@@ -232,6 +240,8 @@ const router = useRouter();
 const props = defineProps<{ isUpdate: boolean; identityName?: string }>();
 
 const { currentActor } = useCurrentActorClient();
+
+const { identities } = useCurrentUserIdentities();
 
 const {
   result: personResult,
@@ -459,12 +469,21 @@ const {
   },
 }));
 
-createIdentityDone(() => {
+createIdentityDone(async () => {
   notifier?.success(
     t("Identity {displayName} created", {
       displayName: displayName(identity.value),
     })
   );
+
+  // If it is the fisrt created identity, then we need to activate this identity
+  const client = resolveClient();
+  const data = client.readQuery<{
+    loggedUser: Pick<ICurrentUser, "actors">;
+  }>({ query: IDENTITIES });
+  if (data) {
+    await maybeUpdateCurrentActorCache(data.loggedUser.actors[0]);
+  }
 
   router.push({
     name: RouteName.UPDATE_IDENTITY,
@@ -687,8 +706,11 @@ const redirectIfNoIdentitySelected = async (identityParam?: string) => {
 
 const maybeUpdateCurrentActorCache = async (newIdentity: IPerson) => {
   if (currentActor.value) {
+    // If there is no current actor, update the current actor
     if (
-      currentActor.value.preferredUsername === identity.value.preferredUsername
+      currentActor.value.preferredUsername ===
+        identity.value.preferredUsername ||
+      currentActor.value.id == null
     ) {
       await changeIdentity(newIdentity);
     }

@@ -73,24 +73,6 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
   }
   """
 
-  @register_person_mutation """
-  mutation RegisterPerson($preferredUsername: String!, $name: String, $summary: String, $email: String!) {
-    registerPerson(
-      preferredUsername: $preferredUsername,
-      name: $name,
-      summary: $summary,
-      email: $email,
-      ) {
-        preferredUsername,
-        name,
-        summary,
-        avatar {
-          url
-        },
-      }
-    }
-  """
-
   @change_email_mutation """
       mutation ChangeEmail($email: String!, $password: String!) {
         changeEmail(email: $email, password: $password) {
@@ -382,7 +364,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       password: "long password"
     }
 
-    test "test create_user/3 creates an user and register_person/3 registers a profile",
+    test "test create_user/3 creates an user",
          %{conn: conn} do
       res =
         conn
@@ -397,16 +379,6 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       {:ok, user} = Users.get_user_by_email(@user_creation.email)
 
       assert_email_sent(to: user.email)
-
-      res =
-        conn
-        |> AbsintheHelpers.graphql_query(
-          query: @register_person_mutation,
-          variables: @user_creation
-        )
-
-      assert res["data"]["registerPerson"]["preferredUsername"] ==
-               @user_creation.preferredUsername
     end
 
     test "create_user/3 doesn't allow two users with the same email", %{conn: conn} do
@@ -572,81 +544,6 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert res["errors"] == nil
       assert res["data"]["createUser"]["email"] == "test+alias@demo.tld"
-    end
-
-    test "register_person/3 doesn't register a profile from an unknown email", %{conn: conn} do
-      conn
-      |> put_req_header("accept-language", "fr")
-      |> AbsintheHelpers.graphql_query(
-        query: @create_user_mutation,
-        variables: @user_creation
-      )
-
-      res =
-        conn
-        |> put_req_header("accept-language", "fr")
-        |> AbsintheHelpers.graphql_query(
-          query: @register_person_mutation,
-          variables: Map.put(@user_creation, :email, "random")
-        )
-
-      assert hd(res["errors"])["message"] ==
-               "Aucun·e utilisateur·ice avec cette adresse e-mail n'a été trouvé·e"
-    end
-
-    test "register_person/3 can't be called with an existing profile", %{conn: conn} do
-      conn
-      |> put_req_header("accept-language", "fr")
-      |> AbsintheHelpers.graphql_query(
-        query: @create_user_mutation,
-        variables: @user_creation
-      )
-
-      res =
-        conn
-        |> put_req_header("accept-language", "fr")
-        |> AbsintheHelpers.graphql_query(
-          query: @register_person_mutation,
-          variables: @user_creation
-        )
-
-      assert res["data"]["registerPerson"]["preferredUsername"] ==
-               @user_creation.preferredUsername
-
-      res =
-        conn
-        |> put_req_header("accept-language", "fr")
-        |> AbsintheHelpers.graphql_query(
-          query: @register_person_mutation,
-          variables: @user_creation
-        )
-
-      assert hd(res["errors"])["message"] ==
-               "Vous avez déjà un profil pour cet utilisateur"
-    end
-
-    test "register_person/3 is case insensitive", %{conn: conn} do
-      insert(:actor, preferred_username: "myactor")
-
-      conn
-      |> put_req_header("accept-language", "fr")
-      |> AbsintheHelpers.graphql_query(
-        query: @create_user_mutation,
-        variables: @user_creation
-      )
-
-      res =
-        conn
-        |> put_req_header("accept-language", "fr")
-        |> AbsintheHelpers.graphql_query(
-          query: @register_person_mutation,
-          variables: Map.put(@user_creation, :preferredUsername, "Myactor")
-        )
-
-      refute is_nil(res["errors"])
-
-      assert hd(res["errors"])["message"] ==
-               ["Cet identifiant est déjà pris."]
     end
 
     test "test create_user/3 doesn't create an user with bad email", %{conn: conn} do

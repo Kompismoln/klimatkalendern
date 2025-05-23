@@ -1117,7 +1117,7 @@
   "Your account has been successfully deleted": "تم حذف حسابك بنجاح",
   "Your account has been validated": "لقد تم تأكيد حسابك",
   "Your account is being validated": "جارٍ تأكيد حسابك",
-  "Your account is nearly ready, {username}": "إنّ حسابك جاهز تقريبًا ، يا {username}",
+  "Your account is nearly ready": "إنّ حسابك جاهز تقريبًا ، يا",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "",
   "Your current email is {email}. You use it to log in.": "",
   "Your email": "",

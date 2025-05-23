@@ -299,37 +299,6 @@ defmodule Mobilizon.GraphQL.Schema.Actors.PersonType do
 
       resolve(&Person.delete_person/3)
     end
-
-    @desc "Register a first profile on registration"
-    field :register_person, :person do
-      arg(:preferred_username, non_null(:string), description: "The username for the profile")
-
-      arg(:name, :string,
-        description: "The displayed name for the new profile",
-        default_value: ""
-      )
-
-      arg(:summary, :string, description: "The summary for the new profile", default_value: "")
-      arg(:email, non_null(:string), description: "The email from the user previously created")
-
-      arg(:avatar, :media_input,
-        description:
-          "The avatar for the profile, either as an object or directly the ID of an existing media"
-      )
-
-      arg(:banner, :media_input,
-        description:
-          "The banner for the profile, either as an object or directly the ID of an existing media"
-      )
-
-      middleware(Rajska.QueryAuthorization,
-        permit: :all,
-        scope: Mobilizon.Actors.Actor,
-        args: %{}
-      )
-
-      resolve(&Person.register_person/3)
-    end
   end
 
   object :person_subscriptions do

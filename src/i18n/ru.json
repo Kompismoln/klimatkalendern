@@ -1117,7 +1117,7 @@
   "Your account has been successfully deleted": "Ваша учетная запись была успешно удалена",
   "Your account has been validated": "Ваша учетная запись была подтверждена",
   "Your account is being validated": "Ваша учетная запись проверяется",
-  "Your account is nearly ready, {username}": "Ваш аккаунт почти готов, {username}",
+  "Your account is nearly ready": "Ваш аккаунт почти готов",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "Ваш город, регион или область будут использоваться только для рекомендации вам ближайших мероприятий. Радиус мероприятия считается относительно административного центра области.",
   "Your current email is {email}. You use it to log in.": "Ваш адрес электронной почты {email}. Вы используете его для входа в систему.",
   "Your email": "Ваш адрес электронной почты",

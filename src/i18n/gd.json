@@ -1195,7 +1195,7 @@
   "Your account has been successfully deleted": "Chaidh an cunntas agad a sguabadh às",
   "Your account has been validated": "Chaidh an cunntas agad a dhearbhadh",
   "Your account is being validated": "Tha an cunntas agad ’ga dhearbhadh",
-  "Your account is nearly ready, {username}": "Cha mhòr nach eil an cunntas gad ullamh, {username}",
+  "Your account is nearly ready": "Cha mhòr nach eil an cunntas gad ullamh",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "Cha dèid am baile no sgìre ’s an t-astar agad a chleachdadh ach airson tachartasan am fagas a mholadh dhut. Bheir astar nan tachartasan an aire air meadhan riaghlaidh na sgìre.",
   "Your current email is {email}. You use it to log in.": "Is {email} am post-d làithreach agad. Cleachd e airson clàradh a-steach.",
   "Your email": "Am post-d agad",

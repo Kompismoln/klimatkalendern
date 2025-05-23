@@ -84,7 +84,7 @@
           </i18n-t>
         </div>
       </div>
-      <div class="">
+      <div v-if="!validationSent">
         <o-notification variant="warning" v-if="config?.registrationsAllowlist">
           {{ t("Registrations are restricted by allowlisting.") }}
         </o-notification>
@@ -199,6 +199,29 @@
           </div>
         </form>
       </div>
+      <div v-else>
+        <h2 class="title my-5">
+          {{ t("Your account is nearly ready") }}
+        </h2>
+        <i18n-t keypath="A validation email was sent to {email}" tag="p">
+          <template #email>
+            <code>{{ credentials.email }}</code>
+          </template>
+        </i18n-t>
+        <p>
+          {{
+            t(
+              "Before you can login, you need to click on the link inside it to validate your account."
+            )
+          }}
+        </p>
+        <o-button
+          class="mt-5"
+          tag="router-link"
+          :to="{ name: RouteName.HOME }"
+          >{{ t("Back to homepage") }}</o-button
+        >
+      </div>
     </section>
   </div>
 </template>
@@ -212,7 +235,7 @@ import AuthProviders from "../../components/User/AuthProviders.vue";
 import { computed, reactive, ref, watch } from "vue";
 import { useMutation, useQuery } from "@vue/apollo-composable";
 import { useI18n } from "vue-i18n";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { useHead } from "@/utils/head";
 import { AbsintheGraphQLErrors } from "@/types/errors.model";
 
@@ -222,7 +245,7 @@ type credentialsType = { email: string; password: string; locale: string };
 
 const { t, locale } = useI18n({ useScope: "global" });
 const route = useRoute();
-const router = useRouter();
+const validationSent = ref(false);
 
 const { result: configResult } = useQuery<{ config: IConfig }>(CONFIG);
 
@@ -256,10 +279,7 @@ useHead({
 const { onDone, onError, mutate } = useMutation(CREATE_USER);
 
 onDone(() => {
-  router.push({
-    name: RouteName.REGISTER_PROFILE,
-    params: { email: credentials.email },
-  });
+  validationSent.value = true;
 });
 
 onError((error) => {

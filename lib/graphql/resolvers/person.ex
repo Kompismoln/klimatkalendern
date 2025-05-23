@@ -297,58 +297,6 @@ defmodule Mobilizon.GraphQL.Resolvers.Person do
   end
 
   @doc """
-  This function is used to register a person afterwards the user has been created (but not activated)
-  """
-  @spec register_person(any(), map(), Absinthe.Resolution.t()) ::
-          {:ok, Actor.t()} | {:error, String.t()}
-  def register_person(_parent, args, %{context: context}) do
-    current_ip = Map.get(context, :ip)
-    user_agent = Map.get(context, :user_agent, "")
-
-    # When registering, email is assumed confirmed (unlike changing email)
-    case Users.get_user_by_email(args.email, unconfirmed: false) do
-      {:ok, %User{} = user} ->
-        if is_nil(Users.get_actor_for_user(user)) do
-          # No profile yet, we can create one
-          with {:spam, :ham} <-
-                 {:spam,
-                  AntiSpam.service().check_profile(
-                    args.preferred_username,
-                    args.summary,
-                    args.email,
-                    current_ip,
-                    user_agent
-                  )},
-               args when is_map(args) <- prepare_args(args, user) do
-            Actors.new_person(args, true)
-          else
-            {:error, :file_too_large} ->
-              {:error, dgettext("errors", "The provided picture is too heavy")}
-
-            {:error, _err} ->
-              {:error, dgettext("errors", "Error while uploading pictures")}
-
-            {:spam, _} ->
-              {:error, dgettext("errors", "Your profile was detected as spam.")}
-          end
-        else
-          {:error, dgettext("errors", "You already have a profile for this user")}
-        end
-
-      {:error, :user_not_found} ->
-        {:error, dgettext("errors", "No user with this email was found")}
-    end
-  end
-
-  @spec prepare_args(map(), User.t()) :: map() | {:error, any()}
-  defp prepare_args(args, %User{} = user) do
-    args
-    |> Map.update(:preferred_username, "", &String.downcase/1)
-    |> Map.put(:user_id, user.id)
-    |> save_attached_pictures()
-  end
-
-  @doc """
   Returns the participations, optionally restricted to an event
   """
   @spec person_participations(Actor.t(), map(), Absinthe.Resolution.t()) ::

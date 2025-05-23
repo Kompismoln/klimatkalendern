@@ -1,12 +1,11 @@
 import { beforeRegisterGuard } from "@/router/guards/register-guard";
-import { RouteLocationNormalized, RouteRecordRaw } from "vue-router";
+import { RouteRecordRaw } from "vue-router";
 import { i18n } from "@/utils/i18n";
 
 const t = i18n.global.t;
 
 export enum UserRouteName {
   REGISTER = "Register",
-  REGISTER_PROFILE = "RegisterProfile",
   RESEND_CONFIRMATION = "ResendConfirmation",
   SEND_PASSWORD_RESET = "SendPasswordReset",
   PASSWORD_RESET = "PasswordReset",
@@ -28,20 +27,6 @@ export const userRoutes: RouteRecordRaw[] = [
       announcer: { message: (): string => t("Register") as string },
     },
     beforeEnter: beforeRegisterGuard,
-  },
-  {
-    path: "/register/profile/:email/:userAlreadyActivated?",
-    name: UserRouteName.REGISTER_PROFILE,
-    component: (): Promise<any> => import("@/views/Account/RegisterView.vue"),
-    // We can only pass string values through params, therefore
-    props: (route: RouteLocationNormalized): Record<string, unknown> => ({
-      email: route.params.email,
-      userAlreadyActivated: route.params.userAlreadyActivated === "true",
-    }),
-    meta: {
-      requiredAuth: false,
-      announcer: { message: (): string => t("Register") as string },
-    },
   },
   {
     path: "/resend-instructions/:email?",

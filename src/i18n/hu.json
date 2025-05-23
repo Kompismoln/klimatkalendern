@@ -1492,7 +1492,7 @@
   "Your account has been successfully deleted": "A fiókja sikeresen törölve lett",
   "Your account has been validated": "A fiókja ellenőrizve lett",
   "Your account is being validated": "A fiókja ellenőrizés alatt van",
-  "Your account is nearly ready, {username}": "A fiókja majdnem készen, {username}",
+  "Your account is nearly ready": "A fiókja majdnem készen",
   "Your application code": "Az alkalmazáskódja",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "A települése vagy a régiója és a sugár csak a közeli események ajánlásához lesz használva. Az esemény sugara a terület adminisztratív középpontját veszi figyelembe.",
   "Your current email is {email}. You use it to log in.": "A jelenlegi e-mail-címe {email}. Használja ezt a bejelentkezéshez.",

@@ -1478,7 +1478,7 @@
   "Your account has been successfully deleted": "Pomyślnie usunięto Twoje konto",
   "Your account has been validated": "Twoje konto zostało zweryfikowane",
   "Your account is being validated": "Twoje konto jest w trakcie walidacji",
-  "Your account is nearly ready, {username}": "Twoje konto jest już prawie gotowe, {username}",
+  "Your account is nearly ready": "Twoje konto jest już prawie gotowe",
   "Your application code": "Kod do aplikacji",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "Twoje miasto lub region i promień będą używane tylko do sugerowania pobliskich wydarzeń. Promień pobliskich wydarzeń zostanie obliczony w odniesieniu do centrum administracyjnego strefy.",
   "Your current email is {email}. You use it to log in.": "Twój obecny adres e-mail to {email}. Używasz go, aby się zalogować.",

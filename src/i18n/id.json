@@ -1128,7 +1128,7 @@
   "Your account has been successfully deleted": "Akun Anda berhasil dihapus",
   "Your account has been validated": "Akun Anda telah divalidasi",
   "Your account is being validated": "Akun Anda sedang di validasi",
-  "Your account is nearly ready, {username}": "Akun Anda hampir siap, {username}",
+  "Your account is nearly ready": "Akun Anda hampir siap",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "",
   "Your current email is {email}. You use it to log in.": "Email Anda saat ini adalah {email}. Anda menggunakannya untuk masuk.",
   "Your email": "Email Anda",

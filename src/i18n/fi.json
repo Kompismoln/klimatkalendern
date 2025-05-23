@@ -1132,7 +1132,7 @@
   "Your account has been successfully deleted": "Tilin poistaminen onnistui",
   "Your account has been validated": "Tilisi on vahvistettu",
   "Your account is being validated": "Tiliäsi vahvistetaan",
-  "Your account is nearly ready, {username}": "Tilisi on melkein valmis, {username}",
+  "Your account is nearly ready": "Tilisi on melkein valmis",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "Kaupunkisi tai alueesi ja säde käytetään vain ehdottamaan sinulle tapahtumia läheltä. Tapahtuman säde ottaa huomioon alueen hallinnollisen keskustan.",
   "Your current email is {email}. You use it to log in.": "Nykyinen sähköpostiosoitteesi on {email}. Kirjaudu sisään sillä.",
   "Your email": "Sähköpostiosoitteesi",

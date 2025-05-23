@@ -72,8 +72,7 @@ onUpdatingCurrentUserClientDone(async () => {
   } else {
     // If the user didn't register any profile yet, let's create one for them
     await router.push({
-      name: RouteName.REGISTER_PROFILE,
-      params: { email: user.value?.email, userAlreadyActivated: "true" },
+      name: RouteName.CREATE_IDENTITY,
     });
   }
 });

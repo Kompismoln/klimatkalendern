@@ -43,25 +43,21 @@ export async function initializeCurrentActor(
   const actorId = localStorage.getItem(AUTH_USER_ACTOR_ID);
   console.debug("Initializing current actor", actorId);
 
-  try {
-    if (!identities) {
-      console.debug("Failed to load user's identities", identities);
-      return;
-    }
+  if (!identities) {
+    console.debug("Failed to load user's identities", identities);
+    return;
+  }
 
-    if (identities && identities.length < 1) {
-      console.warn("Logged user has no identities!");
-      throw new NoIdentitiesException();
-    }
-    const activeIdentity =
-      (identities || []).find(
-        (identity: IPerson | undefined) => identity?.id === actorId
-      ) || ((identities || [])[0] as IPerson);
+  if (identities && identities.length < 1) {
+    console.warn("Logged user has no identities!");
+    throw new NoIdentitiesException();
+  }
+  const activeIdentity =
+    (identities || []).find(
+      (identity: IPerson | undefined) => identity?.id === actorId
+    ) || ((identities || [])[0] as IPerson);
 
-    if (activeIdentity) {
-      await changeIdentity(activeIdentity);
-    }
-  } catch (e) {
-    console.error("Failed to initialize current Actor", e);
+  if (activeIdentity) {
+    await changeIdentity(activeIdentity);
   }
 }

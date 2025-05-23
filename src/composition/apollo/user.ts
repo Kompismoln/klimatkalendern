@@ -1,4 +1,3 @@
-import { IDENTITIES, REGISTER_PERSON } from "@/graphql/actor";
 import {
   CURRENT_USER_CLIENT,
   LOGGED_USER_AND_SETTINGS,
@@ -6,10 +5,7 @@ import {
   SET_USER_SETTINGS,
   UPDATE_USER_LOCALE,
 } from "@/graphql/user";
-import { IPerson } from "@/types/actor";
 import { ICurrentUser, IUser } from "@/types/current-user.model";
-import { ActorType } from "@/types/enums";
-import { ApolloCache, FetchResult } from "@apollo/client/core";
 import { useMutation, useQuery } from "@vue/apollo-composable";
 import { computed } from "vue";
 
@@ -64,45 +60,4 @@ export async function doUpdateSetting(
 
 export function updateLocale() {
   return useMutation<{ id: string; locale: string }>(UPDATE_USER_LOCALE);
-}
-
-export function registerAccount() {
-  return useMutation<
-    { registerPerson: IPerson },
-    {
-      preferredUsername: string;
-      name: string;
-      summary: string;
-      email: string;
-    }
-  >(REGISTER_PERSON, () => ({
-    update: (
-      store: ApolloCache<{ registerPerson: IPerson }>,
-      { data: localData }: FetchResult,
-      { context }
-    ) => {
-      if (context?.userAlreadyActivated) {
-        const currentUserData = store.readQuery<{
-          loggedUser: Pick<ICurrentUser, "actors" | "id">;
-        }>({
-          query: IDENTITIES,
-        });
-
-        if (currentUserData && localData) {
-          const newPersonData = {
-            ...localData.registerPerson,
-            type: ActorType.PERSON,
-          };
-
-          store.writeQuery({
-            query: IDENTITIES,
-            data: {
-              ...currentUserData.loggedUser,
-              actors: [[...currentUserData.loggedUser.actors, newPersonData]],
-            },
-          });
-        }
-      }
-    },
-  }));
 }

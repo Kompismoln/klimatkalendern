@@ -1153,7 +1153,7 @@
   "Your account has been successfully deleted": "",
   "Your account has been validated": "",
   "Your account is being validated": "",
-  "Your account is nearly ready, {username}": "{username}，您的帳號就快準備好了",
+  "Your account is nearly ready": "您的帳號就快準備好了",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "",
   "Your current email is {email}. You use it to log in.": "您目前用來登入的電子郵件地址是 {email}。",
   "Your email": "您的電子郵件地址",

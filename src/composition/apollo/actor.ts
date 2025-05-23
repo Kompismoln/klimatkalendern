@@ -25,7 +25,13 @@ export function useCurrentActorClient() {
 export function useLazyCurrentUserIdentities() {
   return useLazyQuery<{
     loggedUser: Pick<ICurrentUser, "actors">;
-  }>(IDENTITIES);
+  }>(
+    IDENTITIES,
+    {},
+    {
+      fetchPolicy: "network-only",
+    }
+  );
 }
 
 export function useCurrentUserIdentities() {

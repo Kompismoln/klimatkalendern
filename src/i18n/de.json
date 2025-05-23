@@ -1338,7 +1338,7 @@
   "Your account has been successfully deleted": "Ihr Konto wurde erfolgreich gelöscht",
   "Your account has been validated": "Ihr Konto wurde validiert",
   "Your account is being validated": "Ihr Konto wird geprüft",
-  "Your account is nearly ready, {username}": "Ihr Konto ist fast bereit, {username}",
+  "Your account is nearly ready": "Ihr Konto ist fast bereit",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "Ihr Ort, Landkreis oder Bundesland wird nur für die Anzeige von Veranstaltungen in der Nähe verwendet. Der Veranstaltungsradius bezieht sich auf den Verwaltungssitz des Gebietes.",
   "Your current email is {email}. You use it to log in.": "Ihre aktuelle E-Mail-Adresse ist {email}. Sie verwenden sie zum Anmelden.",
   "Your email": "Ihre E-Mail-Adresse",

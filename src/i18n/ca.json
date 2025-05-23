@@ -1117,7 +1117,7 @@
   "Your account has been successfully deleted": "S'ha esborrat el teu compte",
   "Your account has been validated": "El teu compte ha estat validat",
   "Your account is being validated": "El teu compte està sent validat",
-  "Your account is nearly ready, {username}": "El teu compte està gairebé apunt, {username}",
+  "Your account is nearly ready": "El teu compte està gairebé apunt",
   "Your city or region and the radius will only be used to suggest you events nearby. The event radius will consider the administrative center of the area.": "El municipi i el radi només es faran servir per suggerir-te activitats properes. El radi d'activitats es considera des del centre administratiu de l'àrea.",
   "Your current email is {email}. You use it to log in.": "El teu correu actual és {email}. Fes-lo servir per iniciar sessió.",
   "Your email": "El teu mail",
