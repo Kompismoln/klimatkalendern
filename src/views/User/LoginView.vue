@@ -239,13 +239,7 @@ const loginAction = async (e: Event) => {
       throw new Error("Loading user's identities failed");
     }
 
-    // at some point this function was refactored to log errors rather than
-    // throwing them, which made the catch below useless. The second argument
-    // specifies that errors should be thrown instead of logged
-    await initializeCurrentActor(
-      currentUserIdentitiesResult.loggedUser.actors,
-      true
-    );
+    await initializeCurrentActor(currentUserIdentitiesResult.loggedUser.actors);
 
     // Step 3a following
     const loggedUserLocationResult = await loggedUserLocationPromise;

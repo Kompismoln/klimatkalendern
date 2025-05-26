@@ -38,8 +38,7 @@ export async function changeIdentity(identity: IPerson): Promise<void> {
  * the current identity used
  */
 export async function initializeCurrentActor(
-  identities: IPerson[] | undefined,
-  rethrow = false
+  identities: IPerson[] | undefined
 ): Promise<void> {
   const actorId = localStorage.getItem(AUTH_USER_ACTOR_ID);
   console.debug("Initializing current actor", actorId);
@@ -63,10 +62,6 @@ export async function initializeCurrentActor(
       await changeIdentity(activeIdentity);
     }
   } catch (e) {
-    if (rethrow) {
-      throw e;
-    } else {
-      console.error("Failed to initialize current Actor", e);
-    }
+    console.error("Failed to initialize current Actor", e);
   }
 }
