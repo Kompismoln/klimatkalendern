@@ -59,13 +59,19 @@ defmodule Mobilizon.GraphQL.Resolvers.Conversation do
 
   def list_conversations(%Actor{id: actor_id}, %{page: page, limit: limit}, %{
         context: %{
-          current_actor: %Actor{id: _current_actor_id}
+          current_user: %User{} = user
         }
       }) do
-    {:ok,
-     actor_id
-     |> Conversations.list_conversation_participants_for_actor(page, limit)
-     |> conversation_participant_to_view()}
+    case User.owns_actor(user, actor_id) do
+      {:is_owned, %Actor{}} ->
+        {:ok,
+         actor_id
+         |> Conversations.list_conversation_participants_for_actor(page, limit)
+         |> conversation_participant_to_view()}
+
+      _ ->
+        {:error, :unauthorized}
+    end
   end
 
   def list_conversations(%User{id: user_id}, %{page: page, limit: limit}, %{
