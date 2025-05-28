@@ -2,6 +2,9 @@ defmodule Mobilizon.GraphQL.Resolvers.FeedToken do
   @moduledoc """
   Handles the feed tokens-related GraphQL calls.
   """
+
+  import Mobilizon.Users.Guards
+
   import Ecto.Query
   alias Mobilizon.Storage.Repo
 
@@ -44,6 +47,19 @@ defmodule Mobilizon.GraphQL.Resolvers.FeedToken do
   end
 
   @doc """
+  Retrieve a feed token for actor, if user is admin
+  """
+  @spec actor_tokens(any, map, map) :: {:ok, map} | {:error, String.t()}
+  def actor_tokens(
+        %Actor{id: actor_id},
+        _args,
+        %{context: %{current_user: %User{role: role}}}
+      )
+      when is_admin(role) do
+    {:ok, get_actor_tokens(actor_id)}
+  end
+
+  @doc """
   Retrieve a feed token for actor, if actor belongs to logged user
   """
   @spec actor_tokens(any, map, map) :: {:ok, map} | {:error, String.t()}
@@ -54,17 +70,19 @@ defmodule Mobilizon.GraphQL.Resolvers.FeedToken do
       ) do
     case User.owns_actor(user, actor_id) do
       {:is_owned, %Actor{}} ->
-        res =
-          actor_id
-          |> feed_token_for_actor_query()
-          |> Repo.all()
-          |> Enum.map(&to_short_uuid/1)
-
-        {:ok, res}
+        {:ok, get_actor_tokens(actor_id)}
 
       {:is_owned, _} ->
         {:error, dgettext("errors", "You don't have permission to get this token")}
     end
+  end
+
+  @spec get_actor_tokens(string) :: list
+  defp get_actor_tokens(actor_id) do
+    actor_id
+    |> feed_token_for_actor_query()
+    |> Repo.all()
+    |> Enum.map(&to_short_uuid/1)
   end
 
   @spec actor_tokens(any, map, map) :: {:error, String.t()}
