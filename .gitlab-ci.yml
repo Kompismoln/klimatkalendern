@@ -128,10 +128,11 @@ exunit:
     expire_in: 30 days
 
 vitest:
+  image: node:20
   stage: test
-  needs:
-    - lint-front
   before_script:
+    - export EXITVALUE=0
+    - npm ci
     - npm install --frozen-lockfile
   script:
     - npm run coverage
