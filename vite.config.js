@@ -111,8 +111,12 @@ export default defineConfig(({ command }) => {
           "@": path.resolve(__dirname, "./src"),
         },
       },
+      reporter: ["junit", "default"],
+      outputFile: "./junit.xml",
       coverage: {
+        provider: "v8",
         reporter: ["text", "json", "html"],
+        reportsDirectory: "./coverage",
       },
       setupFiles: [path.resolve(__dirname, "./tests/unit/setup.ts")],
       include: [path.resolve(__dirname, "./tests/unit/specs/**/*.spec.ts")],

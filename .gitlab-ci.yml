@@ -134,7 +134,7 @@ vitest:
   before_script:
     - npm install --frozen-lockfile
   script:
-    - npm run coverage --reporter=default --reporter=junit --outputFile.junit=./junit.xml
+    - npm run coverage
   artifacts:
     when: always
     paths:
