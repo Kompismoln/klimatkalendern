@@ -18,9 +18,29 @@ export const ACTOR_FRAGMENT = gql`
 
 // Do not request mediaSize here because mediaSize can only be accessed
 // by user_himself/moderator/administrator (can_get_actor_size? in media.ex)
+// same goes for feed tokens, they are private
 // - FETCH_PERSON is used by <NewConversation> and can be used by simple users here
-// - FETCH_PERSON is also used in <EditIdentity> but mediaSize is not used there
 export const FETCH_PERSON = gql`
+  query FetchPerson($username: String!) {
+    fetchPerson(preferredUsername: $username) {
+      ...ActorFragment
+      suspended
+      avatar {
+        uuid
+        name
+        url
+      }
+      banner {
+        uuid
+        url
+      }
+    }
+  }
+  ${ACTOR_FRAGMENT}
+`;
+
+// used in <EditIdentity>
+export const FETCH_PERSON_OWNED = gql`
   query FetchPerson($username: String!) {
     fetchPerson(preferredUsername: $username) {
       ...ActorFragment
@@ -42,6 +62,7 @@ export const FETCH_PERSON = gql`
   ${ACTOR_FRAGMENT}
 `;
 
+// used by admin panel, profile view
 export const GET_PERSON = gql`
   query Person(
     $actorId: ID!

@@ -197,7 +197,7 @@
 import {
   CREATE_PERSON,
   DELETE_PERSON,
-  FETCH_PERSON,
+  FETCH_PERSON_OWNED,
   IDENTITIES,
   PERSON_FRAGMENT,
   PERSON_FRAGMENT_FEED_TOKENS,
@@ -250,7 +250,7 @@ const {
 } = useQuery<{
   fetchPerson: IPerson;
 }>(
-  FETCH_PERSON,
+  FETCH_PERSON_OWNED,
   () => ({
     username: props.identityName,
   }),
