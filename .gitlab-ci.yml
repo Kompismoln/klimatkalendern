@@ -136,6 +136,7 @@ vitest:
     - npm install --frozen-lockfile
   script:
     - npm run coverage
+    - ls -la .
   artifacts:
     when: always
     paths:
