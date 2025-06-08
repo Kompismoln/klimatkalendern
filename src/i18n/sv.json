@@ -1660,5 +1660,6 @@
   "Browser tab icon and PWA icon of the instance. Defaults to the upstream Mobilizon icon.": "Bilden som syns i webbläsartabben och även som ikon i den progressiva webappen. Om ingen anges så används Mobilizon-loggan.",
   "Default Picture": "Standardbild",
   "Default picture when an event or group doesn't have one.": "Bild som används när en grupp eller ett event inte nar någon bild.",
-  "Instruction video": "Instruktionsvideo"
+  "Instruction video": "Instruktionsvideo",
+  "Search:": "Sök:"
 }

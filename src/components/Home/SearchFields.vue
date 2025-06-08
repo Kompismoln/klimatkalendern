@@ -8,6 +8,9 @@
     <label class="sr-only" for="search_field_input">{{
       t("Keyword, event title, group name, etc.")
     }}</label>
+    <h2>
+      <b>{{ t("Search:") }}</b>
+    </h2>
     <o-input
       v-model="search"
       :placeholder="t('Keyword, event title, group name, etc.')"
