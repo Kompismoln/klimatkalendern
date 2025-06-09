@@ -46,7 +46,7 @@ interface IEventEditJSON {
   joinOptions: EventJoinOptions;
   externalParticipationUrl: string | null;
   draft: boolean;
-  picture?: IMedia | { mediaId: string } | null;
+  picture?: IMedia | { mediaUuid: string } | null;
   attributedToId: string | null;
   organizerActorId?: string;
   onlineAddress?: string;

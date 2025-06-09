@@ -300,7 +300,7 @@ const buildPicture = async (): Promise<Record<string, unknown>> => {
         pictureFile.value as File
       );
       if (oldPictureFileContent === newPictureFileContent) {
-        obj.picture = { mediaId: editablePost.value.picture.id };
+        obj.picture = { mediaUuid: editablePost.value.picture.uuid };
       }
     }
   } catch (e: any) {

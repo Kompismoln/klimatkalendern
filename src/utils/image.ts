@@ -104,7 +104,7 @@ export function asMediaInput(
       };
     } else {
       ret[name] = {
-        mediaId: fallbackId,
+        mediaUuid: fallbackId,
       };
     }
   }

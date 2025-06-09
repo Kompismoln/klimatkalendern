@@ -1121,7 +1121,7 @@ const buildVariables = async () => {
         pictureFile.value as File
       );
       if (oldPictureFileContent === newPictureFileContent) {
-        res.picture = { mediaId: event.value?.picture.id };
+        res.picture = { mediaUuid: event.value?.picture.uuid };
       }
     }
     console.debug("builded variables", res);

@@ -576,17 +576,17 @@ const updateSettings = async (): Promise<void> => {
     ...asMediaInput(
       instanceLogo,
       "instanceLogo",
-      adminSettings.value?.instanceLogo?.id
+      adminSettings.value?.instanceLogo?.uuid
     ),
     ...asMediaInput(
       instanceFavicon,
       "instanceFavicon",
-      adminSettings.value?.instanceFavicon?.id
+      adminSettings.value?.instanceFavicon?.uuid
     ),
     ...asMediaInput(
       defaultPicture,
       "defaultPicture",
-      adminSettings.value?.defaultPicture?.id
+      adminSettings.value?.defaultPicture?.uuid
     ),
   };
   saveAdminSettings(variables);
