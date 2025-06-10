@@ -24,6 +24,11 @@ defmodule Mobilizon.MediaTest do
       assert Medias.get_media!(media.id).id == media.id
     end
 
+    test "get_media_by_uuid!/1 returns the media with given uuid" do
+      media = insert(:media)
+      assert Medias.get_media_by_uuid!(media.uuid).uuid == media.uuid
+    end
+
     test "create_media/1 with valid data creates a media" do
       assert {:ok, %Media{} = media} =
                Medias.create_media(Map.put(@valid_attrs, :actor_id, insert(:actor).id))

@@ -36,6 +36,13 @@ defmodule Mobilizon.Medias do
   def get_media_by_uuid(uuid), do: Repo.get_by(Media, uuid: uuid)
 
   @doc """
+  Get a single media by uuid.
+  Raises `Ecto.NoResultsError` if the media does not exist.
+  """
+  @spec get_media_by_uuid!(String.t()) :: Media.t() | nil
+  def get_media_by_uuid!(uuid), do: Repo.get_by!(Media, uuid: uuid)
+
+  @doc """
   Get a media by its URL.
   """
   @spec get_media_by_url(String.t()) :: Media.t() | nil

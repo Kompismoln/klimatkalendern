@@ -73,10 +73,17 @@ defmodule Mobilizon.Admin.SettingMedia do
     |> unique_constraint(:group, name: :admin_settings_medias_group_name_index)
   end
 
-  # # In case the provided media is an existing one
+  # In case the provided media is an existing one (identified by id)
   @spec put_media(Changeset.t(), map) :: Changeset.t()
   defp put_media(%Changeset{} = changeset, %{media: %{media_id: id}}) do
     %Media{} = media = Medias.get_media!(id)
+    put_assoc(changeset, :media, media)
+  end
+
+  # In case the provided media is an existing one (identified by uuid)
+  @spec put_media(Changeset.t(), map) :: Changeset.t()
+  defp put_media(%Changeset{} = changeset, %{media: %{media_uuid: uuid}}) do
+    %Media{} = media = Medias.get_media_by_uuid!(uuid)
     put_assoc(changeset, :media, media)
   end
 
