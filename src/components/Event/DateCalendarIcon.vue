@@ -27,7 +27,7 @@ import { useI18n } from "vue-i18n";
 
 const { locale } = useI18n({ useScope: "global" });
 
-const localeConverted = locale.replace("_", "-");
+const localeConverted = computed(() => locale.value.replace("_", "-"));
 
 const props = withDefaults(
   defineProps<{
@@ -40,15 +40,15 @@ const props = withDefaults(
 const dateObj = computed<Date>(() => new Date(props.date));
 
 const month = computed<string>(() =>
-  dateObj.value.toLocaleString(localeConverted, { month: "short" })
+  dateObj.value.toLocaleString(localeConverted.value, { month: "short" })
 );
 
 const day = computed<string>(() =>
-  dateObj.value.toLocaleString(localeConverted, { day: "numeric" })
+  dateObj.value.toLocaleString(localeConverted.value, { day: "numeric" })
 );
 
 const weekday = computed<string>(() =>
-  dateObj.value.toLocaleString(localeConverted, { weekday: "short" })
+  dateObj.value.toLocaleString(localeConverted.value, { weekday: "short" })
 );
 
 const smallStyle = computed<string>(() => (props.small ? "1.2" : "2"));

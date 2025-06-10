@@ -23,10 +23,10 @@ const { locale } = useI18n({ useScope: "global" });
 const { result: configResult } = useQuery<{ config: IConfig }>(
   PRIVACY,
   () => ({
-    locale: locale,
+    locale: locale.value,
   }),
   () => ({
-    enabled: locale !== undefined,
+    enabled: locale.value !== undefined,
   })
 );
 

@@ -43,7 +43,6 @@ export const i18n = createI18n({
 const loadedLanguages = [DEFAULT_LOCALE];
 
 function setI18nLanguage(lang: string): string {
-  i18n.global.locale = lang;
   setLanguageInDOM(lang);
   return lang;
 }

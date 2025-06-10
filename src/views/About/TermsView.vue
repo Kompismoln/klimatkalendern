@@ -26,10 +26,10 @@ const { result: termsResult, loading: termsLoading } = useQuery<{
 }>(
   TERMS,
   () => ({
-    locale: locale,
+    locale: locale.value,
   }),
   () => ({
-    enabled: locale !== undefined,
+    enabled: locale.value !== undefined,
   })
 );
 
