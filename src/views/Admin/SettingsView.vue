@@ -556,7 +556,21 @@ const {
   mutate: saveAdminSettings,
   onDone: saveAdminSettingsDone,
   onError: saveAdminSettingsError,
-} = useMutation(SAVE_ADMIN_SETTINGS);
+} = useMutation(SAVE_ADMIN_SETTINGS, () => ({
+  // We need to update the cache because we just changed admin settings
+  // We want to update the related query ADMIN_SETTINGS
+  update(cache, { data }) {
+    if (!data?.saveAdminSettings) {
+      console.error("can't acces new admin settings");
+      return;
+    }
+
+    cache.writeQuery({
+      query: ADMIN_SETTINGS,
+      data: { adminSettings: data?.saveAdminSettings },
+    });
+  },
+}));
 
 saveAdminSettingsDone(() => {
   instanceLogo.firstHash = instanceLogo.hash;
