@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Discussion List Item Story > Default 1`] = `
+"<story>
+  <variant title="Basic">
+    <router-link class="flex gap-1 w-full items-center p-2 border-b-stone-200 border-b bg-white dark:bg-transparent" dir="auto" to="[object Object]">
+      <div class=""><span aria-hidden="true" class="material-design-icon account-circle-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="32" height="32" viewBox="0 0 24 24"><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"><!--v-if--></path></svg></span></div>
+      <div class="flex-1">
+        <div class="flex items-center">
+          <p class="text-violet-3 dark:text-white text-lg font-semibold flex-1">A discussion</p><span class="" title="Wednesday, February 2, 2022 at 3:04 AM">0 seconds</span>
+        </div>
+        <div class="line-clamp-2" dir="auto"></div>
+      </div>
+    </router-link>
+  </variant>
+  <variant title="Deleted comment">
+    <router-link class="flex gap-1 w-full items-center p-2 border-b-stone-200 border-b bg-white dark:bg-transparent" dir="auto" to="[object Object]">
+      <div class=""><span aria-hidden="true" class="material-design-icon account-circle-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="32" height="32" viewBox="0 0 24 24"><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"><!--v-if--></path></svg></span></div>
+      <div class="flex-1">
+        <div class="flex items-center">
+          <p class="text-violet-3 dark:text-white text-lg font-semibold flex-1">A discussion</p><span class="" title="Wednesday, February 2, 2022 at 3:04 AM">0 seconds</span>
+        </div>
+        <div class="">[This comment has been deleted]</div>
+      </div>
+    </router-link>
+  </variant>
+</story>"
+`;

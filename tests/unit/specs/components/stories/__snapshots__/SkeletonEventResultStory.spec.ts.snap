@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Skeleton Event Result Story > Default 1`] = `
+"<story>
+  <variant title="row">
+    <div class="bg-white dark:bg-slate-800 shadow rounded-md max-w-4xl w-full mx-auto">
+      <div class="animate-pulse flex flex-col items-center md:flex-row">
+        <div class="object-cover h-56 w-full md:max-w-[20rem] bg-slate-700"></div>
+        <div class="flex-1 space-3-4 flex self-start flex-col justify-between p-2 md:p-4 w-full"><span class="h-2 bg-slate-700"></span><span class="mb-2 h-4 bg-slate-700"></span>
+          <div class="flex space-x-4 flex-row">
+            <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+            <div class="flex flex-col flex-1 space-y-2">
+              <div class="h-3 bg-slate-700"></div>
+              <div class="h-2 bg-slate-700"></div>
+            </div>
+          </div>
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+      </div>
+    </div>
+  </variant>
+  <variant title="column">
+    <div class="bg-white dark:bg-slate-800 shadow rounded-md max-w-sm w-full mx-auto">
+      <div class="animate-pulse flex flex-col items-center md:flex-col">
+        <div class="object-cover h-56 w-full md:max-w-[20rem] bg-slate-700"></div>
+        <div class="flex-1 space-3-4 flex self-start flex-col justify-between p-2 md:p-4 w-full"><span class="h-2 bg-slate-700"></span><span class="mb-2 h-4 bg-slate-700"></span>
+          <div class="flex space-x-4 flex-row">
+            <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+            <div class="flex flex-col flex-1 space-y-2">
+              <div class="h-3 bg-slate-700"></div>
+              <div class="h-2 bg-slate-700"></div>
+            </div>
+          </div>
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+      </div>
+    </div>
+  </variant>
+  <variant title="not minimal">
+    <div class="bg-white dark:bg-slate-800 shadow rounded-md max-w-4xl w-full mx-auto">
+      <div class="animate-pulse flex flex-col items-center md:flex-row">
+        <div class="object-cover h-56 w-full md:max-w-[20rem] bg-slate-700"></div>
+        <div class="flex-1 space-3-4 flex self-start flex-col justify-between p-2 md:p-4 w-full"><span class="h-2 bg-slate-700"></span><span class="mb-2 h-4 bg-slate-700"></span>
+          <div class="flex space-x-4 flex-row">
+            <div class="rounded-full bg-slate-700 h-10 w-10"></div>
+            <div class="flex flex-col flex-1 space-y-2">
+              <div class="h-3 bg-slate-700"></div>
+              <div class="h-2 bg-slate-700"></div>
+            </div>
+          </div>
+          <div class="h-3 bg-slate-700 mt-3 w-60"></div>
+          <div class="flex">
+            <div class="h-3 bg-slate-700 mt-2 w-20 mr-2 rounded"></div>
+            <div class="h-3 bg-slate-700 mt-2 w-20 mr-2 rounded"></div>
+            <div class="h-3 bg-slate-700 mt-2 w-20 mr-2 rounded"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </variant>
+</story>"
+`;

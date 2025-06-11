@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Inline Address Story > Default 1`] = `
+"<story>
+  <variant title="with locality">
+    <div class="truncate flex gap-1" dir="auto" title="Locaux Motiv, Lyon"><span aria-hidden="true" class="material-design-icon map-marker-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"><!--v-if--></path></svg></span><span>Lyon</span></div>
+  </variant>
+  <variant title="without locality">
+    <div class="truncate flex gap-1" dir="auto" title="Locaux Motiv, null"><span aria-hidden="true" class="material-design-icon map-marker-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"><!--v-if--></path></svg></span><span>Locaux Motiv</span></div>
+  </variant>
+</story>"
+`;

@@ -89,11 +89,8 @@ describe("ParticipationSection", () => {
     );
 
     wrapper.find(".event-participation small span").trigger("click");
-    expect(
-      wrapper
-        .findComponent({ ref: "anonymous-participation-modal" })
-        .isVisible()
-    ).toBeTruthy();
+    await wrapper.vm.$nextTick();
+    expect(wrapper.find("div.o-modal").isVisible()).toBeTruthy();
 
     cancelAnonymousParticipationButton.trigger("click");
     await wrapper.vm.$nextTick();
@@ -120,9 +117,7 @@ describe("ParticipationSection", () => {
     wrapper.find(".event-participation small span").trigger("click");
 
     await wrapper.vm.$nextTick();
-    const modal = wrapper.findComponent({
-      ref: "anonymous-participation-modal",
-    });
+    const modal = wrapper.find("div.o-modal");
     expect(modal.isVisible()).toBeTruthy();
     expect(modal.find(".o-notification--primary").text()).toBe(
       "As the event organizer has chosen to manually validate participation requests, your participation will be really confirmed only once you receive an email stating it's being accepted."

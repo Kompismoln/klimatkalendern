@@ -12,7 +12,7 @@
 <script lang="ts" setup>
 import { IDiscussion } from "@/types/discussions";
 import { reactive } from "vue";
-import DiscussionListItem from "./DiscussionListItem.vue";
+import DiscussionListItem from "@/components/Discussion/DiscussionListItem.vue";
 
 const discussion = reactive<IDiscussion>({
   title: "A discussion",

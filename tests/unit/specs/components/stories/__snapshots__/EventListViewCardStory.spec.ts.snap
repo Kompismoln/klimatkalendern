@@ -1,0 +1,57 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Event List View Card Story > Default 1`] = `
+"<story title="EventListViewCard">
+  <variant title="default">
+    <article class="bg-white dark:bg-zinc-700 dark:text-white dark:hover:text-white rounded-lg shadow-md max-w-3xl p-2">
+      <div class="flex gap-2">
+        <div class="">
+          <div data-v-1df97f42="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+            <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
+          </div>
+        </div>
+        <router-link to="[object Object]">
+          <h2 class="mt-0 line-clamp-2">A very interesting event</h2>
+        </router-link>
+      </div>
+      <div class="">
+        <!--v-if--><span>Organized by Hello</span>
+      </div>
+      <div class="flex gap-1"><span><span aria-hidden="true" class="material-design-icon earth-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"><!--v-if--></path></svg></span>
+        <!--v-if-->
+        <!--v-if--></span><span><span>0 participants</span></span>
+      </div>
+    </article>
+  </variant>
+  <variant title="long">
+    <article class="bg-white dark:bg-zinc-700 dark:text-white dark:hover:text-white rounded-lg shadow-md max-w-3xl p-2">
+      <div class="flex gap-2">
+        <div class="">
+          <div data-v-1df97f42="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+            <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
+          </div>
+        </div>
+        <router-link to="[object Object]">
+          <h2 class="mt-0 line-clamp-2">A very long title that will have trouble to display because it will take multiple lines but where will it stop&nbsp;?! Maybe after 3 lines is enough. Let's say so.</h2>
+        </router-link>
+      </div>
+      <div class="">
+        <!--v-if--><span>Organized by Hello</span>
+      </div>
+      <div class="flex gap-1"><span><span aria-hidden="true" class="material-design-icon earth-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M17.9,17.39C17.64,16.59 16.89,16 16,16H15V13A1,1 0 0,0 14,12H8V10H10A1,1 0 0,0 11,9V7H13A2,2 0 0,0 15,5V4.59C17.93,5.77 20,8.64 20,12C20,14.08 19.2,15.97 17.9,17.39M11,19.93C7.05,19.44 4,16.08 4,12C4,11.38 4.08,10.78 4.21,10.21L9,15V16A2,2 0 0,0 11,18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"><!--v-if--></path></svg></span>
+        <!--v-if-->
+        <!--v-if--></span><span><span>0 participants</span></span>
+      </div>
+    </article>
+  </variant>
+  <!-- <Variant title="tentative">
+      <EventListViewCard :event="tentativeEvent" />
+    </Variant>
+
+    <Variant title="cancelled">
+      <EventListViewCard :event="cancelledEvent" />
+    </Variant> -->
+</story>"
+`;

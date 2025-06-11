@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Categories Preview Story > Default 1`] = `
+"<story setup-app="function setupApp({ app }) {
+      app.provide(__vite_ssr_import_2__.DefaultApolloClient, __vite_ssr_import_1__.apolloClient);
+    }">
+  <variant>
+    <!--v-if-->
+  </variant>
+</story>"
+`;

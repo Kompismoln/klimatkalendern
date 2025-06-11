@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Auth Providers Story > Default 1`] = `
+"<story>
+  <variant title="Public">
+    <div><b>Sign in with</b>
+      <div class="flex gap-1 flex-wrap">
+        <o-button tag="a" outlined="" variant="primary" href="/auth/keycloak" icon-left="lock"><span>Entreprise</span></o-button>
+        <o-button tag="a" outlined="" variant="primary" icon-left="google" href="/auth/google"><span>Google</span></o-button>
+      </div>
+    </div>
+  </variant>
+</story>"
+`;

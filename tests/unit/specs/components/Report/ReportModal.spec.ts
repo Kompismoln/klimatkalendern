@@ -96,7 +96,8 @@ describe("ReportModal", () => {
     );
 
     const switchButton = wrapper.find('input[type="checkbox"]');
-    switchButton.setValue(true);
+    switchButton.setValue();
+    await wrapper.vm.$nextTick();
 
     const submit = wrapper.find("footer button.o-btn--primary");
     submit.trigger("click");

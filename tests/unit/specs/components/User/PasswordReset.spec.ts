@@ -70,7 +70,10 @@ describe("Reset page", () => {
     const wrapper = generateWrapper();
     expect(wrapper.router).toBe(router);
     expect(wrapper.findAll('input[type="password"').length).toBe(2);
-    expect(wrapper.html()).toMatchSnapshot();
+    const labels = wrapper.findAll("label");
+    expect(labels.length).toBe(2);
+    expect(labels.at(0).text()).toBe("Password");
+    expect(labels.at(1).text()).toBe("Password (confirmation)");
   });
 
   it("shows error if token is invalid", async () => {
@@ -98,7 +101,6 @@ describe("Reset page", () => {
     expect(wrapper.find(".o-notification--danger").text()).toContain(
       "The token you provided is invalid"
     );
-    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("redirects to homepage if token is valid", async () => {

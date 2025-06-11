@@ -8,9 +8,17 @@ import {
 import buildCurrentUserResolver from "@/apollo/user";
 import { loginMock as loginConfigMock } from "../../mocks/config";
 import { LOGIN_CONFIG } from "@/graphql/config";
-import { loginMock, loginResponseMock } from "../../mocks/auth";
+import {
+  loginMock,
+  loginResponseMock,
+  nullIdentityMock,
+} from "../../mocks/auth";
 import { LOGIN } from "@/graphql/auth";
-import { CURRENT_USER_CLIENT } from "@/graphql/user";
+import {
+  CURRENT_USER_CLIENT,
+  LOGGED_USER_LOCATION,
+  UPDATE_CURRENT_USER_CLIENT,
+} from "@/graphql/user";
 import { ICurrentUser } from "@/types/current-user.model";
 import flushPromises from "flush-promises";
 import RouteName from "@/router/name";
@@ -24,6 +32,8 @@ import {
   injectRouterMock,
   getRouter,
 } from "vue-router-mock";
+import { IDENTITIES } from "@/graphql/actor";
+import { nullMock } from "../../common";
 
 config.global.plugins.push(Oruga);
 config.plugins.VueWrapper.install(VueRouterMock);
@@ -58,6 +68,8 @@ describe("Render login form", () => {
     requestHandlers = {
       configQueryHandler: vi.fn().mockResolvedValue(loginConfigMock),
       loginMutationHandler: vi.fn().mockResolvedValue(loginResponseMock),
+      identity: vi.fn().mockResolvedValue(nullIdentityMock),
+      mockhdl: vi.fn().mockResolvedValue(nullMock),
       ...handlers,
     };
     mockClient.setRequestHandler(
@@ -65,6 +77,12 @@ describe("Render login form", () => {
       requestHandlers.configQueryHandler
     );
     mockClient.setRequestHandler(LOGIN, requestHandlers.loginMutationHandler);
+    mockClient.setRequestHandler(IDENTITIES, requestHandlers.identity);
+    mockClient.setRequestHandler(LOGGED_USER_LOCATION, requestHandlers.mockhdl);
+    mockClient.setRequestHandler(
+      UPDATE_CURRENT_USER_CLIENT,
+      requestHandlers.mockhdl
+    );
 
     wrapper = mount(Login, {
       props: {
@@ -80,6 +98,7 @@ describe("Render login form", () => {
         },
       },
     });
+    wrapper.router.push.mockReset();
   };
 
   afterEach(() => {

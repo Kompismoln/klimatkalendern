@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Instance Contact Link Story > Default 1`] = `
+"<story>
+  <variant title="empty">
+    <p><span>contact uninformed</span></p>
+  </variant>
+  <variant title="string">
+    <p><span dir="auto">someone</span></p>
+  </variant>
+  <variant title="email">
+    <p><a dir="auto" title="someone@somewhere.tld" href="mailto:someone@somewhere.tld">someone@somewhere.tld</a></p>
+  </variant>
+  <variant title="url">
+    <p><a dir="auto" title="https://somewhere.com" href="https://somewhere.com">somewhere.com</a></p>
+  </variant>
+</story>"
+`;

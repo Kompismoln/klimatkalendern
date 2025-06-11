@@ -1,0 +1,86 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Group Card Story > Default 1`] = `
+"<story>
+  <variant title="Empty">
+    <div class="p-5">
+      <router-link to="[object Object]" class="mbz-card snap-center shrink-0 dark:bg-mbz-purple dark:text-white rounded-lg shadow-lg flex items-center flex-col sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
+        <div class="flex-none p-2 md:p-4"><span aria-hidden="true" class="material-design-icon account-group-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="128" height="128" viewBox="0 0 24 24"><path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z"><!--v-if--></path></svg></span></div>
+        <div class="py-2 px-2 md:px-4 flex flex-col h-full justify-between w-full">
+          <div class="flex gap-1 mb-2">
+            <div class="overflow-hidden flex-auto">
+              <h3 class="text-2xl leading-5 line-clamp-3 font-bold text-violet-3 dark:text-white" dir="auto">Framasoft</h3><span class="block truncate">@framasoft@mobilizon.fr</span>
+            </div>
+          </div>
+          <div class="mb-2 line-clamp-3" dir="auto"></div>
+          <div>
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+        </div>
+      </router-link>
+    </div>
+  </variant>
+  <variant title="With media">
+    <div class="p-5">
+      <router-link to="[object Object]" class="mbz-card snap-center shrink-0 dark:bg-mbz-purple dark:text-white rounded-lg shadow-lg flex items-center flex-col sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
+        <div class="flex-none p-2 md:p-4">
+          <figure class=""><img class="rounded-full" src="https://mobilizon.fr/media/890f5396ef80081a6b1b18a5db969746cf8bb340e8a4e657d665e41f6646c539.jpg?name=framasoft%27s%20avatar.jpg" alt="" height="128" width="128"></figure>
+        </div>
+        <div class="py-2 px-2 md:px-4 flex flex-col h-full justify-between w-full">
+          <div class="flex gap-1 mb-2">
+            <div class="overflow-hidden flex-auto">
+              <h3 class="text-2xl leading-5 line-clamp-3 font-bold text-violet-3 dark:text-white" dir="auto">Framasoft</h3><span class="block truncate">@framasoft@mobilizon.fr</span>
+            </div>
+          </div>
+          <div class="mb-2 line-clamp-3" dir="auto"></div>
+          <div>
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+        </div>
+      </router-link>
+    </div>
+  </variant>
+  <variant title="with followers or members">
+    <div class="p-5">
+      <router-link to="[object Object]" class="mbz-card snap-center shrink-0 dark:bg-mbz-purple dark:text-white rounded-lg shadow-lg flex items-center flex-col sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
+        <div class="flex-none p-2 md:p-4">
+          <figure class=""><img class="rounded-full" src="https://mobilizon.fr/media/890f5396ef80081a6b1b18a5db969746cf8bb340e8a4e657d665e41f6646c539.jpg?name=framasoft%27s%20avatar.jpg" alt="" height="128" width="128"></figure>
+        </div>
+        <div class="py-2 px-2 md:px-4 flex flex-col h-full justify-between w-full">
+          <div class="flex gap-1 mb-2">
+            <div class="overflow-hidden flex-auto">
+              <h3 class="text-2xl leading-5 line-clamp-3 font-bold text-violet-3 dark:text-white" dir="auto">Framasoft</h3><span class="block truncate">@framasoft@mobilizon.fr</span>
+            </div>
+          </div>
+          <div class="mb-2 line-clamp-3" dir="auto">You can also use variant modifiers to target media queries like responsive breakpoints, dark mode, prefers-reduced-motion, and more. For example, use md:h-full to apply the h-full utility at only medium screen sizes and above.</div>
+          <div>
+            <div class="truncate flex gap-1" dir="auto" title="Nantes, undefined"><span aria-hidden="true" class="material-design-icon map-marker-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"><!--v-if--></path></svg></span><span>Nantes</span></div>
+            <p class="flex gap-1"><span aria-hidden="true" class="material-design-icon account-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"><!--v-if--></path></svg></span> 7 members or followers</p>
+          </div>
+        </div>
+      </router-link>
+    </div>
+  </variant>
+  <variant title="Row mode">
+    <router-link to="[object Object]" class="mbz-card snap-center shrink-0 dark:bg-mbz-purple dark:text-white rounded-lg shadow-lg flex items-center flex-col sm:flex-row">
+      <div class="flex-none p-2 md:p-4">
+        <figure class=""><img class="rounded-full" src="https://mobilizon.fr/media/890f5396ef80081a6b1b18a5db969746cf8bb340e8a4e657d665e41f6646c539.jpg?name=framasoft%27s%20avatar.jpg" alt="" height="128" width="128"></figure>
+      </div>
+      <div class="py-2 px-2 md:px-4 flex flex-col h-full justify-between w-full sm:flex-1">
+        <div class="flex gap-1 mb-2">
+          <div class="overflow-hidden flex-auto">
+            <h3 class="text-2xl leading-5 line-clamp-3 font-bold text-violet-3 dark:text-white" dir="auto">Framasoft</h3><span class="block truncate">@framasoft@mobilizon.fr</span>
+          </div>
+        </div>
+        <div class="mb-2 line-clamp-3" dir="auto">You can also use variant modifiers to target media queries like responsive breakpoints, dark mode, prefers-reduced-motion, and more. For example, use md:h-full to apply the h-full utility at only medium screen sizes and above.</div>
+        <div>
+          <div class="truncate flex gap-1" dir="auto" title="Nantes, undefined"><span aria-hidden="true" class="material-design-icon map-marker-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"><!--v-if--></path></svg></span><span>Nantes</span></div>
+          <p class="flex gap-1"><span aria-hidden="true" class="material-design-icon account-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"><!--v-if--></path></svg></span> 7 members or followers</p>
+        </div>
+      </div>
+    </router-link>
+  </variant>
+</story>"
+`;

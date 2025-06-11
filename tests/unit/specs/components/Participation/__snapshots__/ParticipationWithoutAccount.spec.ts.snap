@@ -1,55 +1,64 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ParticipationWithoutAccount > handles being already a participant 1`] = `
-"<section class=\\"container mx-auto\\">
-  <div class=\\"\\">
+"<section class="container mx-auto">
+  <div class="">
     <form>
       <p>This Mobilizon instance and this event organizer allows anonymous participations, but requires validation through email confirmation.</p>
-      <transition-stub name=\\"fade\\" appear=\\"false\\" persisted=\\"true\\" css=\\"true\\">
-        <article class=\\"o-notification o-notification--info\\">
-          <!--v-if-->
-          <!--v-if-->
-          <div class=\\"o-notification__wrapper\\">
-            <!--v-if-->
-            <div class=\\"o-notification__content\\">Your email will only be used to confirm that you're a real person and send you eventual updates for this event. It will NOT be transmitted to other instances or to the event organizer.</div>
+      <transition-stub name="fade" appear="false" persisted="false" css="true">
+        <article class="o-notification o-notification--info o-notification--top" data-oruga="notification">
+          <!---->
+          <div class="o-notification__wrapper">
+            <!---->
+            <div class="o-notification__content">Your email will only be used to confirm that you're a real person and send you eventual updates for this event. It will NOT be transmitted to other instances or to the event organizer.</div>
           </div>
         </article>
       </transition-stub>
-      <transition-stub name=\\"fade\\" appear=\\"false\\" persisted=\\"true\\" css=\\"true\\">
-        <article class=\\"o-notification o-notification--danger\\">
-          <!--v-if-->
-          <!--v-if-->
-          <div class=\\"o-notification__wrapper\\">
-            <!--v-if-->
-            <div class=\\"o-notification__content\\">You are already a participant of this event</div>
+      <transition-stub name="fade" appear="false" persisted="false" css="true">
+        <article class="o-notification o-notification--danger o-notification--top" data-oruga="notification">
+          <!---->
+          <div class="o-notification__wrapper">
+            <!---->
+            <div class="o-notification__content">You are already a participant of this event</div>
           </div>
         </article>
       </transition-stub>
-      <div class=\\"o-field o-field--filled\\"><label for=\\"anonymousParticipationEmail\\" class=\\"o-field__label\\">Email address</label>
-        <div class=\\"o-ctrl-input\\"><input id=\\"anonymousParticipationEmail\\" placeholder=\\"Your email\\" required=\\"\\" class=\\"o-input\\" type=\\"email\\" autocomplete=\\"off\\">
-          <!--v-if-->
-          <!--v-if-->
-          <!--v-if-->
+      <div data-oruga="field" class="o-field o-field--filled"><label for="anonymousParticipationEmail" class="o-field__label">Email address</label>
+        <div class="o-field__body">
+          <div class="o-field o-field--addons">
+            <div data-oruga="input" class="o-input__wrapper"><input required="" id="anonymousParticipationEmail" data-oruga-input="email" type="email" class="o-input" autocomplete="off" placeholder="Your email">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+          </div>
         </div>
-        <!--v-if-->
+        <!---->
       </div>
       <p>If you want, you may send a message to the event organizer here.</p>
-      <div class=\\"o-field o-field--filled\\"><label for=\\"anonymousParticipationMessage\\" class=\\"o-field__label\\">Message</label>
-        <div class=\\"o-ctrl-input\\"><textarea id=\\"anonymousParticipationMessage\\" minlength=\\"10\\" class=\\"o-input o-input__textarea\\"></textarea>
-          <!--v-if-->
-          <!--v-if-->
-          <!--v-if-->
+      <div data-oruga="field" class="o-field o-field--filled"><label for="anonymousParticipationMessage" class="o-field__label">Message</label>
+        <div class="o-field__body">
+          <div class="o-field o-field--addons">
+            <div data-oruga="input" class="o-input__wrapper"><textarea minlength="10" id="anonymousParticipationMessage" data-oruga-input="textarea" class="o-input o-input__textarea"></textarea>
+              <!---->
+              <!---->
+              <!---->
+            </div>
+          </div>
         </div>
-        <!--v-if-->
+        <!---->
       </div>
-      <div class=\\"o-field\\">
-        <!--v-if--><label class=\\"o-chk o-chk--checked\\"><input type=\\"checkbox\\" class=\\"o-chk__check o-chk__check--checked\\" true-value=\\"true\\" false-value=\\"false\\" value=\\"false\\"><span class=\\"o-chk__label\\"><b>Remember my participation in this browser</b><p>Will allow to display and manage your participation status on the event page when using this device. Uncheck if you're using a public device.</p></span></label>
-        <!--v-if-->
+      <div data-oruga="field" class="o-field">
+        <!---->
+        <div class="o-field__body">
+          <div class="o-field o-field--addons"><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label"><b>Remember my participation in this browser</b><p>Will allow to display and manage your participation status on the event page when using this device. Uncheck if you're using a public device.</p></span></label></div>
+        </div>
+        <!---->
       </div>
-      <div class=\\"flex gap-2 my-2\\"><button type=\\"submit\\" class=\\"o-btn o-btn--primary o-btn--disabled\\" disabled=\\"\\"><span class=\\"o-btn__wrapper\\"><!--v-if--><span class=\\"o-btn__label\\">Send email</span>
-          <!--v-if--></span>
-        </button><button type=\\"button\\" class=\\"o-btn o-btn--text\\"><span class=\\"o-btn__wrapper\\"><!--v-if--><span class=\\"o-btn__label\\">Back to previous page</span>
-          <!--v-if--></span>
+      <div class="flex gap-2 my-2"><button type="submit" class="o-btn o-btn--primary o-btn--disabled" role="button" data-oruga="button" disabled=""><span class="o-btn__wrapper"><!----><span class="o-btn__label">Send email</span>
+          <!----></span>
+        </button><button type="button" class="o-btn o-btn--text" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Back to previous page</span>
+          <!----></span>
         </button></div>
     </form>
   </div>
@@ -57,26 +66,26 @@ exports[`ParticipationWithoutAccount > handles being already a participant 1`] =
 `;
 
 exports[`ParticipationWithoutAccount > renders the participation without account view with minimal data 1`] = `
-"<section class=\\"container mx-auto\\">
-  <div class=\\"\\">
+"<section class="container mx-auto">
+  <div class="">
     <div>
-      <h1 class=\\"title\\">Request for participation confirmation sent</h1>
-      <p class=\\"prose dark:prose-invert\\"><span>Check your inbox (and your junk mail folder).</span><span class=\\"details\\">Your participation will be validated once you click the confirmation link into the email.</span></p>
+      <h1 class="title">Request for participation confirmation sent</h1>
+      <p class="prose dark:prose-invert"><span>Check your inbox (and your junk mail folder).</span><span class="details">Your participation will be validated once you click the confirmation link into the email.</span></p>
       <!--v-if-->
-      <p class=\\"prose dark:prose-invert\\">You may now close this window, or <a href=\\"/events/f37910ea-fd5a-4756-9679-00971f3f4106\\" class=\\"\\">return to the event's page</a>.</p>
+      <p class="prose dark:prose-invert">You may now close this window, or <a href="/events/f37910ea-fd5a-4756-9679-00971f3f4106" class="">return to the event's page</a>.</p>
     </div>
   </div>
 </section>"
 `;
 
 exports[`ParticipationWithoutAccount > renders the warning if the event participation is restricted 1`] = `
-"<section class=\\"container mx-auto\\">
-  <div class=\\"\\">
+"<section class="container mx-auto">
+  <div class="">
     <div>
-      <h1 class=\\"title\\">Request for participation confirmation sent</h1>
-      <p class=\\"prose dark:prose-invert\\"><span>Check your inbox (and your junk mail folder).</span><span class=\\"details\\">Your participation will be validated once you click the confirmation link into the email, and after the organizer manually validates your participation.</span></p>
+      <h1 class="title">Request for participation confirmation sent</h1>
+      <p class="prose dark:prose-invert"><span>Check your inbox (and your junk mail folder).</span><span class="details">Your participation will be validated once you click the confirmation link into the email, and after the organizer manually validates your participation.</span></p>
       <!--v-if-->
-      <p class=\\"prose dark:prose-invert\\">You may now close this window, or <a href=\\"/events/f37910ea-fd5a-4756-9679-00971f3f4106\\" class=\\"\\">return to the event's page</a>.</p>
+      <p class="prose dark:prose-invert">You may now close this window, or <a href="/events/f37910ea-fd5a-4756-9679-00971f3f4106" class="">return to the event's page</a>.</p>
     </div>
   </div>
 </section>"

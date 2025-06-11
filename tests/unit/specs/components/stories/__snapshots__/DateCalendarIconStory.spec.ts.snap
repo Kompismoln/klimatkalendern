@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Date Calendar Icon Story > Default 1`] = `
+"<story>
+  <variant title="new">
+    <div data-v-1df97f42="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white" style="--small: 2;">
+      <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+      <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
+    </div>
+  </variant>
+  <variant title="small">
+    <div data-v-1df97f42="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
+      <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+      <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
+    </div>
+  </variant>
+</story>"
+`;

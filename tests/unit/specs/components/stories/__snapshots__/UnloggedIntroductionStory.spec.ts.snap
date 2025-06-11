@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Unlogged Introduction Story > Default 1`] = `
+"<story>
+  <variant title="Open">
+    <section class="container mx-auto px-2 my-3">
+      <h1 class="dark:text-white font-bold">Test! Test! Test!</h1>
+      <p class="dark:text-white mb-2">An instance that doesn't exist</p>
+    </section>
+  </variant>
+  <variant title="Closed">
+    <section class="container mx-auto px-2 my-3">
+      <h1 class="dark:text-white font-bold">Test! Test! Test!</h1>
+      <p class="dark:text-white mb-2">An instance that doesn't exist</p>
+    </section>
+  </variant>
+</story>"
+`;

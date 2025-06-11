@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Material Icon Story > Default 1`] = `
+"<story layout="[object Object]">
+  <variant title="Google">
+    <!---->
+  </variant>
+  <variant title="Calendar">
+    <!---->
+  </variant>
+  <variant title="Account Multiple Plus">
+    <!---->
+  </variant>
+</story>"
+`;

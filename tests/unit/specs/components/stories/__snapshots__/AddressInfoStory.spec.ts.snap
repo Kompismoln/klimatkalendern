@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Address Info Story > Default 1`] = `
+"<story>
+  <variant title="Basic">
+    <address data-v-f169049d="" dir="auto">
+      <!--v-if-->
+      <p data-v-f169049d=""><span data-v-f169049d="" class="addressDescription" title="Locaux Motiv">Locaux Motiv</span><br data-v-f169049d=""><span data-v-f169049d="">10 Rue Jangot, 69007, Lyon</span><br data-v-f169049d="">
+        <!--v-if-->
+      </p>
+    </address>
+  </variant>
+  <variant title="Basic with timezone">
+    <address data-v-f169049d="" dir="auto">
+      <!--v-if-->
+      <p data-v-f169049d=""><span data-v-f169049d="" class="addressDescription" title="Locaux Motiv">Locaux Motiv</span><br data-v-f169049d=""><span data-v-f169049d="">10 Rue Jangot, 69007, Lyon</span><br data-v-f169049d=""><small data-v-f169049d=""> 🌐 heure d’été irlandaise (UTC+1)</small></p>
+    </address>
+  </variant>
+</story>"
+`;

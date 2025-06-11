@@ -18,3 +18,7 @@ export const defaultResolvers = {
     }),
   },
 };
+
+export const nullMock = {
+  data: {},
+};

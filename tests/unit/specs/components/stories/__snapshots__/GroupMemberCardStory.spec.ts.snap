@@ -1,0 +1,107 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Group Member Card Story > Default 1`] = `
+"<story>
+  <variant title="simple member">
+    <div class="p-5">
+      <div class="rounded shadow-lg bg-white dark:bg-mbz-purple dark:text-white">
+        <div class="bg-mbz-yellow-alt-50 text-black flex items-center gap-1 p-2 rounded-t-lg" dir="auto">
+          <figure class=""><img class="rounded-xl" src="https://social.tcit.fr/system/accounts/avatars/000/000/001/original/a28c50ce5f2b13fd.jpg" alt="" width="24" height="24"></figure> Thomas Citharel (@tcit)
+        </div>
+        <div class="flex items-center gap-2 p-2 pr-4" dir="auto">
+          <div class="flex-1">
+            <div class="p-2 flex gap-2">
+              <div class="">
+                <figure class="h-12 w-12"><img class="rounded-full w-full h-full object-cover" src="https://mobilizon.fr/media/ff5b2d425fb73e17fcbb56a1a032359ee0b21453c11af59e103e783817a32fdf.png?name=framasoft%27s%20avatar.png" alt="" width="48" height="48"></figure>
+              </div>
+              <div class="" dir="auto">
+                <router-link to="[object Object]">
+                  <h2 class="mt-0">Framasoft</h2>
+                  <div class="flex flex-col items-start"><span class="text-sm">@framasoft@mobilizon.fr</span>
+                    <!--v-if-->
+                  </div>
+                </router-link>
+              </div>
+            </div>
+            <div class="mt-3 prose dark:prose-invert lg:prose-xl prose-p:m-0 line-clamp-2">
+              <p><strong>La Fediverse</strong>, <strong>c'est la <em><u>Féd</u>ération qui englobe l'Un<u>ivers</u> des réseaux sociaux libres et décentralisés,</em> </strong>dont Mobilizon (évènements), Mastodon (microblog), Peertube (vidéos), Pixelfed (photos), Funkwhale (musique), Matrix (messagerie instantanée)... et tant d'autres font partie.</p>
+              <p><strong>Et "La Fediverse <em>Nantaise</em>" est un collectif cherchant à faire connaître localement tout le potentiel de ces réseaux ! :-)</strong></p>
+            </div>
+          </div>
+          <div>
+            <o-dropdown aria-role="list" position="bottom-left">
+              <o-dropdown-item class="inline-flex gap-1" aria-role="listitem"><span aria-hidden="true" class="material-design-icon exit-to-app-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V9H5V5H19V19H5V15H3V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M10.08,15.58L11.5,17L16.5,12L11.5,7L10.08,8.41L12.67,11H3V13H12.67L10.08,15.58Z"><!--v-if--></path></svg></span> Leave</o-dropdown-item>
+            </o-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+  </variant>
+  <variant title="moderator">
+    <div class="p-5">
+      <div class="rounded shadow-lg bg-white dark:bg-mbz-purple dark:text-white">
+        <div class="bg-mbz-yellow-alt-50 text-black flex items-center gap-1 p-2 rounded-t-lg" dir="auto">
+          <figure class=""><img class="rounded-xl" src="https://social.tcit.fr/system/accounts/avatars/000/000/001/original/a28c50ce5f2b13fd.jpg" alt="" width="24" height="24"></figure> Thomas Citharel (@tcit)
+        </div>
+        <div class="flex items-center gap-2 p-2 pr-4" dir="auto">
+          <div class="flex-1">
+            <div class="p-2 flex gap-2">
+              <div class="">
+                <figure class="h-12 w-12"><img class="rounded-full w-full h-full object-cover" src="https://mobilizon.fr/media/ff5b2d425fb73e17fcbb56a1a032359ee0b21453c11af59e103e783817a32fdf.png?name=framasoft%27s%20avatar.png" alt="" width="48" height="48"></figure>
+              </div>
+              <div class="" dir="auto">
+                <router-link to="[object Object]">
+                  <h2 class="mt-0">Framasoft</h2>
+                  <div class="flex flex-col items-start"><span class="text-sm">@framasoft@mobilizon.fr</span><span data-v-6955ca87="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-mbz-info dark:text-black">Moderator</span></div>
+                </router-link>
+              </div>
+            </div>
+            <div class="mt-3 prose dark:prose-invert lg:prose-xl prose-p:m-0 line-clamp-2">
+              <p><strong>La Fediverse</strong>, <strong>c'est la <em><u>Féd</u>ération qui englobe l'Un<u>ivers</u> des réseaux sociaux libres et décentralisés,</em> </strong>dont Mobilizon (évènements), Mastodon (microblog), Peertube (vidéos), Pixelfed (photos), Funkwhale (musique), Matrix (messagerie instantanée)... et tant d'autres font partie.</p>
+              <p><strong>Et "La Fediverse <em>Nantaise</em>" est un collectif cherchant à faire connaître localement tout le potentiel de ces réseaux ! :-)</strong></p>
+            </div>
+          </div>
+          <div>
+            <o-dropdown aria-role="list" position="bottom-left">
+              <o-dropdown-item class="inline-flex gap-1" aria-role="listitem"><span aria-hidden="true" class="material-design-icon exit-to-app-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V9H5V5H19V19H5V15H3V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M10.08,15.58L11.5,17L16.5,12L11.5,7L10.08,8.41L12.67,11H3V13H12.67L10.08,15.58Z"><!--v-if--></path></svg></span> Leave</o-dropdown-item>
+            </o-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+  </variant>
+  <variant title="administrator">
+    <div class="p-5">
+      <div class="rounded shadow-lg bg-white dark:bg-mbz-purple dark:text-white">
+        <div class="bg-mbz-yellow-alt-50 text-black flex items-center gap-1 p-2 rounded-t-lg" dir="auto">
+          <figure class=""><img class="rounded-xl" src="https://social.tcit.fr/system/accounts/avatars/000/000/001/original/a28c50ce5f2b13fd.jpg" alt="" width="24" height="24"></figure> Thomas Citharel (@tcit)
+        </div>
+        <div class="flex items-center gap-2 p-2 pr-4" dir="auto">
+          <div class="flex-1">
+            <div class="p-2 flex gap-2">
+              <div class="">
+                <figure class="h-12 w-12"><img class="rounded-full w-full h-full object-cover" src="https://mobilizon.fr/media/ff5b2d425fb73e17fcbb56a1a032359ee0b21453c11af59e103e783817a32fdf.png?name=framasoft%27s%20avatar.png" alt="" width="48" height="48"></figure>
+              </div>
+              <div class="" dir="auto">
+                <router-link to="[object Object]">
+                  <h2 class="mt-0">Framasoft</h2>
+                  <div class="flex flex-col items-start"><span class="text-sm">@framasoft@mobilizon.fr</span><span data-v-6955ca87="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-mbz-info dark:text-black">Administrator</span></div>
+                </router-link>
+              </div>
+            </div>
+            <div class="mt-3 prose dark:prose-invert lg:prose-xl prose-p:m-0 line-clamp-2">
+              <p><strong>La Fediverse</strong>, <strong>c'est la <em><u>Féd</u>ération qui englobe l'Un<u>ivers</u> des réseaux sociaux libres et décentralisés,</em> </strong>dont Mobilizon (évènements), Mastodon (microblog), Peertube (vidéos), Pixelfed (photos), Funkwhale (musique), Matrix (messagerie instantanée)... et tant d'autres font partie.</p>
+              <p><strong>Et "La Fediverse <em>Nantaise</em>" est un collectif cherchant à faire connaître localement tout le potentiel de ces réseaux ! :-)</strong></p>
+            </div>
+          </div>
+          <div>
+            <o-dropdown aria-role="list" position="bottom-left">
+              <o-dropdown-item class="inline-flex gap-1" aria-role="listitem"><span aria-hidden="true" class="material-design-icon exit-to-app-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19,3H5C3.89,3 3,3.89 3,5V9H5V5H19V19H5V15H3V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M10.08,15.58L11.5,17L16.5,12L11.5,7L10.08,8.41L12.67,11H3V13H12.67L10.08,15.58Z"><!--v-if--></path></svg></span> Leave</o-dropdown-item>
+            </o-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+  </variant>
+</story>"
+`;

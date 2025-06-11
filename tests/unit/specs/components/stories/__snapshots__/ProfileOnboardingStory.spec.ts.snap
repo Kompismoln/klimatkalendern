@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Profile On boarding Story > Default 1`] = `
+"<story>
+  <variant>
+    <div class="p-5">
+      <div class="">
+        <h2 class="text-2xl">Profiles and federation</h2>
+      </div>
+      <p class="my-2">Mobilizon uses a system of profiles to compartiment your activities. You will be able to create as many profiles as you want.</p>
+      <hr role="presentation">
+      <p class="my-2"><span>Mobilizon is a federated software, meaning you can interact - depending on your admin's federation settings - with content from other instances, such as joining groups or events that were created elsewhere.</span>This instance, <b>Instance name (localhost)</b>, hosts your profile, so remember its name.</p>
+      <hr role="presentation">
+      <p class="my-2">If you are being asked for your federated indentity, it's composed of your username and your instance. For instance, the federated identity for your first profile is:</p>
+      <div class="text-center"><code>tcit@localhost</code></div>
+    </div>
+  </variant>
+</story>"
+`;

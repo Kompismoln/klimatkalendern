@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tag Input Story > Default 1`] = `
+"<story>
+  <variant title="new">
+    <o-field label-for="tag-input-1" class="taginput-field">
+      <o-taginput modelvalue="Hello" data="" allow-autocomplete="true" allow-new="true" field="title" icon="label" maxlength="20" maxitems="10" placeholder="Eg: Stockholm, Dance, Chess…" id="tag-input-1" dir="auto" expanded=""></o-taginput>
+    </o-field>
+  </variant>
+  <!-- <Variant title="small">
+      <TagInput v-model="tags" />
+    </Variant> -->
+</story>"
+`;

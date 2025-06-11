@@ -32,3 +32,13 @@ export const resetPasswordResponseMock = {
     },
   },
 };
+
+export const nullIdentityMock = {
+  data: {
+    loggedUser: {
+      __typename: "loggedUser",
+      id: 1,
+      actors: null,
+    },
+  },
+};

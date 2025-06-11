@@ -1,0 +1,257 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Event Card Story > Default 1`] = `
+"<story title="EventCard">
+  <variant title="default">
+    <router-link data-v-4bd07c72="" to="[object Object]" class="mbz-card snap-center dark:bg-mbz-purple sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
+      <div data-v-4bd07c72="" class="rounded-lg">
+        <div data-v-4bd07c72="" class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 calendar-simple">
+          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+            <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
+          </div>
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        <figure data-v-4bd07c72="" class="block relative pt-40">
+          <div data-v-4bd07c72="" class="flex-1" style="height: 100%; position: absolute; top: 0px; left: 0px; width: 100%;">
+            <div class="h-full w-full max-w-100 min-h-[10rem]">
+              <!-- Show the placeholder as background -->
+              <!--v-if-->
+              <!-- Show the real image on the top and fade in after loading --><img class="transition-opacity duration-500 rounded-lg object-cover mx-auto h-full opacity-0" alt="" src="" loading="lazy">
+            </div>
+          </div>
+          <div data-v-4bd07c72="" class="absolute top-3 right-0 ltr:-mr-1 rtl:-ml-1 z-10 max-w-xs no-underline flex flex-col gap-1 items-end">
+            <!--v-if-->
+            <!--v-if-->
+            <router-link data-v-4bd07c72="" to="[object Object]"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3 before:content-['#']" dir="auto">Something</span></router-link>
+          </div>
+        </figure>
+      </div>
+      <div data-v-4bd07c72="" class="p-2 flex-auto">
+        <div data-v-4bd07c72="" class="relative flex flex-col h-full">
+          <div data-v-4bd07c72="" class="-mt-3 h-0 flex mb-3 ltr:ml-0 rtl:mr-0 items-end self-end">
+            <!--v-if-->
+          </div><span data-v-4bd07c72="" class="text-gray-700 dark:text-white font-semibold hidden"></span>
+          <!--v-if-->
+          <div data-v-4bd07c72="" class="w-full flex flex-col justify-between h-full">
+            <h2 data-v-4bd07c72="" class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white" dir="auto" lang="en">A very interesting event</h2>
+            <div data-v-4bd07c72="" class="">
+              <div data-v-4bd07c72="" class="flex items-center text-violet-3 dark:text-white" dir="auto">
+                <figure data-v-4bd07c72="" class=""><img data-v-4bd07c72="" class="rounded-xl" src="https://mobilizon.fr/media/653c2dcbb830636e0db975798163b85e038dfb7713e866e96d36bd411e105e3c.png?name=festivalsanantes%27s%20avatar.png" alt="" width="24" height="24" loading="lazy"></figure><span data-v-4bd07c72="" class="font-semibold ltr:pl-2 rtl:pr-2">Hello</span>
+              </div>
+              <div data-v-4bd07c72="" class="truncate flex gap-1" dir="auto" title="Somewhere, "><span aria-hidden="true" class="material-design-icon map-marker-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"><!--v-if--></path></svg></span><span>Somewhere</span></div>
+              <div data-v-4bd07c72="" class="mt-1 no-underline gap-1 items-center hidden">
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+                <router-link data-v-4bd07c72="" to="[object Object]"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3 before:content-['#']" dir="auto">Something</span></router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </router-link>
+  </variant>
+  <variant title="long">
+    <router-link data-v-4bd07c72="" to="[object Object]" class="mbz-card snap-center dark:bg-mbz-purple sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
+      <div data-v-4bd07c72="" class="rounded-lg">
+        <div data-v-4bd07c72="" class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 calendar-simple">
+          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+            <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
+          </div>
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        <figure data-v-4bd07c72="" class="block relative pt-40">
+          <div data-v-4bd07c72="" class="flex-1" style="height: 100%; position: absolute; top: 0px; left: 0px; width: 100%;">
+            <div class="h-full w-full max-w-100 min-h-[10rem]">
+              <!-- Show the placeholder as background -->
+              <!--v-if-->
+              <!-- Show the real image on the top and fade in after loading --><img class="transition-opacity duration-500 rounded-lg object-cover mx-auto h-full opacity-0" alt="" src="" loading="lazy">
+            </div>
+          </div>
+          <div data-v-4bd07c72="" class="absolute top-3 right-0 ltr:-mr-1 rtl:-ml-1 z-10 max-w-xs no-underline flex flex-col gap-1 items-end">
+            <!--v-if-->
+            <!--v-if-->
+            <router-link data-v-4bd07c72="" to="[object Object]"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3 before:content-['#']" dir="auto">Something</span></router-link>
+          </div>
+        </figure>
+      </div>
+      <div data-v-4bd07c72="" class="p-2 flex-auto">
+        <div data-v-4bd07c72="" class="relative flex flex-col h-full">
+          <div data-v-4bd07c72="" class="-mt-3 h-0 flex mb-3 ltr:ml-0 rtl:mr-0 items-end self-end">
+            <!--v-if-->
+          </div><span data-v-4bd07c72="" class="text-gray-700 dark:text-white font-semibold hidden"></span>
+          <!--v-if-->
+          <div data-v-4bd07c72="" class="w-full flex flex-col justify-between h-full">
+            <h2 data-v-4bd07c72="" class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white" dir="auto" lang="en">A very long title that will have trouble to display because it will take multiple lines but where will it stop&nbsp;?! Maybe after 3 lines is enough. Let's say so. But if it doesn't work, we really need to truncate it at some point. Definitively.</h2>
+            <div data-v-4bd07c72="" class="">
+              <div data-v-4bd07c72="" class="flex items-center text-violet-3 dark:text-white" dir="auto">
+                <figure data-v-4bd07c72="" class=""><img data-v-4bd07c72="" class="rounded-xl" src="https://mobilizon.fr/media/653c2dcbb830636e0db975798163b85e038dfb7713e866e96d36bd411e105e3c.png?name=festivalsanantes%27s%20avatar.png" alt="" width="24" height="24" loading="lazy"></figure><span data-v-4bd07c72="" class="font-semibold ltr:pl-2 rtl:pr-2">Hello</span>
+              </div>
+              <div data-v-4bd07c72="" class="truncate flex gap-1" dir="auto" title="Somewhere, "><span aria-hidden="true" class="material-design-icon map-marker-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"><!--v-if--></path></svg></span><span>Somewhere</span></div>
+              <div data-v-4bd07c72="" class="mt-1 no-underline gap-1 items-center hidden">
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+                <router-link data-v-4bd07c72="" to="[object Object]"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3 before:content-['#']" dir="auto">Something</span></router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </router-link>
+  </variant>
+  <variant title="tentative">
+    <router-link data-v-4bd07c72="" to="[object Object]" class="mbz-card snap-center dark:bg-mbz-purple sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
+      <div data-v-4bd07c72="" class="rounded-lg">
+        <div data-v-4bd07c72="" class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 calendar-simple">
+          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+            <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
+          </div>
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        <figure data-v-4bd07c72="" class="block relative pt-40">
+          <div data-v-4bd07c72="" class="flex-1" style="height: 100%; position: absolute; top: 0px; left: 0px; width: 100%;">
+            <div class="h-full w-full max-w-100 min-h-[10rem]">
+              <!-- Show the placeholder as background -->
+              <!--v-if-->
+              <!-- Show the real image on the top and fade in after loading --><img class="transition-opacity duration-500 rounded-lg object-cover mx-auto h-full opacity-0" alt="" src="" loading="lazy">
+            </div>
+          </div>
+          <div data-v-4bd07c72="" class="absolute top-3 right-0 ltr:-mr-1 rtl:-ml-1 z-10 max-w-xs no-underline flex flex-col gap-1 items-end"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-mbz-info dark:text-black">Tentative</span>
+            <!--v-if-->
+            <router-link data-v-4bd07c72="" to="[object Object]"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3 before:content-['#']" dir="auto">Something</span></router-link>
+          </div>
+        </figure>
+      </div>
+      <div data-v-4bd07c72="" class="p-2 flex-auto">
+        <div data-v-4bd07c72="" class="relative flex flex-col h-full">
+          <div data-v-4bd07c72="" class="-mt-3 h-0 flex mb-3 ltr:ml-0 rtl:mr-0 items-end self-end">
+            <!--v-if-->
+          </div><span data-v-4bd07c72="" class="text-gray-700 dark:text-white font-semibold hidden"></span>
+          <!--v-if-->
+          <div data-v-4bd07c72="" class="w-full flex flex-col justify-between h-full">
+            <h2 data-v-4bd07c72="" class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white" dir="auto" lang="en">A very interesting event</h2>
+            <div data-v-4bd07c72="" class="">
+              <div data-v-4bd07c72="" class="flex items-center text-violet-3 dark:text-white" dir="auto">
+                <figure data-v-4bd07c72="" class=""><img data-v-4bd07c72="" class="rounded-xl" src="https://mobilizon.fr/media/653c2dcbb830636e0db975798163b85e038dfb7713e866e96d36bd411e105e3c.png?name=festivalsanantes%27s%20avatar.png" alt="" width="24" height="24" loading="lazy"></figure><span data-v-4bd07c72="" class="font-semibold ltr:pl-2 rtl:pr-2">Hello</span>
+              </div>
+              <div data-v-4bd07c72="" class="truncate flex gap-1" dir="auto" title="Somewhere, "><span aria-hidden="true" class="material-design-icon map-marker-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"><!--v-if--></path></svg></span><span>Somewhere</span></div>
+              <div data-v-4bd07c72="" class="mt-1 no-underline gap-1 items-center hidden">
+                <!--v-if--><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-mbz-info dark:text-black">Tentative</span>
+                <!--v-if-->
+                <router-link data-v-4bd07c72="" to="[object Object]"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3 before:content-['#']" dir="auto">Something</span></router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </router-link>
+  </variant>
+  <variant title="cancelled">
+    <router-link data-v-4bd07c72="" to="[object Object]" class="mbz-card snap-center dark:bg-mbz-purple sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
+      <div data-v-4bd07c72="" class="rounded-lg">
+        <div data-v-4bd07c72="" class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 calendar-simple">
+          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+            <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
+          </div>
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        <figure data-v-4bd07c72="" class="block relative pt-40">
+          <div data-v-4bd07c72="" class="flex-1" style="height: 100%; position: absolute; top: 0px; left: 0px; width: 100%;">
+            <div class="h-full w-full max-w-100 min-h-[10rem]">
+              <!-- Show the placeholder as background -->
+              <!--v-if-->
+              <!-- Show the real image on the top and fade in after loading --><img class="transition-opacity duration-500 rounded-lg object-cover mx-auto h-full opacity-0" alt="" src="" loading="lazy">
+            </div>
+          </div>
+          <div data-v-4bd07c72="" class="absolute top-3 right-0 ltr:-mr-1 rtl:-ml-1 z-10 max-w-xs no-underline flex flex-col gap-1 items-end">
+            <!--v-if--><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-mbz-danger dark:text-white">Cancelled</span>
+            <router-link data-v-4bd07c72="" to="[object Object]"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3 before:content-['#']" dir="auto">Something</span></router-link>
+          </div>
+        </figure>
+      </div>
+      <div data-v-4bd07c72="" class="p-2 flex-auto">
+        <div data-v-4bd07c72="" class="relative flex flex-col h-full">
+          <div data-v-4bd07c72="" class="-mt-3 h-0 flex mb-3 ltr:ml-0 rtl:mr-0 items-end self-end">
+            <!--v-if-->
+          </div><span data-v-4bd07c72="" class="text-gray-700 dark:text-white font-semibold hidden"></span>
+          <!--v-if-->
+          <div data-v-4bd07c72="" class="w-full flex flex-col justify-between h-full">
+            <h2 data-v-4bd07c72="" class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white" dir="auto" lang="en">A very interesting event</h2>
+            <div data-v-4bd07c72="" class="">
+              <div data-v-4bd07c72="" class="flex items-center text-violet-3 dark:text-white" dir="auto">
+                <figure data-v-4bd07c72="" class=""><img data-v-4bd07c72="" class="rounded-xl" src="https://mobilizon.fr/media/653c2dcbb830636e0db975798163b85e038dfb7713e866e96d36bd411e105e3c.png?name=festivalsanantes%27s%20avatar.png" alt="" width="24" height="24" loading="lazy"></figure><span data-v-4bd07c72="" class="font-semibold ltr:pl-2 rtl:pr-2">Hello</span>
+              </div>
+              <div data-v-4bd07c72="" class="truncate flex gap-1" dir="auto" title="Somewhere, "><span aria-hidden="true" class="material-design-icon map-marker-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"><!--v-if--></path></svg></span><span>Somewhere</span></div>
+              <div data-v-4bd07c72="" class="mt-1 no-underline gap-1 items-center hidden">
+                <!--v-if-->
+                <!--v-if--><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-mbz-danger dark:text-white">Cancelled</span>
+                <router-link data-v-4bd07c72="" to="[object Object]"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3 before:content-['#']" dir="auto">Something</span></router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </router-link>
+  </variant>
+  <variant title="Row mode">
+    <router-link data-v-4bd07c72="" to="[object Object]" class="mbz-card snap-center dark:bg-mbz-purple sm:flex sm:items-start">
+      <div data-v-4bd07c72="" class="rounded-lg sm:w-full sm:max-w-[20rem]">
+        <div data-v-4bd07c72="" class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 sm:hidden calendar-simple">
+          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+            <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
+          </div>
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        <figure data-v-4bd07c72="" class="block relative pt-40">
+          <div data-v-4bd07c72="" class="flex-1" style="height: 100%; position: absolute; top: 0px; left: 0px; width: 100%;">
+            <div class="h-full w-full max-w-100 min-h-[10rem]">
+              <!-- Show the placeholder as background -->
+              <!--v-if-->
+              <!-- Show the real image on the top and fade in after loading --><img class="transition-opacity duration-500 rounded-lg object-cover mx-auto h-full opacity-0" alt="" src="" loading="lazy">
+            </div>
+          </div>
+          <div data-v-4bd07c72="" class="absolute top-3 right-0 ltr:-mr-1 rtl:-ml-1 z-10 max-w-xs no-underline flex flex-col gap-1 items-end" style="display: none;">
+            <!--v-if-->
+            <!--v-if-->
+            <router-link data-v-4bd07c72="" to="[object Object]"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3 before:content-['#']" dir="auto">Something</span></router-link>
+          </div>
+        </figure>
+      </div>
+      <div data-v-4bd07c72="" class="p-2 flex-auto sm:flex-1">
+        <div data-v-4bd07c72="" class="relative flex flex-col h-full">
+          <div data-v-4bd07c72="" class="-mt-3 h-0 flex mb-3 ltr:ml-0 rtl:mr-0 items-end self-end sm:hidden">
+            <!--v-if-->
+          </div><span data-v-4bd07c72="" class="text-gray-700 dark:text-white font-semibold hidden sm:block"></span>
+          <!--v-if-->
+          <div data-v-4bd07c72="" class="w-full flex flex-col justify-between h-full">
+            <h2 data-v-4bd07c72="" class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white" dir="auto" lang="en">A very long title that will have trouble to display because it will take multiple lines but where will it stop&nbsp;?! Maybe after 3 lines is enough. Let's say so. But if it doesn't work, we really need to truncate it at some point. Definitively.</h2>
+            <div data-v-4bd07c72="" class="">
+              <div data-v-4bd07c72="" class="flex items-center text-violet-3 dark:text-white" dir="auto">
+                <figure data-v-4bd07c72="" class=""><img data-v-4bd07c72="" class="rounded-xl" src="https://mobilizon.fr/media/653c2dcbb830636e0db975798163b85e038dfb7713e866e96d36bd411e105e3c.png?name=festivalsanantes%27s%20avatar.png" alt="" width="24" height="24" loading="lazy"></figure><span data-v-4bd07c72="" class="font-semibold ltr:pl-2 rtl:pr-2">Hello</span>
+              </div>
+              <div data-v-4bd07c72="" class="truncate flex gap-1" dir="auto" title="Somewhere, "><span aria-hidden="true" class="material-design-icon map-marker-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z"><!--v-if--></path></svg></span><span>Somewhere</span></div>
+              <div data-v-4bd07c72="" class="mt-1 no-underline gap-1 items-center hidden sm:flex">
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+                <router-link data-v-4bd07c72="" to="[object Object]"><span data-v-6955ca87="" data-v-4bd07c72="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3 before:content-['#']" dir="auto">Something</span></router-link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </router-link>
+  </variant>
+</story>"
+`;

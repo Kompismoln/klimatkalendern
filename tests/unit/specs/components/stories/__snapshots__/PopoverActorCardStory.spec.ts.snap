@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Popover Actor Card Story > Default 1`] = `
+"<story>
+  <variant setup-app="function setupApp({ app }) {
+      app.use(__vite_ssr_import_2__.default);
+    }" title="Person">
+    <div class="p-5">
+      <vmenu distance="16" triggers="hover" class="popover">
+        <div><b> Popover me !</b></div>
+      </vmenu>
+    </div>
+  </variant>
+  <variant setup-app="function setupApp({ app }) {
+      app.use(__vite_ssr_import_2__.default);
+    }" title="Group">
+    <div class="p-5">
+      <vmenu distance="16" triggers="hover" class="popover">
+        <div><b> Popover me !</b></div>
+      </vmenu>
+    </div>
+  </variant>
+</story>"
+`;

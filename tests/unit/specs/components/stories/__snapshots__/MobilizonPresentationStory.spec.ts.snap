@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Mobilizon Presentation Story > Default 1`] = `
+"<story>
+  <variant>
+    <div class="container mx-auto py-4 px-2">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div>
+          <h3 class="dark:text-white text-3xl font-bold">A practical tool</h3>
+          <p class="dark:text-white">Mobilizon is a tool that helps you <b>find, create and organise events</b>.</p>
+        </div>
+        <div>
+          <h3 class="dark:text-white text-3xl font-bold">An ethical alternative</h3>
+          <p class="dark:text-white">Ethical alternative to Facebook events, groups and pages, Mobilizon is a <b>tool designed to serve you</b>. Period.</p>
+        </div>
+        <div>
+          <h3 class="dark:text-white text-3xl font-bold">A federated software</h3>
+          <p class="dark:text-white">Mobilizon is not a giant platform, but a <b>multitude of interconnected Mobilizon websites</b>.</p>
+        </div>
+      </div>
+      <div class="mt-4 text-center">
+        <o-button variant="primary" size="large" tag="a" href="https://joinmobilizon.org">Learn more about Mobilizon</o-button>
+      </div>
+    </div>
+  </variant>
+</story>"
+`;
