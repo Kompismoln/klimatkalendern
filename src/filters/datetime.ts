@@ -79,7 +79,7 @@ function formatDateTimeString(
   return format.format(parseDateTime(value));
 }
 
-const locale = () => i18n.global.locale.replace("_", "-");
+const locale = () => i18n.global.locale.value.replace("_", "-");
 
 export {
   formatDateISOStringWithoutTime,

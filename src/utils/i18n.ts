@@ -26,7 +26,7 @@ export const locale =
     ? language
     : language.split("-")[0];
 
-export const i18n = createI18n({
+export const i18n = createI18n<false>({
   legacy: false,
   locale: locale, // set locale
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -77,11 +77,6 @@ function vueI18NfileForLanguage(lang: string) {
 }
 
 export async function loadLanguageAsync(lang: string): Promise<string> {
-  // If the same language
-  if (i18n.global.locale === lang) {
-    return Promise.resolve(setI18nLanguage(lang));
-  }
-
   // If the language was already loaded
   if (loadedLanguages.includes(lang)) {
     return Promise.resolve(setI18nLanguage(lang));
