@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang={Map.get(assigns, :locale, "en")} dir={language_direction(assigns)}>
   <head>
+    <%= raw(Mobilizon.Config.get([:html_hooks, :app_index_html_head_first], "")) %>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,9 +25,11 @@
     <%= tags(assigns) || assigns.tags %>
     <%= Vite.vite_client() %>
     <%= Vite.vite_snippet("src/main.ts") %>
+    <%= raw(Mobilizon.Config.get([:html_hooks, :app_index_html_head_last], "")) %>
   </head>
 
   <body>
+    <%= raw(Mobilizon.Config.get([:html_hooks, :app_index_html_body_first], "")) %>
     <noscript>
       <strong>
         We're sorry but Mobilizon doesn't work properly without JavaScript enabled. Please enable it to continue.
@@ -34,5 +37,6 @@
     </noscript>
     <div id="app"></div>
     <!-- built files will be auto injected -->
+    <%= raw(Mobilizon.Config.get([:html_hooks, :app_index_html_body_last], "")) %>
   </body>
 </html>
