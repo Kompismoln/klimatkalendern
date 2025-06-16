@@ -282,17 +282,6 @@ export const LOGGED_USER_MEMBERSHIPS = gql`
           }
           parent {
             ...ActorFragment
-            organizedEvents {
-              elements {
-                id
-                title
-                picture {
-                  uuid
-                  url
-                }
-              }
-              total
-            }
           }
           invitedBy {
             ...ActorFragment
