@@ -10,6 +10,11 @@
           text: displayName(post.attributedTo),
         },
         {
+          name: RouteName.POSTS,
+          params: { preferredUsername: usernameWithDomain(post.attributedTo) },
+          text: $t('Posts'),
+        },
+        {
           name: RouteName.POST,
           params: { slug: post.slug },
           text: post.title,

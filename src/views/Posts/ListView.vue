@@ -2,6 +2,7 @@
   <div class="container mx-auto section" v-if="group">
     <breadcrumbs-nav
       :links="[
+        { name: RouteName.MY_GROUPS, text: t('My groups') },
         {
           name: RouteName.GROUP,
           params: { preferredUsername: usernameWithDomain(group) },
