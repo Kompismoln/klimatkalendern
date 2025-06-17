@@ -173,6 +173,9 @@ defmodule Mobilizon.GraphQL.Resolvers.Post do
 
       {:member, _} ->
         {:error, dgettext("errors", "Profile is not member of group")}
+
+      _ ->
+        {:error, dgettext("errors", "An error occured while updating your post")}
     end
   end
 
