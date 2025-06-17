@@ -108,37 +108,37 @@ test("Tries to login with valid credentials, confirmed account but no profile", 
   await page.locator("#password").fill("some password");
   await page.keyboard.press("Enter");
 
-  await page.waitForURL("/register/profile/confirmed@email.com/true");
-  expect(page.url()).toContain("/register/profile/confirmed@email.com/true");
+  await page.waitForURL("/identity/create");
+  expect(page.url()).toContain("/identity/create");
 
-  await expect(page.locator("p.prose").first()).toHaveText(
+  await expect(page.locator("div.flex-1").first()).toContainText(
     "Now, create your first profile:"
   );
 
-  const displayNameField = page.locator("form > .field").first();
-  await expect(displayNameField.locator("label")).toHaveText(
-    "Displayed nickname"
-  );
+  const fieldList = page.locator("div.flex-1 > div > div > .field");
+
+  const displayNameField = fieldList.nth(1);
+  await expect(displayNameField.locator("label")).toHaveText("Display name");
   const displayNameInput = displayNameField.locator("input");
   await displayNameInput.fill("Duplicate");
 
-  const usernameField = page.locator("form > .field").nth(1);
+  const usernameField = fieldList.nth(2);
   await expect(usernameField.locator("label")).toHaveText("Username");
   const usernameFieldInput = usernameField.locator("input");
   await usernameFieldInput.fill("test_user");
 
-  const descriptionField = page.locator("form > .field").nth(2);
-  await expect(descriptionField.locator("label")).toHaveText("Short bio");
+  const descriptionField = fieldList.nth(3);
+  await expect(descriptionField.locator("label")).toHaveText("Description");
   await descriptionField
     .locator("textarea")
     .fill("This shouln't work because it's using a dupublicated username");
 
-  const submitButton = page.locator('button[type="submit"]', {
+  const submitButton = page.locator('button[type="button"]', {
     hasText: "Create my profile",
   });
   await submitButton.click();
 
-  await expect(page.locator("p.field-message-danger")).toHaveText(
+  await expect(page.locator("article.o-notification")).toHaveText(
     "This username is already taken."
   );
 
@@ -160,12 +160,12 @@ test("Tries to login with valid credentials, confirmed account but no profile", 
   //   "mdi-account-circle"
   // );
 
-  await page.waitForURL("/");
-  expect(page.url()).toContain("/");
+  await page.waitForURL("/identity/create");
+  await page.waitForURL("/identity/update/test_user_2");
 
-  await expect(page.locator(".notification-info")).toHaveText(
-    "Welcome to Mobilizon, Not!"
-  );
+  await page.goto("/");
+  expect(page.url()).toBe("http://localhost:4000/");
+
   await expect(
     page.locator("button#user-menu-button span:not(.sr-only)")
   ).toHaveClass("material-design-icon account-circle-icon");

@@ -663,6 +663,13 @@ const handleError = (err: any) => {
   }
 
   if (err.graphQLErrors !== undefined) {
+    err.graphQLErrors.forEach((error: any) => {
+      if (Array.isArray(error.message)) {
+        errors.value.push(error.message[0]);
+      } else {
+        errors.value.push(error.message);
+      }
+    });
     err.graphQLErrors.forEach(
       ({ message: errorMessage }: { message: string }) => {
         notifier?.error(errorMessage);
