@@ -110,9 +110,9 @@
         <p>
           {{
             t(
-              "These feeds contain event data for the events for which this specific profile is a participant or creator." +
-                "You should keep these private." +
-                " You can find feeds for all of your profiles into your notification settings."
+              "These feeds contain event data for the events for which this specific profile is a participant or creator. " +
+                "You should keep these private. " +
+                "You can find feeds for all of your profiles into your notification settings."
             )
           }}
         </p>
