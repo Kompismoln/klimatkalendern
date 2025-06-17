@@ -413,7 +413,7 @@ const { identities } = useCurrentUserIdentities();
 
 const event = computed(() => props.event);
 
-const identity = ref<IPerson | undefined | null>(null);
+const identity = computed(() => props.currentActor);
 
 const ableToReport = computed((): boolean => {
   return (
@@ -848,8 +848,6 @@ const cancelAnonymousParticipation = async (): Promise<void> => {
 };
 
 onMounted(async () => {
-  identity.value = props.currentActor;
-
   try {
     if (window.isSecureContext) {
       anonymousParticipation.value = await anonymousParticipationConfirmed();
