@@ -348,7 +348,10 @@ const event = computed(() => participantsResult.value?.event);
 const { mutate: updateParticipant, onError: onUpdateParticipantError } =
   useMutation(UPDATE_PARTICIPANT);
 
-onUpdateParticipantError((e) => console.error(e));
+onUpdateParticipantError((e) => {
+  console.error(e);
+  alert(e.message);
+});
 
 const acceptParticipants = async (
   participants: IParticipant[]
