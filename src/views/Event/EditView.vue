@@ -459,7 +459,8 @@
                 class="p-2 rounded border flex gap-x-1"
                 :class="{
                   'btn-danger': event.status === EventStatus.CANCELLED,
-                  'btn-outlined-danger': event.status !== EventStatus.CANCELLED,
+                  'btn-outlined-danger dark:text-red-400 dark:border-red-400':
+                    event.status !== EventStatus.CANCELLED,
                 }"
               >
                 <o-icon icon="calendar-remove" />
