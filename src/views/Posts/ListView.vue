@@ -114,7 +114,11 @@ const { result: groupPostsResult, loading: groupLoading } = useQuery<{
     page: postsPage.value,
     limit: POSTS_PAGE_LIMIT,
   }),
-  () => ({ enabled: props.preferredUsername !== undefined })
+  () => ({
+    enabled: props.preferredUsername !== undefined,
+    // always display the latest information
+    fetchPolicy: "cache-and-network",
+  })
 );
 
 const group = computed(() => groupPostsResult.value?.group);
