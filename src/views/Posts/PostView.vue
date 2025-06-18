@@ -452,8 +452,11 @@ const openDeletePostModal = async (): Promise<void> => {
 
 const router = useRouter();
 
-const { mutate: deletePost, onDone: onDeletePostDone } =
-  useMutation(DELETE_POST);
+const {
+  mutate: deletePost,
+  onDone: onDeletePostDone,
+  onError: onDeletePostError,
+} = useMutation(DELETE_POST);
 
 onDeletePostDone(({ data }) => {
   if (data && post.value?.attributedTo) {
@@ -464,6 +467,11 @@ onDeletePostDone(({ data }) => {
       },
     });
   }
+});
+
+onDeletePostError((error) => {
+  console.error(error);
+  alert(error.message);
 });
 </script>
 <style lang="scss" scoped>

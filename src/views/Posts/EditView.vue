@@ -217,6 +217,7 @@ const {
 } = useMutation<{
   updatePost: IPost;
 }>(UPDATE_POST);
+
 const {
   mutate: createPost,
   onDone: onCreateDone,
@@ -402,8 +403,11 @@ const openDeletePostModal = async (): Promise<void> => {
   });
 };
 
-const { mutate: deletePost, onDone: onDeletePostDone } =
-  useMutation(DELETE_POST);
+const {
+  mutate: deletePost,
+  onDone: onDeletePostDone,
+  onError: onDeletePostError,
+} = useMutation(DELETE_POST);
 
 onDeletePostDone(({ data }) => {
   if (data && post.value?.attributedTo) {
@@ -414,6 +418,11 @@ onDeletePostDone(({ data }) => {
       },
     });
   }
+});
+
+onDeletePostError((error) => {
+  console.error(error);
+  alert(error.message);
 });
 
 useHead({
