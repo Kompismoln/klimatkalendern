@@ -210,7 +210,11 @@ watch(post, async (newPost: IPost | undefined, oldPost: IPost | undefined) => {
 
 const router = useRouter();
 
-const { mutate: updatePost, onDone: onUpdateDone } = useMutation<{
+const {
+  mutate: updatePost,
+  onDone: onUpdateDone,
+  onError: onUpdateError,
+} = useMutation<{
   updatePost: IPost;
 }>(UPDATE_POST);
 const {
@@ -230,6 +234,11 @@ onUpdateDone(({ data }) => {
   }
 });
 
+onUpdateError((e) => {
+  console.error(e);
+  alert(e.message);
+});
+
 onCreateDone(({ data }) => {
   if (data && data.createPost) {
     router.push({
@@ -241,6 +250,7 @@ onCreateDone(({ data }) => {
 
 onCreateError((error) => {
   console.error(error);
+  alert(error.message);
   errors.value = error.graphQLErrors.reduce(
     (acc: { [key: string]: any }, localError: any) => {
       acc[localError.field] = transformMessage(localError.message);
