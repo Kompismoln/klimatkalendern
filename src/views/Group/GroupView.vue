@@ -1125,6 +1125,9 @@ const isCurrentActorFollowingNotify = computed((): boolean => {
 });
 
 const hasCurrentActorThisRole = (givenRole: string | string[]): boolean => {
+  // If the actor is not set, he is not member of the group
+  if (!currentActor.value?.id) return false;
+
   const roles = Array.isArray(givenRole) ? givenRole : [givenRole];
   return (
     personMemberships.value?.total > 0 &&
