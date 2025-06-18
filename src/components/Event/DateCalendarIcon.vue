@@ -1,10 +1,10 @@
 <template>
   <div
-    class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white"
+    class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white"
     :class="{ small }"
     :style="`--small: ${smallStyle}`"
   >
-    <div class="datetime-container-header">
+    <div class="datetime-container-header bg-red-500 dark:bg-red-900">
       <time :datetime="dateObj.toISOString()" class="weekday">{{
         weekday
       }}</time>
@@ -62,7 +62,6 @@ div.datetime-container {
 
   .datetime-container-header {
     height: calc(10px * var(--small));
-    background: #f3425f;
   }
   .datetime-container-header .weekday {
     font-size: calc(9px * var(--small));
