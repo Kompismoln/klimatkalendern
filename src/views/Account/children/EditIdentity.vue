@@ -265,7 +265,10 @@ onPersonResult(async ({ data }) => {
 
 onPersonError((err) => handleErrors(err as unknown as AbsintheGraphQLErrors));
 
-const person = computed(() => personResult.value?.fetchPerson);
+const person = computed(() =>
+  // person should be undefined if we are on the creation form and defined if we are on the edit form
+  props.identityName !== undefined ? personResult.value?.fetchPerson : undefined
+);
 
 const baseIdentity: IPerson = {
   id: undefined,
