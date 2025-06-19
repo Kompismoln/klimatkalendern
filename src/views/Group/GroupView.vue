@@ -714,6 +714,8 @@ const { result, subscribeToMore } = useQuery<{
       currentActor.value?.id !== null &&
       group.value?.preferredUsername !== undefined &&
       usernameWithDomain(group.value) !== "",
+    // always display the latest information
+    fetchPolicy: "cache-and-network",
   })
 );
 subscribeToMore<{ actorId: string; group: string }>({
