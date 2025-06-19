@@ -429,7 +429,7 @@
   "Primary Color": "Primary Color",
   "Secondary Color": "Secondary Color",
   "No resources selected": "No resources selected|One resources selected|{count} resources selected",
-  "You have been invited by {invitedBy} to the following group:": "You have been invited by {invitedBy} to the following group:",
+  "You ({invitedActor}) have been invited by {invitedBy} to the following group:": "You ({invitedActor}) have been invited by {invitedBy} to the following group:",
   "Accept": "Accept",
   "Decline": "Decline",
   "Rename": "Rename",

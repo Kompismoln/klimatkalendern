@@ -3,10 +3,13 @@
     <div class="prose dark:prose-invert">
       <i18n-t
         tag="p"
-        keypath="You have been invited by {invitedBy} to the following group:"
+        keypath="You ({invitedActor}) have been invited by {invitedBy} to the following group:"
       >
         <template #invitedBy>
           <b>{{ member?.invitedBy?.name }}</b>
+        </template>
+        <template #invitedActor>
+          <b>{{ member?.actor?.name || member?.actor?.preferredUsername }}</b>
         </template>
       </i18n-t>
     </div>
