@@ -19,8 +19,8 @@
     <o-loading v-model:active="loading"></o-loading>
     <InvitationsList
       :invitations="invitations"
-      @accept-invitation="acceptInvitation"
-      @reject-invitation="rejectInvitation"
+      @accept-invitation="refetchLoggedUserMemberships"
+      @reject-invitation="refetchLoggedUserMemberships"
     />
     <section v-if="memberships && memberships.length > 0">
       <GroupMemberCard
@@ -82,7 +82,6 @@ import { LOGGED_USER_MEMBERSHIPS } from "@/graphql/actor";
 import { LEAVE_GROUP } from "@/graphql/group";
 import GroupMemberCard from "@/components/Group/GroupMemberCard.vue";
 import InvitationsList from "@/components/Group/InvitationsList.vue";
-import { usernameWithDomain } from "@/types/actor";
 import { IMember } from "@/types/actor/member.model";
 import { MemberRole, ContentType } from "@/types/enums";
 import RouteName from "../../router/name";
@@ -93,13 +92,16 @@ import { integerTransformer, useRouteQuery } from "vue-use-route-query";
 import { computed, inject } from "vue";
 import { useHead } from "@/utils/head";
 import { useI18n } from "vue-i18n";
-import { useRouter } from "vue-router";
 import { Notifier } from "@/plugins/notifier";
 
 const page = useRouteQuery("page", 1, integerTransformer);
 const limit = 10;
 
-const { result: membershipsResult, loading } = useQuery<{
+const {
+  result: membershipsResult,
+  loading,
+  refetch: refetchLoggedUserMemberships,
+} = useQuery<{
   loggedUser: Pick<IUser, "memberships">;
 }>(
   LOGGED_USER_MEMBERSHIPS,
@@ -128,26 +130,6 @@ useHead({
 });
 
 const notifier = inject<Notifier>("notifier");
-
-const router = useRouter();
-
-const acceptInvitation = (member: IMember) => {
-  return router.push({
-    name: RouteName.GROUP,
-    params: { preferredUsername: usernameWithDomain(member.parent) },
-  });
-};
-
-const rejectInvitation = ({ id: memberId }: { id: string }) => {
-  const index = membershipsPages.value.elements.findIndex(
-    (membership) =>
-      membership.role === MemberRole.INVITED && membership.id === memberId
-  );
-  if (index > -1) {
-    membershipsPages.value.elements.splice(index, 1);
-    membershipsPages.value.total -= 1;
-  }
-};
 
 const { mutate: leaveGroup, onError: onLeaveGroupError } = useMutation(
   LEAVE_GROUP,
