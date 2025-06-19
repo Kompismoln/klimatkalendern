@@ -292,12 +292,19 @@ const {
   result: groupMembersResult,
   fetchMore: fetchMoreGroupMembers,
   loading: groupMembersLoading,
-} = useQuery<{ group: IGroup }>(GROUP_MEMBERS, () => ({
-  groupName: props.preferredUsername,
-  page: page.value,
-  limit: MEMBERS_PER_PAGE,
-  roles: roles.value,
-}));
+} = useQuery<{ group: IGroup }>(
+  GROUP_MEMBERS,
+  () => ({
+    groupName: props.preferredUsername,
+    page: page.value,
+    limit: MEMBERS_PER_PAGE,
+    roles: roles.value,
+  }),
+  () => ({
+    // always display the latest information
+    fetchPolicy: "cache-and-network",
+  })
+);
 const group = computed(() => groupMembersResult.value?.group);
 
 const members = computed(
