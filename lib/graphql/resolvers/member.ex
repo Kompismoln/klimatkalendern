@@ -116,6 +116,10 @@ defmodule Mobilizon.GraphQL.Resolvers.Member do
     else
       {:is_same_actor, false} ->
         {:error, dgettext("errors", "You can't accept this invitation with this profile.")}
+
+      _ ->
+        # Can be triggered when accepting an already refused invitation
+        {:error, dgettext("errors", "You can't accept this invitation.")}
     end
   end
 
@@ -140,6 +144,10 @@ defmodule Mobilizon.GraphQL.Resolvers.Member do
 
       {:invitation_exists, _} ->
         {:error, dgettext("errors", "This invitation doesn't exist.")}
+
+      _ ->
+        # Can be triggered when accepting an already refused invitation
+        {:error, dgettext("errors", "You can't reject this invitation.")}
     end
   end
 
