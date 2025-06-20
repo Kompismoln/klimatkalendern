@@ -38,11 +38,15 @@
         :key="i"
         v-show="loading"
       />
-      <event-card
-        v-for="event in events.elements"
-        :event="event"
-        :key="event.uuid"
-      />
+      <span v-for="event in events.elements" :key="event.elem.uuid">
+        <more-content v-if="event.showActorMore" :to="event.actorMoreRoute">
+          {{
+            t("View more events and activities from ") +
+            event.elem.attributedTo.name
+          }}
+        </more-content>
+        <event-card v-else :event="event.elem" :key="event.elem.uuid" />
+      </span>
       <more-content
         v-if="userLocation?.name && userLocation?.lat && userLocation?.lon"
         :to="{
@@ -128,8 +132,41 @@ const eventsQuery = useQuery<{
   limit: 93,
 }));
 
-const events = computed(
-  () => eventsQuery.result.value?.events ?? { elements: [], total: 0 }
+const filterTooMany = ({ elements, total }) => {
+  // Max events to show from one organizer
+  const threshold = 2;
+  const actorsCount = {};
+  const addActor = (id) => {
+    if (!(id in actorsCount)) {
+      actorsCount[id] = 0;
+    }
+    actorsCount[id]++;
+  };
+  const ret = [];
+  for (const elem of elements) {
+    if (!elem.attributedTo) {
+      ret.push({ elem });
+      continue;
+    }
+
+    const id = elem.attributedTo.id;
+    addActor(id);
+
+    if (actorsCount[id] <= threshold) {
+      ret.push({ elem });
+    } else if (actorsCount[id] == threshold + 1) {
+      ret.push({
+        elem,
+        showActorMore: true,
+        actorMoreRoute: "@" + elem.attributedTo.preferredUsername + "/events",
+      });
+    }
+  }
+  return { elements: ret, total };
+};
+
+const events = computed(() =>
+  filterTooMany(eventsQuery.result.value?.events ?? { elements: [], total: 0 })
 );
 watch(events, (e) => console.debug("events: ", e));
 
