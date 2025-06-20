@@ -665,6 +665,7 @@ const breadcrumbLinks = computed(() => {
   if (!resource.value?.actor) return [];
   const resourceActor = resource.value.actor;
   const links = [
+    { name: RouteName.MY_GROUPS, text: t("My groups") },
     {
       name: RouteName.GROUP,
       params: { preferredUsername: usernameWithDomain(resource.value.actor) },
