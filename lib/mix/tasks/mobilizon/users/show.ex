@@ -45,6 +45,8 @@ defmodule Mix.Tasks.Mobilizon.Users.Show do
   defp display_actors([]), do: ""
 
   defp display_actors(actors) do
+    actors = Enum.sort_by(actors, & &1.id)
+
     """
     Identities (#{length(actors)}):
     #{Enum.map_join(actors, &display_actor/1)}
