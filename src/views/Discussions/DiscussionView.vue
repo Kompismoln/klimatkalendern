@@ -163,14 +163,7 @@ import {
   gql,
 } from "@apollo/client/core";
 import { useMutation, useQuery } from "@vue/apollo-composable";
-import {
-  defineAsyncComponent,
-  onMounted,
-  onUnmounted,
-  ref,
-  computed,
-  inject,
-} from "vue";
+import { defineAsyncComponent, ref, computed, inject } from "vue";
 import { useHead } from "@/utils/head";
 import { useRouter } from "vue-router";
 import { useCurrentActorClient } from "@/composition/apollo/actor";
@@ -453,30 +446,6 @@ const handleErrors = async (errors: AbsintheGraphQLError[]): Promise<void> => {
   }
   if (errors[0].code === "unauthorized") {
     error.value = errors[0].message;
-  }
-};
-
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
-
-const handleScroll = (): void => {
-  const scrollTop =
-    (document.documentElement && document.documentElement.scrollTop) ||
-    document.body.scrollTop;
-  const scrollHeight =
-    (document.documentElement && document.documentElement.scrollHeight) ||
-    document.body.scrollHeight;
-  const clientHeight =
-    document.documentElement.clientHeight || window.innerHeight;
-  const scrolledToBottom =
-    Math.ceil(scrollTop + clientHeight + 800) >= scrollHeight;
-  if (scrolledToBottom) {
-    loadMoreComments();
   }
 };
 
