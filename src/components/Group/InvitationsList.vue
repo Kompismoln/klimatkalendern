@@ -29,28 +29,33 @@ const emit = defineEmits<{
   (e: "reject-invitation", member: IMember): void;
 }>();
 
-const {
-  mutate: acceptInvitation,
-  onDone: onAcceptInvitationDone,
-  onError: onAcceptInvitationError,
-} = useMutation<{ acceptInvitation: IMember }, { id: string }>(
-  ACCEPT_INVITATION,
-  {
-    refetchQueries({ data }) {
-      const profile = data?.acceptInvitation?.actor as IPerson;
-      const group = data?.acceptInvitation?.parent as IGroup;
-      if (profile && group) {
-        return [
-          {
-            query: PERSON_STATUS_GROUP,
-            variables: { id: profile.id, group: usernameWithDomain(group) },
-          },
-        ];
-      }
-      return [];
-    },
-  }
-);
+const { mutate: acceptInvitation, onError: onAcceptInvitationError } =
+  useMutation<{ acceptInvitation: IMember }, { id: string }>(
+    ACCEPT_INVITATION,
+    {
+      refetchQueries({ data }) {
+        if (!data?.acceptInvitation) {
+          console.error(data);
+          alert("Error while accepting invitation");
+          return [];
+        }
+
+        emit("accept-invitation", data?.acceptInvitation);
+
+        const profile = data?.acceptInvitation?.actor as IPerson;
+        const group = data?.acceptInvitation?.parent as IGroup;
+        if (profile && group) {
+          return [
+            {
+              query: PERSON_STATUS_GROUP,
+              variables: { id: profile.id, group: usernameWithDomain(group) },
+            },
+          ];
+        }
+        return [];
+      },
+    }
+  );
 
 const notifier = inject<Notifier>("notifier");
 
@@ -61,49 +66,36 @@ const onError = (error: ErrorResponse) => {
   }
 };
 
-onAcceptInvitationDone((result) => {
-  if (!result.data?.acceptInvitation) {
-    console.error(result);
-    alert("Error while accepting invitation");
-    return;
-  }
-  emit("accept-invitation", result.data?.acceptInvitation);
-});
-
 onAcceptInvitationError((err) => onError(err as unknown as ErrorResponse));
 
-const {
-  mutate: rejectInvitation,
-  onDone: onRejectInvitationDone,
-  onError: onRejectInvitationError,
-} = useMutation<{ rejectInvitation: IMember }, { id: string }>(
-  REJECT_INVITATION,
-  {
-    refetchQueries({ data }) {
-      // TODO Refetching the PERSON_STATUS_GROUP query is useless for the Mygroup.vue page
-      const profile = data?.rejectInvitation?.actor as IPerson;
-      const group = data?.rejectInvitation?.parent as IGroup;
-      if (profile && group) {
-        return [
-          {
-            query: PERSON_STATUS_GROUP,
-            variables: { id: profile.id, group: usernameWithDomain(group) },
-          },
-        ];
-      }
-      return [];
-    },
-  }
-);
+const { mutate: rejectInvitation, onError: onRejectInvitationError } =
+  useMutation<{ rejectInvitation: IMember }, { id: string }>(
+    REJECT_INVITATION,
+    {
+      refetchQueries({ data }) {
+        if (!data?.rejectInvitation) {
+          console.error(data);
+          alert("Error while rejecting invitation");
+          return [];
+        }
 
-onRejectInvitationDone((result) => {
-  if (!result.data?.rejectInvitation) {
-    console.error(result);
-    alert("Error while rejecting invitation");
-    return;
-  }
-  emit("reject-invitation", result.data?.rejectInvitation);
-});
+        emit("reject-invitation", data?.rejectInvitation);
+
+        // TODO Refetching the PERSON_STATUS_GROUP query is useless for the Mygroup.vue page
+        const profile = data?.rejectInvitation?.actor as IPerson;
+        const group = data?.rejectInvitation?.parent as IGroup;
+        if (profile && group) {
+          return [
+            {
+              query: PERSON_STATUS_GROUP,
+              variables: { id: profile.id, group: usernameWithDomain(group) },
+            },
+          ];
+        }
+        return [];
+      },
+    }
+  );
 
 onRejectInvitationError((err) => onError(err as unknown as ErrorResponse));
 </script>

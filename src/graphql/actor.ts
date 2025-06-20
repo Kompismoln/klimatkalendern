@@ -338,6 +338,9 @@ export const PERSON_STATUS_GROUP = gql`
         elements {
           id
           role
+          actor {
+            ...ActorFragment
+          }
           parent {
             ...ActorFragment
           }

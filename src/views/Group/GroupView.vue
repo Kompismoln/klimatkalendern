@@ -327,6 +327,8 @@
               isCurrentActorAnInvitedGroupMember && groupMember !== undefined
             "
             :invitations="[groupMember]"
+            @accept-invitation="refetchGroupInformations"
+            @reject-invitation="refetchGroupInformations"
           />
           <o-notification
             class="my-2"
@@ -688,19 +690,23 @@ const {
 } = useGroup(preferredUsername, { afterDateTime: new Date() });
 const router = useRouter();
 
-const { group: discussionGroup } = useGroupDiscussionsList(preferredUsername);
-const { group: resourcesGroup } = useGroupResourcesList(preferredUsername, {
-  resourcesPage: 1,
-  resourcesLimit: 3,
-});
+const { group: discussionGroup, refetch: refetchGroupDiscussionsList } =
+  useGroupDiscussionsList(preferredUsername);
+const { group: resourcesGroup, refetch: refetchGroupResourcesList } =
+  useGroupResourcesList(preferredUsername, {
+    resourcesPage: 1,
+    resourcesLimit: 3,
+  });
 
 const { t } = useI18n({ useScope: "global" });
 
 const { isLongEvents } = useIsLongEvents();
 
-// const { person } = usePersonStatusGroup(group);
-
-const { result, subscribeToMore } = useQuery<{
+const {
+  result,
+  subscribeToMore,
+  refetch: refetchPersonStatusGroup,
+} = useQuery<{
   person: IPerson;
 }>(
   PERSON_STATUS_GROUP,
@@ -754,6 +760,12 @@ watch(
     }
   }
 );
+
+const refetchGroupInformations = () => {
+  refetchPersonStatusGroup();
+  refetchGroupResourcesList();
+  refetchGroupDiscussionsList();
+};
 
 const { mutate: joinGroupMutation, onError: onJoinGroupError } =
   useMutation(JOIN_GROUP);
