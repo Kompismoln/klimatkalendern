@@ -298,11 +298,17 @@ const {
   loading,
 } = useQuery<{
   loggedUser: IUser;
-}>(LOGGED_USER_UPCOMING_EVENTS, () => ({
-  page: 1,
-  limit: 10,
-  afterDateTime: dateFilter.value,
-}));
+}>(
+  LOGGED_USER_UPCOMING_EVENTS,
+  () => ({
+    page: 1,
+    limit: 10,
+    afterDateTime: dateFilter.value,
+  }),
+  () => ({
+    fetchPolicy: "cache-and-network",
+  })
+);
 
 const futureParticipations = computed(
   () =>
