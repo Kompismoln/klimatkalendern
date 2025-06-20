@@ -11,7 +11,7 @@ import {
   MockApolloClient,
   RequestHandler,
 } from "mock-apollo-client";
-import { ANONYMOUS_ACTOR_ID } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config";
 import { FETCH_EVENT_BASIC, JOIN_EVENT } from "@/graphql/event";
 import { IEvent } from "@/types/event.model";
 import { anonymousActorIdMock } from "../../mocks/config";
@@ -91,7 +91,7 @@ describe("ParticipationWithoutAccount", () => {
       ...handlers,
     };
     mockClient.setRequestHandler(
-      ANONYMOUS_ACTOR_ID,
+      CONFIG,
       requestHandlers.anonymousActorIdQueryHandler
     );
     mockClient.setRequestHandler(

@@ -1,28 +1,4 @@
-import {
-  ABOUT,
-  ANALYTICS,
-  ANONYMOUS_ACTOR_ID,
-  ANONYMOUS_PARTICIPATION_CONFIG,
-  ANONYMOUS_REPORTS_CONFIG,
-  DEFAULT_PICTURE,
-  DEMO_MODE,
-  LONG_EVENTS,
-  EVENT_CATEGORIES,
-  EVENT_PARTICIPANTS,
-  FEATURES,
-  GEOCODING_AUTOCOMPLETE,
-  COLORS,
-  INSTANCE_LOGO,
-  LOCATION,
-  MAPS_TILES,
-  REGISTRATIONS,
-  RESOURCE_PROVIDERS,
-  RESTRICTIONS,
-  ROUTING_TYPE,
-  SEARCH_CONFIG,
-  TIMEZONES,
-  UPLOAD_LIMITS,
-} from "@/graphql/config";
+import { TIMEZONES, CONFIG } from "@/graphql/config";
 import { IConfig } from "@/types/config.model";
 import { useQuery } from "@vue/apollo-composable";
 import { computed } from "vue";
@@ -47,7 +23,7 @@ export function useAnonymousParticipationConfig() {
     loading,
   } = useQuery<{
     config: Pick<IConfig, "anonymous">;
-  }>(ANONYMOUS_PARTICIPATION_CONFIG);
+  }>(CONFIG);
 
   const anonymousParticipationConfig = computed(
     () => configResult.value?.config?.anonymous?.participation
@@ -63,7 +39,7 @@ export function useAnonymousReportsConfig() {
     loading,
   } = useQuery<{
     config: Pick<IConfig, "anonymous">;
-  }>(ANONYMOUS_REPORTS_CONFIG);
+  }>(CONFIG);
 
   const anonymousReportsConfig = computed(
     () => configResult.value?.config?.anonymous?.reports
@@ -74,7 +50,7 @@ export function useAnonymousReportsConfig() {
 export function useInstanceName() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "name">;
-  }>(ABOUT);
+  }>(CONFIG);
 
   const instanceName = computed(() => result.value?.config?.name);
   return { instanceName, error, loading };
@@ -83,7 +59,7 @@ export function useInstanceName() {
 export function useInstanceLogoUrl() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "instanceLogo">;
-  }>(INSTANCE_LOGO);
+  }>(CONFIG);
 
   const instanceLogoUrl = computed(
     () => result.value?.config?.instanceLogo?.url
@@ -94,7 +70,7 @@ export function useInstanceLogoUrl() {
 export function useColors() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "primaryColor" | "secondaryColor">;
-  }>(COLORS);
+  }>(CONFIG);
 
   const primaryColor = computed(() => result.value?.config?.primaryColor);
   const secondaryColor = computed(() => result.value?.config?.secondaryColor);
@@ -104,7 +80,7 @@ export function useColors() {
 export function useDefaultPicture() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "defaultPicture">;
-  }>(DEFAULT_PICTURE);
+  }>(CONFIG);
 
   const defaultPicture = computed(() => result.value?.config?.defaultPicture);
   return { defaultPicture, error, loading };
@@ -113,7 +89,7 @@ export function useDefaultPicture() {
 export function useAnonymousActorId() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "anonymous">;
-  }>(ANONYMOUS_ACTOR_ID);
+  }>(CONFIG);
 
   const anonymousActorId = computed(
     () => result.value?.config?.anonymous?.actorId
@@ -124,7 +100,7 @@ export function useAnonymousActorId() {
 export function useUploadLimits() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "uploadLimits">;
-  }>(UPLOAD_LIMITS);
+  }>(CONFIG);
 
   const uploadLimits = computed(() => result.value?.config?.uploadLimits);
   return { uploadLimits, error, loading };
@@ -133,7 +109,7 @@ export function useUploadLimits() {
 export function useEventCategories() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "eventCategories">;
-  }>(EVENT_CATEGORIES);
+  }>(CONFIG);
 
   const eventCategories = computed(() => result.value?.config.eventCategories);
   return { eventCategories, error, loading };
@@ -142,7 +118,7 @@ export function useEventCategories() {
 export function useRestrictions() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "restrictions">;
-  }>(RESTRICTIONS);
+  }>(CONFIG);
 
   const restrictions = computed(() => result.value?.config.restrictions);
   return { restrictions, error, loading };
@@ -151,7 +127,7 @@ export function useRestrictions() {
 export function useExportFormats() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "exportFormats">;
-  }>(EVENT_PARTICIPANTS);
+  }>(CONFIG);
   const exportFormats = computed(() => result.value?.config?.exportFormats);
   return { exportFormats, error, loading };
 }
@@ -159,7 +135,7 @@ export function useExportFormats() {
 export function useGeocodingAutocomplete() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "geocoding">;
-  }>(GEOCODING_AUTOCOMPLETE);
+  }>(CONFIG);
   const geocodingAutocomplete = computed(
     () => result.value?.config?.geocoding?.autocomplete
   );
@@ -169,7 +145,7 @@ export function useGeocodingAutocomplete() {
 export function useMapTiles() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "maps">;
-  }>(MAPS_TILES);
+  }>(CONFIG);
 
   const tiles = computed(() => result.value?.config.maps.tiles);
   return { tiles, error, loading };
@@ -178,7 +154,7 @@ export function useMapTiles() {
 export function useRoutingType() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "maps">;
-  }>(ROUTING_TYPE);
+  }>(CONFIG);
 
   const routingType = computed(() => result.value?.config.maps.routing.type);
   return { routingType, error, loading };
@@ -187,7 +163,7 @@ export function useRoutingType() {
 export function useFeatures() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "features">;
-  }>(FEATURES);
+  }>(CONFIG);
 
   const features = computed(() => result.value?.config.features);
   return { features, error, loading };
@@ -196,7 +172,7 @@ export function useFeatures() {
 export function useResourceProviders() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "resourceProviders">;
-  }>(RESOURCE_PROVIDERS);
+  }>(CONFIG);
 
   const resourceProviders = computed(
     () => result.value?.config.resourceProviders
@@ -207,7 +183,7 @@ export function useResourceProviders() {
 export function useServerProvidedLocation() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "location">;
-  }>(LOCATION);
+  }>(CONFIG);
 
   const location = computed(() => result.value?.config.location);
   return { location, error, loading };
@@ -216,7 +192,7 @@ export function useServerProvidedLocation() {
 export function useIsDemoMode() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "demoMode">;
-  }>(DEMO_MODE);
+  }>(CONFIG);
 
   const isDemoMode = computed(() => result.value?.config.demoMode);
   return { isDemoMode, error, loading };
@@ -225,7 +201,7 @@ export function useIsDemoMode() {
 export function useIsLongEvents() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "longEvents">;
-  }>(LONG_EVENTS);
+  }>(CONFIG);
 
   const isLongEvents = computed(() => result.value?.config.longEvents);
   return { isLongEvents, error, loading };
@@ -234,7 +210,7 @@ export function useIsLongEvents() {
 export function useAnalytics() {
   const { result, error, loading } = useQuery<{
     config: Pick<IConfig, "analytics">;
-  }>(ANALYTICS);
+  }>(CONFIG);
 
   const analytics = computed(() => result.value?.config.analytics);
   return { analytics, error, loading };
@@ -243,7 +219,7 @@ export function useAnalytics() {
 export function useSearchConfig() {
   const { result, error, loading, onResult } = useQuery<{
     config: Pick<IConfig, "search">;
-  }>(SEARCH_CONFIG);
+  }>(CONFIG);
 
   const searchConfig = computed(() => result.value?.config.search);
   return { searchConfig, error, loading, onResult };
@@ -255,7 +231,7 @@ export function useRegistrationConfig() {
       IConfig,
       "registrationsOpen" | "registrationsAllowlist" | "auth"
     >;
-  }>(REGISTRATIONS);
+  }>(CONFIG);
 
   const registrationsOpen = computed(
     () => result.value?.config?.registrationsOpen

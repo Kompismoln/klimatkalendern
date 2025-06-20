@@ -7,7 +7,7 @@ import {
 } from "mock-apollo-client";
 import buildCurrentUserResolver from "@/apollo/user";
 import { loginMock as loginConfigMock } from "../../mocks/config";
-import { LOGIN_CONFIG } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config";
 import {
   loginMock,
   loginResponseMock,
@@ -72,10 +72,7 @@ describe("Render login form", () => {
       mockhdl: vi.fn().mockResolvedValue(nullMock),
       ...handlers,
     };
-    mockClient.setRequestHandler(
-      LOGIN_CONFIG,
-      requestHandlers.configQueryHandler
-    );
+    mockClient.setRequestHandler(CONFIG, requestHandlers.configQueryHandler);
     mockClient.setRequestHandler(LOGIN, requestHandlers.loginMutationHandler);
     mockClient.setRequestHandler(IDENTITIES, requestHandlers.identity);
     mockClient.setRequestHandler(LOGGED_USER_LOCATION, requestHandlers.mockhdl);

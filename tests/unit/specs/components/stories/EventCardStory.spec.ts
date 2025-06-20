@@ -5,14 +5,14 @@ import {
   createMockIntersectionObserver,
   getMockClient,
 } from "../../mocks/client";
-import { DEFAULT_PICTURE } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config"; //
 
 describe("Event Card Story", () => {
   let wrapper: VueWrapper;
 
   const generateWrapper = () => {
     wrapper = mount(EventCardStory, {
-      global: getMockClient([DEFAULT_PICTURE]),
+      global: getMockClient([CONFIG]),
     });
   };
   beforeEach(() => {

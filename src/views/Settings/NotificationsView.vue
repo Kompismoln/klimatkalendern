@@ -326,7 +326,7 @@ import {
   UNREGISTER_PUSH_MUTATION,
 } from "@/graphql/webPush";
 import merge from "lodash/merge";
-import { WEB_PUSH } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config";
 import { useMutation, useQuery } from "@vue/apollo-composable";
 import {
   computed,
@@ -357,7 +357,7 @@ const feedTokens = computed(() =>
 
 const { result: webPushEnabledResult } = useQuery<{
   config: Pick<IConfig, "webPush">;
-}>(WEB_PUSH);
+}>(CONFIG);
 
 const webPushEnabled = computed(
   () => webPushEnabledResult.value?.config?.webPush.enabled

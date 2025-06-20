@@ -1,6 +1,6 @@
 import { apolloClient } from "@/vue-apollo";
 import { provideApolloClient, useQuery } from "@vue/apollo-composable";
-import { WEB_PUSH } from "../graphql/config";
+import { CONFIG } from "../graphql/config";
 import { IConfig } from "../types/config.model";
 
 function urlBase64ToUint8Array(base64String: string): Uint8Array {
@@ -18,7 +18,7 @@ function urlBase64ToUint8Array(base64String: string): Uint8Array {
 
 export async function subscribeUserToPush(): Promise<PushSubscription | null> {
   const { onResult } = provideApolloClient(apolloClient)(() =>
-    useQuery<{ config: IConfig }>(WEB_PUSH)
+    useQuery<{ config: IConfig }>(CONFIG)
   );
 
   return new Promise((resolve, reject) => {

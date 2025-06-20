@@ -5,14 +5,14 @@ import {
   createMockIntersectionObserver,
   getMockClient,
 } from "../../mocks/client";
-import { DEFAULT_PICTURE } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config";
 
 describe("Post List Item Story", () => {
   let wrapper: VueWrapper;
 
   const generateWrapper = () => {
     wrapper = mount(PostListItemStory, {
-      global: getMockClient([DEFAULT_PICTURE]),
+      global: getMockClient([CONFIG]),
     });
   };
   beforeEach(() => {

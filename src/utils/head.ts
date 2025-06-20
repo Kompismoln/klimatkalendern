@@ -3,10 +3,10 @@ import { provideApolloClient, useQuery } from "@vue/apollo-composable";
 import { useHead as unHead } from "@unhead/vue";
 import { apolloClient } from "@/vue-apollo";
 import { IConfig } from "@/types/config.model";
-import { ABOUT } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config";
 
 const { result } = provideApolloClient(apolloClient)(() =>
-  useQuery<{ config: Pick<IConfig, "name"> }>(ABOUT)
+  useQuery<{ config: Pick<IConfig, "name"> }>(CONFIG)
 );
 const instanceName = computed(() => result.value?.config?.name);
 

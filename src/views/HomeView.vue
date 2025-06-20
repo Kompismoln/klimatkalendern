@@ -199,7 +199,7 @@ import {
 import { useServerProvidedLocation } from "@/composition/apollo/config";
 import QuickPublish from "@/components/Home/QuickPublish.vue";
 import ShortSearch from "@/components/Home/ShortSearch.vue";
-import { ABOUT } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config";
 import { IConfig } from "@/types/config.model";
 import { useI18n } from "vue-i18n";
 
@@ -214,7 +214,7 @@ const { result: aboutConfigResult } = useQuery<{
     IConfig,
     "name" | "description" | "slogan" | "registrationsOpen"
   >;
-}>(ABOUT);
+}>(CONFIG);
 
 const config = computed(() => aboutConfigResult.value?.config);
 

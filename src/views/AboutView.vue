@@ -106,7 +106,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ABOUT } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config";
 import { IConfig } from "@/types/config.model";
 import RouteName from "../router/name";
 import { useQuery } from "@vue/apollo-composable";
@@ -117,7 +117,7 @@ import { useHead } from "@/utils/head";
 
 const { currentUser } = useCurrentUserClient();
 
-const { result: configResult } = useQuery<{ config: IConfig }>(ABOUT);
+const { result: configResult } = useQuery<{ config: IConfig }>(CONFIG);
 
 const config = computed(() => configResult.value?.config);
 

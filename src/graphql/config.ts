@@ -6,7 +6,10 @@ export const CONFIG = gql`
       name
       description
       slogan
+      contact
+      languages
       version
+      federating
       registrationsOpen
       registrationsAllowlist
       demoMode
@@ -138,6 +141,10 @@ export const CONFIG = gql`
   }
 `;
 
+// To avoid redundancy, this GraphQL query should ideally be
+// split into two separate queries:
+// - CONFIG
+// - TIMEZONES
 export const CONFIG_EDIT_EVENT = gql`
   query EditEventConfig {
     config {
@@ -167,6 +174,8 @@ export const CONFIG_EDIT_EVENT = gql`
   }
 `;
 
+// TERMS details are not requested in FullConfig
+// because they need the locale variable, so keep them in a separate request
 export const TERMS = gql`
   query Terms($locale: String) {
     config {
@@ -179,6 +188,13 @@ export const TERMS = gql`
   }
 `;
 
+// ABOUT details are not requested in FullConfig
+// because longDescription can be heavy, so keep them in a separate request
+//
+// To avoid redundancy, this GraphQL query should ideally be
+// split into two separate queries:
+// - ABOUT with only longDescription request
+// - CONFIG
 export const ABOUT = gql`
   query About {
     config {
@@ -204,15 +220,8 @@ export const ABOUT = gql`
   }
 `;
 
-export const CONTACT = gql`
-  query Contact {
-    config {
-      name
-      contact
-    }
-  }
-`;
-
+// RULES details are not requested in FullConfig
+// because rules can be heavy, so keep them in a separate request
 export const RULES = gql`
   query Rules {
     config {
@@ -221,6 +230,8 @@ export const RULES = gql`
   }
 `;
 
+// PRIVACY details are not requested in FullConfig
+// because they need the locale variable, so keep them in a separate request
 export const PRIVACY = gql`
   query Privacy($locale: String) {
     config {
@@ -233,296 +244,12 @@ export const PRIVACY = gql`
   }
 `;
 
+// TIMEZONES details are not requested in FullConfig
+// because timezones are heavy, so keep them in a separate request
 export const TIMEZONES = gql`
   query Timezones {
     config {
       timezones
-    }
-  }
-`;
-
-export const WEB_PUSH = gql`
-  query WebPush {
-    config {
-      webPush {
-        enabled
-        publicKey
-      }
-    }
-  }
-`;
-
-export const EVENT_PARTICIPANTS = gql`
-  query EventParticipants {
-    config {
-      exportFormats {
-        eventParticipants
-      }
-    }
-  }
-`;
-
-export const ANONYMOUS_PARTICIPATION_CONFIG = gql`
-  query AnonymousParticipationConfig {
-    config {
-      anonymous {
-        participation {
-          allowed
-          validation {
-            email {
-              enabled
-              confirmationRequired
-            }
-            captcha {
-              enabled
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-export const ANONYMOUS_REPORTS_CONFIG = gql`
-  query AnonymousParticipationConfig {
-    config {
-      anonymous {
-        reports {
-          allowed
-        }
-      }
-    }
-  }
-`;
-
-export const INSTANCE_NAME = gql`
-  query InstanceName {
-    config {
-      name
-    }
-  }
-`;
-
-export const ANONYMOUS_ACTOR_ID = gql`
-  query AnonymousActorId {
-    config {
-      anonymous {
-        actorId
-      }
-    }
-  }
-`;
-
-export const UPLOAD_LIMITS = gql`
-  query UploadLimits {
-    config {
-      uploadLimits {
-        default
-        avatar
-        banner
-      }
-    }
-  }
-`;
-
-export const EVENT_CATEGORIES = gql`
-  query EventCategories {
-    config {
-      eventCategories {
-        id
-        label
-      }
-    }
-  }
-`;
-
-export const RESTRICTIONS = gql`
-  query OnlyGroupsCanCreateEvents {
-    config {
-      restrictions {
-        onlyGroupsCanCreateEvents
-        onlyAdminCanCreateGroups
-      }
-    }
-  }
-`;
-
-export const GEOCODING_AUTOCOMPLETE = gql`
-  query GeoCodingAutocomplete {
-    config {
-      geocoding {
-        autocomplete
-      }
-    }
-  }
-`;
-
-export const MAPS_TILES = gql`
-  query MapsTiles {
-    config {
-      maps {
-        tiles {
-          endpoint
-          attribution
-        }
-      }
-    }
-  }
-`;
-
-export const ROUTING_TYPE = gql`
-  query RoutingType {
-    config {
-      maps {
-        routing {
-          type
-        }
-      }
-    }
-  }
-`;
-
-export const FEATURES = gql`
-  query Features {
-    config {
-      features {
-        groups
-        eventCreation
-        eventExternal
-        antispam
-      }
-    }
-  }
-`;
-
-export const RESOURCE_PROVIDERS = gql`
-  query ResourceProviders {
-    config {
-      resourceProviders {
-        type
-        endpoint
-        software
-      }
-    }
-  }
-`;
-
-export const LOGIN_CONFIG = gql`
-  query LoginConfig {
-    config {
-      auth {
-        databaseLogin
-        oauthProviders {
-          id
-          label
-        }
-      }
-      registrationsOpen
-    }
-  }
-`;
-
-export const LOCATION = gql`
-  query Location {
-    config {
-      location {
-        latitude
-        longitude
-        # accuracyRadius
-      }
-    }
-  }
-`;
-
-export const DEMO_MODE = gql`
-  query DemoMode {
-    config {
-      demoMode
-    }
-  }
-`;
-
-export const LONG_EVENTS = gql`
-  query LongEvents {
-    config {
-      longEvents
-    }
-  }
-`;
-
-export const ANALYTICS = gql`
-  query Analytics {
-    config {
-      analytics {
-        id
-        enabled
-        configuration {
-          key
-          value
-          type
-        }
-      }
-    }
-  }
-`;
-
-export const SEARCH_CONFIG = gql`
-  query SearchConfig {
-    config {
-      search {
-        global {
-          isEnabled
-          isDefault
-        }
-      }
-    }
-  }
-`;
-
-export const INSTANCE_LOGO = gql`
-  query InstanceLogo {
-    config {
-      instanceLogo {
-        url
-      }
-    }
-  }
-`;
-
-export const COLORS = gql`
-  query Colors {
-    config {
-      primaryColor
-      secondaryColor
-    }
-  }
-`;
-
-export const DEFAULT_PICTURE = gql`
-  query DefaultPicture {
-    config {
-      defaultPicture {
-        uuid
-        url
-        name
-        metadata {
-          width
-          height
-          blurhash
-        }
-      }
-    }
-  }
-`;
-
-export const REGISTRATIONS = gql`
-  query Registrations {
-    config {
-      registrationsOpen
-      registrationsAllowlist
-      auth {
-        databaseLogin
-      }
     }
   }
 `;

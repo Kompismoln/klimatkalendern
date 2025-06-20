@@ -126,7 +126,7 @@
 
 <script setup lang="ts">
 import { LOGIN } from "@/graphql/auth";
-import { LOGIN_CONFIG } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config";
 import { LOGGED_USER_LOCATION } from "@/graphql/user";
 import { UPDATE_CURRENT_USER_CLIENT } from "@/graphql/user";
 import { IConfig } from "@/types/config.model";
@@ -160,7 +160,7 @@ const configQuery = useQuery<{
     IConfig,
     "auth" | "registrationsOpen" | "registrationsAllowlist"
   >;
-}>(LOGIN_CONFIG);
+}>(CONFIG);
 
 const config = computed(() => configQuery.result.value?.config);
 

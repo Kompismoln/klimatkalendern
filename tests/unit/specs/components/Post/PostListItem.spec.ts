@@ -4,7 +4,7 @@ import { beforeEach, describe, it, expect } from "vitest";
 import { enUS } from "date-fns/locale";
 import { routes } from "@/router";
 import { createRouter, createWebHistory, Router } from "vue-router";
-import { DEFAULT_PICTURE } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config";
 import { getMockClient } from "../../mocks/client";
 
 let router: Router;
@@ -32,7 +32,7 @@ const generateWrapper = (
   customPostData: Record<string, unknown> = {},
   customProps: Record<string, unknown> = {}
 ) => {
-  const global_data = getMockClient([DEFAULT_PICTURE]);
+  const global_data = getMockClient([CONFIG]);
   global_data.provide.dateFnsLocale = enUS;
   global_data.plugins = [router];
   return mount(PostListItem, {

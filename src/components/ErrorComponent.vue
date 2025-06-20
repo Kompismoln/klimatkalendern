@@ -95,7 +95,7 @@ import { useQuery, useQueryLoading } from "@vue/apollo-composable";
 import { useI18n } from "vue-i18n";
 import { useHead } from "@/utils/head";
 import { useAnalytics } from "@/composition/apollo/config";
-import { INSTANCE_NAME } from "@/graphql/config";
+import { CONFIG } from "@/graphql/config";
 const SentryFeedback = defineAsyncComponent(
   () => import("./Feedback/SentryFeedback.vue")
 );
@@ -116,7 +116,7 @@ useHead({
 });
 
 const { result: instanceConfig } = useQuery<{ config: Pick<IConfig, "name"> }>(
-  INSTANCE_NAME
+  CONFIG
 );
 
 const instanceName = computed(() => instanceConfig.value?.config.name);
