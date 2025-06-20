@@ -1661,5 +1661,6 @@
   "Default Picture": "Standardbild",
   "Default picture when an event or group doesn't have one.": "Bild som används när en grupp eller ett event inte nar någon bild.",
   "Instruction video": "Instruktionsvideo",
-  "Search:": "Sök:"
+  "Search:": "Sök:",
+  "Incoming events": "Kommande evenemang"
 }
