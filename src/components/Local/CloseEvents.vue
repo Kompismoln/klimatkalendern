@@ -40,10 +40,7 @@
       />
       <span v-for="event in events.elements" :key="event.elem.uuid">
         <more-content v-if="event.showActorMore" :to="event.actorMoreRoute">
-          {{
-            t("View more events and activities from ") +
-            event.elem.attributedTo.name
-          }}
+          {{ t("View more events and activities from ") + event.actorMoreName }}
         </more-content>
         <event-card v-else :event="event.elem" :key="event.elem.uuid" />
       </span>
@@ -144,12 +141,9 @@ const filterTooMany = ({ elements, total }) => {
   };
   const ret = [];
   for (const elem of elements) {
-    if (!elem.attributedTo) {
-      ret.push({ elem });
-      continue;
-    }
-
-    const id = elem.attributedTo.id;
+    const id = elem.attributedTo
+      ? "grp-" + elem.attributedTo.id
+      : "per-" + elem.organizerActor.id;
     addActor(id);
 
     if (actorsCount[id] <= threshold) {
@@ -158,7 +152,12 @@ const filterTooMany = ({ elements, total }) => {
       ret.push({
         elem,
         showActorMore: true,
-        actorMoreRoute: "@" + elem.attributedTo.preferredUsername + "/events",
+        actorMoreName: elem.attributedTo
+          ? elem.attributedTo.name
+          : elem.organizerActor.name,
+        actorMoreRoute: elem.attributedTo
+          ? "@" + elem.attributedTo.preferredUsername + "/events"
+          : "/search",
       });
     }
   }
