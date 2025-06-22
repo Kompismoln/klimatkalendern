@@ -133,6 +133,7 @@ const filterTooMany = ({ elements, total }) => {
   // Max events to show from one organizer
   const threshold = 2;
   const actorsCount = {};
+  const actorsLast = {};
   const addActor = (id) => {
     if (!(id in actorsCount)) {
       actorsCount[id] = 0;
@@ -148,8 +149,9 @@ const filterTooMany = ({ elements, total }) => {
 
     if (actorsCount[id] <= threshold) {
       ret.push({ elem });
+      actorsLast[id] = ret.length;
     } else if (actorsCount[id] == threshold + 1) {
-      ret.push({
+      ret.splice(actorsLast[id], 0, {
         elem,
         showActorMore: true,
         actorMoreName: elem.attributedTo
