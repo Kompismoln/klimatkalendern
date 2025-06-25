@@ -9,11 +9,6 @@
     <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color={theme_color()} />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content={theme_color()} />
-    <%= if root?(assigns) do %>
-      <link rel="preload" href="/img/shape-1.svg" as="image" />
-      <link rel="preload" href="/img/shape-2.svg" as="image" />
-      <link rel="preload" href="/img/shape-3.svg" as="image" />
-    <% end %>
     <%= tags(assigns) || assigns.tags %>
     <%= Vite.vite_client() %>
     <%= Vite.vite_snippet("src/main.ts") %>
