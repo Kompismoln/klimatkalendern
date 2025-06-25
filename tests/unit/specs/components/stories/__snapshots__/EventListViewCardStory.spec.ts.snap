@@ -6,8 +6,8 @@ exports[`Event List View Card Story > Default 1`] = `
     <article class="bg-white dark:bg-zinc-700 dark:text-white dark:hover:text-white rounded-lg shadow-md max-w-3xl p-2">
       <div class="flex gap-2">
         <div class="">
-          <div data-v-1df97f42="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
-            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+          <div data-v-1df97f42="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header bg-red-500 dark:bg-red-900"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
             <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
           </div>
         </div>
@@ -28,8 +28,8 @@ exports[`Event List View Card Story > Default 1`] = `
     <article class="bg-white dark:bg-zinc-700 dark:text-white dark:hover:text-white rounded-lg shadow-md max-w-3xl p-2">
       <div class="flex gap-2">
         <div class="">
-          <div data-v-1df97f42="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
-            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+          <div data-v-1df97f42="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header bg-red-500 dark:bg-red-900"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
             <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
           </div>
         </div>

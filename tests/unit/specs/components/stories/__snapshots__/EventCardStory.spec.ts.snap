@@ -6,8 +6,8 @@ exports[`Event Card Story > Default 1`] = `
     <router-link data-v-4bd07c72="" to="[object Object]" class="mbz-card snap-center dark:bg-mbz-purple sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
       <div data-v-4bd07c72="" class="rounded-lg">
         <div data-v-4bd07c72="" class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 calendar-simple">
-          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
-            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header bg-red-500 dark:bg-red-900"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
             <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
           </div>
           <!--v-if-->
@@ -57,8 +57,8 @@ exports[`Event Card Story > Default 1`] = `
     <router-link data-v-4bd07c72="" to="[object Object]" class="mbz-card snap-center dark:bg-mbz-purple sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
       <div data-v-4bd07c72="" class="rounded-lg">
         <div data-v-4bd07c72="" class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 calendar-simple">
-          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
-            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header bg-red-500 dark:bg-red-900"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
             <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
           </div>
           <!--v-if-->
@@ -108,8 +108,8 @@ exports[`Event Card Story > Default 1`] = `
     <router-link data-v-4bd07c72="" to="[object Object]" class="mbz-card snap-center dark:bg-mbz-purple sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
       <div data-v-4bd07c72="" class="rounded-lg">
         <div data-v-4bd07c72="" class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 calendar-simple">
-          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
-            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header bg-red-500 dark:bg-red-900"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
             <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
           </div>
           <!--v-if-->
@@ -157,8 +157,8 @@ exports[`Event Card Story > Default 1`] = `
     <router-link data-v-4bd07c72="" to="[object Object]" class="mbz-card snap-center dark:bg-mbz-purple sm:max-w-xs w-[18rem] shrink-0 flex flex-col">
       <div data-v-4bd07c72="" class="rounded-lg">
         <div data-v-4bd07c72="" class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 calendar-simple">
-          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
-            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header bg-red-500 dark:bg-red-900"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
             <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
           </div>
           <!--v-if-->
@@ -206,8 +206,8 @@ exports[`Event Card Story > Default 1`] = `
     <router-link data-v-4bd07c72="" to="[object Object]" class="mbz-card snap-center dark:bg-mbz-purple sm:flex sm:items-start">
       <div data-v-4bd07c72="" class="rounded-lg sm:w-full sm:max-w-[20rem]">
         <div data-v-4bd07c72="" class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 sm:hidden calendar-simple">
-          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white small" style="--small: 1.2;">
-            <div data-v-1df97f42="" class="datetime-container-header"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
+          <div data-v-1df97f42="" data-v-4bd07c72="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white small" style="--small: 1.2;">
+            <div data-v-1df97f42="" class="datetime-container-header bg-red-500 dark:bg-red-900"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="weekday">Wed</time></div>
             <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="day block font-semibold">2</time><time data-v-1df97f42="" datetime="2022-02-02T02:04:00.000Z" class="month font-semibold block uppercase py-1 px-0">Feb</time></div>
           </div>
           <!--v-if-->

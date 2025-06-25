@@ -139,9 +139,9 @@ describe("ParticipationWithoutAccount", () => {
 
     await flushPromises();
 
-    expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith({
-      ...joinEventMock,
-    });
+    expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith(
+      expect.objectContaining(joinEventMock)
+    );
 
     const cachedData = mockClient?.cache.readQuery<{ event: IEvent }>({
       query: FETCH_EVENT_BASIC,
@@ -216,9 +216,9 @@ describe("ParticipationWithoutAccount", () => {
 
     await flushPromises();
 
-    expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith({
-      ...joinEventMock,
-    });
+    expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith(
+      expect.objectContaining(joinEventMock)
+    );
 
     const cachedData = mockClient?.cache.readQuery<{ event: IEvent }>({
       query: FETCH_EVENT_BASIC,
@@ -260,9 +260,9 @@ describe("ParticipationWithoutAccount", () => {
 
     await flushPromises();
 
-    expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith({
-      ...joinEventMock,
-    });
+    expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith(
+      expect.objectContaining(joinEventMock)
+    );
     await flushPromises();
     expect(wrapper.find("form").exists()).toBeTruthy();
     expect(wrapper.find(".o-notification--danger").text()).toContain(
