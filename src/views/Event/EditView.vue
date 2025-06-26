@@ -72,6 +72,7 @@
       >
         <event-date-picker
           :time="showStartTime"
+          :aria-label="t('Starts on…')"
           v-model="beginsOn"
           @blur="consistencyBeginsOnBeforeEndsOn"
         ></event-date-picker>
@@ -92,6 +93,7 @@
         <event-date-picker
           :time="showEndTime"
           v-model="endsOn"
+          :aria-label="t('Ends on…')"
           @blur="consistencyBeginsOnBeforeEndsOn"
           :min="beginsOn"
         ></event-date-picker>
