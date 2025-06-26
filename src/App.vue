@@ -1,7 +1,13 @@
 <template>
   <div id="mobilizon">
-    <!-- <VueAnnouncer />
-    <VueSkipTo to="#main" :label="t('Skip to main content')" /> -->
+    <!-- <VueAnnouncer /> -->
+    <a
+      class="peer sr-only left-1/2 top-6 z-[101] !inline-flex -translate-x-1/2 focus-visible:not-sr-only focus-visible:absolute focus-visible:!outline-none"
+      href="#main"
+    >
+      <span class="block px-3 py-2">{{ t("Skip to main content") }}</span>
+    </a>
+
     <NavBar />
     <div v-if="isDemoMode">
       <o-notification
