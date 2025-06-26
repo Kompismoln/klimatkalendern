@@ -54,8 +54,9 @@
         <template #mobilizon>
           <a
             rel="external"
+            aria-label="mobilizon.org"
             class="text-white underline decoration-yellow-1"
-            href="https://joinmobilizon.org"
+            href="https://mobilizon.org"
             >{{ t("Mobilizon") }}</a
           >
         </template>
@@ -63,12 +64,7 @@
           ><span>{{ new Date().getFullYear() }}</span></template
         >
         <template #contributors>
-          <a
-            rel="external"
-            class="text-white underline decoration-yellow-1"
-            href="https://joinmobilizon.org/hall-of-fame"
-            >{{ t("more than 1360 contributors") }}</a
-          >
+          <span>{{ t("more than 1360 contributors") }}</span>
         </template>
       </i18n-t>
     </div>

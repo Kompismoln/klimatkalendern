@@ -6,6 +6,7 @@
     <div class="container mx-auto flex flex-wrap items-center gap-2 sm:gap-4">
       <router-link
         :to="{ name: RouteName.HOME }"
+        :aria-label="t('Back to homepage')"
         class="flex items-center"
         :class="{ 'flex-1': !currentActor?.id }"
       >
