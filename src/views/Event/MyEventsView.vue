@@ -35,6 +35,11 @@
           <event-date-picker
             id="events-start-datepicker"
             :time="false"
+            :aria-label="
+              showUpcoming
+                ? t('Showing events starting on')
+                : t('Showing events before')
+            "
             v-model="datePick"
           ></event-date-picker>
           <o-button
@@ -45,15 +50,21 @@
           />
         </o-field>
         <o-field v-if="showUpcoming">
-          <o-checkbox v-model="showDrafts">{{ t("Drafts") }}</o-checkbox>
-        </o-field>
-        <o-field v-if="showUpcoming">
-          <o-checkbox v-model="showAttending">{{ t("Attending") }}</o-checkbox>
-        </o-field>
-        <o-field v-if="showUpcoming">
-          <o-checkbox v-model="showMyGroups">{{
-            t("From my groups")
+          <o-checkbox v-model="showDrafts" :aria-label="t('Drafts')">{{
+            t("Drafts")
           }}</o-checkbox>
+        </o-field>
+        <o-field v-if="showUpcoming">
+          <o-checkbox v-model="showAttending" :aria-label="t('Attending')">{{
+            t("Attending")
+          }}</o-checkbox>
+        </o-field>
+        <o-field v-if="showUpcoming">
+          <o-checkbox
+            v-model="showMyGroups"
+            :aria-label="t('From my groups')"
+            >{{ t("From my groups") }}</o-checkbox
+          >
         </o-field>
         <p v-if="!showUpcoming">
           {{
