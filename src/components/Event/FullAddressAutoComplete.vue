@@ -92,7 +92,6 @@
   </div>
   <o-collapse
     v-model:open="detailsAddress"
-    :aria-id="`${id}-address-details`"
     class="my-3"
     v-if="allowManualDetails"
   >
@@ -106,7 +105,10 @@
         {{ t("Details") }}
       </o-button>
     </template>
-    <form @submit.prevent="saveManualAddress">
+    <form
+      @submit.prevent="saveManualAddress"
+      :aria-id="`${id}-address-details`"
+    >
       <header>
         <h2>{{ t("Manually enter address") }}</h2>
       </header>

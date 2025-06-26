@@ -5,7 +5,6 @@
       <button
         type="button"
         class="py-3 w-full flex items-center justify-between text-gray-400 hover:text-gray-500 dark:text-slate-100 hover:dark:text-slate-200"
-        aria-controls="filter-section-mobile-0"
         :aria-expanded="opened"
         @click="$emit('update:opened', !opened)"
       >
