@@ -270,7 +270,7 @@ const joinEvent = async (): Promise<void> => {
     actorId: anonymousActorId.value,
     email: anonymousParticipation.email,
     message: anonymousParticipation.message,
-    locale: locale,
+    locale: locale.value,
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
   });
 };

@@ -141,7 +141,7 @@ describe("ParticipationWithoutAccount", () => {
     await flushPromises();
 
     expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith(
-      expect.objectContaining(joinEventMock)
+      joinEventMock
     );
     expect(wrapper.vm.error).toBe(false);
 
@@ -220,7 +220,7 @@ describe("ParticipationWithoutAccount", () => {
     await flushPromises();
 
     expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith(
-      expect.objectContaining(joinEventMock)
+      joinEventMock
     );
     expect(wrapper.vm.error).toBe(false);
 
@@ -265,7 +265,7 @@ describe("ParticipationWithoutAccount", () => {
     await flushPromises();
 
     expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith(
-      expect.objectContaining(joinEventMock)
+      joinEventMock
     );
     await flushPromises();
     expect(wrapper.find("form").exists()).toBeTruthy();
