@@ -1,4 +1,8 @@
 <template>
+  <div class="container mx-auto" v-if="groupError">
+    <p>{{ groupError.message }}</p>
+  </div>
+
   <div class="container mx-auto" v-if="group">
     <breadcrumbs-nav
       :links="[
@@ -170,6 +174,7 @@ watch(
 const {
   result: groupResult,
   loading: groupLoading,
+  error: groupError,
   refetch: refetch,
 } = useQuery<
   {
