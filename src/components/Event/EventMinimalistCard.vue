@@ -84,7 +84,7 @@
           {{ organizerDisplayName(event) }}
         </span>
       </div>
-      <p class="flex gap-1">
+      <p class="flex gap-1" v-if="!event.options.hideNumberOfParticipants">
         <AccountMultiple />
         <span v-if="event.options.maximumAttendeeCapacity !== 0">
           {{
@@ -112,29 +112,28 @@
             )
           }}
         </span>
-        <span v-if="event.participantStats.notApproved > 0">
-          <o-button
-            variant="text"
-            tag="router-link"
-            :to="{
-              name: RouteName.PARTICIPATIONS,
-              query: { role: ParticipantRole.NOT_APPROVED },
-              params: { eventId: event.uuid },
-            }"
-          >
-            {{
-              $t(
-                "{count} requests waiting",
-
-                {
-                  count: event.participantStats.notApproved,
-                },
-                event.participantStats.notApproved
-              )
-            }}
-          </o-button>
-        </span>
       </p>
+      <o-button
+        v-if="event.participantStats.notApproved > 0"
+        variant="text"
+        tag="router-link"
+        :to="{
+          name: RouteName.PARTICIPATIONS,
+          query: { role: ParticipantRole.NOT_APPROVED },
+          params: { eventId: event.uuid },
+        }"
+      >
+        {{
+          $t(
+            "{count} requests waiting",
+
+            {
+              count: event.participantStats.notApproved,
+            },
+            event.participantStats.notApproved
+          )
+        }}
+      </o-button>
     </div>
   </router-link>
 </template>
