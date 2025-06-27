@@ -127,6 +127,7 @@ describe("ParticipationWithoutAccount", () => {
       uuid: eventData.uuid,
     });
     await flushPromises();
+    expect(wrapper.vm.error).toBe(false);
 
     expect(wrapper.find(".container").isVisible()).toBeTruthy();
     expect(wrapper.find(".o-notification--info").text()).toBe(
@@ -138,11 +139,11 @@ describe("ParticipationWithoutAccount", () => {
     wrapper.find("form").trigger("submit");
 
     await flushPromises();
-    expect(wrapper.vm.error).toBe(false);
 
     expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith(
       expect.objectContaining(joinEventMock)
     );
+    expect(wrapper.vm.error).toBe(false);
 
     const cachedData = mockClient?.cache.readQuery<{ event: IEvent }>({
       query: FETCH_EVENT_BASIC,
@@ -197,6 +198,7 @@ describe("ParticipationWithoutAccount", () => {
     });
 
     await flushPromises();
+    expect(wrapper.vm.error).toBe(false);
 
     // expect(wrapper.vm.$data.event.joinOptions).toBe(
     //   EventJoinOptions.RESTRICTED
@@ -216,11 +218,11 @@ describe("ParticipationWithoutAccount", () => {
     wrapper.find("form").trigger("submit");
 
     await flushPromises();
-    expect(wrapper.vm.error).toBe(false);
 
     expect(requestHandlers.joinEventMutationHandler).toHaveBeenCalledWith(
       expect.objectContaining(joinEventMock)
     );
+    expect(wrapper.vm.error).toBe(false);
 
     const cachedData = mockClient?.cache.readQuery<{ event: IEvent }>({
       query: FETCH_EVENT_BASIC,

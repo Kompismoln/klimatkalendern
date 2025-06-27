@@ -114,6 +114,7 @@ export default defineConfig(({ command }) => {
       reporter: ["junit", "default"],
       outputFile: path.resolve(__dirname, "./junit.xml"),
       coverage: {
+        reportOnFailure: true,
         reporter: ["text", "json", "html"],
         reportsDirectory: path.resolve(__dirname, "./coverage"),
         include: ["src/**/*.{vue,js,ts}"],
