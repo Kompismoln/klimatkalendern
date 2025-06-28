@@ -23,11 +23,19 @@ export function useCurrentActorClient() {
 }
 
 export function useLazyCurrentUserIdentities() {
+  const { currentUser } = useCurrentUserClient();
   return useLazyQuery<{
     loggedUser: Pick<ICurrentUser, "actors">;
   }>(
     IDENTITIES,
-    {},
+    {
+      // To ensure the request is re-executed when the user changes,
+      // we include a dummy `_user` parameter that's ignored by the server.
+      // This function does not depend on the user, the server identifies them by the token.
+      // So without this dummy parameter, the GraphQL call is not automatically reloaded
+      // when the actor changes.
+      _user: currentUser?.value?.id,
+    },
     {
       fetchPolicy: "network-only",
     }
@@ -46,9 +54,21 @@ export function useCurrentUserIdentities() {
 
   const { result, error, loading } = useQuery<{
     loggedUser: Pick<ICurrentUser, "actors">;
-  }>(IDENTITIES, {}, () => ({
-    enabled: enabled,
-  }));
+  }>(
+    IDENTITIES,
+    {
+      // To ensure the request is re-executed when the user changes,
+      // we include a dummy `_user` parameter that's ignored by the server.
+      // This function does not depend on the user, the server identifies them by the token.
+      // So without this dummy parameter, the GraphQL call is not automatically reloaded
+      // when the actor changes.
+      _user: currentUser?.value?.id,
+    },
+    () => ({
+      enabled: enabled,
+      fetchPolicy: "network-only",
+    })
+  );
 
   const identities = computed(() =>
     enabled.value ? result.value?.loggedUser?.actors : null
