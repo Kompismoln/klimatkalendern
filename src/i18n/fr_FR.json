@@ -1444,6 +1444,7 @@
   "You have one event in {days} days.": "Vous n'avez pas d'événements dans {days} jours | Vous avez un événement dans {days} jours. | Vous avez {count} événements dans {days} jours",
   "You have one event today.": "Vous n'avez pas d'événement aujourd'hui | Vous avez un événement aujourd'hui. | Vous avez {count} événements aujourd'hui",
   "You have one event tomorrow.": "Vous n'avez pas d'événement demain | Vous avez un événement demain. | Vous avez {count} événements demain",
+  "You have to create and select a profile to fully use Mobilizon.":"Vous devez créer et sélectionner un profil pour utiliser Mobilizon complètement.",
   "You haven't interacted with other instances yet.": "Vous n'avez interagi avec encore aucune autre instance.",
   "You invited {member}.": "Vous avez invité {member}.",
   "You joined the event {event}.": "Vous avez rejoint l'événement {event}.",

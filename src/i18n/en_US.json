@@ -378,6 +378,7 @@
   "You have one event in {days} days.": "You have no events in {days} days | You have one event in {days} days. | You have {count} events in {days} days",
   "You have one event today.": "You have no events today | You have one event today. | You have {count} events today",
   "You have one event tomorrow.": "You have no events tomorrow | You have one event tomorrow. | You have {count} events tomorrow",
+  "You have to create and select a profile to fully use Mobilizon.":"You have to create and select a profile to fully use Mobilizon.",
   "You need to login.": "You need to login.",
   "You will be redirected to the original instance": "You will be redirected to the original instance",
   "You wish to participate to the following event": "You wish to participate to the following event",

@@ -230,6 +230,23 @@
       </button>
     </div>
   </nav>
+  <div v-if="currentUser?.id && !currentActor?.id" class="p-5">
+    <o-notification variant="warning">
+      <div class="flex place-content-between items-center">
+        <span>
+          {{
+            t("You have to create and select a profile to fully use Mobilizon.")
+          }}
+        </span>
+        <o-button
+          :label="t('Create a new profile')"
+          variant="primary"
+          size="small"
+          @click="createProfile()"
+        />
+      </div>
+    </o-notification>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -261,11 +278,11 @@ import { ICurrentUser } from "@/types/current-user.model";
 
 const { currentUser } = useCurrentUserClient();
 const { currentActor } = useCurrentActorClient();
+const { identities } = useCurrentUserIdentities();
 
 const router = useRouter();
 const route = useRoute();
 
-const { identities } = useCurrentUserIdentities();
 const { registrationsOpen, registrationsAllowlist, databaseLogin } =
   useRegistrationConfig();
 
@@ -363,5 +380,11 @@ const performLogout = async () => {
   if (route.meta["requiredAuth"] === true) {
     return router.push({ name: RouteName.HOME });
   }
+};
+
+const createProfile = () => {
+  router.push({
+    name: RouteName.CREATE_IDENTITY,
+  });
 };
 </script>
