@@ -37,16 +37,23 @@ export function useLazyCurrentUserIdentities() {
 export function useCurrentUserIdentities() {
   const { currentUser } = useCurrentUserClient();
 
+  const enabled = computed(
+    () =>
+      currentUser.value?.id !== undefined &&
+      currentUser.value?.id !== null &&
+      currentUser.value?.isLoggedIn === true
+  );
+
   const { result, error, loading } = useQuery<{
     loggedUser: Pick<ICurrentUser, "actors">;
   }>(IDENTITIES, {}, () => ({
-    enabled:
-      currentUser.value?.id !== undefined &&
-      currentUser.value?.id !== null &&
-      currentUser.value?.isLoggedIn === true,
+    enabled: enabled,
   }));
 
-  const identities = computed(() => result.value?.loggedUser?.actors);
+  const identities = computed(() =>
+    enabled.value ? result.value?.loggedUser?.actors : null
+  );
+
   return { identities, error, loading };
 }
 
