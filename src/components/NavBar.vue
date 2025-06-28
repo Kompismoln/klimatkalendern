@@ -334,21 +334,6 @@ watch(currentActor, async (currentActorValue, previousActorValue) => {
 
 onMounted(() => {});
 
-watch(identities, () => {
-  // If we don't have any identities, the user has validated their account,
-  // is logging for the first time but didn't create an identity somehow
-  if (identities.value && identities.value.length === 0) {
-    console.warn(
-      "We have no identities listed for current user",
-      identities.value
-    );
-    console.info("Pushing route to CREATE_IDENTITY");
-    router.push({
-      name: RouteName.CREATE_IDENTITY,
-    });
-  }
-});
-
 const { onDone, mutate: setIdentity } = useMutation<{
   changeDefaultActor: { id: string; defaultActor: { id: string } };
 }>(UPDATE_DEFAULT_ACTOR);

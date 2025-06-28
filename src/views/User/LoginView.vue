@@ -229,11 +229,6 @@ const loginAction = async (e: Event) => {
     const loggedUserLocationPromise = loggedUserLocationQuery.load();
 
     // Step 3b: Setuping user's identities
-    // FIXME this promise never resolved the first time
-    // no idea why !
-    // this appends even with the last version of apollo-composable (4.0.2)
-    // may be related to that : https://github.com/vuejs/apollo/issues/1543
-    // EDIT: now it works :shrug:
     const currentUserIdentitiesResult = await currentUserIdentitiesQuery.load();
     if (!currentUserIdentitiesResult) {
       throw new Error("Loading user's identities failed");
