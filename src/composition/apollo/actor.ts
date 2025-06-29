@@ -57,7 +57,6 @@ export function useCurrentUserIdentities() {
     },
     () => ({
       enabled: enabled,
-      fetchPolicy: "network-only",
     })
   );
 
