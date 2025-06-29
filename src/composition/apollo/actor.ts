@@ -11,14 +11,25 @@ import { computed, Ref, unref } from "vue";
 import { useCurrentUserClient } from "./user";
 
 export function useCurrentActorClient() {
+  const { identities } = useCurrentUserIdentities();
+
+  // There is a current actor only if there is at least one identity
+  const enabled = computed(
+    () => identities.value != undefined && identities.value?.length > 0
+  );
+
   const {
     result: currentActorResult,
     error,
     loading,
-  } = useQuery<{ currentActor: IPerson }>(CURRENT_ACTOR_CLIENT);
-  const currentActor = computed<IPerson | undefined>(
-    () => currentActorResult.value?.currentActor
+  } = useQuery<{ currentActor: IPerson }>(CURRENT_ACTOR_CLIENT, {}, () => ({
+    enabled: enabled,
+  }));
+
+  const currentActor = computed<IPerson | undefined>(() =>
+    enabled.value ? currentActorResult.value?.currentActor : undefined
   );
+
   return { currentActor, error, loading };
 }
 
