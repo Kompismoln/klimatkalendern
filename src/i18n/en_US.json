@@ -1,4 +1,4 @@
-  {
+{
   "0 Bytes": "0 Bytes",
   "Abandon editing": "Abandon editing",
   "About anonymous participation": "About anonymous participation",
@@ -37,6 +37,7 @@
   "Activate browser push notifications": "Activate browser push notifications",
   "Activate notifications": "Activate notifications",
   "Active": "Active",
+  "Activities are disabled on this instance.|An event with a duration of more than one day will be categorized as an activity.|An event with a duration of more than {number} days will be categorized as an activity.": "Activities are disabled on this instance.|An event with a duration of more than one day will be categorized as an activity.|An event with a duration of more than {number} days will be categorized as an activity.",
   "Activities": "Activities",
   "Activity": "Activity",
   "Actor": "Actor",
@@ -265,6 +266,7 @@
   "Create a discussion": "Create a discussion",
   "Create a folder": "Create a folder",
   "create a group": "create a group",
+  "Create a new event or a new activity": "Create a new event or a new activity",
   "Create a new event": "Create a new event",
   "Create a new group": "Create a new group",
   "Create a new identity": "Create a new identity",
@@ -1386,7 +1388,6 @@
   "View full profile": "View full profile",
   "View less": "View less",
   "View more events and activities around {position}": "View more events and activities around {position}",
-  "view more events and activities": "view more events and activities",
   "View more events around {position}": "View more events around {position}",
   "View more events": "View more events",
   "View more groups around {position}": "View more groups around {position}",
