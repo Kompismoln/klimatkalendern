@@ -285,12 +285,17 @@ const baseIdentity: IPerson = {
 
 const identity = ref<IPerson>(baseIdentity);
 
-watch(person, () => {
-  console.debug("person changed", person.value);
-  if (person.value) {
-    identity.value = { ...person.value };
-  }
-});
+watch(
+  person,
+  () => {
+    console.debug("person changed", person.value);
+    if (person.value) {
+      identity.value = { ...person.value };
+    }
+  },
+  // We need to call "immediate: true" because when first loading update/xxx, there is no change to person
+  { immediate: true }
+);
 
 const avatarMaxSize = useAvatarMaxSize();
 
