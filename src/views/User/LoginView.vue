@@ -133,10 +133,7 @@ import { IConfig } from "@/types/config.model";
 import { IUser } from "@/types/current-user.model";
 import { saveUserData, SELECTED_PROVIDERS } from "@/utils/auth";
 import { storeUserLocationAndRadiusFromUserSettings } from "@/utils/location";
-import {
-  initializeCurrentActor,
-  NoIdentitiesException,
-} from "@/utils/identity";
+import { NoIdentitiesException } from "@/utils/identity";
 import { useMutation, useLazyQuery, useQuery } from "@vue/apollo-composable";
 import { computed, reactive, ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
@@ -147,7 +144,6 @@ import { LoginError, LoginErrorCode } from "@/types/enums";
 import { useCurrentUserClient } from "@/composition/apollo/user";
 import { useHead } from "@/utils/head";
 import { enumTransformer, useRouteQuery } from "vue-use-route-query";
-import { useLazyCurrentUserIdentities } from "@/composition/apollo/actor";
 
 const { t } = useI18n({ useScope: "global" });
 const router = useRouter();
@@ -185,8 +181,6 @@ const errorCode = useRouteQuery("code", null, enumTransformer(LoginErrorCode));
 
 // Login
 const loginMutation = useMutation(LOGIN);
-// Load user identities
-const currentUserIdentitiesQuery = useLazyCurrentUserIdentities();
 // Update user in cache
 const currentUserMutation = useMutation(UPDATE_CURRENT_USER_CLIENT);
 // Retrieve preferred location
@@ -225,18 +219,9 @@ const loginAction = async (e: Event) => {
       role: loginData.login.user.role,
     });
 
-    // Step 3a: Retrieving user location
+    // Step 3: Retrieving user location
     const loggedUserLocationPromise = loggedUserLocationQuery.load();
 
-    // Step 3b: Setuping user's identities
-    const currentUserIdentitiesResult = await currentUserIdentitiesQuery.load();
-    if (!currentUserIdentitiesResult) {
-      throw new Error("Loading user's identities failed");
-    }
-
-    await initializeCurrentActor(currentUserIdentitiesResult.loggedUser.actors);
-
-    // Step 3a following
     const loggedUserLocationResult = await loggedUserLocationPromise;
     storeUserLocationAndRadiusFromUserSettings(
       loggedUserLocationResult?.loggedUser?.settings?.location

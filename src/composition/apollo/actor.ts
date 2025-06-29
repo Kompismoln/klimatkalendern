@@ -6,7 +6,7 @@ import {
 } from "@/graphql/actor";
 import { IPerson } from "@/types/actor";
 import { ICurrentUser } from "@/types/current-user.model";
-import { useLazyQuery, useQuery } from "@vue/apollo-composable";
+import { useQuery } from "@vue/apollo-composable";
 import { computed, Ref, unref } from "vue";
 import { useCurrentUserClient } from "./user";
 
@@ -20,26 +20,6 @@ export function useCurrentActorClient() {
     () => currentActorResult.value?.currentActor
   );
   return { currentActor, error, loading };
-}
-
-export function useLazyCurrentUserIdentities() {
-  const { currentUser } = useCurrentUserClient();
-  return useLazyQuery<{
-    loggedUser: Pick<ICurrentUser, "actors">;
-  }>(
-    IDENTITIES,
-    {
-      // To ensure the request is re-executed when the user changes,
-      // we include a dummy `_user` parameter that's ignored by the server.
-      // This function does not depend on the user, the server identifies them by the token.
-      // So without this dummy parameter, the GraphQL call is not automatically reloaded
-      // when the actor changes.
-      _user: currentUser?.value?.id,
-    },
-    {
-      fetchPolicy: "network-only",
-    }
-  );
 }
 
 export function useCurrentUserIdentities() {
@@ -71,7 +51,7 @@ export function useCurrentUserIdentities() {
   );
 
   const identities = computed(() =>
-    enabled.value ? result.value?.loggedUser?.actors : null
+    enabled.value ? result.value?.loggedUser?.actors : undefined
   );
 
   return { identities, error, loading };

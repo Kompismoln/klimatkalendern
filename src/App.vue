@@ -76,7 +76,7 @@ import { CONFIG } from "@/graphql/config";
 import { IConfig } from "@/types/config.model";
 import { useRouter } from "vue-router";
 import RouteName from "@/router/name";
-import { useLazyCurrentUserIdentities } from "./composition/apollo/actor";
+import { useCurrentUserIdentities } from "./composition/apollo/actor";
 
 const { result: configResult } = useQuery<{ config: IConfig }>(
   CONFIG,
@@ -145,23 +145,29 @@ interval.value = window.setInterval(async () => {
   }
 }, 60000) as unknown as number;
 
-const { load: loadIdentities } = useLazyCurrentUserIdentities();
+const { identities } = useCurrentUserIdentities();
 
 onBeforeMount(async () => {
-  console.debug("Before mount App");
-  if (initializeCurrentUser()) {
-    try {
-      const result = await loadIdentities();
-      if (!result) return;
-      await initializeCurrentActor(result.loggedUser.actors);
-    } catch (err) {
-      if (err instanceof NoIdentitiesException) {
-        await router.push({
-          name: RouteName.CREATE_IDENTITY,
-        });
-      } else {
-        throw err;
-      }
+  console.debug("App: onBeforeMount...");
+
+  // Try to init the user
+  if (!initializeCurrentUser()) return;
+});
+
+watch(identities, async () => {
+  // Try to init the identities and set one of them
+  console.log("identities has changed", identities.value);
+  try {
+    if (!identities.value) return;
+
+    console.log("We will initializeCurrentActor");
+    await initializeCurrentActor(identities.value);
+  } catch (err) {
+    if (err instanceof NoIdentitiesException) {
+      console.log("Route to CREATE_IDENTITY because user has no identity");
+      router.push({ name: RouteName.CREATE_IDENTITY });
+    } else {
+      throw err;
     }
   }
 });
@@ -258,43 +264,6 @@ const refreshApp = async (
 const showOfflineNetworkWarning = (): void => {
   notifier?.error(t("You are offline"));
 };
-// const extractPageTitleFromRoute = (routeWatched: RouteLocation): string => {
-//   if (routeWatched.meta?.announcer?.message) {
-//     return routeWatched.meta?.announcer?.message();
-//   }
-//   return document.title;
-// };
-
-// watch(route, (routeWatched) => {
-//   const pageTitle = extractPageTitleFromRoute(routeWatched);
-//   if (pageTitle) {
-//     // this.$announcer.polite(
-//     //   t("Navigated to {pageTitle}", {
-//     //     pageTitle,
-//     //   }) as string
-//     // );
-//   }
-//   // Set the focus to the router view
-//   // https://marcus.io/blog/accessible-routing-vuejs
-//   setTimeout(() => {
-//     const focusTarget = (
-//       routerView.value?.$refs?.componentFocusTarget !== undefined
-//         ? routerView.value?.$refs?.componentFocusTarget
-//         : routerView.value?.$el
-//     ) as HTMLElement;
-//     if (focusTarget && focusTarget instanceof Element) {
-//       // Make focustarget programmatically focussable
-//       focusTarget.setAttribute("tabindex", "-1");
-
-//       // Focus element
-//       focusTarget.focus();
-
-//       // Remove tabindex from focustarget.
-//       // Reason: https://axesslab.com/skip-links/#update-3-a-comment-from-gov-uk
-//       focusTarget.removeAttribute("tabindex");
-//     }
-//   }, 0);
-// });
 
 const router = useRouter();
 
