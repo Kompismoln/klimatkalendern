@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="EditIdentity">
     <breadcrumbs-nav :links="breadcrumbsLinks" />
     <div v-if="identity">
       <h1 class="flex justify-center">

@@ -138,7 +138,7 @@ test("Tries to login with valid credentials, confirmed account but no profile", 
   });
   await submitButton.click();
 
-  await expect(page.locator("article.o-notification")).toHaveText(
+  await expect(page.locator("#EditIdentity article.o-notification")).toHaveText(
     "This username is already taken."
   );
 
