@@ -130,6 +130,9 @@ exunit:
 vitest:
   image: node:20
   stage: test
+  variables:
+    LANG: "fr_FR.UTF-8"
+    TZ: "Europe/Paris"
   before_script:
     - export EXITVALUE=0
     - npm ci
@@ -171,6 +174,9 @@ e2e:
       - BROWSER: ["firefox", "chromium"]
   artifacts:
     expire_in: 2 days
+    reports:
+      junit:
+        - results-*.xml
     paths:
       - playwright-report/
       - test-results/
