@@ -7,6 +7,8 @@ defmodule Mobilizon.Federation.ActivityPub.Transmogrifier.FollowTest do
   alias Mobilizon.Actors.Follower
   alias Mobilizon.Federation.ActivityPub.{Actions, Activity, Relay, Transmogrifier}
   alias Mobilizon.Service.HTTP.ActivityPub.Mock
+  alias Mobilizon.Service.HTTP.HostMetaClient.Mock, as: HostMetaClientMock
+  alias Mobilizon.Service.HTTP.WebfingerClient.Mock, as: WebfingerClientMock
   alias Mobilizon.Users.User
 
   import Swoosh.TestAssertions
@@ -44,6 +46,52 @@ defmodule Mobilizon.Federation.ActivityPub.Transmogrifier.FollowTest do
 
     test "it works for incoming follow requests" do
       actor = insert(:group)
+
+      HostMetaClientMock
+      |> expect(:call, 3, fn
+        %{method: :get, url: "https://social.tcit.fr/.well-known/host-meta"}, _opts ->
+          {:ok, %Tesla.Env{status: 404, body: ""}}
+      end)
+
+      webfinger_data =
+        "{}"
+        |> Jason.decode!()
+
+      WebfingerClientMock
+      |> expect(:call, 4, fn
+        %{method: :get, url: "https://social.tcit.fr/.well-known/nodeinfo"}, _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+
+        %{
+          method: :get,
+          url: "https://social.tcit.fr/.well-known/webfinger?resource=acct:relay@social.tcit.fr"
+        },
+        _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+
+        %{
+          method: :get,
+          url:
+            "https://social.tcit.fr/.well-known/webfinger?resource=acct:social.tcit.fr@social.tcit.fr"
+        },
+        _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+      end)
 
       actor_data =
         File.read!("test/fixtures/mastodon-actor.json")
@@ -110,6 +158,52 @@ defmodule Mobilizon.Federation.ActivityPub.Transmogrifier.FollowTest do
       %User{} = insert(:user, email: "loulou@example.com", role: :administrator)
       relay = Relay.get_actor()
 
+      HostMetaClientMock
+      |> expect(:call, 3, fn
+        %{method: :get, url: "https://social.tcit.fr/.well-known/host-meta"}, _opts ->
+          {:ok, %Tesla.Env{status: 404, body: ""}}
+      end)
+
+      webfinger_data =
+        "{}"
+        |> Jason.decode!()
+
+      WebfingerClientMock
+      |> expect(:call, 4, fn
+        %{method: :get, url: "https://social.tcit.fr/.well-known/nodeinfo"}, _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+
+        %{
+          method: :get,
+          url: "https://social.tcit.fr/.well-known/webfinger?resource=acct:relay@social.tcit.fr"
+        },
+        _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+
+        %{
+          method: :get,
+          url:
+            "https://social.tcit.fr/.well-known/webfinger?resource=acct:social.tcit.fr@social.tcit.fr"
+        },
+        _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+      end)
+
       actor_data =
         File.read!("test/fixtures/mastodon-actor.json")
         |> Jason.decode!()
@@ -145,6 +239,52 @@ defmodule Mobilizon.Federation.ActivityPub.Transmogrifier.FollowTest do
     test "it works for accepting instance follow from other instance" do
       %User{email: admin_email} = insert(:user, email: "loulou@example.com", role: :administrator)
       relay = Relay.get_actor()
+
+      HostMetaClientMock
+      |> expect(:call, 3, fn
+        %{method: :get, url: "https://mobilizon.fr/.well-known/host-meta"}, _opts ->
+          {:ok, %Tesla.Env{status: 404, body: ""}}
+      end)
+
+      webfinger_data =
+        "{}"
+        |> Jason.decode!()
+
+      WebfingerClientMock
+      |> expect(:call, 4, fn
+        %{method: :get, url: "https://mobilizon.fr/.well-known/nodeinfo"}, _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+
+        %{
+          method: :get,
+          url: "https://mobilizon.fr/.well-known/webfinger?resource=acct:relay@mobilizon.fr"
+        },
+        _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+
+        %{
+          method: :get,
+          url:
+            "https://mobilizon.fr/.well-known/webfinger?resource=acct:mobilizon.fr@mobilizon.fr"
+        },
+        _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+      end)
 
       actor_data =
         File.read!("test/fixtures/mastodon-actor.json")

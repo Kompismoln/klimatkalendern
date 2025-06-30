@@ -7,6 +7,8 @@ defmodule Mobilizon.Federation.ActivityPub.Transmogrifier.UndoTest do
   alias Mobilizon.Discussions.Comment
   alias Mobilizon.Federation.ActivityPub.{Activity, Transmogrifier}
   alias Mobilizon.Service.HTTP.ActivityPub.Mock
+  alias Mobilizon.Service.HTTP.HostMetaClient.Mock, as: HostMetaClientMock
+  alias Mobilizon.Service.HTTP.WebfingerClient.Mock, as: WebfingerClientMock
 
   describe "handle incoming undo activities" do
     test "it works for incoming unannounces with an existing notice" do
@@ -50,6 +52,52 @@ defmodule Mobilizon.Federation.ActivityPub.Transmogrifier.UndoTest do
 
     test "it works for incomming unfollows with an existing follow" do
       actor = insert(:group)
+
+      HostMetaClientMock
+      |> expect(:call, 3, fn
+        %{method: :get, url: "https://social.tcit.fr/.well-known/host-meta"}, _opts ->
+          {:ok, %Tesla.Env{status: 404, body: ""}}
+      end)
+
+      webfinger_data =
+        "{}"
+        |> Jason.decode!()
+
+      WebfingerClientMock
+      |> expect(:call, 4, fn
+        %{method: :get, url: "https://social.tcit.fr/.well-known/nodeinfo"}, _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+
+        %{
+          method: :get,
+          url: "https://social.tcit.fr/.well-known/webfinger?resource=acct:relay@social.tcit.fr"
+        },
+        _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+
+        %{
+          method: :get,
+          url:
+            "https://social.tcit.fr/.well-known/webfinger?resource=acct:social.tcit.fr@social.tcit.fr"
+        },
+        _opts ->
+          {:ok,
+           %Tesla.Env{
+             status: 200,
+             body: webfinger_data,
+             headers: [{"content-type", "application/json"}]
+           }}
+      end)
 
       follow_data =
         File.read!("test/fixtures/mastodon-follow-activity.json")
