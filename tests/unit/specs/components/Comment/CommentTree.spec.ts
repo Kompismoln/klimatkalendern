@@ -119,7 +119,6 @@ describe("CommentTree", () => {
   });
 
   it("renders a comment tree with comments", async () => {
-    console.log(">>>>> <<<<<");
     generateWrapper();
 
     expect(wrapper.exists()).toBe(true);
@@ -129,7 +128,6 @@ describe("CommentTree", () => {
     await flushPromises();
     expect(wrapper.find("p.text-center").exists()).toBe(false);
 
-    console.log(">>>>> <<<<<", wrapper.html());
     expect(wrapper.findAllComponents("event-comment-stub").length).toBe(2);
     expect(wrapper.html()).toMatchSnapshot();
   });
