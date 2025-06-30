@@ -5,7 +5,7 @@ import { VitePWA } from "vite-plugin-pwa";
 import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig(({ command }) => {
-  const isDev = command !== "build";
+  const isDev = command !== "build" && !process.env.GITLAB_CI;
   if (isDev) {
     // Terminate the watcher when Phoenix quits
     process.stdin.on("close", () => {
