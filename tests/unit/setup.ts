@@ -10,7 +10,7 @@ config.global.plugins.push(head);
 config.global.plugins.push(i18n);
 
 beforeEach(() => {
-  const mokeDate = new Date(2022, 1, 2, 3, 4);
+  const mokeDate = new Date("2022-02-02T02:04:00.000Z");
   vi.useFakeTimers();
   vi.setSystemTime(mokeDate);
 });
