@@ -12,6 +12,7 @@ import {
 import { CommentModeration } from "@/types/enums";
 import { IEvent } from "@/types/event.model";
 import {
+  currentActorClientMock,
   eventCommentThreadsMock,
   eventNoCommentThreadsMock,
   newCommentForEventMock,
@@ -27,6 +28,7 @@ import { InMemoryCache } from "@apollo/client/cache";
 import { createRouter, createWebHistory, Router } from "vue-router";
 import { routes } from "@/router";
 import { dialogPlugin } from "@/plugins/dialog";
+import { CURRENT_ACTOR_CLIENT } from "@/graphql/actor";
 
 config.global.plugins.push(Oruga);
 config.global.plugins.push(notifierPlugin);
@@ -61,6 +63,9 @@ describe("CommentTree", () => {
       createCommentForEventMutationHandler: vi
         .fn()
         .mockResolvedValue(newCommentForEventResponse),
+      getCurrentActorClientHandler: vi
+        .fn()
+        .mockResolvedValue(currentActorClientMock),
       ...handlers,
     };
 
@@ -71,6 +76,10 @@ describe("CommentTree", () => {
     mockClient.setRequestHandler(
       CREATE_COMMENT_FROM_EVENT,
       requestHandlers.createCommentForEventMutationHandler
+    );
+    mockClient.setRequestHandler(
+      CURRENT_ACTOR_CLIENT,
+      requestHandlers.getCurrentActorClientHandler
     );
     wrapper = shallowMount(CommentTree, {
       props: {
@@ -110,6 +119,7 @@ describe("CommentTree", () => {
   });
 
   it("renders a comment tree with comments", async () => {
+    console.log(">>>>> <<<<<");
     generateWrapper();
 
     expect(wrapper.exists()).toBe(true);
@@ -119,6 +129,7 @@ describe("CommentTree", () => {
     await flushPromises();
     expect(wrapper.find("p.text-center").exists()).toBe(false);
 
+    console.log(">>>>> <<<<<", wrapper.html());
     expect(wrapper.findAllComponents("event-comment-stub").length).toBe(2);
     expect(wrapper.html()).toMatchSnapshot();
   });

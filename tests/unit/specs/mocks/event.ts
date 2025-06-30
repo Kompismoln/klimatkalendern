@@ -51,6 +51,19 @@ export const joinEventResponseMock = {
   },
 };
 
+export const currentActorClientMock = {
+  data: {
+    actor: {
+      __typename: "Person",
+      preferredUsername: "some_actor",
+      name: "Some actor",
+      avatar: null,
+      domain: null,
+      id: "1",
+    },
+  },
+};
+
 export const joinEventMock = {
   eventId: "1",
   actorId: "1",
