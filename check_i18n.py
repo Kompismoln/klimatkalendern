@@ -3,6 +3,7 @@ from os.path import isfile, isdir, join
 import glob
 import re
 import json
+import sys
 
 def get_i18n_en_US():
 	with open(join("src", "i18n", "en_US.json"), 'r') as script_hdl:
@@ -61,3 +62,4 @@ write_expected_i18n_en_US(i18n_us_content, expected_i18n_keys)
 print("Size of expected %d / in real US file %s" % (len(expected_i18n_keys), len(keys_translated)))
 print("I18n not translated = %d"  % (len(set(expected_i18n_keys) - set(keys_translated))))
 print("I18n not used = %d"  % (len(set(keys_translated) - set(expected_i18n_keys))))
+sys.exit(0 if len(set(expected_i18n_keys) - set(keys_translated)) == 0 else 1)

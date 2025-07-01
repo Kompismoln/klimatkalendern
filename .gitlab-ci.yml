@@ -106,11 +106,10 @@ deps:
     - install
 
 i18n-frontend:
-  image: node:20
+  image: python:alpine
   stage: check
   script:
-     - ./check_i18n.py
-     - diff src/i18n/en_US.json src/i18n/missing_en_US.json 
+     - python3 check_i18n.py
   allow_failure: true
   needs:
     - install
@@ -130,6 +129,7 @@ exunit:
     - mix ecto.migrate
   script:
     - mix coveralls
+  coverage: '/\[TOTAL\]\s+([0-9\.]{1,5}%)/'
   artifacts:
     when: always
     reports:
@@ -149,7 +149,7 @@ vitest:
     - npm install --frozen-lockfile
   script:
     - npm run coverage
-    - ls -la .
+  coverage: '/All files\s+\|\s+([0-9\.]{1,5})\s+\|.*/'
   artifacts:
     when: always
     paths:
