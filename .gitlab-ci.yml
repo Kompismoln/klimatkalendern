@@ -105,6 +105,16 @@ deps:
   needs:
     - install
 
+i18n-frontend:
+  image: node:20
+  stage: check
+  script:
+     - ./check_i18n.py
+     - diff src/i18n/en_US.json src/i18n/missing_en_US.json 
+  allow_failure: true
+  needs:
+    - install
+
 exunit:
   stage: test
   services:
