@@ -109,7 +109,7 @@ i18n-frontend:
   image: python:alpine
   stage: check
   script:
-     - python3 check_i18n.py
+    - python3 check_i18n.py
   allow_failure: true
   needs:
     - install

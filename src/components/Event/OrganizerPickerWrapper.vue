@@ -264,7 +264,7 @@ const { result: membersResult } = useQuery<{ group: Pick<IGroup, "members"> }>(
 
 const members = computed<Paginate<IMember>>(() =>
   selectedActor.value?.type === ActorType.GROUP
-    ? membersResult.value?.group?.members ?? { elements: [], total: 0 }
+    ? (membersResult.value?.group?.members ?? { elements: [], total: 0 })
     : { elements: [], total: 0 }
 );
 

@@ -91,7 +91,9 @@ const inputAttrs = computed(() => props.inputAttrs);
 
 // const modalOpened = ref(false);
 
-const prompt = ref<string>(hasInput.value ? inputAttrs.value.value ?? "" : "");
+const prompt = ref<string>(
+  hasInput.value ? (inputAttrs.value.value ?? "") : ""
+);
 const input = ref();
 
 // https://github.com/oruga-ui/oruga/issues/339
