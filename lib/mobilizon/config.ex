@@ -59,6 +59,20 @@ defmodule Mobilizon.Config do
         instance_config()[:name]
       )
 
+  @spec external_urls :: String.t()
+  def external_urls do
+    config_cached_value("instance", "external_urls", [])
+    |> Enum.map(&transform_external_url/1)
+  end
+
+  def transform_external_url(map) do
+    %{
+      enabled: Map.fetch!(map, "enabled"),
+      label: Map.fetch!(map, "label"),
+      url: Map.fetch!(map, "url")
+    }
+  end
+
   @spec instance_description :: String.t()
   def instance_description,
     do:
@@ -475,7 +489,8 @@ defmodule Mobilizon.Config do
       instance_privacy_policy_type: instance_privacy_type(),
       instance_privacy_policy_url: instance_privacy_url(),
       instance_rules: instance_rules(),
-      instance_languages: instance_languages()
+      instance_languages: instance_languages(),
+      external_urls: external_urls()
     }
   end
 

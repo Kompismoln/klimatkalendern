@@ -103,6 +103,10 @@ defmodule Mobilizon.GraphQL.Schema.ConfigType do
     )
 
     field(:search, :search_settings, description: "The instance's search settings")
+
+    field(:external_urls, list_of(:external_url),
+      description: "List of URL that will be shown to users"
+    )
   end
 
   @desc """

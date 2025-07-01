@@ -159,6 +159,24 @@ defmodule Mobilizon.GraphQL.Schema.AdminType do
     )
 
     field(:instance_languages, list_of(:string), description: "The instance's languages")
+
+    field(:external_urls, list_of(:external_url),
+      description: "List of URL that will be shown to users"
+    )
+  end
+
+  object :external_url do
+    meta(:authorize, :all)
+    field(:label, non_null(:string), description: "A human-readable label for the external URL")
+    field(:url, non_null(:string), description: "The actual external URL")
+    field(:enabled, non_null(:boolean), description: "Whether the external URL is enabled")
+  end
+
+  input_object :external_url_input do
+    meta(:authorize, :administrator)
+    field(:label, non_null(:string))
+    field(:url, non_null(:string))
+    field(:enabled, non_null(:boolean))
   end
 
   @desc "The acceptable values for the instance's terms type"
@@ -475,6 +493,11 @@ defmodule Mobilizon.GraphQL.Schema.AdminType do
       )
 
       arg(:instance_languages, list_of(:string), description: "The instance's languages")
+
+      arg(:external_urls, list_of(:external_url_input),
+        description: "Array of external URLs with label, status, and id"
+      )
+
       middleware(Rajska.QueryAuthorization, permit: :administrator)
       resolve(&Admin.save_settings/3)
     end
