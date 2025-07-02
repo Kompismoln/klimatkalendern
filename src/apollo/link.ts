@@ -1,10 +1,11 @@
-import { split } from "@apollo/client/core";
+import { from, split } from "@apollo/client/core";
 import { RetryLink } from "@apollo/client/link/retry";
 import { getMainDefinition } from "@apollo/client/utilities";
 import absintheSocketLink from "./absinthe-socket-link";
 import { authMiddleware } from "./auth";
 import errorLink from "./error-link";
 import { uploadLink } from "./absinthe-upload-socket-link";
+import { removeTypenameFromVariables } from "@apollo/client/link/remove-typename";
 
 let link;
 
@@ -34,7 +35,10 @@ if (!import.meta.env.VITE_HISTOIRE_ENV) {
 
 const retryLink = new RetryLink();
 
-export const fullLink = retryLink
-  .concat(errorLink)
-  .concat(authMiddleware)
-  .concat(link ?? uploadLink);
+export const fullLink = from([
+  removeTypenameFromVariables(),
+  retryLink,
+  errorLink,
+  authMiddleware,
+  link ?? uploadLink,
+]);
