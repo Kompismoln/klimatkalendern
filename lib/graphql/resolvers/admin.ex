@@ -280,12 +280,9 @@ defmodule Mobilizon.GraphQL.Resolvers.Admin do
          :ok <- eventually_update_instance_actor(res) do
       Config.clear_config_cache()
 
-      # add external_urls
-      urls = Map.get(res, :external_urls, [])
-      external_urls = Enum.map(urls, &Config.transform_external_url/1)
-      res = Map.put(res, :external_urls, external_urls)
-
-      {:ok, res}
+      # Return all the admin settings (not only res which is a subpart)
+      # This way you can update one config value and see other config values
+      {:ok, Config.admin_settings()}
     end
   end
 
