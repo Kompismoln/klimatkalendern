@@ -464,6 +464,7 @@ import {
   asMediaInput,
 } from "@/utils/image";
 import { useDefaultMaxSize } from "@/composition/config";
+import { CONFIG } from "@/graphql/config";
 
 const defaultAdminSettings: IAdminSettings = {
   instanceName: "",
@@ -490,6 +491,8 @@ const defaultAdminSettings: IAdminSettings = {
 const { onResult: onAdminSettingsResult } = useQuery<{
   adminSettings: IAdminSettings;
 }>(ADMIN_SETTINGS);
+
+const { refetch: refetchConfig } = useQuery(CONFIG);
 
 const adminSettings = ref<IAdminSettings>();
 
@@ -569,6 +572,9 @@ const {
       query: ADMIN_SETTINGS,
       data: { adminSettings: data?.saveAdminSettings },
     });
+
+    // We also want to update the config with the new data
+    refetchConfig();
   },
 }));
 
