@@ -37,6 +37,7 @@ export interface IConfig {
   longDescription: string;
   contact: string;
   slogan: string;
+  externalUrls: { url: string; label: string; enabled: boolean }[];
   instanceLogo: { url: string };
   defaultPicture: { url: string };
   primaryColor: string;

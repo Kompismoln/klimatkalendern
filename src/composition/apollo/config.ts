@@ -32,6 +32,22 @@ export function useAnonymousParticipationConfig() {
   return { anonymousParticipationConfig, error, loading };
 }
 
+export function useExternalURLSConfig() {
+  const {
+    result: configResult,
+    error,
+    loading,
+  } = useQuery<{
+    config: Pick<IConfig, "externalUrls">;
+  }>(CONFIG);
+
+  const externalURLSConfig = computed(
+    () => configResult.value?.config?.externalUrls
+  );
+
+  return { externalURLSConfig, error, loading };
+}
+
 export function useAnonymousReportsConfig() {
   const {
     result: configResult,

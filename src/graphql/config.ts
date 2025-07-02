@@ -20,6 +20,11 @@ export const CONFIG = gql`
       languages
       primaryColor
       secondaryColor
+      externalUrls {
+        label
+        url
+        enabled
+      }
       instanceLogo {
         url
       }

@@ -66,6 +66,19 @@
               >{{ t("Register") }}</router-link
             >
           </li>
+          <li
+            class="m-auto"
+            v-for="(link, index) in externalURLSConfig"
+            :key="index"
+          >
+            <a
+              :href="link.url"
+              rel="noopener noreferrer ugc"
+              target="_blank"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ link.label }}</a
+            >
+          </li>
         </ul>
       </div>
       <div
@@ -268,7 +281,10 @@ import {
 import { useLazyQuery, useMutation } from "@vue/apollo-composable";
 import { UPDATE_DEFAULT_ACTOR } from "@/graphql/actor";
 import { changeIdentity } from "@/utils/identity";
-import { useRegistrationConfig } from "@/composition/apollo/config";
+import {
+  useExternalURLSConfig,
+  useRegistrationConfig,
+} from "@/composition/apollo/config";
 import { useOruga } from "@oruga-ui/oruga-next";
 import {
   UNREAD_ACTOR_CONVERSATIONS,
@@ -283,6 +299,7 @@ const { identities } = useCurrentUserIdentities();
 const router = useRouter();
 const route = useRoute();
 
+const { externalURLSConfig } = useExternalURLSConfig();
 const { registrationsOpen, registrationsAllowlist, databaseLogin } =
   useRegistrationConfig();
 
