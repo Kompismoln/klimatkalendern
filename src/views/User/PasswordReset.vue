@@ -33,7 +33,7 @@
           expanded
         />
       </o-field>
-      <p class="my-4 flex gap-2">
+      <p class="my-4">
         <o-button
           variant="primary"
           size="large"
