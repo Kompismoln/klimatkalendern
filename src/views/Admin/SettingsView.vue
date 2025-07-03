@@ -7,123 +7,132 @@
       ]"
     />
 
-    <section v-if="settingsToWrite">
+    <div v-if="settingsToWrite">
       <form @submit.prevent="updateSettings">
-        <o-field :label="t('Instance Name')" label-for="instance-name">
-          <o-input
-            v-model="settingsToWrite.instanceName"
-            id="instance-name"
-            expanded
-          />
-        </o-field>
-        <div class="field flex flex-col">
-          <label class="" for="instance-description">{{
-            t("Instance Short Description")
-          }}</label>
-          <small>
-            {{
-              t(
-                "Displayed on homepage and meta tags. Describe what Mobilizon is and what makes this instance special in a single paragraph."
-              )
-            }}
-          </small>
-          <o-input
-            type="textarea"
-            v-model="settingsToWrite.instanceDescription"
-            rows="2"
-            id="instance-description"
-          />
-        </div>
-        <div class="field flex flex-col">
-          <label class="" for="instance-slogan">{{
-            t("Instance Slogan")
-          }}</label>
-          <small>
-            {{
-              t(
-                'A short tagline for your instance homepage. Defaults to "Gather ⋅ Organize ⋅ Mobilize"'
-              )
-            }}
-          </small>
-          <o-input
-            v-model="settingsToWrite.instanceSlogan"
-            :placeholder="t('Gather ⋅ Organize ⋅ Mobilize')"
-            id="instance-slogan"
-          />
-        </div>
-        <div class="field flex flex-col">
-          <label class="" for="instance-contact">{{ t("Contact") }}</label>
-          <small>
-            {{ t("Can be an email or a link, or just plain text.") }}
-          </small>
-          <o-input v-model="settingsToWrite.contact" id="instance-contact" />
-        </div>
-        <label class="field flex flex-col">
-          <p>{{ t("Logo") }}</p>
-          <small>
-            {{
-              t(
-                "Logo of the instance. Defaults to the upstream Mobilizon logo."
-              )
-            }}
-          </small>
-          <picture-upload
-            v-model:modelValue="instanceLogoFile"
-            :defaultImage="settingsToWrite.instanceLogo"
-            :textFallback="t('Logo')"
-            :maxSize="maxSize"
-          />
-        </label>
-        <label class="field flex flex-col">
-          <p>{{ t("Favicon") }}</p>
-          <small>
-            {{
-              t(
-                "Browser tab icon and PWA icon of the instance. Defaults to the upstream Mobilizon icon."
-              )
-            }}
-          </small>
-          <picture-upload
-            v-model:modelValue="instanceFaviconFile"
-            :defaultImage="settingsToWrite.instanceFavicon"
-            :textFallback="t('Favicon')"
-            :maxSize="maxSize"
-          />
-        </label>
-        <label class="field flex flex-col">
-          <p>{{ t("Default Picture") }}</p>
-          <small>
-            {{ t("Default picture when an event or group doesn't have one.") }}
-          </small>
-          <picture-upload
-            v-model:modelValue="defaultPictureFile"
-            :defaultImage="settingsToWrite.defaultPicture"
-            :textFallback="t('Default Picture')"
-            :maxSize="maxSize"
-          />
-        </label>
-        <!-- piece of code to manage instance colors
-        <div class="field flex flex-col">
-          <label class="" for="primary-color">{{ t("Primary Color") }}</label>
-          <o-input
-            type="color"
-            v-model="settingsToWrite.primaryColor"
-            id="primary-color"
-          />
-        </div>
-        <div class="field flex flex-col">
-          <label class="" for="secondary-color">{{
-            t("Secondary Color")
-          }}</label>
-          <o-input
-            type="color"
-            v-model="settingsToWrite.secondaryColor"
-            id="secondary-color"
-          />
-        </div>
-        -->
-        <o-field :label="t('Allow registrations')">
-          <fieldset>
+        <section class="mt-4 mb-4 p-4 border rounded shadow-sm bg-white">
+          <h2>{{ t("Informations") }}</h2>
+          <o-field :label="t('Instance Name')" label-for="instance-name">
+            <o-input
+              v-model="settingsToWrite.instanceName"
+              id="instance-name"
+              expanded
+            />
+          </o-field>
+          <div class="field flex flex-col">
+            <label for="instance-description">{{
+              t("Instance Short Description")
+            }}</label>
+            <small>
+              {{
+                t(
+                  "Displayed on homepage and meta tags. Describe what Mobilizon is and what makes this instance special in a single paragraph."
+                )
+              }}
+            </small>
+            <o-input
+              type="textarea"
+              v-model="settingsToWrite.instanceDescription"
+              rows="2"
+              id="instance-description"
+            />
+          </div>
+          <div class="field flex flex-col">
+            <label for="instance-long-description">{{
+              t("Instance Long Description")
+            }}</label>
+            <small>
+              {{
+                t(
+                  "A place to explain who you are and the things that set your instance apart. You can use HTML tags."
+                )
+              }}
+            </small>
+            <o-input
+              type="textarea"
+              v-model="settingsToWrite.instanceLongDescription"
+              rows="4"
+              id="instance-long-description"
+            />
+          </div>
+          <div class="field flex flex-col">
+            <label for="instance-slogan">{{ t("Instance Slogan") }}</label>
+            <small>
+              {{
+                t(
+                  'A short tagline for your instance homepage. Defaults to "Gather ⋅ Organize ⋅ Mobilize"'
+                )
+              }}
+            </small>
+            <o-input
+              v-model="settingsToWrite.instanceSlogan"
+              :placeholder="t('Gather ⋅ Organize ⋅ Mobilize')"
+              id="instance-slogan"
+            />
+          </div>
+          <div class="field flex flex-col">
+            <label for="instance-contact">{{ t("Contact") }}</label>
+            <small>
+              {{ t("Can be an email or a link, or just plain text.") }}
+            </small>
+            <o-input v-model="settingsToWrite.contact" id="instance-contact" />
+          </div>
+        </section>
+
+        <section class="mt-4 mb-4 p-4 border rounded shadow-sm bg-white">
+          <h2>{{ t("Pictures") }}</h2>
+
+          <label class="field flex flex-col">
+            <p>{{ t("Logo") }}</p>
+            <small>
+              {{
+                t(
+                  "Logo of the instance. Defaults to the upstream Mobilizon logo."
+                )
+              }}
+            </small>
+            <picture-upload
+              v-model:modelValue="instanceLogoFile"
+              :defaultImage="settingsToWrite.instanceLogo"
+              :textFallback="t('Logo')"
+              :maxSize="maxSize"
+            />
+          </label>
+          <label class="field flex flex-col">
+            <p>{{ t("Favicon") }}</p>
+            <small>
+              {{
+                t(
+                  "Browser tab icon and PWA icon of the instance. Defaults to the upstream Mobilizon icon."
+                )
+              }}
+            </small>
+            <picture-upload
+              v-model:modelValue="instanceFaviconFile"
+              :defaultImage="settingsToWrite.instanceFavicon"
+              :textFallback="t('Favicon')"
+              :maxSize="maxSize"
+            />
+          </label>
+          <label class="field flex flex-col">
+            <p>{{ t("Default Picture") }}</p>
+            <small>
+              {{
+                t("Default picture when an event or group doesn't have one.")
+              }}
+            </small>
+            <picture-upload
+              v-model:modelValue="defaultPictureFile"
+              :defaultImage="settingsToWrite.defaultPicture"
+              :textFallback="t('Default Picture')"
+              :maxSize="maxSize"
+            />
+          </label>
+        </section>
+
+        <section class="mt-4 mb-4 p-4 border rounded shadow-sm bg-white">
+          <h2>{{ t("Options") }}</h2>
+          <o-field :label="t('Allow registrations')">
+            <fieldset>
             <o-field>
               <o-radio
                 v-model="registrationsMode"
@@ -153,311 +162,307 @@
               >
             </o-field>
           </fieldset>
-        </o-field>
-        <div class="field flex flex-col">
-          <label class="" for="instance-languages">{{
-            t("Instance languages")
-          }}</label>
-          <small>
-            {{ t("Main languages you/your moderators speak") }}
-          </small>
-          <o-taginput
-            v-model="instanceLanguages"
-            :data="filteredLanguages"
-            allow-autocomplete
-            :open-on-focus="true"
-            field="name"
-            icon="label"
-            :placeholder="t('Select languages')"
-            @input="getFilteredLanguages"
-            id="instance-languages"
+          </o-field>
+          <div class="field flex flex-col">
+            <label for="instance-languages">{{
+              t("Instance languages")
+            }}</label>
+            <small>
+              {{ t("Main languages you/your moderators speak") }}
+            </small>
+            <o-taginput
+              v-model="instanceLanguages"
+              :data="filteredLanguages"
+              allow-autocomplete
+              :open-on-focus="true"
+              field="name"
+              icon="label"
+              :placeholder="t('Select languages')"
+              @input="getFilteredLanguages"
+              id="instance-languages"
+            >
+              <template #empty>{{ t("No languages found") }}</template>
+            </o-taginput>
+          </div>
+        </section>
+
+        <section class="mt-4 mb-4 p-4 border rounded shadow-sm bg-white">
+          <h2>{{ t("Policies") }}</h2>
+          <div class="field flex flex-col">
+            <label for="instance-rules">{{ t("Instance Rules") }}</label>
+            <small>
+              {{
+                t(
+                  "A place for your code of conduct, rules or guidelines. You can use HTML tags."
+                )
+              }}
+            </small>
+            <o-input
+              type="textarea"
+              v-model="settingsToWrite.instanceRules"
+              id="instance-rules"
+            />
+          </div>
+          <o-field :label="t('Instance Terms Source')">
+            <div>
+              <div>
+                <fieldset>
+                  <legend>
+                    {{ t("Choose the source of the instance's Terms") }}
+                  </legend>
+                  <o-field>
+                    <o-radio
+                      v-model="settingsToWrite.instanceTermsType"
+                      name="instanceTermsType"
+                      :native-value="InstanceTermsType.DEFAULT"
+                      >{{ t("Default Mobilizon terms") }}</o-radio
+                    >
+                  </o-field>
+                  <o-field>
+                    <o-radio
+                      v-model="settingsToWrite.instanceTermsType"
+                      name="instanceTermsType"
+                      :native-value="InstanceTermsType.URL"
+                      >{{ t("Custom URL") }}</o-radio
+                    >
+                  </o-field>
+                  <o-field>
+                    <o-radio
+                      v-model="settingsToWrite.instanceTermsType"
+                      name="instanceTermsType"
+                      :native-value="InstanceTermsType.CUSTOM"
+                      >{{ t("Custom text") }}</o-radio
+                    >
+                  </o-field>
+                </fieldset>
+              </div>
+              <div>
+                <o-notification
+                  class="bg-slate-700"
+                  v-if="
+                    settingsToWrite.instanceTermsType ===
+                    InstanceTermsType.DEFAULT
+                  "
+                >
+                  <b>{{ t("Default") }}</b>
+                  <i18n-t
+                    tag="p"
+                    class="prose dark:prose-invert"
+                    keypath="The {default_terms} will be used. They will be translated in the user's language."
+                  >
+                    <template #default_terms>
+                      <a
+                        href="https://mobilizon.org/terms.html"
+                        target="_blank"
+                        rel="noopener"
+                        >{{ t("default Mobilizon terms") }}</a
+                      >
+                    </template>
+                  </i18n-t>
+                  <b>{{
+                    t(
+                      "NOTE! The default terms have not been checked over by a lawyer and thus are unlikely to provide full legal protection for all situations for an instance admin using them. They are also not specific to all countries and jurisdictions. If you are unsure, please check with a lawyer."
+                    )
+                  }}</b>
+                </o-notification>
+                <div
+                  class="notification"
+                  v-if="
+                    settingsToWrite.instanceTermsType === InstanceTermsType.URL
+                  "
+                >
+                  <b>{{ t("URL") }}</b>
+                  <p class="prose dark:prose-invert">
+                    {{ t("Set an URL to a page with your own terms.") }}
+                  </p>
+                </div>
+                <div
+                  class="notification"
+                  v-if="
+                    settingsToWrite.instanceTermsType ===
+                    InstanceTermsType.CUSTOM
+                  "
+                >
+                  <b>{{ t("Custom") }}</b>
+                  <i18n-t
+                    tag="p"
+                    class="prose dark:prose-invert"
+                    keypath="Enter your own terms. HTML tags allowed. The {mobilizon_terms} are provided as template."
+                  >
+                    <template #mobilizon_terms>
+                      <a
+                        href="https://mobilizon.org/terms.html"
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        {{ t("default Mobilizon terms") }}</a
+                      >
+                    </template>
+                  </i18n-t>
+                </div>
+              </div>
+            </div>
+          </o-field>
+
+          <o-field
+            :label="t('Instance Terms URL')"
+            label-for="instanceTermsUrl"
+            v-if="settingsToWrite.instanceTermsType === InstanceTermsType.URL"
           >
-            <template #empty>{{ t("No languages found") }}</template>
-          </o-taginput>
-        </div>
-        <div class="field flex flex-col">
-          <label class="" for="instance-long-description">{{
-            t("Instance Long Description")
-          }}</label>
-          <small>
-            {{
-              t(
-                "A place to explain who you are and the things that set your instance apart. You can use HTML tags."
-              )
-            }}
-          </small>
-          <o-input
-            type="textarea"
-            v-model="settingsToWrite.instanceLongDescription"
-            rows="4"
-            id="instance-long-description"
-          />
-        </div>
-        <div class="field flex flex-col">
-          <label class="" for="instance-rules">{{ t("Instance Rules") }}</label>
-          <small>
-            {{
-              t(
-                "A place for your code of conduct, rules or guidelines. You can use HTML tags."
-              )
-            }}
-          </small>
-          <o-input
-            type="textarea"
-            v-model="settingsToWrite.instanceRules"
-            id="instance-rules"
-          />
-        </div>
-        <o-field :label="t('Instance Terms Source')">
-          <div class="">
-            <div class="">
-              <fieldset>
-                <legend>
-                  {{ t("Choose the source of the instance's Terms") }}
-                </legend>
-                <o-field>
-                  <o-radio
-                    v-model="settingsToWrite.instanceTermsType"
-                    name="instanceTermsType"
-                    :native-value="InstanceTermsType.DEFAULT"
-                    >{{ t("Default Mobilizon terms") }}</o-radio
-                  >
-                </o-field>
-                <o-field>
-                  <o-radio
-                    v-model="settingsToWrite.instanceTermsType"
-                    name="instanceTermsType"
-                    :native-value="InstanceTermsType.URL"
-                    >{{ t("Custom URL") }}</o-radio
-                  >
-                </o-field>
-                <o-field>
-                  <o-radio
-                    v-model="settingsToWrite.instanceTermsType"
-                    name="instanceTermsType"
-                    :native-value="InstanceTermsType.CUSTOM"
-                    >{{ t("Custom text") }}</o-radio
-                  >
-                </o-field>
-              </fieldset>
-            </div>
-            <div class="">
-              <o-notification
-                class="bg-slate-700"
-                v-if="
-                  settingsToWrite.instanceTermsType ===
-                  InstanceTermsType.DEFAULT
-                "
-              >
-                <b>{{ t("Default") }}</b>
-                <i18n-t
-                  tag="p"
-                  class="prose dark:prose-invert"
-                  keypath="The {default_terms} will be used. They will be translated in the user's language."
-                >
-                  <template #default_terms>
-                    <a
-                      href="https://mobilizon.org/terms.html"
-                      target="_blank"
-                      rel="noopener"
-                      >{{ t("default Mobilizon terms") }}</a
+            <o-input
+              type="URL"
+              v-model="settingsToWrite.instanceTermsUrl"
+              id="instanceTermsUrl"
+            />
+          </o-field>
+          <o-field
+            :label="t('Instance Terms')"
+            label-for="instanceTerms"
+            v-if="
+              settingsToWrite.instanceTermsType === InstanceTermsType.CUSTOM
+            "
+          >
+            <o-input
+              type="textarea"
+              v-model="settingsToWrite.instanceTerms"
+              id="instanceTerms"
+            />
+          </o-field>
+          <o-field :label="t('Instance Privacy Policy Source')">
+            <div>
+              <div>
+                <fieldset>
+                  <legend>
+                    {{
+                      t("Choose the source of the instance's Privacy Policy")
+                    }}
+                  </legend>
+                  <o-field>
+                    <o-radio
+                      v-model="settingsToWrite.instancePrivacyPolicyType"
+                      name="instancePrivacyType"
+                      :native-value="InstancePrivacyType.DEFAULT"
+                      >{{ t("Default Mobilizon privacy policy") }}</o-radio
                     >
-                  </template>
-                </i18n-t>
-                <b>{{
-                  t(
-                    "NOTE! The default terms have not been checked over by a lawyer and thus are unlikely to provide full legal protection for all situations for an instance admin using them. They are also not specific to all countries and jurisdictions. If you are unsure, please check with a lawyer."
-                  )
-                }}</b>
-              </o-notification>
-              <div
-                class="notification"
-                v-if="
-                  settingsToWrite.instanceTermsType === InstanceTermsType.URL
-                "
-              >
-                <b>{{ t("URL") }}</b>
-                <p class="prose dark:prose-invert">
-                  {{ t("Set an URL to a page with your own terms.") }}
-                </p>
+                  </o-field>
+                  <o-field>
+                    <o-radio
+                      v-model="settingsToWrite.instancePrivacyPolicyType"
+                      name="instancePrivacyType"
+                      :native-value="InstancePrivacyType.URL"
+                      >{{ t("Custom URL") }}</o-radio
+                    >
+                  </o-field>
+                  <o-field>
+                    <o-radio
+                      v-model="settingsToWrite.instancePrivacyPolicyType"
+                      name="instancePrivacyType"
+                      :native-value="InstancePrivacyType.CUSTOM"
+                      >{{ t("Custom text") }}</o-radio
+                    >
+                  </o-field>
+                </fieldset>
               </div>
-              <div
-                class="notification"
-                v-if="
-                  settingsToWrite.instanceTermsType === InstanceTermsType.CUSTOM
-                "
-              >
-                <b>{{ t("Custom") }}</b>
-                <i18n-t
-                  tag="p"
-                  class="prose dark:prose-invert"
-                  keypath="Enter your own terms. HTML tags allowed. The {mobilizon_terms} are provided as template."
+              <div>
+                <div
+                  class="notification"
+                  v-if="
+                    settingsToWrite.instancePrivacyPolicyType ===
+                    InstancePrivacyType.DEFAULT
+                  "
                 >
-                  <template #mobilizon_terms>
-                    <a
-                      href="https://mobilizon.org/terms.html"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      {{ t("default Mobilizon terms") }}</a
-                    >
-                  </template>
-                </i18n-t>
+                  <b>{{ t("Default") }}</b>
+                  <i18n-t
+                    tag="p"
+                    class="prose dark:prose-invert"
+                    keypath="The {default_privacy_policy} will be used. They will be translated in the user's language."
+                  >
+                    <template #default_privacy_policy>
+                      <a
+                        href="https://mobilizon.org/privacy.html"
+                        target="_blank"
+                        rel="noopener"
+                        >{{ t("default Mobilizon privacy policy") }}</a
+                      >
+                    </template>
+                  </i18n-t>
+                </div>
+                <div
+                  class="notification"
+                  v-if="
+                    settingsToWrite.instancePrivacyPolicyType ===
+                    InstancePrivacyType.URL
+                  "
+                >
+                  <b>{{ t("URL") }}</b>
+                  <p class="prose dark:prose-invert">
+                    {{
+                      t("Set an URL to a page with your own privacy policy.")
+                    }}
+                  </p>
+                </div>
+                <div
+                  class="notification"
+                  v-if="
+                    settingsToWrite.instancePrivacyPolicyType ===
+                    InstancePrivacyType.CUSTOM
+                  "
+                >
+                  <b>{{ t("Custom") }}</b>
+                  <i18n-t
+                    tag="p"
+                    class="prose dark:prose-invert"
+                    keypath="Enter your own privacy policy. HTML tags allowed. The {mobilizon_privacy_policy} is provided as template."
+                  >
+                    <template #mobilizon_privacy_policy>
+                      <a
+                        href="https://mobilizon.org/privacy.html"
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        {{ t("default Mobilizon privacy policy") }}</a
+                      >
+                    </template>
+                  </i18n-t>
+                </div>
               </div>
             </div>
-          </div>
-        </o-field>
-        <o-field
-          :label="t('Instance Terms URL')"
-          label-for="instanceTermsUrl"
-          v-if="settingsToWrite.instanceTermsType === InstanceTermsType.URL"
-        >
-          <o-input
-            type="URL"
-            v-model="settingsToWrite.instanceTermsUrl"
-            id="instanceTermsUrl"
-          />
-        </o-field>
-        <o-field
-          :label="t('Instance Terms')"
-          label-for="instanceTerms"
-          v-if="settingsToWrite.instanceTermsType === InstanceTermsType.CUSTOM"
-        >
-          <o-input
-            type="textarea"
-            v-model="settingsToWrite.instanceTerms"
-            id="instanceTerms"
-          />
-        </o-field>
-        <o-field :label="t('Instance Privacy Policy Source')">
-          <div class="">
-            <div class="">
-              <fieldset>
-                <legend>
-                  {{ t("Choose the source of the instance's Privacy Policy") }}
-                </legend>
-                <o-field>
-                  <o-radio
-                    v-model="settingsToWrite.instancePrivacyPolicyType"
-                    name="instancePrivacyType"
-                    :native-value="InstancePrivacyType.DEFAULT"
-                    >{{ t("Default Mobilizon privacy policy") }}</o-radio
-                  >
-                </o-field>
-                <o-field>
-                  <o-radio
-                    v-model="settingsToWrite.instancePrivacyPolicyType"
-                    name="instancePrivacyType"
-                    :native-value="InstancePrivacyType.URL"
-                    >{{ t("Custom URL") }}</o-radio
-                  >
-                </o-field>
-                <o-field>
-                  <o-radio
-                    v-model="settingsToWrite.instancePrivacyPolicyType"
-                    name="instancePrivacyType"
-                    :native-value="InstancePrivacyType.CUSTOM"
-                    >{{ t("Custom text") }}</o-radio
-                  >
-                </o-field>
-              </fieldset>
-            </div>
-            <div class="">
-              <div
-                class="notification"
-                v-if="
-                  settingsToWrite.instancePrivacyPolicyType ===
-                  InstancePrivacyType.DEFAULT
-                "
-              >
-                <b>{{ t("Default") }}</b>
-                <i18n-t
-                  tag="p"
-                  class="prose dark:prose-invert"
-                  keypath="The {default_privacy_policy} will be used. They will be translated in the user's language."
-                >
-                  <template #default_privacy_policy>
-                    <a
-                      href="https://mobilizon.org/privacy.html"
-                      target="_blank"
-                      rel="noopener"
-                      >{{ t("default Mobilizon privacy policy") }}</a
-                    >
-                  </template>
-                </i18n-t>
-              </div>
-              <div
-                class="notification"
-                v-if="
-                  settingsToWrite.instancePrivacyPolicyType ===
-                  InstancePrivacyType.URL
-                "
-              >
-                <b>{{ t("URL") }}</b>
-                <p class="prose dark:prose-invert">
-                  {{ t("Set an URL to a page with your own privacy policy.") }}
-                </p>
-              </div>
-              <div
-                class="notification"
-                v-if="
-                  settingsToWrite.instancePrivacyPolicyType ===
-                  InstancePrivacyType.CUSTOM
-                "
-              >
-                <b>{{ t("Custom") }}</b>
-                <i18n-t
-                  tag="p"
-                  class="prose dark:prose-invert"
-                  keypath="Enter your own privacy policy. HTML tags allowed. The {mobilizon_privacy_policy} is provided as template."
-                >
-                  <template #mobilizon_privacy_policy>
-                    <a
-                      href="https://mobilizon.org/privacy.html"
-                      target="_blank"
-                      rel="noopener"
-                    >
-                      {{ t("default Mobilizon privacy policy") }}</a
-                    >
-                  </template>
-                </i18n-t>
-              </div>
-            </div>
-          </div>
-        </o-field>
-        <o-field
-          :label="t('Instance Privacy Policy URL')"
-          label-for="instancePrivacyPolicyUrl"
-          v-if="
-            settingsToWrite.instancePrivacyPolicyType ===
-            InstancePrivacyType.URL
-          "
-        >
-          <o-input
-            type="URL"
-            v-model="settingsToWrite.instancePrivacyPolicyUrl"
-            id="instancePrivacyPolicyUrl"
-          />
-        </o-field>
-        <o-field
-          :label="t('Instance Privacy Policy')"
-          label-for="instancePrivacyPolicy"
-          v-if="
-            settingsToWrite.instancePrivacyPolicyType ===
-            InstancePrivacyType.CUSTOM
-          "
-        >
-          <o-input
-            type="textarea"
-            v-model="settingsToWrite.instancePrivacyPolicy"
-            id="instancePrivacyPolicy"
-          />
-        </o-field>
+          </o-field>
+          <o-field
+            :label="t('Instance Privacy Policy URL')"
+            label-for="instancePrivacyPolicyUrl"
+            v-if="
+              settingsToWrite.instancePrivacyPolicyType ===
+              InstancePrivacyType.URL
+            "
+          >
+            <o-input
+              type="URL"
+              v-model="settingsToWrite.instancePrivacyPolicyUrl"
+              id="instancePrivacyPolicyUrl"
+            />
+          </o-field>
+          <o-field
+            :label="t('Instance Privacy Policy')"
+            label-for="instancePrivacyPolicy"
+            v-if="
+              settingsToWrite.instancePrivacyPolicyType ===
+              InstancePrivacyType.CUSTOM
+            "
+          >
+            <o-input
+              type="textarea"
+              v-model="settingsToWrite.instancePrivacyPolicy"
+              id="instancePrivacyPolicy"
+            />
+          </o-field>
+        </section>
+
         <o-button native-type="submit" variant="primary">{{
-          t("Save")
+          t("Save instance settings")
         }}</o-button>
       </form>
-    </section>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
