@@ -458,6 +458,47 @@
           </o-field>
         </section>
 
+        <section class="mt-4 mb-4 p-4 border rounded shadow-sm bg-white">
+          <h2>{{ t("External links") }}</h2>
+          <small>
+            {{
+              t(
+                "This section lets you add links to external websites to the menu."
+              )
+            }}
+          </small>
+          <o-field>
+            <o-button :label="t('Add a new link')" @click="addLink" />
+          </o-field>
+          <div
+            class="mt-5 grid lg:grid-cols-[repeat(auto-fit,minmax(250px,0.5fr))] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2"
+            v-if="settingsToWrite.externalUrls.length > 0"
+          >
+            <div
+              class="bg-mbz-yellow-alt-100 p-5"
+              v-for="(link, index) in settingsToWrite.externalUrls"
+              :key="index"
+            >
+              <o-field :label="t('URL')" class="!mt-0"
+                ><o-input expanded v-model="link.url" type="text"
+              /></o-field>
+
+              <o-field :label="t('Label')"
+                ><o-input expanded v-model="link.label" type="text"
+              /></o-field>
+
+              <o-field
+                ><o-checkbox v-model="link.enabled" :label="t('Enabled')"
+              /></o-field>
+              <o-field>
+                <o-button
+                  :label="t('Delete this link')"
+                  variant="danger"
+                  @click="deleteLink(index)"
+              /></o-field>
+            </div>
+          </div>
+        </section>
         <o-button native-type="submit" variant="primary">{{
           t("Save instance settings")
         }}</o-button>
@@ -479,7 +520,7 @@ import {
 import { IAdminSettings, ILanguage } from "@/types/admin.model";
 import RouteName from "@/router/name";
 import { useMutation, useQuery } from "@vue/apollo-composable";
-import { ref, computed, watch, inject } from "vue";
+import { ref, computed, watch, inject, toRaw } from "vue";
 import { useI18n } from "vue-i18n";
 import { useHead } from "@/utils/head";
 import type { Notifier } from "@/plugins/notifier";
@@ -515,6 +556,7 @@ const defaultAdminSettings: IAdminSettings = {
   registrationsOpen: false,
   registrationsModeration: false,
   instanceLanguages: [],
+  externalUrls: [],
 };
 
 const { onResult: onAdminSettingsResult } = useQuery<{
@@ -556,8 +598,24 @@ useHead({
 const settingsToWrite = ref<IAdminSettings>(defaultAdminSettings);
 
 watch(adminSettings, () => {
-  settingsToWrite.value = { ...adminSettings.value };
+  // We need to use structuredClone to clone deep properties of adminSettings (like externalUrls)
+  // {... } only shadow clone, so externalUrls is not reactive doing this
+  if (adminSettings.value) {
+    settingsToWrite.value = structuredClone(toRaw(adminSettings.value));
+  }
 });
+
+const addLink = () => {
+  settingsToWrite.value.externalUrls.push({
+    url: "",
+    label: "",
+    enabled: false,
+  });
+};
+
+const deleteLink = (index: number) => {
+  settingsToWrite.value.externalUrls.splice(index, 1);
+};
 
 const filteredLanguages = ref<string[]>([]);
 
@@ -614,14 +672,15 @@ const {
   onDone: saveAdminSettingsDone,
   onError: saveAdminSettingsError,
 } = useMutation(SAVE_ADMIN_SETTINGS, () => ({
-  // We need to update the cache because we just changed admin settings
-  // We want to update the related query ADMIN_SETTINGS
   update(cache, { data }) {
     if (!data?.saveAdminSettings) {
       console.error("can't acces new admin settings");
       return;
     }
 
+    // We need to update the cache because we just changed admin settings
+    // We want to update the related query ADMIN_SETTINGS
+    // Usefull if we comeback to this page
     cache.writeQuery({
       query: ADMIN_SETTINGS,
       data: { adminSettings: data?.saveAdminSettings },

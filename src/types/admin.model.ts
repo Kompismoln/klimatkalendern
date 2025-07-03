@@ -28,6 +28,7 @@ export interface IAdminSettings {
   contact: string;
   instanceLogo: IMedia | null;
   instanceFavicon: IMedia | null;
+  externalUrls: { url: string; label: string; enabled: boolean }[];
   defaultPicture: IMedia | null;
   primaryColor: string;
   secondaryColor: string;
