@@ -88,7 +88,7 @@ export async function loadWrappedMedia(
 export function asMediaInput(
   mmedia: IModifiableMedia,
   name: string,
-  fallbackId: number
+  fallbackId: string
 ): any {
   const ret = {
     [name]: {},

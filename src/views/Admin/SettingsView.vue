@@ -522,10 +522,9 @@ const adminSettings = ref<IAdminSettings>();
 
 onAdminSettingsResult(async ({ data }) => {
   if (!data) return;
-  adminSettings.value =
-    {
-      ...data.adminSettings,
-    } ?? defaultAdminSettings;
+  adminSettings.value = {
+    ...data.adminSettings,
+  };
 
   loadWrappedMedia(instanceLogo, adminSettings.value.instanceLogo);
   loadWrappedMedia(instanceFavicon, adminSettings.value.instanceFavicon);
@@ -642,21 +641,21 @@ saveAdminSettingsError((e) => {
 
 const updateSettings = async (): Promise<void> => {
   const variables = {
-    ...settingsToWrite.value,
+    ...structuredClone(toRaw(settingsToWrite.value)),
     ...asMediaInput(
       instanceLogo,
       "instanceLogo",
-      adminSettings.value?.instanceLogo?.uuid
+      adminSettings.value?.instanceLogo?.uuid ?? ""
     ),
     ...asMediaInput(
       instanceFavicon,
       "instanceFavicon",
-      adminSettings.value?.instanceFavicon?.uuid
+      adminSettings.value?.instanceFavicon?.uuid ?? ""
     ),
     ...asMediaInput(
       defaultPicture,
       "defaultPicture",
-      adminSettings.value?.defaultPicture?.uuid
+      adminSettings.value?.defaultPicture?.uuid ?? ""
     ),
   };
   saveAdminSettings(variables);
