@@ -31,7 +31,7 @@
   },
   "type": "module",
   "dependencies": {
-    "@apollo/client": "^3.3.16",
+    "@apollo/client": "^3.13.8",
     "@framasoft/socket": "^1.0.0",
     "@framasoft/socket-apollo-link": "^1.0.0",
     "@oruga-ui/oruga-next": "0.8.12",
