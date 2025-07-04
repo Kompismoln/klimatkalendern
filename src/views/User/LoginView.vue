@@ -133,7 +133,6 @@ import { IConfig } from "@/types/config.model";
 import { IUser } from "@/types/current-user.model";
 import { saveUserData, SELECTED_PROVIDERS } from "@/utils/auth";
 import { storeUserLocationAndRadiusFromUserSettings } from "@/utils/location";
-import { NoIdentitiesException } from "@/utils/identity";
 import {
   useMutation,
   useLazyQuery,
@@ -149,12 +148,14 @@ import { LoginError, LoginErrorCode } from "@/types/enums";
 import { useCurrentUserClient } from "@/composition/apollo/user";
 import { useHead } from "@/utils/head";
 import { enumTransformer, useRouteQuery } from "vue-use-route-query";
+import { useCurrentUserIdentities } from "@/composition/apollo/actor";
 
 const { t } = useI18n({ useScope: "global" });
 const router = useRouter();
 const route = useRoute();
 
 const { currentUser } = useCurrentUserClient();
+const { identities } = useCurrentUserIdentities();
 
 const apollo = useApolloClient();
 
@@ -239,7 +240,14 @@ const loginAction = async (e: Event) => {
       loggedUserLocationResult?.loggedUser?.settings?.location
     );
 
-    // Soft redirect
+    // Step 4: Redirection
+    if (identities.value && identities.value.length < 1) {
+      console.debug(
+        "no identities, a redirection to CREATE_IDENTITY has already been done by App.vue"
+      );
+      return;
+    }
+
     if (redirect.value) {
       console.debug("We have a redirect", redirect.value);
       router.push(redirect.value);
@@ -251,27 +259,15 @@ const loginAction = async (e: Event) => {
       window.localStorage.setItem("welcome-back", "yes");
     }
     router.replace({ name: RouteName.HOME });
-
-    // Hard redirect
-    // since we fail to refresh the navbar properly, we force a page reload.
-    // see the explanation of the bug bellow
-    // window.location = redirect.value || "/";
   } catch (err: any) {
-    if (err instanceof NoIdentitiesException && currentUser.value) {
-      console.debug("No identities, redirecting to profile registration");
-      await router.push({
-        name: RouteName.CREATE_IDENTITY,
+    console.error(err);
+    submitted.value = false;
+    if (err.graphQLErrors) {
+      err.graphQLErrors.forEach(({ message }: { message: string }) => {
+        errors.value.push(message);
       });
-    } else {
-      console.error(err);
-      submitted.value = false;
-      if (err.graphQLErrors) {
-        err.graphQLErrors.forEach(({ message }: { message: string }) => {
-          errors.value.push(message);
-        });
-      } else if (err.networkError) {
-        errors.value.push(err.networkError.message);
-      }
+    } else if (err.networkError) {
+      errors.value.push(err.networkError.message);
     }
   }
 };
