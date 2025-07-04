@@ -1,0 +1,165 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EventActionSection > event action section with basic informations 1`] = `
+"<div class="">
+  <!--v-if-->
+  <div class="flex flex-col gap-1 mt-1">
+    <p class="inline-flex gap-2 ml-auto">
+      <ticket-confirmation-outline-stub fillcolor="currentColor" size="24"></ticket-confirmation-outline-stub><span><span>No one is participating</span></span>
+      <!--v-if-->
+    </p>
+    <o-dropdown class="ml-auto">
+      <!--v-if-->
+      <!--v-if-->
+      <!--v-if-->
+      <!--v-if-->
+      <!--v-if-->
+      <!--v-if-->
+      <o-dropdown-item aria-role="listitem" class="p-1"><span class="flex gap-1"><share-stub fillcolor="currentColor" size="24"></share-stub> Share this event</span></o-dropdown-item>
+      <o-dropdown-item aria-role="listitem"><span class="flex gap-1"><calendar-plus-stub fillcolor="currentColor" size="24"></calendar-plus-stub> Add to my calendar</span></o-dropdown-item>
+      <!--v-if-->
+    </o-dropdown>
+  </div>
+</div>
+<o-modal active="false" has-modal-card="" close-button-aria-label="Close" autofocus="false" trapfocus="false">
+  <report-modal-stub title="Report this event"></report-modal-stub>
+</o-modal>
+<o-modal close-button-aria-label="Close" active="false" has-modal-card="">
+  <share-event-modal-stub event="[object Object]" eventcapacityok="true"></share-event-modal-stub>
+</o-modal>
+<o-modal active="false" has-modal-card="" close-button-aria-label="Close">
+  <!--v-if-->
+</o-modal>
+<o-modal active="false" has-modal-card="" close-button-aria-label="Close">
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Participation confirmation</p>
+    </header>
+    <section class="modal-card-body">
+      <p>The event organiser has chosen to validate manually participations. Do you want to add a little note to explain why you want to participate to this event?</p>
+      <form>
+        <o-field label="Message">
+          <o-input type="textarea" size="medium" modelvalue="" minlength="10"></o-input>
+        </o-field>
+        <div class="buttons">
+          <o-button native-type="button" class="button">Cancel</o-button>
+          <o-button variant="primary" native-type="submit">Confirm my participation</o-button>
+        </div>
+      </form>
+    </section>
+  </div>
+</o-modal>"
+`;
+
+exports[`EventActionSection > event action section with creator as participant 1`] = `
+"<div class="">
+  <!--v-if-->
+  <div class="flex flex-col gap-1 mt-1">
+    <p class="inline-flex gap-2 ml-auto">
+      <ticket-confirmation-outline-stub fillcolor="currentColor" size="24"></ticket-confirmation-outline-stub><a href="/events/f37910ea-fd5a-4756-9679-00971f3f4106/participations" class="participations-link">
+        <!-- We retire one because of the event creator who is a
+                    participant --><span>No one is participating</span>
+      </a>
+      <!--v-if-->
+    </p>
+    <o-dropdown class="ml-auto">
+      <o-dropdown-item aria-role="listitem" has-link="">
+        <account-multiple-stub fillcolor="currentColor" size="24"></account-multiple-stub> Participations
+      </o-dropdown-item>
+      <o-dropdown-item aria-role="listitem" has-link="">
+        <bullhorn-stub fillcolor="currentColor" size="24"></bullhorn-stub> Announcements
+      </o-dropdown-item>
+      <o-dropdown-item aria-role="listitem" has-link="">
+        <pencil-stub fillcolor="currentColor" size="24"></pencil-stub> Edit
+      </o-dropdown-item>
+      <o-dropdown-item aria-role="listitem" has-link="">
+        <content-duplicate-stub fillcolor="currentColor" size="24"></content-duplicate-stub> Duplicate
+      </o-dropdown-item>
+      <o-dropdown-item aria-role="listitem"><span class="flex gap-1"><delete-stub fillcolor="currentColor" size="24"></delete-stub> Delete</span></o-dropdown-item>
+      <hr role="presentation" class="dropdown-divider" aria-role="o-dropdown-item">
+      <o-dropdown-item aria-role="listitem" class="p-1"><span class="flex gap-1"><share-stub fillcolor="currentColor" size="24"></share-stub> Share this event</span></o-dropdown-item>
+      <o-dropdown-item aria-role="listitem"><span class="flex gap-1"><calendar-plus-stub fillcolor="currentColor" size="24"></calendar-plus-stub> Add to my calendar</span></o-dropdown-item>
+      <!--v-if-->
+    </o-dropdown>
+  </div>
+</div>
+<o-modal active="false" has-modal-card="" close-button-aria-label="Close" autofocus="false" trapfocus="false">
+  <report-modal-stub title="Report this event"></report-modal-stub>
+</o-modal>
+<o-modal close-button-aria-label="Close" active="false" has-modal-card="">
+  <share-event-modal-stub event="[object Object]" eventcapacityok="true"></share-event-modal-stub>
+</o-modal>
+<o-modal active="false" has-modal-card="" close-button-aria-label="Close">
+  <!--v-if-->
+</o-modal>
+<o-modal active="false" has-modal-card="" close-button-aria-label="Close">
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Participation confirmation</p>
+    </header>
+    <section class="modal-card-body">
+      <p>The event organiser has chosen to validate manually participations. Do you want to add a little note to explain why you want to participate to this event?</p>
+      <form>
+        <o-field label="Message">
+          <o-input type="textarea" size="medium" modelvalue="" minlength="10"></o-input>
+        </o-field>
+        <div class="buttons">
+          <o-button native-type="button" class="button">Cancel</o-button>
+          <o-button variant="primary" native-type="submit">Confirm my participation</o-button>
+        </div>
+      </form>
+    </section>
+  </div>
+</o-modal>"
+`;
+
+exports[`EventActionSection > event action section with participant 1`] = `
+"<div class="">
+  <!--v-if-->
+  <div class="flex flex-col gap-1 mt-1">
+    <p class="inline-flex gap-2 ml-auto">
+      <ticket-confirmation-outline-stub fillcolor="currentColor" size="24"></ticket-confirmation-outline-stub><span><span>5/10 available places</span></span>
+      <!--v-if-->
+    </p>
+    <o-dropdown class="ml-auto">
+      <!--v-if-->
+      <!--v-if-->
+      <!--v-if-->
+      <!--v-if-->
+      <!--v-if-->
+      <!--v-if-->
+      <o-dropdown-item aria-role="listitem" class="p-1"><span class="flex gap-1"><share-stub fillcolor="currentColor" size="24"></share-stub> Share this event</span></o-dropdown-item>
+      <o-dropdown-item aria-role="listitem"><span class="flex gap-1"><calendar-plus-stub fillcolor="currentColor" size="24"></calendar-plus-stub> Add to my calendar</span></o-dropdown-item>
+      <!--v-if-->
+    </o-dropdown>
+  </div>
+</div>
+<o-modal active="false" has-modal-card="" close-button-aria-label="Close" autofocus="false" trapfocus="false">
+  <report-modal-stub title="Report this event"></report-modal-stub>
+</o-modal>
+<o-modal close-button-aria-label="Close" active="false" has-modal-card="">
+  <share-event-modal-stub event="[object Object]" eventcapacityok="true"></share-event-modal-stub>
+</o-modal>
+<o-modal active="false" has-modal-card="" close-button-aria-label="Close">
+  <!--v-if-->
+</o-modal>
+<o-modal active="false" has-modal-card="" close-button-aria-label="Close">
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Participation confirmation</p>
+    </header>
+    <section class="modal-card-body">
+      <p>The event organiser has chosen to validate manually participations. Do you want to add a little note to explain why you want to participate to this event?</p>
+      <form>
+        <o-field label="Message">
+          <o-input type="textarea" size="medium" modelvalue="" minlength="10"></o-input>
+        </o-field>
+        <div class="buttons">
+          <o-button native-type="button" class="button">Cancel</o-button>
+          <o-button variant="primary" native-type="submit">Confirm my participation</o-button>
+        </div>
+      </form>
+    </section>
+  </div>
+</o-modal>"
+`;
