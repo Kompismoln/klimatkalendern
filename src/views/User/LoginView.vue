@@ -134,7 +134,12 @@ import { IUser } from "@/types/current-user.model";
 import { saveUserData, SELECTED_PROVIDERS } from "@/utils/auth";
 import { storeUserLocationAndRadiusFromUserSettings } from "@/utils/location";
 import { NoIdentitiesException } from "@/utils/identity";
-import { useMutation, useLazyQuery, useQuery } from "@vue/apollo-composable";
+import {
+  useMutation,
+  useLazyQuery,
+  useQuery,
+  useApolloClient,
+} from "@vue/apollo-composable";
 import { computed, reactive, ref, onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 import { useRoute, useRouter } from "vue-router";
@@ -150,6 +155,8 @@ const router = useRouter();
 const route = useRoute();
 
 const { currentUser } = useCurrentUserClient();
+
+const apollo = useApolloClient();
 
 const configQuery = useQuery<{
   config: Pick<
@@ -198,6 +205,11 @@ const loginAction = async (e: Event) => {
   errors.value = [];
 
   try {
+    // Step 0: Call resetStore to ensure that queries which identify the user via HTTP headers
+    // (instead of GraphQL variables) are properly refetched.
+    // https://www.apollographql.com/docs/react/networking/authentication#reset-store-on-logout
+    apollo.client.resetStore();
+
     // Step 1: login the user
     const { data: loginData } = await loginMutation.mutate({
       email: credentials.email,
