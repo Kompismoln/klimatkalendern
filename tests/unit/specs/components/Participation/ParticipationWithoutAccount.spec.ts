@@ -78,7 +78,7 @@ describe("ParticipationWithoutAccount", () => {
   ) => {
     mockClient = createMockClient({
       cache,
-      resolvers: defaultResolvers,
+      resolvers: defaultResolvers(cache),
     });
     requestHandlers = {
       anonymousActorIdQueryHandler: vi
