@@ -22,12 +22,12 @@ def write_expected_i18n_en_US(origin_i18n, expected_i18n):
 			new_i18n_us[i18n_key] = origin_i18n[i18n_key]
 		else:
 			new_i18n_us[i18n_key] = i18n_key
-	with open(join("src", "i18n", "expected_en_US.json"), "w") as script_hdl:
+	with open(join("src", "i18n", "en_US-expected_without_not_used.json"), "w") as script_hdl:
 		script_hdl.write(json.dumps(new_i18n_us, indent=2))
 	new_i18n_us=origin_i18n.copy()
 	new_i18n_us.update({i18n_key:i18n_key for i18n_key in expected_i18n if i18n_key not in origin_i18n})
 	new_i18n_us = {i18n_key: i18n_value for i18n_key, i18n_value in sorted(new_i18n_us.items(), key=lambda item: item[0])}
-	with open(join("src", "i18n", "missing_en_US.json"), "w") as script_hdl:
+	with open(join("src", "i18n", "en_US-with_not_translated.json"), "w") as script_hdl:
 		script_hdl.write(json.dumps(new_i18n_us, indent=2))
 
 list_translate_sentence_regex = (
@@ -44,7 +44,6 @@ def extract_all_sentences(dir="src/"):
 	translate_sentence = set()
 	for script_item in glob.glob(dir + "*"):
 		if isdir(script_item) and script_item[0] != '.':
-			print(">", script_item)
 			translate_sentence.update(extract_all_sentences(script_item + '/'))
 		elif isfile(script_item) and script_item.split('.')[-1] in ("vue", "ts"):
 			with open(script_item, 'r') as script_hdl:
