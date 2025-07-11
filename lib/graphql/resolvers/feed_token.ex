@@ -47,7 +47,10 @@ defmodule Mobilizon.GraphQL.Resolvers.FeedToken do
   end
 
   @doc """
-  Retrieve a feed token for actor, if user is admin
+  Retrieve a feed token for actor,
+  if actor belongs to logged user
+  or if user is admin
+  else error
   """
   @spec actor_tokens(any, map, map) :: {:ok, map} | {:error, String.t()}
   def actor_tokens(
