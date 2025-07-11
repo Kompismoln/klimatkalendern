@@ -163,6 +163,18 @@ defmodule Mobilizon.Service.Export.Feed do
       |> Entry.content({:cdata, description}, type: "html")
       |> Entry.published(event.publish_at || event.inserted_at)
 
+    entry =
+      if is_nil(event.picture) do
+        entry
+      else
+        entry
+        |> Entry.link(event.picture.file.url,
+          rel: "enclosure",
+          type: event.picture.file.content_type,
+          length: event.picture.file.size
+        )
+      end
+
     # Add tags
     entry =
       event.tags
