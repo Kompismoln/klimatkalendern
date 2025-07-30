@@ -133,9 +133,13 @@
               icon-left="rss"
               @click="
                 (e: Event) =>
-                  copyURL(e, tokenToURL(feedToken.token, 'atom'), 'atom')
+                  copyURL(
+                    e,
+                    tokenToURL('events/going/' + feedToken.token + '/atom'),
+                    'atom'
+                  )
               "
-              :href="tokenToURL(feedToken.token, 'atom')"
+              :href="tokenToURL('events/going/' + feedToken.token + '/atom')"
               target="_blank"
               >{{ t("RSS/Atom Feed") }}</o-button
             >
@@ -149,10 +153,14 @@
               tag="a"
               @click="
                 (e: Event) =>
-                  copyURL(e, tokenToURL(feedToken.token, 'ics'), 'ics')
+                  copyURL(
+                    e,
+                    tokenToURL('events/going/' + feedToken.token + '/ics'),
+                    'ics'
+                  )
               "
               icon-left="calendar-sync"
-              :href="tokenToURL(feedToken.token, 'ics')"
+              :href="tokenToURL('events/going/' + feedToken.token + '/ics')"
               target="_blank"
               >{{ t("ICS/WebCal Feed") }}</o-button
             >
@@ -225,7 +233,7 @@ import {
 } from "@/composition/apollo/actor";
 import { useMutation, useQuery, useApolloClient } from "@vue/apollo-composable";
 import { useAvatarMaxSize } from "@/composition/config";
-import { computed, inject, reactive, ref, watch } from "vue";
+import { computed, inject, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { convertToUsername } from "@/utils/username";
 import { Dialog } from "@/plugins/dialog";
@@ -233,6 +241,14 @@ import { Notifier } from "@/plugins/notifier";
 import { AbsintheGraphQLErrors } from "@/types/errors.model";
 import { ICurrentUser } from "@/types/current-user.model";
 import { useHead } from "@/utils/head";
+import {
+  showCopiedTooltip,
+  initCopiedTooltipShow,
+  copyURL,
+  tokenToURL,
+} from "@/utils/share";
+
+initCopiedTooltipShow();
 
 const { t } = useI18n({ useScope: "global" });
 const router = useRouter();
@@ -301,7 +317,6 @@ const avatarMaxSize = useAvatarMaxSize();
 
 const errors = ref<string[]>([]);
 const avatarFile = ref<File | null>(null);
-const showCopiedTooltip = reactive({ ics: false, atom: false });
 
 const isUpdate = computed(() => props.isUpdate);
 const identityName = computed(() => props.identityName);
@@ -517,21 +532,6 @@ const handleErrors = (absintheErrors: AbsintheGraphQLErrors): void => {
 const getInstanceHost = computed((): string => {
   return MOBILIZON_INSTANCE_HOST;
 });
-
-const tokenToURL = (token: string, format: string): string => {
-  return `${window.location.origin}/events/going/${token}/${format}`;
-};
-
-const copyURL = (e: Event, url: string, format: "ics" | "atom"): void => {
-  if (navigator.clipboard) {
-    e.preventDefault();
-    navigator.clipboard.writeText(url);
-    showCopiedTooltip[format] = true;
-    setTimeout(() => {
-      showCopiedTooltip[format] = false;
-    }, 2000);
-  }
-};
 
 const generateFeedTokens = async (): Promise<void> => {
   await createNewFeedToken({ actor_id: identity.value?.id });

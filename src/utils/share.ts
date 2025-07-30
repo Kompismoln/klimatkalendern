@@ -1,3 +1,5 @@
+import { reactive } from "vue";
+
 export const twitterShareUrl = (
   url: string | undefined,
   text: string | undefined
@@ -73,6 +75,32 @@ export const mastodonShareUrl = (
   return `https://toot.kytta.dev/?text=${encodeURIComponent(
     basicTextToEncode(url, text)
   )}`;
+};
+
+export const showCopiedTooltip = reactive({ ics: false, atom: false });
+
+export const initCopiedTooltipShow = (): void => {
+  showCopiedTooltip.ics = false;
+  showCopiedTooltip.atom = false;
+};
+
+export const tokenToURL = (subURL: string): string => {
+  return `${window.location.origin}/${subURL}`;
+};
+
+export const copyURL = (
+  e: Event,
+  url: string,
+  format: "ics" | "atom"
+): void => {
+  if (navigator.clipboard) {
+    e.preventDefault();
+    navigator.clipboard.writeText(url);
+    showCopiedTooltip[format] = true;
+    setTimeout(() => {
+      showCopiedTooltip[format] = false;
+    }, 2000);
+  }
 };
 
 const basicTextToEncode = (url: string, text: string): string => {

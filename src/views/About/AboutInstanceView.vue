@@ -86,20 +86,36 @@
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
           <td>{{ t("Instance feeds") }}</td>
           <td v-if="config.instanceFeeds.enabled" class="flex gap-2">
+            <o-tooltip
+              :label="t('URL copied to clipboard')"
+              :active="showCopiedTooltip.atom"
+              variant="success"
+              position="left"
+            />
             <o-button
               tag="a"
-              size="small"
               icon-left="rss"
-              href="/feed/instance/atom"
+              @click="
+                (e: Event) =>
+                  copyURL(e, tokenToURL('feed/instance/atom'), 'atom')
+              "
+              :href="tokenToURL('feed/instance/atom')"
               target="_blank"
               >{{ t("RSS/Atom Feed") }}</o-button
             >
-
+            <o-tooltip
+              :label="t('URL copied to clipboard')"
+              :active="showCopiedTooltip.ics"
+              variant="success"
+              position="left"
+            />
             <o-button
               tag="a"
-              size="small"
+              @click="
+                (e: Event) => copyURL(e, tokenToURL('feed/instance/ics'), 'ics')
+              "
               icon-left="calendar-sync"
-              href="/feed/instance/ics"
+              :href="tokenToURL('feed/instance/ics')"
               target="_blank"
               >{{ t("ICS/WebCal Feed") }}</o-button
             >
@@ -124,6 +140,14 @@ import { useQuery } from "@vue/apollo-composable";
 import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { useHead } from "@/utils/head";
+import {
+  showCopiedTooltip,
+  initCopiedTooltipShow,
+  copyURL,
+  tokenToURL,
+} from "@/utils/share";
+
+initCopiedTooltipShow();
 
 const { result: configResult } = useQuery<{ config: IConfig }>(ABOUT);
 

@@ -244,6 +244,12 @@
               >
                 {{ t("Share") }}
               </o-button>
+              <o-tooltip
+                :label="t('URL copied to clipboard')"
+                :active="showCopiedTooltip.atom || showCopiedTooltip.ics"
+                variant="success"
+                position="right"
+              />
               <o-dropdown aria-role="list">
                 <template #trigger>
                   <o-button
@@ -278,8 +284,16 @@
                 />
                 <o-dropdown-item has-link aria-role="menuitem">
                   <a
-                    :href="`@${preferredUsername}/feed/atom`"
+                    :href="tokenToURL('@' + preferredUsername + '/feed/atom')"
                     :title="t('Atom feed for events and posts')"
+                    @click="
+                      (e: Event) =>
+                        copyURL(
+                          e,
+                          tokenToURL('@' + preferredUsername + '/feed/atom'),
+                          'atom'
+                        )
+                    "
                     class="inline-flex gap-1"
                   >
                     <RSS />
@@ -288,8 +302,16 @@
                 </o-dropdown-item>
                 <o-dropdown-item has-link aria-role="menuitem">
                   <a
-                    :href="`@${preferredUsername}/feed/ics`"
+                    :href="tokenToURL('@' + preferredUsername + '/feed/ics')"
                     :title="t('ICS feed for events')"
+                    @click="
+                      (e: Event) =>
+                        copyURL(
+                          e,
+                          tokenToURL('@' + preferredUsername + '/feed/ics'),
+                          'ics'
+                        )
+                    "
                     class="inline-flex gap-1"
                   >
                     <CalendarSync />
@@ -674,6 +696,14 @@ import { useGroupResourcesList } from "@/composition/apollo/resources";
 import { useGroupMembers } from "@/composition/apollo/members";
 import GroupSection from "@/components/Group/GroupSection.vue";
 import { useIsLongEvents } from "@/composition/apollo/config";
+import {
+  showCopiedTooltip,
+  initCopiedTooltipShow,
+  copyURL,
+  tokenToURL,
+} from "@/utils/share";
+
+initCopiedTooltipShow();
 
 const props = defineProps<{
   preferredUsername: string;

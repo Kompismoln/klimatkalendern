@@ -248,13 +248,21 @@
             icon-left="rss"
             @click="
               (e: Event) =>
-                copyURL(e, tokenToURL(feedToken.token, 'atom'), 'atom')
+                copyURL(
+                  e,
+                  tokenToURL('events/going/' + feedToken.token + 'atom'),
+                  'atom'
+                )
             "
             @keyup.enter="
               (e: Event) =>
-                copyURL(e, tokenToURL(feedToken.token, 'atom'), 'atom')
+                copyURL(
+                  e,
+                  tokenToURL('events/going/' + feedToken.token + 'atom'),
+                  'atom'
+                )
             "
-            :href="tokenToURL(feedToken.token, 'atom')"
+            :href="tokenToURL('events/going/' + feedToken.token + 'atom')"
             target="_blank"
             >{{ $t("RSS/Atom Feed") }}</o-button
           >
@@ -269,14 +277,22 @@
             tag="a"
             @click="
               (e: Event) =>
-                copyURL(e, tokenToURL(feedToken.token, 'ics'), 'ics')
+                copyURL(
+                  e,
+                  tokenToURL('events/going/' + feedToken.token + 'ics'),
+                  'ics'
+                )
             "
             @keyup.enter="
               (e: Event) =>
-                copyURL(e, tokenToURL(feedToken.token, 'ics'), 'ics')
+                copyURL(
+                  e,
+                  tokenToURL('events/going/' + feedToken.token + 'ics'),
+                  'ics'
+                )
             "
             icon-left="calendar-sync"
-            :href="tokenToURL(feedToken.token, 'ics')"
+            :href="tokenToURL('events/going/' + feedToken.token + 'ics')"
             target="_blank"
             >{{ $t("ICS/WebCal Feed") }}</o-button
           >
@@ -328,19 +344,19 @@ import {
 import merge from "lodash/merge";
 import { CONFIG } from "@/graphql/config";
 import { useMutation, useQuery } from "@vue/apollo-composable";
-import {
-  computed,
-  inject,
-  onBeforeMount,
-  onMounted,
-  reactive,
-  ref,
-  watch,
-} from "vue";
+import { computed, inject, onBeforeMount, onMounted, ref, watch } from "vue";
 import { IConfig } from "@/types/config.model";
 import { useI18n } from "vue-i18n";
 import { useHead } from "@/utils/head";
 import { Dialog } from "@/plugins/dialog";
+import {
+  showCopiedTooltip,
+  initCopiedTooltipShow,
+  copyURL,
+  tokenToURL,
+} from "@/utils/share";
+
+initCopiedTooltipShow();
 
 type NotificationSubType = { label: string; id: string };
 type NotificationType = { label: string; subtypes: NotificationSubType[] };
@@ -380,7 +396,6 @@ const groupNotifications = ref<INotificationPendingEnum | undefined>(
 );
 const notificationPendingParticipationValues = ref<Record<string, unknown>>({});
 const groupNotificationsValues = ref<Record<string, unknown>>({});
-const showCopiedTooltip = reactive({ ics: false, atom: false });
 const subscribed = ref(false);
 const canShowWebPush = ref(false);
 
@@ -634,21 +649,6 @@ const { mutate: updateSetting } = useMutation<{ setUserSettings: string }>(
   SET_USER_SETTINGS,
   () => ({ refetchQueries: [{ query: USER_NOTIFICATIONS }] })
 );
-
-const tokenToURL = (token: string, format: string): string => {
-  return `${window.location.origin}/events/going/${token}/${format}`;
-};
-
-const copyURL = (e: Event, url: string, format: "ics" | "atom"): void => {
-  if (navigator.clipboard) {
-    e.preventDefault();
-    navigator.clipboard.writeText(url);
-    showCopiedTooltip[format] = true;
-    setTimeout(() => {
-      showCopiedTooltip[format] = false;
-    }, 2000);
-  }
-};
 
 const dialog = inject<Dialog>("dialog");
 
