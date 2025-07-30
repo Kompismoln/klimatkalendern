@@ -4,7 +4,7 @@
     :class="{ small }"
     :style="`--small: ${smallStyle}`"
   >
-    <div class="datetime-container-header bg-red-500 dark:bg-red-900">
+    <div class="datetime-container-header bg-red-400 dark:bg-red-900">
       <time :datetime="dateObj.toISOString()" class="weekday">{{
         weekday
       }}</time>
@@ -18,6 +18,9 @@
         class="month font-semibold block uppercase py-1 px-0"
         >{{ month }}</time
       >
+    </div>
+    <div class="datetime-container-footer bg-red-400 dark:bg-red-900">
+      <time :datetime="dateObj.toISOString()" class="year">{{ year }}</time>
     </div>
   </div>
 </template>
@@ -51,6 +54,10 @@ const weekday = computed<string>(() =>
   dateObj.value.toLocaleString(localeConverted.value, { weekday: "short" })
 );
 
+const year = computed<string>(() =>
+  dateObj.value.toLocaleString(localeConverted.value, { year: "numeric" })
+);
+
 const smallStyle = computed<string>(() => (props.small ? "1.2" : "2"));
 </script>
 
@@ -67,21 +74,30 @@ div.datetime-container {
     font-size: calc(9px * var(--small));
     font-weight: bold;
     vertical-align: top;
-    line-height: calc(9px * var(--small));
+    line-height: calc(8px * var(--small));
   }
   .datetime-container-content {
-    height: calc(30px * var(--small));
+    height: calc(22px * var(--small));
+  }
+  .datetime-container-footer {
+    height: calc(8px * var(--small));
+  }
+  .datetime-container-footer .year {
+    font-size: calc(7px * var(--small));
+    font-weight: bold;
+    vertical-align: top;
+    line-height: calc(8px * var(--small));
   }
 
   time {
     &.month {
-      font-size: 12px;
-      line-height: 12px;
+      font-size: 10px;
+      line-height: 9px;
     }
 
     &.day {
-      font-size: calc(1rem * var(--small));
-      line-height: calc(1rem * var(--small));
+      font-size: calc(0.8rem * var(--small));
+      line-height: calc(0.7rem * var(--small));
     }
   }
 }
