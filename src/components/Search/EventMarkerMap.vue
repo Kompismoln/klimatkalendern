@@ -64,7 +64,7 @@ import {
 import VueBottomSheet from "@/components/Map/VueBottomSheet.vue";
 
 /*
-  This is a little wierd: MarkerClusterGroup is actuall from leaflet.markercluster package,
+  This is a little wierd: MarkerClusterGroup is actually from leaflet.markercluster package,
   but doing import { MarkerClusterGroup } from "leaflet.markercluster" does not work..
   Instead, the solution below is
 
