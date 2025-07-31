@@ -148,7 +148,8 @@ const initialView = computed<[[number, number], number]>(() => {
   if (props.latitude && props.longitude) {
     return [[props.latitude, props.longitude], 12];
   }
-  return [[0, 0], 3];
+  // Center map over Sweden by default
+  return [[60, 15], 5];
 });
 
 watch(initialView, ([latlng, zoom]) => {
