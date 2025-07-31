@@ -53,6 +53,7 @@
         let
           pkgs = nixpkgs.legacyPackages.${system};
           elixirPackage = pkgs.beam.packages.erlang_26.elixir_1_15;
+          inotify' = if pkgs.stdenv.isDarwin then pkgs.fswatch else pkgs.inotify-tools;
         in
         {
           default = pkgs.mkShell {
@@ -71,7 +72,7 @@
               jpegoptim
               optipng
               pngquant
-              inotify-tools
+              inotify'
             ];
           };
         }
