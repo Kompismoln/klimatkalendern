@@ -62,6 +62,17 @@ import {
   watch,
 } from "vue";
 import VueBottomSheet from "@/components/Map/VueBottomSheet.vue";
+
+/*
+  This is a little wierd: MarkerClusterGroup is actuall from leaflet.markercluster package,
+  but doing import { MarkerClusterGroup } from "leaflet.markercluster" does not work..
+  Instead, the solution below is
+
+    import "leaflet.markercluster"
+    import { MarkerClusterGroup } from "leaflet";
+
+  See related GitHub issue: https://github.com/Leaflet/Leaflet.markercluster/issues/982
+*/
 import {
   map,
   LatLngBounds,
@@ -71,7 +82,9 @@ import {
   Map,
   Marker,
 } from "leaflet";
-import { MarkerClusterGroup } from "leaflet.markercluster/src";
+import "leaflet.markercluster";
+import { MarkerClusterGroup } from "leaflet";
+
 import { IGroup } from "@/types/actor";
 import { IEvent, instanceOfIEvent } from "@/types/event.model";
 import { ContentType } from "@/types/enums";
