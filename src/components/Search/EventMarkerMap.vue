@@ -97,7 +97,9 @@ import { Paginate } from "@/types/paginate";
 import { TypeNamed } from "@/types/apollo";
 
 const mapElement = ref<Map>();
-const markers = ref<MarkerClusterGroup>();
+const markers = ref<MarkerClusterGroup>(
+  new MarkerClusterGroup({ chunkedLoading: true })
+);
 const myBottomSheet = ref<typeof VueBottomSheet>();
 
 const props = defineProps<{
@@ -171,7 +173,6 @@ onMounted(async () => {
       myBottomSheet.value.close();
     }
   });
-  markers.value = new MarkerClusterGroup({ chunkedLoading: true });
 
   mapElement.value.on("zoom", debounce(update, 1000));
   mapElement.value.on("moveend", debounce(update, 1000));
@@ -279,14 +280,13 @@ const groupMarkers = computed(() => {
 });
 
 watch([markers, eventMarkers, groupMarkers], () => {
-  if (!markers.value) return;
   console.debug(
     "something changed in the search map",
     markers.value,
     eventMarkers.value,
     groupMarkers.value
   );
-  markers.value?.clearLayers();
+  markers.value.clearLayers();
   if (props.contentType !== ContentType.GROUPS) {
     eventMarkers.value?.forEach((markerToAdd) => {
       console.debug("adding event marker layer to markers");
