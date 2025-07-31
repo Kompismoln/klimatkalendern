@@ -27,6 +27,8 @@ import { useI18n } from "vue-i18n";
 
 const { locale } = useI18n({ useScope: "global" });
 
+// @ts-expect-error: TODO: Why does this no typecheck?
+// locale.value.replace("_", "-") does typecheck but causes runtime error
 const localeConverted = locale.replace("_", "-");
 
 const props = withDefaults(
