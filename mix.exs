@@ -155,7 +155,7 @@ defmodule Mobilizon.Mixfile do
       {:geo, "~> 3.0"},
       {:geo_postgis, "~> 3.1"},
       {:timex, "~> 3.0"},
-      {:icalendar, github: "tcitworld/icalendar"},
+      {:icalendar, github: "mobilizon-tools/icalendar"},
       {:exgravatar, "~> 2.0.1"},
       # {:json_ld, "~> 0.3"},
       {:jason, "~> 1.2"},

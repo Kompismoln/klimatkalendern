@@ -19,6 +19,7 @@ defmodule Mobilizon.Service.ICalendarTest do
       VERSION:2.0
       PRODID:-//Elixir ICalendar//Mobilizon #{Mobilizon.Config.instance_version()}//EN
       BEGIN:VEVENT
+      ATTACH;FMTTYPE=#{event.picture.file.content_type}:#{event.picture.file.url}
       CATEGORIES:#{Enum.map_join(event.tags, ",", & &1.title)}
       DESCRIPTION:Ceci est une description avec une première phrase assez longue\\,\\n      puis sur une seconde ligne
       DTEND:#{Value.to_ics(event.ends_on)}Z
@@ -41,16 +42,26 @@ defmodule Mobilizon.Service.ICalendarTest do
 
   describe "export the instance's public events" do
     test "succeds" do
-      %Event{} = event = insert(:event, title: "I'm public")
+      %Event{} = event1 = insert(:event, title: "I'm public")
       %Event{} = event2 = insert(:event, visibility: :private, title: "I'm private")
-      %Event{} = event3 = insert(:event, title: "Another public")
+      %Event{} = event3 = insert(:event, title: "Another public", picture: nil)
       %Event{} = event4 = insert(:event, title: "No description", description: nil)
 
       {:commit, ics} = ICalendarService.create_cache("instance")
-      assert ics =~ event.title
+      assert ics =~ event1.title
       refute ics =~ event2.title
       assert ics =~ event3.title
       assert ics =~ event4.title
+
+      assert Enum.sort(Regex.scan(~r|ATTACH;FMTTYPE=image.*|, ics)) ==
+               Enum.sort([
+                 [
+                   "ATTACH;FMTTYPE=#{event1.picture.file.content_type}:#{event1.picture.file.url}"
+                 ],
+                 [
+                   "ATTACH;FMTTYPE=#{event4.picture.file.content_type}:#{event4.picture.file.url}"
+                 ]
+               ])
     end
 
     test "with 50 events" do

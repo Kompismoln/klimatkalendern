@@ -149,6 +149,16 @@ defmodule Mobilizon.Service.Export.ICalendar do
         icalendar_event
       end
 
+    icalendar_event =
+      if event.picture do
+        %ICalendar.Event{
+          icalendar_event
+          | attach: {event.picture.file.url, event.picture.file.content_type}
+        }
+      else
+        icalendar_event
+      end
+
     icalendar_event
   end
 
