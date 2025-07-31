@@ -62,6 +62,17 @@ import {
   watch,
 } from "vue";
 import VueBottomSheet from "@/components/Map/VueBottomSheet.vue";
+
+/*
+  This is a little wierd: MarkerClusterGroup is actually from leaflet.markercluster package,
+  but doing import { MarkerClusterGroup } from "leaflet.markercluster" does not work..
+  Instead, the solution below is
+
+    import "leaflet.markercluster"
+    import { MarkerClusterGroup } from "leaflet";
+
+  See related GitHub issue: https://github.com/Leaflet/Leaflet.markercluster/issues/982
+*/
 import {
   map,
   LatLngBounds,
@@ -71,7 +82,9 @@ import {
   Map,
   Marker,
 } from "leaflet";
-import { MarkerClusterGroup } from "leaflet.markercluster/src";
+import "leaflet.markercluster";
+import { MarkerClusterGroup } from "leaflet";
+
 import { IGroup } from "@/types/actor";
 import { IEvent, instanceOfIEvent } from "@/types/event.model";
 import { ContentType } from "@/types/enums";
@@ -84,7 +97,9 @@ import { Paginate } from "@/types/paginate";
 import { TypeNamed } from "@/types/apollo";
 
 const mapElement = ref<Map>();
-const markers = ref<MarkerClusterGroup>();
+const markers = ref<MarkerClusterGroup>(
+  new MarkerClusterGroup({ chunkedLoading: true })
+);
 const myBottomSheet = ref<typeof VueBottomSheet>();
 
 const props = defineProps<{
@@ -133,7 +148,8 @@ const initialView = computed<[[number, number], number]>(() => {
   if (props.latitude && props.longitude) {
     return [[props.latitude, props.longitude], 12];
   }
-  return [[0, 0], 3];
+  // Center map over Sweden by default
+  return [[60, 15], 5];
 });
 
 watch(initialView, ([latlng, zoom]) => {
@@ -158,7 +174,6 @@ onMounted(async () => {
       myBottomSheet.value.close();
     }
   });
-  markers.value = new MarkerClusterGroup({ chunkedLoading: true });
 
   mapElement.value.on("zoom", debounce(update, 1000));
   mapElement.value.on("moveend", debounce(update, 1000));
@@ -266,14 +281,13 @@ const groupMarkers = computed(() => {
 });
 
 watch([markers, eventMarkers, groupMarkers], () => {
-  if (!markers.value) return;
   console.debug(
     "something changed in the search map",
     markers.value,
     eventMarkers.value,
     groupMarkers.value
   );
-  markers.value?.clearLayers();
+  markers.value.clearLayers();
   if (props.contentType !== ContentType.GROUPS) {
     eventMarkers.value?.forEach((markerToAdd) => {
       console.debug("adding event marker layer to markers");
