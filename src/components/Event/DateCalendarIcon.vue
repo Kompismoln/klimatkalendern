@@ -1,6 +1,6 @@
 <template>
   <div
-    class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-violet-3 dark:text-white"
+    class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
     :class="{ small }"
     :style="`--small: ${smallStyle}`"
   >
@@ -27,6 +27,8 @@ import { useI18n } from "vue-i18n";
 
 const { locale } = useI18n({ useScope: "global" });
 
+// @ts-expect-error: TODO: Why does this no typecheck?
+// locale.value.replace("_", "-") does typecheck but causes runtime error
 const localeConverted = locale.replace("_", "-");
 
 const props = withDefaults(
