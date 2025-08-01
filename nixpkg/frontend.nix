@@ -9,7 +9,7 @@
 buildNpmPackage {
   inherit (mobilizon-src) pname version src;
 
-  npmDepsHash = "sha256-oOV4clyUzKTdAMCKghWS10X9Nug9j8mil/vXcFhZ6Z0=";
+  npmDepsHash = "sha256-TrCAJjtITT5oGTRT+YEjUxDmkSTaVxxd68siDATrNsY=";
 
   nativeBuildInputs = [ imagemagick ];
 
