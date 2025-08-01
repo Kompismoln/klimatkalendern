@@ -32,7 +32,7 @@
         <i18n-t keypath="Ask your instance admin to {enable_feature}.">
           <template #enable_feature>
             <a
-              href="https://docs.joinmobilizon.org/administration/configure/push/"
+              href="https://docs.mobilizon.org/3.%20System%20administration/configure/push/"
               target="_blank"
               rel="noopener noreferer"
               >{{ $t("enable the feature") }}</a

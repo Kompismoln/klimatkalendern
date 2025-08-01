@@ -1,6 +1,6 @@
 # Documentation for developpers
 
-_This file is a summary of the documentation for developpers. As explained in [CONTRIBUTING.md](../CONTRIBUTING.md), the main documentation is available at <https://docs.joinmobilizon.org/contribute/>_
+_This file is a summary of the documentation for developpers. As explained in [CONTRIBUTING.md](../CONTRIBUTING.md), the main documentation is available at <https://docs.mobilizon.org/4.%20Contribute/>_
 
 ## Technologies
 

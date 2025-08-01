@@ -24,7 +24,7 @@ defmodule Mobilizon.Mixfile do
       ],
       name: "Mobilizon",
       source_url: "https://framagit.org/framasoft/mobilizon",
-      homepage_url: "https://joinmobilizon.org",
+      homepage_url: "https://mobilizon.org",
       docs: docs(),
       releases: [
         mobilizon: [

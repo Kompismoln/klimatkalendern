@@ -1,5 +1,5 @@
 <h1 align="center">
-  <a href="https://joinmobilizon.org">
+  <a href="https://mobilizon.org">
     <img src="https://lutim.cpy.re/qVYC86G9.png" alt="Mobilizon">
   </a>
 </h1>
@@ -46,10 +46,10 @@ We appreciate any contribution to Mobilizon. Check [our contributing page](https
 ## Links
 
 ### Learn more
-  * 🌐 Official website: [https://joinmobilizon.org](https://joinmobilizon.org)
+  * 🌐 Official website: [https://mobilizon.org](https://mobilizon.org)
   * 🔢 Pick an instance [https://mobilizon.org](https://mobilizon.org)
   * 💻 Source: [https://framagit.org/kaihuri/mobilizon](https://framagit.org/kaihuri/mobilizon)
-  * 📜 Documentation [https://docs.joinmobilizon.org](https://docs.joinmobilizon.org)
+  * 📜 Documentation [https://docs.mobilizon.org](https://docs.mobilizon.org)
     * A summarized description of structure of sources is done in [`docs/dev.md`](./docs/dev.md)
   
 ### Discuss
@@ -66,4 +66,4 @@ Note: Most federation code comes from [Pleroma](https://pleroma.social), which i
 ## ❤️ Supports of our crowdfunding
 ---
 
-We have run [a crowdfunding campaign](https://framablog.org/2019/05/14/mobilizon-lets-finance-a-software-to-free-our-events-from-facebook/) to pave the road to the version 1.0.0 of Mobilizon. Thanks to everyone who pitched in and shared the news around! The list of [everyone who donated is available here](https://joinmobilizon.org/hall-of-fame).
+We have run [a crowdfunding campaign](https://framablog.org/2019/05/14/mobilizon-lets-finance-a-software-to-free-our-events-from-facebook/) to pave the road to the version 1.0.0 of Mobilizon. Thanks to everyone who pitched in and shared the news around!.

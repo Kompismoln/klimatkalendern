@@ -69,7 +69,7 @@
           tag="a"
           icon-left="open-in-new"
           class="text-2xl bg-primary text-white leading-6"
-          href="https://joinmobilizon.org"
+          href="https://mobilizon.org"
           >{{ t("Learn more") }}</o-button
         >
       </div>

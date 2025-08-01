@@ -19,7 +19,7 @@ exports[`Mobilizon Presentation Story > Default 1`] = `
         </div>
       </div>
       <div class="mt-4 text-center">
-        <o-button variant="primary" size="large" tag="a" href="https://joinmobilizon.org">Learn more about Mobilizon</o-button>
+        <o-button variant="primary" size="large" tag="a" href="https://mobilizon.org">Learn more about Mobilizon</o-button>
       </div>
     </div>
   </variant>

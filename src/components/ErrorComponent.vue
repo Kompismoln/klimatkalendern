@@ -24,7 +24,7 @@
               <b>{{ instanceName }}</b>
             </template>
             <template #mobilizon_link>
-              <a href="https://joinmobilizon.org">{{ t("Mobilizon") }}</a>
+              <a href="https://mobilizon.org">{{ t("Mobilizon") }}</a>
             </template>
           </i18n-t>
           <span v-if="sentryEnabled">

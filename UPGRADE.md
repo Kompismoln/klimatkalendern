@@ -75,7 +75,7 @@ In order to keep the release tarballs light, the geographic timezone data is not
 
   ```sh
   sudo -u mobilizon mkdir /var/lib/mobilizon/timezones
-  sudo -u mobilizon curl -L 'https://packages.joinmobilizon.org/tz_world/timezones-geodata.dets' -o /var/lib/mobilizon/timezones/timezones-geodata.dets
+  sudo -u mobilizon curl -L 'https://packages.mobilizon.org/tz_world/timezones-geodata.dets' -o /var/lib/mobilizon/timezones/timezones-geodata.dets
   ```
 
 In both cases, ~700Mio of disk will be used. You may use the following configuration to specify where the data is expected if you decide to change it from the default location (`/var/lib/mobilizon/timezones`) :
@@ -99,7 +99,7 @@ You need to download the data :
 
   ```sh
   sudo -u mobilizon mkdir /var/lib/mobilizon/timezones
-  sudo -u mobilizon curl -L 'https://packages.joinmobilizon.org/tz_world/timezones-geodata.dets' -o /var/lib/mobilizon/timezones/timezones-geodata.dets
+  sudo -u mobilizon curl -L 'https://packages.mobilizon.org/tz_world/timezones-geodata.dets' -o /var/lib/mobilizon/timezones/timezones-geodata.dets
   ```
 
 In both cases, ~700Mio of disk will be used. You may use the following configuration to specify where the data is expected:
@@ -116,7 +116,7 @@ Create the folder for default CSV export:
 sudo -u mobilizon mkdir -p /var/lib/mobilizon/uploads/exports/csv
 ```
 
-This path can be configured, see [the dedicated docs page about this](https://docs.joinmobilizon.org/administration/configure/exports/).
+This path can be configured, see [the dedicated docs page about this](https://docs.mobilizon.org/3.%20System%20administration/configure/exports/).
 Files in this folder are temporary and are cleaned once an hour.
 
 ## New optional dependencies
@@ -135,7 +135,7 @@ New optional Python dependencies:
 - `weasyprint` for PDF export (with [a few extra dependencies](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html))
 - `pyexcel-ods3` for ODS export (no extra dependencies)
 
-Both can be installed through pip. You need to enable and configure exports for PDF and ODS in the configuration afterwards. Read [the dedicated docs page about this](https://docs.joinmobilizon.org/administration/configure/exports/).
+Both can be installed through pip. You need to enable and configure exports for PDF and ODS in the configuration afterwards. Read [the dedicated docs page about this](https://docs.mobilizon.org/3.%20System%20administration/configure/exports/).
 
 # Upgrading from 1.0 to 1.1
 
@@ -159,7 +159,7 @@ Staying on source releases means:
 
 ## Releases
 
-If you want to migrate to releases, [we provide a full guide](https://docs.joinmobilizon.org/administration/upgrading/source_to_release/). You may do this at any time.
+If you want to migrate to releases, [we provide a full guide](https://docs.mobilizon.org/3.%20System%20administration/upgrading/source_to_release/). You may do this at any time.
 
 ## Source install
 

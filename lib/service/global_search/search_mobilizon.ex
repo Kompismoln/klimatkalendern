@@ -1,6 +1,6 @@
 defmodule Mobilizon.Service.GlobalSearch.SearchMobilizon do
   @moduledoc """
-  [Search Mobilizon](https://search.joinmobilizon.org) backend.
+  [Search Mobilizon](https://search.mobilizon.org) backend.
   """
 
   alias Mobilizon.Actors.Actor
@@ -252,7 +252,7 @@ defmodule Mobilizon.Service.GlobalSearch.SearchMobilizon do
 
   defp search_endpoint do
     Application.get_env(:mobilizon, __MODULE__) |> get_in([:endpoint]) ||
-      "https://search.joinmobilizon.org"
+      "https://search.mobilizon.org"
   end
 
   defp parse_date(nil), do: nil

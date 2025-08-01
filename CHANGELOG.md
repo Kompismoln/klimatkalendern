@@ -253,7 +253,7 @@ This release fixes different security issues reported by the potsda.mn collectiv
 #### Release (binary package) installations
 
 - We now produce packages for different distributions targets (Debian Bookworm, Debian Bullseye, Ubuntu Jammy, Ubuntu Focal, Ubuntu Bionic, Fedora 38 and Fedora 39). Be sure to pick the right one for your system, as there can be issues with OpenSSL versions differing from inside the Mobilizon package and on your system.
-- The `https://joinmobilizon.org/latest-package` URL now links to the latest package builded against Debian Bookworm. Make sure to follow the documentation if you're not using this.
+- The `https://mobilizon.org/latest-package` URL now links to the latest package builded against Debian Bookworm. Make sure to follow the documentation if you're not using this.
 - There's also an `arm64` package build on Debian Bullseye for now.
 
 #### Source installations
@@ -847,7 +847,7 @@ Fixes a CI issue that prevented 3.2.0-beta.2 being released.
 
 ### Added
 
-- Add global search support, allowing to use https://search.joinmobilizon.org as a centralized event and group database
+- Add global search support, allowing to use https://search.mobilizon.org as a centralized event and group database
 - Add ability to filter search by categories and language
 - Add ability to explore search results on a map view
 - Add dark theme support and setting to toggle light/dark mode
@@ -1117,7 +1117,7 @@ No changes since beta.3
 
 ### Added
 
-- Add global search support, allowing to use https://search.joinmobilizon.org as a centralized event and group database
+- Add global search support, allowing to use https://search.mobilizon.org as a centralized event and group database
 - Add ability to filter search by categories and language
 - Add ability to explore search results on a map view
 - Add dark theme support
@@ -2559,7 +2559,7 @@ This version introduces a new way to install and host Mobilizon : Elixir releas
 
 - **imagemagick and webp are now a required dependency** to build Mobilizon.
   Optimized versions of Mobilizon's pictures are now produced during front-end build.
-  See [the documentation](https://docs.joinmobilizon.org/administration/dependencies/#misc) to make sure these dependencies are installed.
+  See [the documentation](https://docs.mobilizon.org/3.%20System%20administration/install/source/#misc) to make sure these dependencies are installed.
 
 ### Added
 
@@ -2654,7 +2654,7 @@ Updated translations:
 
 - **Possibility to join open groups** (local and remote). Possibility in the group settings to pick if the group is open to new members or not.
   Note: The group default setting is closed. You need to manually set your group as open in the group settings.
-- **Docker support** (@Pascoual). See [documentation](https://docs.joinmobilizon.org/administration/docker/)
+- **Docker support** (@Pascoual). See [documentation](https://docs.mobilizon.org/3.%20System%20administration/install/docker/)
 - Added steps to the onboarding process on first login, including a profile and federation presentation step
 - Added a regular job to refresh remote groups once in a while
 
@@ -2746,14 +2746,14 @@ Updated translations:
 
 ### Added
 
-- Show if user is disabled in [`mix mobilizon.users.show` task](https://docs.joinmobilizon.org/administration/CLI%20tasks/manage_users/#show-an-users-details)
-- Improved [ActivityPub documentation](https://docs.joinmobilizon.org/contribute/activity_pub/), especially for group federation.
+- Show if user is disabled in [`mix mobilizon.users.show` task](https://docs.mobilizon.org/3.%20System%20administration/CLI%20tasks/manage_users/#show-a-users-details)
+- Improved [ActivityPub documentation](https://docs.mobilizon.org/2.%20Instance%20administration/federation/), especially for group federation.
 - Show instance languages on instance about page
 - Add fancy pictures on footer and 404 page
 
 ### Changed
 
-- The [`mix mobilizon.users.delete` task](https://docs.joinmobilizon.org/administration/CLI%20tasks/manage_users/#delete-an-user) behaviour completely deletes the user, unless the `--keep_email` option is given (can be used to prevent someone registering again with the same email).
+- The [`mix mobilizon.users.delete` task](https://docs.mobilizon.org/3.%20System%20administration/CLI%20tasks/manage_users/#delete-a-user) behaviour completely deletes the user, unless the `--keep_email` option is given (can be used to prevent someone registering again with the same email).
 - Deleting your own account completely deletes user information (it previously kept the email information).
 - The administration dashboard now shows more information on local events, groups and followed/following instances
 
@@ -2790,7 +2790,7 @@ Updated translations:
 
 - The [nginx configuration](https://framagit.org/framasoft/mobilizon/-/blob/main/support/nginx/mobilizon.conf) has been changed with improvements and support for custom error pages.
 
-- The cmake dependency has been added (see [our documentation](https://docs.joinmobilizon.org/administration/dependencies/#basic-tools))
+- The cmake dependency has been added (see [our documentation](https://docs.mobilizon.org/3.%20System%20administration/install/source/#basic-tools))
 
 ### Added
 

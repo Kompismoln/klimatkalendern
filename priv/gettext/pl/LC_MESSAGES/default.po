@@ -659,10 +659,10 @@ msgstr ""
 #: lib/web/templates/api/terms.html.heex:254
 #, elixir-autogen, elixir-format
 msgctxt "terms"
-msgid "For full details about the Mobilizon software <a href=\"https://joinmobilizon.org\">see here</a>."
+msgid "For full details about the Mobilizon software <a href=\"https://mobilizon.org\">see here</a>."
 msgstr ""
 "Aby zobaczyć więcej informacji o oprogramowaniu Mobilizon, <a href=\"https"
-"://joinmobilizon.org\">zajrzyj tutaj</a>."
+"://mobilizon.org\">zajrzyj tutaj</a>."
 
 #: lib/web/templates/api/terms.html.heex:47
 #, elixir-autogen, elixir-format

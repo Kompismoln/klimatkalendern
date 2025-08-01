@@ -381,9 +381,9 @@ config :mobilizon, Mobilizon.Service.GlobalSearch,
   service: Mobilizon.Service.GlobalSearch.SearchMobilizon
 
 config :mobilizon, Mobilizon.Service.GlobalSearch.SearchMobilizon,
-  endpoint: "https://search.joinmobilizon.org",
+  endpoint: "https://search.mobilizon.org",
   csp_policy: [
-    img_src: ["search.joinmobilizon.org"]
+    img_src: ["search.mobilizon.org"]
   ]
 
 config :mobilizon, Mobilizon.Service.AntiSpam, service: Mobilizon.Service.AntiSpam.Akismet

@@ -16,7 +16,7 @@
           <b>{{ config?.name }}</b>
         </template>
         <template #mobilizon>
-          <a href="https://joinmobilizon.org" target="_blank" class="out">{{
+          <a href="https://mobilizon.org" target="_blank" class="out">{{
             t("Mobilizon")
           }}</a>
         </template>

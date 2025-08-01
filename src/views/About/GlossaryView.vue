@@ -16,7 +16,7 @@
           keypath="An instance is an installed version of the Mobilizon software running on a server. An instance can be run by anyone using the {mobilizon_software} or other federated apps, aka the “fediverse”. This instance's name is {instance_name}. Mobilizon is a federated network of multiple instances (just like email servers), users registered on different instances may communicate even though they didn't register on the same instance."
         >
           <template #mobilizon_software
-            ><a href="https://joinmobilizon.org">{{
+            ><a href="https://mobilizon.org">{{
               t("Mobilizon software")
             }}</a></template
           >

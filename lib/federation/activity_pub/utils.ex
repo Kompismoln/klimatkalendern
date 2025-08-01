@@ -85,7 +85,7 @@ defmodule Mobilizon.Federation.ActivityPub.Utils do
           "postalCode" => "sc:postalCode",
           "addressLocality" => "sc:addressLocality",
           "streetAddress" => "sc:streetAddress",
-          "mz" => "https://joinmobilizon.org/ns#",
+          "mz" => "https://mobilizon.org/ns#",
           "repliesModerationOptionType" => %{
             "@id" => "mz:repliesModerationOptionType",
             "@type" => "rdfs:Class"

@@ -49,7 +49,7 @@
         variant="primary"
         size="large"
         tag="a"
-        href="https://joinmobilizon.org"
+        href="https://mobilizon.org"
         >{{ t("Learn more about Mobilizon") }}</o-button
       >
     </div>

@@ -1,4 +1,4 @@
-[Mobilizon](https://joinmobilizon.org) takes security, privacy and user control seriously, and we want to put them front and centre of our project.
+[Mobilizon](https://mobilizon.org) takes security, privacy and user control seriously, and we want to put them front and centre of our project.
 
 This document outlines security procedures and general policies for the Mobilizon project.
 The Mobilizon maintainer team and community take all security bugs in Mobilizon seriously. Thank you for improving the security of Mobilizon. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
@@ -17,7 +17,7 @@ The Mobilizon maintainer team and community take all security bugs in Mobilizon 
 
 ### Challenges
 
-[Mobilizon](https://joinmobilizon.org) will be challenging to keep secure, as it is:
+[Mobilizon](https://mobilizon.org) will be challenging to keep secure, as it is:
 
 * open source, both back-end and front-end
 

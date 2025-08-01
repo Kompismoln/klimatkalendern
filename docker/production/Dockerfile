@@ -42,11 +42,11 @@ ARG VCS_REF
 
 LABEL org.opencontainers.image.title="mobilizon" \
     org.opencontainers.image.description="Mobilizon for Docker" \
-    org.opencontainers.image.vendor="joinmobilizon.org" \
-    org.opencontainers.image.documentation="https://docs.joinmobilizon.org" \
+    org.opencontainers.image.vendor="mobilizon.org" \
+    org.opencontainers.image.documentation="https://docs.mobilizon.org" \
     org.opencontainers.image.licenses="AGPL-3.0" \
     org.opencontainers.image.source="https://framagit.org/framasoft/mobilizon" \
-    org.opencontainers.image.url="https://joinmobilizon.org" \
+    org.opencontainers.image.url="https://mobilizon.org" \
     org.opencontainers.image.revision=$VCS_REF \
     org.opencontainers.image.created=$BUILD_DATE
 
@@ -66,7 +66,7 @@ RUN mkdir -p /etc/mobilizon && chown nobody:nobody /etc/mobilizon
 USER nobody
 
 # Get timezone geodata
-RUN curl -L 'https://packages.joinmobilizon.org/tz_world/timezones-geodata.dets' -o /var/lib/mobilizon/timezones/timezones-geodata.dets
+RUN curl -L 'https://packages.mobilizon.org/tz_world/timezones-geodata.dets' -o /var/lib/mobilizon/timezones/timezones-geodata.dets
 
 EXPOSE 4000
 

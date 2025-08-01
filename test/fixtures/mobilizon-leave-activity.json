@@ -25,7 +25,7 @@
         "@type": "rdfs:Class"
       },
       "maximumAttendeeCapacity": "sc:maximumAttendeeCapacity",
-      "mz": "https://joinmobilizon.org/ns#",
+      "mz": "https://mobilizon.org/ns#",
       "repliesModerationOption": {
         "@id": "mz:repliesModerationOption",
         "@type": "mz:repliesModerationOptionType"
