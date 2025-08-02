@@ -18,6 +18,7 @@
         "x86_64-linux"
         "aarch64-darwin"
       ];
+      inherit (nixpkgs) lib;
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
     in
     rec {
@@ -32,18 +33,39 @@
             }
           );
         in
-        {
+        rec {
           default = pkgs.callPackage ./nixpkg {
             mobilizon-src = {
               inherit src pname version;
             };
             elixir = elixirPackage;
-            inherit beamPackages;
-            mobilizon-frontend = pkgs.callPackage ./nixpkg/frontend.nix {
-              mobilizon-src = {
-                inherit src pname version;
-              };
+            inherit beamPackages mobilizon-frontend;
+          };
+          mobilizon-frontend = pkgs.stdenv.mkDerivation {
+            inherit src pname version;
+
+            nativeBuildInputs = with pkgs; [
+              imagemagick
+              nodejs
+              pnpm.configHook
+            ];
+
+            pnpmDeps = pkgs.pnpm.fetchDeps {
+              inherit pname version src;
+              fetcherVersion = 2;
+              hash = "sha256-A3xLFr2duWfekyuX63Gt/brPu3MaVV7UQ3bheaV+lAc=";
             };
+
+            buildPhase = ''
+              runHook preBuild
+              pnpm build
+              runHook postBuild
+            '';
+
+            installPhase = ''
+              mkdir -p $out/static
+              cp -r priv/static $out/static
+            '';
           };
         }
       );
@@ -59,6 +81,9 @@
           default = pkgs.mkShell {
             name = "${pname}-dev";
             packages = with pkgs; [
+              (writeScriptBin "npm" ''echo "use pnpm"'')
+              (writeScriptBin "npx" ''echo "use pnpm dlx"'')
+              pnpm
               mix2nix
               elixirPackage
               cmake
