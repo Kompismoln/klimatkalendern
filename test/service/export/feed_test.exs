@@ -91,5 +91,101 @@ defmodule Mobilizon.Service.Feed do
       rss = Regex.replace(~r|\<updated\>.*\</updated\>|, rss, "<updated></updated>")
       assert rss == String.replace(expectedrss, "</feed>\n", "</feed>")
     end
+
+    test "an actor feedtoken simple" do
+      user = insert(:user)
+      actor = insert(:actor, user: user)
+      %FeedToken{token: token} = insert(:feed_token, user: user, actor: actor)
+
+      event1 = insert(:event, title: "event owner", description: "owner", organizer_actor: actor)
+
+      event2 =
+        insert(:event, title: "event particiated", description: "particiated", picture: nil)
+
+      event3 = insert(:event, visibility: :private, title: "I'm private")
+      event4 = insert(:event, title: "No description", description: nil)
+      insert(:participant, event: event2, actor: actor, role: :participant)
+
+      {:commit, ics} = FeedService.create_cache("token_#{ShortUUID.encode!(token)}")
+      refute ics =~ event4.title
+      refute ics =~ event3.title
+      assert ics =~ event1.title
+      assert ics =~ event2.title
+    end
+
+    test "by actor preferred_username simple" do
+      user = insert(:user)
+      actor = insert(:actor, user: user)
+
+      event1 = insert(:event, title: "event owner", description: "owner", organizer_actor: actor)
+
+      event2 =
+        insert(:event, title: "event particiated", description: "particiated", picture: nil)
+
+      event3 = insert(:event, visibility: :private, title: "I'm private")
+      event4 = insert(:event, title: "No description", description: nil)
+      insert(:participant, event: event2, actor: actor, role: :participant)
+
+      {:commit, ics} = FeedService.create_cache("actor_#{actor.preferred_username}")
+      refute ics =~ event4.title
+      refute ics =~ event3.title
+      assert ics =~ event1.title
+      assert ics =~ event2.title
+    end
+
+    test "by actor feedtoken complexe" do
+      user = insert(:user)
+      actor = insert(:actor, user: user)
+      %FeedToken{token: token} = insert(:feed_token, user: user, actor: actor)
+
+      event1 =
+        insert(:event, title: "event simple owner", description: "owner", organizer_actor: actor)
+
+      event2 =
+        insert(:event, title: "event particiated", description: "particiated", picture: nil)
+
+      event3 =
+        insert(:event,
+          title: "event owner and particiated",
+          description: "owner & particiated",
+          picture: nil,
+          organizer_actor: actor
+        )
+
+      insert(:participant, event: event2, actor: actor, role: :participant)
+      insert(:participant, event: event3, actor: actor, role: :participant)
+
+      {:commit, ics} = FeedService.create_cache("token_#{ShortUUID.encode!(token)}")
+      assert ics |> String.split(event1.title) |> length() == 2
+      assert ics |> String.split(event2.title) |> length() == 2
+      assert ics |> String.split(event3.title) |> length() == 2
+    end
+
+    test "by actor preferred_username complexe" do
+      user = insert(:user)
+      actor = insert(:actor, user: user)
+
+      event1 =
+        insert(:event, title: "event simple owner", description: "owner", organizer_actor: actor)
+
+      event2 =
+        insert(:event, title: "event particiated", description: "particiated", picture: nil)
+
+      event3 =
+        insert(:event,
+          title: "event owner and particiated",
+          description: "owner & particiated",
+          picture: nil,
+          organizer_actor: actor
+        )
+
+      insert(:participant, event: event2, actor: actor, role: :participant)
+      insert(:participant, event: event3, actor: actor, role: :participant)
+
+      {:commit, ics} = FeedService.create_cache("actor_#{actor.preferred_username}")
+      assert ics |> String.split(event1.title) |> length() == 2
+      assert ics |> String.split(event2.title) |> length() == 2
+      assert ics |> String.split(event3.title) |> length() == 2
+    end
   end
 end

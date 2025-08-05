@@ -16,10 +16,10 @@ defmodule Mobilizon.Service.Export.Common do
   def fetch_actor_event_feed(name, limit) do
     case Actors.get_actor_by_name(name) do
       %Actor{} = actor ->
+        %Page{elements: posts} = Posts.get_public_posts_for_group(actor, 1, limit)
+
         if Actor.public_visibility?(actor) do
-          %Page{elements: events} = Events.list_public_upcoming_events_for_actor(actor, 1, limit)
-          %Page{elements: posts} = Posts.get_public_posts_for_group(actor, 1, limit)
-          {:ok, actor, events, posts}
+          {:ok, actor, fetch_events_from_actor(actor, limit), posts}
         else
           {:error, :actor_not_public}
         end
@@ -78,7 +78,7 @@ defmodule Mobilizon.Service.Export.Common do
     %{
       type: :actor,
       actor: actor,
-      events: fetch_actor_private_events(actor, limit),
+      events: fetch_events_from_actor(actor, limit),
       user: user,
       token: token
     }
@@ -92,6 +92,18 @@ defmodule Mobilizon.Service.Export.Common do
            |> Enum.concat() do
       %{type: :user, events: events, user: user, token: token, actor: nil}
     end
+  end
+
+  @spec fetch_actor_private_events(Actor.t(), integer()) :: list(Event.t())
+  defp fetch_events_from_actor(%Actor{} = actor, limit) do
+    events_participate = fetch_actor_private_events(actor, limit)
+    %Page{elements: events_owner} = Events.list_public_upcoming_events_for_actor(actor, 1, limit)
+    event_participate_ids = events_participate |> Enum.map(fn other -> other.id end)
+
+    events_owner =
+      events_owner |> Enum.filter(fn event -> event.id not in event_participate_ids end)
+
+    events_participate ++ events_owner
   end
 
   @spec fetch_instance_public_content(integer()) :: {:ok, list(Event.t()), list(Post.t())}

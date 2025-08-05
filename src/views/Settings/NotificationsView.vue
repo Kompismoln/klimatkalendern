@@ -250,7 +250,7 @@
               (e: Event) =>
                 copyURL(
                   e,
-                  tokenToURL('events/going/' + feedToken.token + 'atom'),
+                  tokenToURL('events/going/' + feedToken.token + '/atom'),
                   'atom'
                 )
             "
@@ -258,11 +258,11 @@
               (e: Event) =>
                 copyURL(
                   e,
-                  tokenToURL('events/going/' + feedToken.token + 'atom'),
+                  tokenToURL('events/going/' + feedToken.token + '/atom'),
                   'atom'
                 )
             "
-            :href="tokenToURL('events/going/' + feedToken.token + 'atom')"
+            :href="tokenToURL('events/going/' + feedToken.token + '/atom')"
             target="_blank"
             >{{ $t("RSS/Atom Feed") }}</o-button
           >
@@ -279,7 +279,7 @@
               (e: Event) =>
                 copyURL(
                   e,
-                  tokenToURL('events/going/' + feedToken.token + 'ics'),
+                  tokenToURL('events/going/' + feedToken.token + '/ics'),
                   'ics'
                 )
             "
@@ -287,12 +287,12 @@
               (e: Event) =>
                 copyURL(
                   e,
-                  tokenToURL('events/going/' + feedToken.token + 'ics'),
+                  tokenToURL('events/going/' + feedToken.token + '/ics'),
                   'ics'
                 )
             "
             icon-left="calendar-sync"
-            :href="tokenToURL('events/going/' + feedToken.token + 'ics')"
+            :href="tokenToURL('events/going/' + feedToken.token + '/ics')"
             target="_blank"
             >{{ $t("ICS/WebCal Feed") }}</o-button
           >
