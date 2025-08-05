@@ -128,7 +128,7 @@ defmodule Mobilizon.GraphQL.Resolvers.SearchTest do
     end
 
     test "finds events by location", %{conn: conn} do
-      {lon, lat} = {45.75, 4.85}
+      {lat, lon} = {45.75, 4.85}
       point = %Geo.Point{coordinates: {lon, lat}, srid: 4326}
       geohash = Geohax.encode(lon, lat, 6)
       address = insert(:address, geom: point)
@@ -146,6 +146,100 @@ defmodule Mobilizon.GraphQL.Resolvers.SearchTest do
 
       assert hd(res["data"]["searchEvents"]["elements"])["uuid"] ==
                event.uuid
+    end
+
+    test "finds events by complexe location", %{conn: conn} do
+      {lat_ref, lon_ref} = {46.03453874588013, 4.072902202606201}
+      geohash = Geohax.encode(lon_ref, lat_ref, 9)
+
+      point_ref = %Geo.Point{coordinates: {lon_ref, lat_ref}, srid: 4326}
+      address_ref = insert(:address, geom: point_ref)
+
+      event_ref =
+        insert(:event,
+          title: "Reference",
+          description: "Roanne (Hotel de ville)",
+          physical_address: address_ref
+        )
+
+      Workers.BuildSearch.insert_search_event(event_ref)
+
+      point_short = %Geo.Point{coordinates: {4.063085, 46.039943}, srid: 4326}
+      address_short = insert(:address, geom: point_short)
+
+      event_short =
+        insert(:event,
+          title: "Short",
+          description: "Roanne (Gare SNCF)",
+          physical_address: address_short
+        )
+
+      Workers.BuildSearch.insert_search_event(event_short)
+
+      point_middle1 = %Geo.Point{coordinates: {4.031897, 46.041436}, srid: 4326}
+      address_middle1 = insert(:address, geom: point_middle1)
+
+      event_middle1 =
+        insert(:event,
+          title: "Middle1",
+          description: "Riorges (Cimetière)",
+          physical_address: address_middle1
+        )
+
+      Workers.BuildSearch.insert_search_event(event_middle1)
+
+      point_middle2 = %Geo.Point{coordinates: {4.038404, 45.994017}, srid: 4326}
+      address_middle2 = insert(:address, geom: point_middle2)
+
+      event_middle2 =
+        insert(:event,
+          title: "Middle1",
+          description: "Villerest (Centre)",
+          physical_address: address_middle2
+        )
+
+      Workers.BuildSearch.insert_search_event(event_middle2)
+
+      point_far = %Geo.Point{coordinates: {4.170706, 46.158358}, srid: 4326}
+      address_far = insert(:address, geom: point_far)
+
+      event_far =
+        insert(:event,
+          title: "Far",
+          description: "Charlieu (Les Halles)",
+          physical_address: address_far
+        )
+
+      Workers.BuildSearch.insert_search_event(event_far)
+
+      point_toofar = %Geo.Point{coordinates: {4.338280, 46.207562}, srid: 4326}
+      address_toofar = insert(:address, geom: point_toofar)
+
+      event_toofar =
+        insert(:event,
+          title: "Too far",
+          description: "Chauffaille (Mairie)",
+          physical_address: address_toofar
+        )
+
+      Workers.BuildSearch.insert_search_event(event_toofar)
+
+      res =
+        AbsintheHelpers.graphql_query(conn,
+          query: @search_events_query,
+          variables: %{location: geohash, radius: 10}
+        )
+
+      assert res["errors"] == nil
+      assert res["data"]["searchEvents"]["total"] == 4
+
+      assert res["data"]["searchEvents"]["elements"] |> Enum.map(& &1["uuid"]) |> Enum.sort() ==
+               Enum.sort([
+                 event_ref.uuid,
+                 event_short.uuid,
+                 event_middle1.uuid,
+                 event_middle2.uuid
+               ])
     end
 
     test "finds events by begins_on and ends_on", %{conn: conn} do

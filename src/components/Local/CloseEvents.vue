@@ -114,7 +114,11 @@ const geoHash = computed(() => {
 });
 
 const distance = computed<number>(() => {
-  return props.distance | 25;
+  if (props.distance) {
+    return props.distance;
+  } else {
+    return 25;
+  }
 });
 
 const eventsQuery = useQuery<{
