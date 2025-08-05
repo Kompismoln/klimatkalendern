@@ -404,10 +404,9 @@ defmodule Mobilizon.GraphQL.Resolvers.ResourceTest do
       assert is_nil(res["errors"])
 
       assert res["data"]["createResource"]["metadata"]["faviconUrl"] ==
-               MediaProxy.url("https://mobilizon.org/img/icons/favicon.png")
+               MediaProxy.url("https://mobilizon.org/media/logo/favicon-96x96.png")
 
-      assert res["data"]["createResource"]["metadata"]["imageRemoteUrl"] ==
-               MediaProxy.url("https://mobilizon.org/img/opengraph/home.jpg")
+      assert res["data"]["createResource"]["metadata"]["imageRemoteUrl"] == nil
 
       assert res["data"]["createResource"]["path"] == "/#{@resource_title}"
       assert res["data"]["createResource"]["resourceUrl"] == @resource_url
@@ -460,10 +459,9 @@ defmodule Mobilizon.GraphQL.Resolvers.ResourceTest do
       assert is_nil(res["errors"])
 
       assert res["data"]["createResource"]["metadata"]["faviconUrl"] ==
-               MediaProxy.url("https://mobilizon.org/img/icons/favicon.png")
+               MediaProxy.url("https://mobilizon.org/media/logo/favicon-96x96.png")
 
-      assert res["data"]["createResource"]["metadata"]["imageRemoteUrl"] ==
-               MediaProxy.url("https://mobilizon.org/img/opengraph/home.jpg")
+      assert res["data"]["createResource"]["metadata"]["imageRemoteUrl"] == nil
 
       assert res["data"]["createResource"]["path"] == "#{parent_path}/#{@resource_title}"
       assert res["data"]["createResource"]["resourceUrl"] == @resource_url
