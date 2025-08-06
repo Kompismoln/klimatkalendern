@@ -238,7 +238,7 @@
                 >
                   <template #default_terms>
                     <a
-                      href="https://demo.mobilizon.org/terms"
+                      href="https://mobilizon.org/terms.html"
                       target="_blank"
                       rel="noopener"
                       >{{ t("default Mobilizon terms") }}</a
@@ -276,7 +276,7 @@
                 >
                   <template #mobilizon_terms>
                     <a
-                      href="https://demo.mobilizon.org/terms"
+                      href="https://mobilizon.org/terms.html"
                       target="_blank"
                       rel="noopener"
                     >
@@ -359,7 +359,7 @@
                 >
                   <template #default_privacy_policy>
                     <a
-                      href="https://demo.mobilizon.org/privacy"
+                      href="https://mobilizon.org/privacy.html"
                       target="_blank"
                       rel="noopener"
                       >{{ t("default Mobilizon privacy policy") }}</a
@@ -394,7 +394,7 @@
                 >
                   <template #mobilizon_privacy_policy>
                     <a
-                      href="https://demo.mobilizon.org/privacy"
+                      href="https://mobilizon.org/privacy.html"
                       target="_blank"
                       rel="noopener"
                     >
