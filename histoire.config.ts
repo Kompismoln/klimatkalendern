@@ -9,6 +9,12 @@ export default defineConfig({
   setupFile: path.resolve(__dirname, "./src/histoire.setup.ts"),
   viteNodeInlineDeps: [/date-fns/],
   // viteIgnorePlugins: ['vite-plugin-pwa', 'vite-plugin-pwa:build', 'vite-plugin-pwa:info'],
+
+  // Explicitly tell histoire to not look for stories in these directories.
+  // We need this to avoid errors, possibly related to
+  // https://github.com/histoire-dev/histoire/discussions/431
+  storyIgnored: ["./node_modules/*", ".direnv/*"],
+
   tree: {
     groups: [
       {
