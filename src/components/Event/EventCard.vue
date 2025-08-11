@@ -85,20 +85,6 @@
             :timezone="event.options.timezone"
           />
         </div>
-        <span
-          class="text-gray-700 dark:text-white font-semibold"
-          :class="{ 'sm:block': mode === 'row' }"
-          v-if="!isDifferentBeginsEndsDate"
-          >{{ formatDateTimeWithCurrentLocale }}</span
-        >
-        <span
-          class="text-gray-700 dark:text-white font-semibold hidden"
-          :class="{ 'sm:block': mode === 'row' }"
-          v-if="isDifferentBeginsEndsDate"
-          >{{ formatBeginsOnDateWithCurrentLocale }}
-          <ArrowRightThin :small="true" style="display: ruby" />
-          {{ formatEndsOnDateWithCurrentLocale }}</span
-        >
         <div class="w-full flex flex-col justify-between h-full">
           <h2
             class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white"
@@ -107,6 +93,11 @@
           >
             {{ event.title }}
           </h2>
+          <span
+            class="text-gray-700 dark:text-white font-semibold"
+            :class="{ 'sm:block': mode === 'row' }"
+            >{{ formatedDate }}
+          </span>
           <div class="">
             <div
               class="flex items-center text-violet-3 dark:text-white"
@@ -208,7 +199,6 @@ import {
 } from "@/types/event.model";
 import DateCalendarIcon from "@/components/Event/DateCalendarIcon.vue";
 import StartTimeIcon from "@/components/Event/StartTimeIcon.vue";
-import ArrowRightThin from "vue-material-design-icons/ArrowRightThin.vue";
 import MenuDown from "vue-material-design-icons/MenuDown.vue";
 import LazyImageWrapper from "@/components/Image/LazyImageWrapper.vue";
 import { EventStatus } from "@/types/enums";
@@ -219,7 +209,7 @@ import { computed, inject } from "vue";
 import MobilizonTag from "@/components/TagElement.vue";
 import AccountCircle from "vue-material-design-icons/AccountCircle.vue";
 import Video from "vue-material-design-icons/Video.vue";
-import { formatDateForEvent, formatDateTimeForEvent } from "@/utils/datetime";
+import * as dtutils from "@/utils/datetime";
 import type { Locale } from "date-fns";
 import LinkOrRouterLink from "../core/LinkOrRouterLink.vue";
 import { useI18n } from "vue-i18n";
@@ -263,29 +253,14 @@ const dateFnsLocale = inject<Locale>("dateFnsLocale");
 
 const isDifferentBeginsEndsDate = computed(() => {
   if (!dateFnsLocale) return;
-  const beginsOnStr = formatDateForEvent(
+  const beginsOnStr = dtutils.formatDateForEvent(
     new Date(props.event.beginsOn),
     dateFnsLocale
   );
   const endsOnStr = props.event.endsOn
-    ? formatDateForEvent(new Date(props.event.endsOn), dateFnsLocale)
+    ? dtutils.formatDateForEvent(new Date(props.event.endsOn), dateFnsLocale)
     : null;
   return endsOnStr && endsOnStr != beginsOnStr;
-});
-
-const formatBeginsOnDateWithCurrentLocale = computed(() => {
-  if (!dateFnsLocale) return;
-  return formatDateForEvent(new Date(props.event.beginsOn), dateFnsLocale);
-});
-
-const formatEndsOnDateWithCurrentLocale = computed(() => {
-  if (!dateFnsLocale) return;
-  return formatDateForEvent(new Date(props.event.endsOn), dateFnsLocale);
-});
-
-const formatDateTimeWithCurrentLocale = computed(() => {
-  if (!dateFnsLocale) return;
-  return formatDateTimeForEvent(new Date(props.event.beginsOn), dateFnsLocale);
 });
 
 const isInternal = computed(() => {
@@ -307,4 +282,108 @@ const to = computed(() => {
   }
   return { name: RouteName.EVENT, params: { uuid: props.event.uuid } };
 });
+
+/*
+  Date formatting.
+
+  In the event card we want datetimes to be nicely formatted. The `formatedDate` contains whatever text
+  is to be displayed for that purpouse. The formatting is along the lines of
+    https://github.com/Kompismoln/klimatkalendern/issues/25
+  
+  TL;DR When the locale is sv we use custom formatting logic to have the date be super spick and span.
+  If the locale is something else we use generic l11n to make the datetime string.
+*/
+
+const formatedDate = computed(() => formatDate(props.event));
+
+function formatDate(event: IEvent) {
+  if (dateFnsLocale?.code === "sv") {
+    return formatDateSv(event);
+  }
+  return formateDateGeneric(event);
+}
+
+function formateDateGeneric(event: IEvent) {
+  const b = new Date(event.beginsOn);
+  const e = new Date(event.endsOn ?? b); // TODO: How can an event no have an end date?
+
+  // Single day event
+  if (
+    b.getFullYear() == e.getFullYear() &&
+    b.getMonth() == e.getMonth() &&
+    b.getDate() == e.getDate()
+  ) {
+    if (!dateFnsLocale) return; // TODO: report some error here.
+    return (
+      "🗓 " +
+      dtutils.formatDateTimeForEvent(
+        new Date(props.event.beginsOn),
+        dateFnsLocale
+      )
+    );
+  }
+
+  // Multi day event
+  if (!dateFnsLocale) return; // TODO: report some error here.
+  return `🗓 ${dtutils.formatDateForEvent(new Date(props.event.beginsOn), dateFnsLocale)} – ${dtutils.formatDateForEvent(e, dateFnsLocale)}`;
+}
+
+function formatDateSv(event: IEvent) {
+  const b = new Date(event.beginsOn);
+  const e = new Date(event.endsOn ?? b); // TODO: How can an event no have an end date?
+
+  const bWeekDay = dtutils.localeShortWeekDayNames()[b.getDay()];
+  const eWeekDay = dtutils.localeShortWeekDayNames()[e.getDay()];
+
+  // NOTE: We never write out which year the event occurs on,
+  //       I imagine the cases where that's important are excidingly rare.
+
+  // Single day event
+  if (
+    b.getFullYear() == e.getFullYear() &&
+    b.getMonth() == e.getMonth() &&
+    b.getDate() == e.getDate()
+  ) {
+    return `🗓 ${bWeekDay} ${b.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
+  }
+
+  // Multi day event
+  if (b.getFullYear() == e.getFullYear() && b.getMonth() == e.getMonth()) {
+    return `🗓 ${bWeekDay} ${b.getDate()} – ${eWeekDay.toLowerCase()} ${e.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
+  }
+
+  // NOTE: This code path is taken for events spanning different years to! But
+  //       omitting year will not be confusing assuming events don't span many many monts
+  //       or even many years.
+  return `🗓 ${bWeekDay} ${b.getDate()} ${getMonthSv(e)} – ${eWeekDay.toLowerCase()} ${e.getDate()} ${getMonthSv(e)} ${getTimeRangeSv(b, e)}`;
+}
+
+function getMonthSv(date: Date) {
+  return [
+    "jan",
+    "feb",
+    "mars",
+    "apr",
+    "maj",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec",
+  ][date.getMonth()];
+}
+
+function getTimeRangeSv(fromTime: Date, toTime: Date) {
+  // TODO: Display only one time if `from` and `to` are the same
+  return `${getTimeSv(fromTime)}–${getTimeSv(toTime)}`;
+}
+
+function getTimeSv(date: Date) {
+  if (date.getMinutes() === 0) {
+    return `${date.getHours().toString().padStart(2, "0")}`;
+  }
+  return `${date.getHours().toString().padStart(2, "0")}.${date.getMinutes().toString().padStart(2, "0")}`;
+}
 </script>
