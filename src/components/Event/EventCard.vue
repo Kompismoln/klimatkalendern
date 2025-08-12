@@ -313,7 +313,10 @@ function formateDateGeneric(event: IEvent) {
     b.getMonth() == e.getMonth() &&
     b.getDate() == e.getDate()
   ) {
-    if (!dateFnsLocale) return; // TODO: report some error here.
+    if (!dateFnsLocale) {
+      console.error("Locale is undefined");
+      return;
+    }
     return (
       "🗓 " +
       dtutils.formatDateTimeForEvent(
@@ -324,7 +327,10 @@ function formateDateGeneric(event: IEvent) {
   }
 
   // Multi day event
-  if (!dateFnsLocale) return; // TODO: report some error here.
+  if (!dateFnsLocale) {
+    console.error("Locale is undefined");
+    return;
+  }
   return `🗓 ${dtutils.formatDateForEvent(new Date(props.event.beginsOn), dateFnsLocale)} – ${dtutils.formatDateForEvent(e, dateFnsLocale)}`;
 }
 
