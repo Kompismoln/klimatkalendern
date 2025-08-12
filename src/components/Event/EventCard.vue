@@ -338,8 +338,8 @@ function formatDateSv(event: IEvent) {
   const b = new Date(event.beginsOn);
   const e = new Date(event.endsOn ?? b); // TODO: How can an event no have an end date?
 
-  const bWeekDay = dtutils.localeShortWeekDayNames()[b.getDay()];
-  const eWeekDay = dtutils.localeShortWeekDayNames()[e.getDay()];
+  const bWeekDay = dtutils.localeShortWeekDayNames(dateFnsLocale)[b.getDay()];
+  const eWeekDay = dtutils.localeShortWeekDayNames(dateFnsLocale)[e.getDay()];
 
   // NOTE: We never write out which year the event occurs on,
   //       I imagine the cases where that's important are excidingly rare.
@@ -350,18 +350,22 @@ function formatDateSv(event: IEvent) {
     b.getMonth() == e.getMonth() &&
     b.getDate() == e.getDate()
   ) {
-    return `🗓 ${bWeekDay} ${b.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
+    return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
   }
 
   // Multi day event
   if (b.getFullYear() == e.getFullYear() && b.getMonth() == e.getMonth()) {
-    return `🗓 ${bWeekDay} ${b.getDate()} – ${eWeekDay.toLowerCase()} ${e.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
+    return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} – ${eWeekDay} ${e.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
   }
 
   // NOTE: This code path is taken for events spanning different years to! But
   //       omitting year will not be confusing assuming events don't span many many monts
   //       or even many years.
-  return `🗓 ${bWeekDay} ${b.getDate()} ${getMonthSv(e)} – ${eWeekDay.toLowerCase()} ${e.getDate()} ${getMonthSv(e)} ${getTimeRangeSv(b, e)}`;
+  return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(e)} – ${eWeekDay} ${e.getDate()} ${getMonthSv(e)} ${getTimeRangeSv(b, e)}`;
+}
+
+function capitalize(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 function getMonthSv(date: Date) {
