@@ -1,21 +1,25 @@
 import type { Locale } from "date-fns";
 import { format } from "date-fns";
 
-function localeMonthNames(): string[] {
+function localeMonthNames(locale?: Locale): string[] {
   const monthNames: string[] = [];
   for (let i = 0; i < 12; i += 1) {
     const d = new Date(2019, i, 1);
-    const month = d.toLocaleString("default", { month: "long" });
+    const month = d.toLocaleString(locale?.code ?? "default", {
+      month: "long",
+    });
     monthNames.push(month);
   }
   return monthNames;
 }
 
-function localeShortWeekDayNames(): string[] {
+function localeShortWeekDayNames(locale?: Locale): string[] {
   const weekDayNames: string[] = [];
   for (let i = 13; i < 20; i += 1) {
     const d = new Date(2019, 9, i);
-    const weekDay = d.toLocaleString("default", { weekday: "short" });
+    const weekDay = d.toLocaleString(locale?.code ?? "default", {
+      weekday: "short",
+    });
     weekDayNames.push(weekDay);
   }
   return weekDayNames;
