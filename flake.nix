@@ -7,21 +7,20 @@
 
   outputs =
     {
-      self,
       nixpkgs,
+      ...
     }:
     let
-      pname = "klimatkalendern";
+      name = "klimatkalendern";
       version = "5.1.2";
       src = ./.;
       systems = [
         "x86_64-linux"
         "aarch64-darwin"
       ];
-      inherit (nixpkgs) lib;
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
     in
-    rec {
+    {
       packages = forAllSystems (
         system:
         let
@@ -36,13 +35,15 @@
         rec {
           default = pkgs.callPackage ./nixpkg {
             mobilizon-src = {
-              inherit src pname version;
+              pname = "${name}-elixir";
+              inherit src version;
             };
             elixir = elixirPackage;
             inherit beamPackages mobilizon-frontend;
           };
           mobilizon-frontend = pkgs.stdenv.mkDerivation {
-            inherit src pname version;
+            pname = "${name}-frontend";
+            inherit src version;
 
             nativeBuildInputs = with pkgs; [
               imagemagick
@@ -51,7 +52,8 @@
             ];
 
             pnpmDeps = pkgs.pnpm.fetchDeps {
-              inherit pname version src;
+              pname = name;
+              inherit version src;
               fetcherVersion = 2;
               hash = "sha256-A3xLFr2duWfekyuX63Gt/brPu3MaVV7UQ3bheaV+lAc=";
             };
@@ -64,8 +66,12 @@
 
             installPhase = ''
               mkdir -p $out/static
-              cp -r priv/static $out/static
+              cp -r priv/static/. $out/static
             '';
+            #postInstall = ''
+            #  mkdir -p $out/static
+            #  cp -r priv/static $out/static
+            #'';
           };
         }
       );
@@ -79,7 +85,7 @@
         in
         {
           default = pkgs.mkShell {
-            name = "${pname}-dev";
+            name = "${name}-devshell";
             packages = with pkgs; [
               (writeScriptBin "npm" ''echo "use pnpm"'')
               (writeScriptBin "npx" ''echo "use pnpm dlx"'')
