@@ -55,7 +55,7 @@
               pname = name;
               inherit version src;
               fetcherVersion = 2;
-              hash = "sha256-A3xLFr2duWfekyuX63Gt/brPu3MaVV7UQ3bheaV+lAc=";
+              hash = "sha256-0CeK4swILuEw80zV41IuEM2RQTqLGtT6WbllNUetuqc=";
             };
 
             buildPhase = ''
