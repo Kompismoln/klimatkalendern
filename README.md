@@ -214,8 +214,8 @@ MIX_ENV=prod mix compile
 
 ### Install and Build Frontend Assets:
 ```bash
-npm install
-npm run build
+pnpm install
+pnpm run build
 MIX_ENV=prod mix phx.digest
 ```
 
