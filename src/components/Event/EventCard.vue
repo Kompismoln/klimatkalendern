@@ -304,6 +304,11 @@ function formatDate(event: IEvent) {
 }
 
 function formateDateGeneric(event: IEvent) {
+  if (!dateFnsLocale) {
+    console.error("Locale is undefined");
+    return;
+  }
+
   const b = new Date(event.beginsOn);
   const e = new Date(event.endsOn ?? b); // TODO: How can an event no have an end date?
 
@@ -313,24 +318,21 @@ function formateDateGeneric(event: IEvent) {
     b.getMonth() == e.getMonth() &&
     b.getDate() == e.getDate()
   ) {
-    if (!dateFnsLocale) {
-      console.error("Locale is undefined");
-      return;
+    // No time information
+    if (!event.options.showStartTime) {
+      return `🗓 ${dtutils.formatDateForEvent(b, dateFnsLocale)}`;
     }
-    return (
-      "🗓 " +
-      dtutils.formatDateTimeForEvent(
-        new Date(props.event.beginsOn),
-        dateFnsLocale
-      )
-    );
+
+    // With start time.
+    if (event.options.showStartTime && !event.options.showEndTime) {
+      return `🗓 ${dtutils.formatDateTimeForEvent(b, dateFnsLocale)}`;
+    }
+
+    // Start and end time.
+    return `🗓 ${dtutils.formatTimeRangeForEvents(b, e, dateFnsLocale)}`;
   }
 
   // Multi day event
-  if (!dateFnsLocale) {
-    console.error("Locale is undefined");
-    return;
-  }
   return `🗓 ${dtutils.formatDateForEvent(new Date(props.event.beginsOn), dateFnsLocale)} – ${dtutils.formatDateForEvent(e, dateFnsLocale)}`;
 }
 

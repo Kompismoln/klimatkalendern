@@ -77,6 +77,14 @@ function formatDateForEvent(dateTime: Date, locale: Locale): string {
   return format(dateTime, "PP", { locale });
 }
 
+function formatTimeRangeForEvents(
+  startTime: Date,
+  endTime: Date,
+  locale: Locale
+): string {
+  return `${format(startTime, "p", { locale })} – ${format(endTime, "p", { locale })}`;
+}
+
 export {
   localeMonthNames,
   localeShortWeekDayNames,
@@ -84,4 +92,5 @@ export {
   roundToNearestMinute,
   formatDateTimeForEvent,
   formatDateForEvent,
+  formatTimeRangeForEvents,
 };
