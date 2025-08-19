@@ -350,6 +350,17 @@ function formatDateSv(event: IEvent) {
     b.getMonth() == e.getMonth() &&
     b.getDate() == e.getDate()
   ) {
+    // No time information
+    if (!event.options.showStartTime) {
+      return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)}`;
+    }
+
+    // With start time.
+    if (event.options.showStartTime && !event.options.showEndTime) {
+      return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} ${getTimeSv(b)}`;
+    }
+
+    // Start and end time.
     return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
   }
 
