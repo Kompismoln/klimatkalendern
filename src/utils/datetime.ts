@@ -43,20 +43,20 @@ function formateDateGeneric(event: IEvent, locale?: Locale) {
   ) {
     // No time information
     if (!event.options.showStartTime) {
-      return `🗓 ${formatDateForEvent(b, locale)}`;
+      return formatDateForEvent(b, locale);
     }
 
     // With start time.
     if (event.options.showStartTime && !event.options.showEndTime) {
-      return `🗓 ${formatDateTimeForEvent(b, locale)}`;
+      return formatDateTimeForEvent(b, locale);
     }
 
     // Start and end time.
-    return `🗓 ${formatTimeRangeForEvents(b, e, locale)}`;
+    return formatTimeRangeForEvents(b, e, locale);
   }
 
   // Multi day event
-  return `🗓 ${formatDateForEvent(new Date(event.beginsOn), locale)} – ${formatDateForEvent(e, locale)}`;
+  return `${formatDateForEvent(new Date(event.beginsOn), locale)} – ${formatDateForEvent(e, locale)}`;
 }
 
 // The custom logic for SE locle.
@@ -78,27 +78,27 @@ function formatDateSv(event: IEvent, locale?: Locale) {
   ) {
     // No time information
     if (!event.options.showStartTime) {
-      return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)}`;
+      return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)}`;
     }
 
     // With start time.
     if (event.options.showStartTime && !event.options.showEndTime) {
-      return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} ${getTimeSv(b)}`;
+      return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} ${getTimeSv(b)}`;
     }
 
     // Start and end time.
-    return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
+    return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
   }
 
   // Multi day event
   if (b.getFullYear() == e.getFullYear() && b.getMonth() == e.getMonth()) {
-    return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} – ${eWeekDay} ${e.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
+    return `${capitalize(bWeekDay)} ${b.getDate()} – ${eWeekDay} ${e.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
   }
 
   // NOTE: This code path is taken for events spanning different years to! But
   //       omitting year will not be confusing assuming events don't span many many monts
   //       or even many years.
-  return `🗓 ${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(e)} – ${eWeekDay} ${e.getDate()} ${getMonthSv(e)} ${getTimeRangeSv(b, e)}`;
+  return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(e)} – ${eWeekDay} ${e.getDate()} ${getMonthSv(e)} ${getTimeRangeSv(b, e)}`;
 }
 
 function capitalize(s: string): string {

@@ -96,7 +96,8 @@
           <span
             class="text-gray-700 dark:text-white font-semibold"
             :class="{ 'sm:block': mode === 'row' }"
-            >{{ formatedDate }}
+          >
+            🗓 {{ formatedDate }}
           </span>
           <div class="">
             <div
