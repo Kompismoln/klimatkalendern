@@ -17,7 +17,7 @@ config :mobilizon, Mobilizon.Web.Endpoint,
   # Somehow this can't be merged properly with the dev config so we got this…
   watchers: [
     node: [
-      "node_modules/.bin/vite"
+      "node_modules/vite/bin/vite.js",
     ]
   ]
 
