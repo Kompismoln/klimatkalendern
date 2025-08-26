@@ -7,11 +7,11 @@
 
   outputs =
     {
-      self,
       nixpkgs,
+      ...
     }:
     let
-      pname = "klimatkalendern";
+      name = "klimatkalendern";
       version = "5.1.2";
       src = ./.;
       systems = [
@@ -20,7 +20,7 @@
       ];
       forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
     in
-    rec {
+    {
       packages = forAllSystems (
         system:
         let
@@ -32,18 +32,46 @@
             }
           );
         in
-        {
+        rec {
           default = pkgs.callPackage ./nixpkg {
             mobilizon-src = {
-              inherit src pname version;
+              pname = "${name}-elixir";
+              inherit src version;
             };
             elixir = elixirPackage;
-            inherit beamPackages;
-            mobilizon-frontend = pkgs.callPackage ./nixpkg/frontend.nix {
-              mobilizon-src = {
-                inherit src pname version;
-              };
+            inherit beamPackages mobilizon-frontend;
+          };
+          mobilizon-frontend = pkgs.stdenv.mkDerivation {
+            pname = "${name}-frontend";
+            inherit src version;
+
+            nativeBuildInputs = with pkgs; [
+              imagemagick
+              nodejs
+              pnpm.configHook
+            ];
+
+            pnpmDeps = pkgs.pnpm.fetchDeps {
+              pname = name;
+              inherit version src;
+              fetcherVersion = 2;
+              hash = "sha256-0CeK4swILuEw80zV41IuEM2RQTqLGtT6WbllNUetuqc=";
             };
+
+            buildPhase = ''
+              runHook preBuild
+              pnpm build
+              runHook postBuild
+            '';
+
+            installPhase = ''
+              mkdir -p $out/static
+              cp -r priv/static/. $out/static
+            '';
+            #postInstall = ''
+            #  mkdir -p $out/static
+            #  cp -r priv/static $out/static
+            #'';
           };
         }
       );
@@ -57,8 +85,11 @@
         in
         {
           default = pkgs.mkShell {
-            name = "${pname}-dev";
+            name = "${name}-devshell";
             packages = with pkgs; [
+              (writeScriptBin "npm" ''echo "use pnpm"'')
+              (writeScriptBin "npx" ''echo "use pnpm dlx"'')
+              pnpm
               mix2nix
               elixirPackage
               cmake
