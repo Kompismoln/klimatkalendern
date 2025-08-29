@@ -2,7 +2,7 @@ defmodule Mobilizon.Federation.ActivityStream.Converter.Media do
   @moduledoc """
   Media converter.
 
-  This module allows to convert events from ActivityStream format to our own
+  This module allows converting events from ActivityStream format to our own
   internal one, and back.
   """
 
@@ -11,6 +11,8 @@ defmodule Mobilizon.Federation.ActivityStream.Converter.Media do
   alias Mobilizon.Medias.Media, as: MediaModel
   alias Mobilizon.Service.HTTP.RemoteMediaDownloaderClient
   alias Mobilizon.Web.Upload
+
+  @supported_media_types ["Image", "Document"]
 
   @doc """
   Convert a media struct to an ActivityStream representation.
@@ -30,19 +32,18 @@ defmodule Mobilizon.Federation.ActivityStream.Converter.Media do
   """
   @spec find_or_create_media(map(), String.t() | integer()) ::
           {:ok, MediaModel.t()} | {:error, atom() | String.t() | Ecto.Changeset.t()}
-  def find_or_create_media(%{"type" => type, "href" => url}, actor_id)
-      when type in ["Image", "Document"],
-      do:
-        find_or_create_media(
-          %{"type" => type, "url" => url, "name" => "External media"},
-          actor_id
-        )
+  def find_or_create_media(%{"type" => type, "href" => url}, actor_id) when type in @supported_media_types,
+    do:
+      find_or_create_media(
+        %{"type" => type, "url" => url, "name" => "External media"},
+        actor_id
+      )
 
   def find_or_create_media(
         %{"type" => type, "url" => media_url, "name" => name},
         actor_id
       )
-      when type in ["Image", "Document"] and is_binary(media_url) do
+      when type in @supported_media_types and is_binary(media_url) do
     with {:ok, %{url: url} = uploaded} <- upload_media(media_url, name) do
       case Medias.get_media_by_url(url) do
         %MediaModel{file: _file} = media ->
