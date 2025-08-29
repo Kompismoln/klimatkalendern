@@ -265,6 +265,9 @@ build-docker-tag:
       --platform linux/${ARCH}
       --provenance=false
       --build-arg="${ERL_FLAGS}"
+      --build-arg VCS_REF="${CI_COMMIT_SHA}"
+      --build-arg BUILD_DATE="${CI_JOB_STARTED_AT}"
+      --build-arg VERSION="${CI_COMMIT_TAG}"
       -t kaihuri/mobilizon:${CI_COMMIT_TAG}-${ARCH}
       -f docker/production/Dockerfile .
   parallel:
