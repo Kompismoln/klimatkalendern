@@ -1196,7 +1196,7 @@
   "{member} joined the group.": "",
   "{member} rejected the invitation to join the group.": "",
   "{member} requested to join the group.": "",
-  "{member} was invited by {profile}.": "{profile} a convidat [member}.",
+  "{member} was invited by {profile}.": "{profile} a convidat {member}.",
   "{moderator} added a note on {report}": "{moderator} apondèt una nòta sus {report}",
   "{moderator} closed {report}": "{moderator} a tancat {report}",
   "{moderator} deleted an event named \"{title}\"": "{moderator} suprimèt un evinement apelat « {title} »",
