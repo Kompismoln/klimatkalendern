@@ -1443,7 +1443,7 @@
   "{moderator} has deleted user {user}": "{moderator} hat den Nutzer {user} gelöscht",
   "{moderator} has done an unknown action": "{moderator} hat eine unbekannte Handlung vorgenommen",
   "{moderator} has unsuspended group {profile}": "{moderator} hat die Sperrung der Gruppe {profile} aufgehoben",
-  "{moderator} has unsuspended profile {profile}": "{moderator} hat das Profil {profil} gesperrt",
+  "{moderator} has unsuspended profile {profile}": "{moderator} hat das Profil {profile} gesperrt",
   "{moderator} marked {report} as resolved": "{moderator} hat {report} als erledigt markiert",
   "{moderator} reopened {report}": "{moderator} hat {report} wieder geöffnet",
   "{moderator} suspended group {profile}": "{moderator} hat die Gruppe {profile} gesperrt",

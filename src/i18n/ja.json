@@ -1092,7 +1092,7 @@
   "You deleted the discussion {discussion}.": "",
   "You deleted the event {event}.": "あなたはイベント{event}を削除しました。",
   "You deleted the folder {resource}.": "",
-  "You deleted the post {post}.": "あなたは投稿{profile}を削除しました。",
+  "You deleted the post {post}.": "あなたは投稿{post}を削除しました。",
   "You deleted the resource {resource}.": "",
   "You demoted the member {member} to an unknown role.": "",
   "You demoted {member} to moderator.": "",
