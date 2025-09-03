@@ -63,7 +63,7 @@ defmodule Mobilizon.Service.Feed do
       <feed xmlns="http://www.w3.org/2005/Atom">
         <logo>#{actor.banner.url}</logo>
         <icon>#{actor.avatar.url}</icon>
-        <generator uri="http://mobilizon.test" version="#{Mobilizon.Config.instance_version()}">Test instance</generator>
+        <generator uri="http://mobilizon.test" version="#{Mobilizon.Config.instance_version()}">#{Mobilizon.Config.instance_name()}</generator>
         <link rel="alternate" href="#{actor.url}"/>
         <link rel="self" href="http://mobilizon.test/@#{actor.preferred_username}/feed/atom"/>
         <author>
@@ -71,7 +71,7 @@ defmodule Mobilizon.Service.Feed do
           <uri>#{actor.url}</uri>
         </author>
         <id>http://mobilizon.test/@#{actor.preferred_username}/feed/atom</id>
-        <title>#{Actor.display_name(actor)}&apos;s private events feed on Test instance</title>
+        <title>#{Actor.display_name(actor)}&apos;s private events feed on #{Mobilizon.Config.instance_name()}</title>
         <updated></updated>
         <entry>
           #{tags_maped}
