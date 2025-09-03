@@ -104,7 +104,7 @@
       >
         <o-select
           v-model="groupNotifications"
-          @update:modelValue="updateSetting(updatedSettings)"
+          @update:modelValue="updateSetting({ groupNotifications })"
           id="groupNotifications"
         >
           <option
@@ -132,7 +132,7 @@
       <div class="field">
         <o-checkbox
           v-model="notificationOnDay"
-          @update:modelValue="updateSetting(updatedSettings)"
+          @update:modelValue="updateSetting({ notificationOnDay })"
         >
           <strong>{{ $t("Notification on the day of the event") }}</strong>
           <p>
@@ -162,7 +162,7 @@
       <div class="field">
         <o-checkbox
           v-model="notificationEachWeek"
-          @update:modelValue="updateSetting(updatedSettings)"
+          @update:modelValue="updateSetting({ notificationEachWeek })"
         >
           <strong>{{ $t("Recap every week") }}</strong>
           <p>
@@ -177,7 +177,7 @@
       <div class="field">
         <o-checkbox
           v-model="notificationBeforeEvent"
-          @update:modelValue="updateSetting(updatedSettings)"
+          @update:modelValue="updateSetting({ notificationBeforeEvent })"
         >
           <strong>{{ $t("Notification before the event") }}</strong>
           <p>
@@ -210,7 +210,9 @@
         <o-select
           v-model="notificationPendingParticipation"
           id="notificationPendingParticipation"
-          @update:modelValue="updateSetting(updatedSettings)"
+          @update:modelValue="
+            updateSetting({ notificationPendingParticipation })
+          "
         >
           <option
             v-for="(value, key) in notificationPendingParticipationValues"
@@ -616,15 +618,6 @@ const notificationValues = computed(
   }
 );
 
-const updatedSettings = computed(() => ({
-  ...loggedUser.value?.settings,
-  notificationOnDay: notificationOnDay.value,
-  notificationEachWeek: notificationEachWeek.value,
-  notificationBeforeEvent: notificationBeforeEvent.value,
-  notificationPendingParticipation: notificationPendingParticipation.value,
-  groupNotifications: groupNotifications.value,
-}));
-
 onMounted(async () => {
   notificationPendingParticipationValues.value = {
     [INotificationPendingEnum.NONE]: t("Do not receive any mail"),
@@ -641,29 +634,55 @@ onMounted(async () => {
     [INotificationPendingEnum.ONE_WEEK]: t("Weekly email summary"),
   };
   canShowWebPush.value = await checkCanShowWebPush();
-  setNotificationSettings(loggedUser.value?.settings);
 });
 
-watch(loggedUser, () => {
-  if (loggedUser.value?.settings) {
-    setNotificationSettings(loggedUser.value?.settings);
-  }
-});
+watch(
+  loggedUser,
+  () => {
+    if (loggedUser.value?.settings) {
+      notificationOnDay.value = loggedUser.value.settings.notificationOnDay;
+      notificationEachWeek.value =
+        loggedUser.value.settings.notificationEachWeek;
+      notificationBeforeEvent.value =
+        loggedUser.value.settings.notificationBeforeEvent;
+      notificationPendingParticipation.value =
+        loggedUser.value.settings.notificationPendingParticipation;
+      groupNotifications.value = loggedUser.value.settings.groupNotifications;
+    }
+  },
+  { immediate: true }
+);
 
 const { mutate: updateSetting } = useMutation<{
   setUserSettings: IUserSettings;
 }>(SET_USER_SETTINGS, () => ({
-  refetchQueries: [{ query: USER_NOTIFICATIONS }],
-}));
+  // We need to update the cache because we just changed user settings
+  // We want to update the related query USER_NOTIFICATIONS
+  update(cache, { data }) {
+    if (!data?.setUserSettings) {
+      console.error("Can't access new user settings");
+      return;
+    }
 
-const setNotificationSettings = (settings: IUserSettings) => {
-  notificationOnDay.value = settings.notificationOnDay;
-  notificationEachWeek.value = settings.notificationEachWeek;
-  notificationBeforeEvent.value = settings.notificationBeforeEvent;
-  notificationPendingParticipation.value =
-    settings.notificationPendingParticipation;
-  groupNotifications.value = settings.groupNotifications;
-};
+    // Read the current loggedUser from the cache
+    const cachedData = cache.readQuery<{ loggedUser: IUser }>({
+      query: USER_NOTIFICATIONS,
+    });
+
+    if (!cachedData?.loggedUser) return;
+
+    // Update the cache
+    cache.writeQuery({
+      query: USER_NOTIFICATIONS,
+      data: {
+        loggedUser: {
+          ...cachedData.loggedUser,
+          settings: data.setUserSettings,
+        },
+      },
+    });
+  },
+}));
 
 const dialog = inject<Dialog>("dialog");
 
@@ -805,9 +824,47 @@ const { mutate: updateNotificationValue } = useMutation<
     method: IActivitySettingMethod;
     enabled: boolean;
   }
->(UPDATE_ACTIVITY_SETTING, () => ({
-  refetchQueries: [{ query: USER_NOTIFICATIONS }],
-}));
+>(UPDATE_ACTIVITY_SETTING, {
+  // We need to update the cache because we just changed user settings
+  // We want to update the related query USER_NOTIFICATIONS
+  update(cache, { data }) {
+    if (!data?.updateActivitySetting) {
+      console.error("Can't access updated activity setting");
+      return;
+    }
+
+    // Read current loggedUser from the cache
+    const cachedData = cache.readQuery<{ loggedUser: IUser }>({
+      query: USER_NOTIFICATIONS,
+    });
+
+    if (!cachedData?.loggedUser) return;
+
+    const updatedActivitySettings = [
+      // remove the old setting value
+      ...cachedData.loggedUser.activitySettings.filter(
+        (s) =>
+          !(
+            s.key === data.updateActivitySetting.key &&
+            s.method === data.updateActivitySetting.method
+          )
+      ),
+      // add the new setting value
+      data.updateActivitySetting,
+    ];
+
+    // Update the cache
+    cache.writeQuery({
+      query: USER_NOTIFICATIONS,
+      data: {
+        loggedUser: {
+          ...cachedData.loggedUser,
+          activitySettings: updatedActivitySettings,
+        },
+      },
+    });
+  },
+});
 
 const isSubscribed = async (): Promise<boolean> => {
   try {
