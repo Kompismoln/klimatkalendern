@@ -32,12 +32,13 @@ defmodule Mobilizon.Federation.ActivityStream.Converter.Media do
   """
   @spec find_or_create_media(map(), String.t() | integer()) ::
           {:ok, MediaModel.t()} | {:error, atom() | String.t() | Ecto.Changeset.t()}
-  def find_or_create_media(%{"type" => type, "href" => url}, actor_id) when type in @supported_media_types,
-    do:
-      find_or_create_media(
-        %{"type" => type, "url" => url, "name" => "External media"},
-        actor_id
-      )
+  def find_or_create_media(%{"type" => type, "href" => url}, actor_id)
+      when type in @supported_media_types,
+      do:
+        find_or_create_media(
+          %{"type" => type, "url" => url, "name" => "External media"},
+          actor_id
+        )
 
   def find_or_create_media(
         %{"type" => type, "url" => media_url, "name" => name},
