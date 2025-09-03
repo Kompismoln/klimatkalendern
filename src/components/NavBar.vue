@@ -3,7 +3,9 @@
     class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-zinc-900"
     id="navbar"
   >
-    <div class="container mx-auto flex flex-wrap items-center gap-2 sm:gap-4">
+    <div
+      class="container md:grid md:grid-flow-col md:items-start md:grid-cols-[auto,1fr,auto,auto] mx-auto flex flex-wrap items-center gap-2 sm:gap-4"
+    >
       <router-link
         :to="{ name: RouteName.HOME }"
         :aria-label="t('Back to homepage')"
@@ -13,14 +15,14 @@
         <MobilizonLogo class="w-40" />
       </router-link>
       <div
-        class="justify-between items-center w-full md:flex md:w-auto md:order-1"
+        class="w-full md:block md:self-center order-4 md:order-none"
         id="mobile-menu-2"
         :class="{ hidden: !showMobileMenu }"
       >
         <ul
-          class="flex flex-col md:flex-row md:space-x-8 mt-2 md:mt-0 md:font-lightbold"
+          class="flex flex-col md:gap-8 md:justify-start items-center md:flex-wrap md:flex-row mt-2 md:mt-0 md:font-lightbold"
         >
-          <li class="m-auto">
+          <li>
             <router-link
               :to="{ name: RouteName.SEARCH }"
               class="block relative py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -28,7 +30,7 @@
             >
           </li>
 
-          <li class="m-auto">
+          <li>
             <router-link
               :to="{ name: RouteName.EVENT_CALENDAR }"
               class="block relative py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
@@ -38,39 +40,35 @@
               ></router-link
             >
           </li>
-          <li class="m-auto" v-if="currentActor?.id">
+          <li v-if="currentActor?.id">
             <router-link
               :to="{ name: RouteName.MY_EVENTS }"
               class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >{{ t("My events") }}</router-link
             >
           </li>
-          <li class="m-auto" v-if="currentActor?.id">
+          <li v-if="currentActor?.id">
             <router-link
               :to="{ name: RouteName.MY_GROUPS }"
               class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >{{ t("My groups") }}</router-link
             >
           </li>
-          <li class="m-auto" v-if="!currentUser?.isLoggedIn">
+          <li v-if="!currentUser?.isLoggedIn">
             <router-link
               :to="{ name: RouteName.LOGIN }"
               class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >{{ t("Login") }}</router-link
             >
           </li>
-          <li class="m-auto" v-if="!currentUser?.isLoggedIn && canRegister">
+          <li v-if="!currentUser?.isLoggedIn && canRegister">
             <router-link
               :to="{ name: RouteName.REGISTER }"
               class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >{{ t("Register") }}</router-link
             >
           </li>
-          <li
-            class="m-auto"
-            v-for="(link, index) in externalURLSConfig"
-            :key="index"
-          >
+          <li v-for="(link, index) in externalURLSConfig" :key="index">
             <a
               :href="link.url"
               rel="noopener noreferrer ugc"
@@ -81,10 +79,8 @@
           </li>
         </ul>
       </div>
-      <div
-        class="flex items-center md:order-2 ml-auto gap-2"
-        v-if="currentUser?.isLoggedIn"
-      >
+      <div class="m-auto md:display:none;"></div>
+      <div class="flex gap-2" v-if="currentUser?.isLoggedIn">
         <router-link
           :to="{ name: RouteName.CONVERSATION_LIST }"
           class="flex sm:mr-3 text-sm md:mr-0 relative"
@@ -222,7 +218,7 @@
       <button
         @click="showMobileMenu = !showMobileMenu"
         type="button"
-        class="inline-flex items-center p-2 ml-1 text-sm text-zinc-500 rounded-lg md:hidden hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:focus:ring-gray-600"
+        class="inline-flex items-center justify-end p-2 ml-1 text-sm text-zinc-500 rounded-lg md:hidden hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:focus:ring-gray-600"
         aria-controls="mobile-menu-2"
         aria-expanded="false"
       >
