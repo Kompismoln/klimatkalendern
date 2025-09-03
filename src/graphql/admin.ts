@@ -200,7 +200,7 @@ export const ADMIN_SETTINGS_FRAGMENT = gql`
     instanceLongDescription
     instanceSlogan
     contact
-    externalUrls {
+    externalLinks {
       label
       url
       enabled
@@ -251,7 +251,7 @@ export const SAVE_ADMIN_SETTINGS = gql`
     $instanceLongDescription: String
     $instanceSlogan: String
     $contact: String
-    $externalUrls: [ExternalUrlInput]
+    $externalLinks: [ExternalLinkInput]
     $instanceLogo: MediaInput
     $instanceFavicon: MediaInput
     $defaultPicture: MediaInput
@@ -274,7 +274,7 @@ export const SAVE_ADMIN_SETTINGS = gql`
       instanceLongDescription: $instanceLongDescription
       instanceSlogan: $instanceSlogan
       contact: $contact
-      externalUrls: $externalUrls
+      externalLinks: $externalLinks
       instanceLogo: $instanceLogo
       instanceFavicon: $instanceFavicon
       defaultPicture: $defaultPicture

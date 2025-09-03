@@ -472,11 +472,11 @@
           </o-field>
           <div
             class="mt-5 grid lg:grid-cols-[repeat(auto-fit,minmax(250px,0.5fr))] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2"
-            v-if="settingsToWrite.externalUrls.length > 0"
+            v-if="settingsToWrite.externalLinks.length > 0"
           >
             <div
               class="bg-mbz-yellow-alt-100 p-5"
-              v-for="(link, index) in settingsToWrite.externalUrls"
+              v-for="(link, index) in settingsToWrite.externalLinks"
               :key="index"
             >
               <o-field :label="t('URL')" class="!mt-0"
@@ -556,7 +556,7 @@ const defaultAdminSettings: IAdminSettings = {
   registrationsOpen: false,
   registrationsModeration: false,
   instanceLanguages: [],
-  externalUrls: [],
+  externalLinks: [],
 };
 
 const { onResult: onAdminSettingsResult } = useQuery<{
@@ -598,15 +598,15 @@ useHead({
 const settingsToWrite = ref<IAdminSettings>(defaultAdminSettings);
 
 watch(adminSettings, () => {
-  // We need to use structuredClone to clone deep properties of adminSettings (like externalUrls)
-  // {... } only shadow clone, so externalUrls is not reactive doing this
+  // We need to use structuredClone to clone deep properties of adminSettings (like externalLinks)
+  // {... } only shadow clone, so externalLinks is not reactive doing this
   if (adminSettings.value) {
     settingsToWrite.value = structuredClone(toRaw(adminSettings.value));
   }
 });
 
 const addLink = () => {
-  settingsToWrite.value.externalUrls.push({
+  settingsToWrite.value.externalLinks.push({
     url: "",
     label: "",
     enabled: false,
@@ -614,7 +614,7 @@ const addLink = () => {
 };
 
 const deleteLink = (index: number) => {
-  settingsToWrite.value.externalUrls.splice(index, 1);
+  settingsToWrite.value.externalLinks.splice(index, 1);
 };
 
 const filteredLanguages = ref<string[]>([]);

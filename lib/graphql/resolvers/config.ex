@@ -88,7 +88,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Config do
       get_in(Application.get_env(:web_push_encryption, :vapid_details), [:public_key])
 
     %{
-      external_urls: Config.external_urls(),
+      external_links: Config.external_links(),
       name: Config.instance_name(),
       registrations_open: Config.instance_registrations_open?(),
       registrations_moderation: Config.instance_registrations_moderation?(),

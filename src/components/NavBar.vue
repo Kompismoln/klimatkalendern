@@ -68,7 +68,7 @@
               >{{ t("Register") }}</router-link
             >
           </li>
-          <li v-for="(link, index) in externalURLSConfig" :key="index">
+          <li v-for="(link, index) in externalLinksConfig" :key="index">
             <a
               :href="link.url"
               v-if="link.enabled"
@@ -279,7 +279,7 @@ import { useLazyQuery, useMutation } from "@vue/apollo-composable";
 import { UPDATE_DEFAULT_ACTOR } from "@/graphql/actor";
 import { changeIdentity } from "@/utils/identity";
 import {
-  useExternalURLSConfig,
+  useExternalLinksConfig,
   useRegistrationConfig,
 } from "@/composition/apollo/config";
 import { useOruga } from "@oruga-ui/oruga-next";
@@ -296,7 +296,7 @@ const { identities } = useCurrentUserIdentities();
 const router = useRouter();
 const route = useRoute();
 
-const { externalURLSConfig } = useExternalURLSConfig();
+const { externalLinksConfig } = useExternalLinksConfig();
 const { registrationsOpen, registrationsAllowlist, databaseLogin } =
   useRegistrationConfig();
 

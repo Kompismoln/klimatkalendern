@@ -20,7 +20,7 @@ export const CONFIG = gql`
       languages
       primaryColor
       secondaryColor
-      externalUrls {
+      externalLinks {
         label
         url
         enabled
