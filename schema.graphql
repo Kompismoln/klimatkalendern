@@ -193,6 +193,9 @@ type Config {
   "Whether the registrations are opened"
   registrationsOpen: Boolean
 
+  "Whether the registrations want moderation"
+  registrationsModeration: Boolean
+
   "Whether the registration are on an allowlist"
   registrationsAllowlist: Boolean
 
@@ -1928,6 +1931,9 @@ type RootMutationType {
 
     "Whether the registrations are opened"
     registrationsOpen: Boolean
+
+    "Whether the registrations want moderation"
+    registrationsModeration: Boolean
 
     "The instance's languages"
     instanceLanguages: [String]
@@ -3760,6 +3766,9 @@ type AdminSettings {
 
   "Whether the registrations are opened"
   registrationsOpen: Boolean
+
+  "Whether the registrations want moderation"
+  registrationsModeration: Boolean
 
   "The instance's languages"
   instanceLanguages: [String]

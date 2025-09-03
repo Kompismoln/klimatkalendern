@@ -54,6 +54,8 @@ config :mobilizon, :instance,
     ),
   hostname: System.get_env("MOBILIZON_INSTANCE_HOST", "mobilizon.lan"),
   registrations_open: System.get_env("MOBILIZON_INSTANCE_REGISTRATIONS_OPEN", "false") == "true",
+  registrations_moderation:
+    System.get_env("MOBILIZON_INSTANCE_REGISTRATIONS_MODERATION", "false") == "true",
   registration_email_allowlist:
     System.get_env("MOBILIZON_INSTANCE_REGISTRATIONS_EMAIL_ALLOWLIST", "")
     |> String.split(",", trim: true),

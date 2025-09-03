@@ -42,6 +42,7 @@ defmodule Mobilizon.Web.NodeInfoControllerTest do
                "nodeDescription" => Config.instance_description()
              },
              "openRegistrations" => Config.instance_registrations_open?(),
+             "moderationRegistrations" => Config.instance_registrations_moderation?(),
              "protocols" => ["activitypub"],
              "services" => %{"inbound" => [], "outbound" => ["atom1.0"]},
              "software" => %{

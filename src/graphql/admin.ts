@@ -225,6 +225,7 @@ export const ADMIN_SETTINGS_FRAGMENT = gql`
     instancePrivacyPolicyUrl
     instanceRules
     registrationsOpen
+    registrationsModeration
     instanceLanguages
   }
 `;
@@ -258,6 +259,7 @@ export const SAVE_ADMIN_SETTINGS = gql`
     $instancePrivacyPolicyUrl: String
     $instanceRules: String
     $registrationsOpen: Boolean
+    $registrationsModeration: Boolean
     $instanceLanguages: [String]
   ) {
     saveAdminSettings(
@@ -279,6 +281,7 @@ export const SAVE_ADMIN_SETTINGS = gql`
       instancePrivacyPolicyUrl: $instancePrivacyPolicyUrl
       instanceRules: $instanceRules
       registrationsOpen: $registrationsOpen
+      registrationsModeration: $registrationsModeration
       instanceLanguages: $instanceLanguages
     ) {
       ...adminSettingsFragment

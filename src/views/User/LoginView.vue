@@ -162,7 +162,10 @@ const apollo = useApolloClient();
 const configQuery = useQuery<{
   config: Pick<
     IConfig,
-    "auth" | "registrationsOpen" | "registrationsAllowlist"
+    | "auth"
+    | "registrationsOpen"
+    | "registrationsModeration"
+    | "registrationsAllowlist"
   >;
 }>(CONFIG);
 

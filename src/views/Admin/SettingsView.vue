@@ -123,17 +123,36 @@
         </div>
         -->
         <o-field :label="t('Allow registrations')">
-          <o-switch v-model="settingsToWrite.registrationsOpen">
-            <p
-              class="prose dark:prose-invert"
-              v-if="settingsToWrite.registrationsOpen"
-            >
-              {{ t("Registration is allowed, anyone can register.") }}
-            </p>
-            <p class="prose dark:prose-invert" v-else>
-              {{ t("Registration is closed.") }}
-            </p>
-          </o-switch>
+          <fieldset>
+            <o-field>
+              <o-radio
+                v-model="registrationsMode"
+                name="registrationsModeType"
+                :native-value="registrationsModeType.CLOSE"
+                >{{ t("Registration is closed.") }}</o-radio
+              >
+            </o-field>
+            <o-field>
+              <o-radio
+                v-model="registrationsMode"
+                name="registrationsModeType"
+                :native-value="registrationsModeType.OPEN"
+                >{{
+                  t("Registration is allowed, anyone can register.")
+                }}</o-radio
+              >
+            </o-field>
+            <o-field>
+              <o-radio
+                v-model="registrationsMode"
+                name="registrationsModeType"
+                :native-value="registrationsModeType.MODERATED"
+                >{{
+                  t("Registration is moderated, new user must be validated.")
+                }}</o-radio
+              >
+            </o-field>
+          </fieldset>
         </o-field>
         <div class="field flex flex-col">
           <label class="" for="instance-languages">{{
@@ -447,7 +466,11 @@ import {
   SAVE_ADMIN_SETTINGS,
   LANGUAGES,
 } from "@/graphql/admin";
-import { InstancePrivacyType, InstanceTermsType } from "@/types/enums";
+import {
+  InstancePrivacyType,
+  InstanceTermsType,
+  registrationsModeType,
+} from "@/types/enums";
 import { IAdminSettings, ILanguage } from "@/types/admin.model";
 import RouteName from "@/router/name";
 import { useMutation, useQuery } from "@vue/apollo-composable";
@@ -485,6 +508,7 @@ const defaultAdminSettings: IAdminSettings = {
   instancePrivacyPolicyUrl: null,
   instanceRules: "",
   registrationsOpen: false,
+  registrationsModeration: false,
   instanceLanguages: [],
 };
 
@@ -532,6 +556,32 @@ watch(adminSettings, () => {
 });
 
 const filteredLanguages = ref<string[]>([]);
+
+const registrationsMode = computed({
+  get() {
+    if (settingsToWrite.value.registrationsOpen == true) {
+      if (settingsToWrite.value.registrationsModeration == true) {
+        return registrationsModeType.MODERATED;
+      } else {
+        return registrationsModeType.OPEN;
+      }
+    } else {
+      return registrationsModeType.CLOSE;
+    }
+  },
+  set(newMode: string) {
+    if (newMode == registrationsModeType.OPEN) {
+      settingsToWrite.value.registrationsOpen = true;
+      settingsToWrite.value.registrationsModeration = false;
+    } else if (newMode == registrationsModeType.MODERATED) {
+      settingsToWrite.value.registrationsOpen = true;
+      settingsToWrite.value.registrationsModeration = true;
+    } else {
+      settingsToWrite.value.registrationsOpen = false;
+      settingsToWrite.value.registrationsModeration = false;
+    }
+  },
+});
 
 const instanceLanguages = computed({
   get() {

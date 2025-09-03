@@ -1,0 +1,129 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SettingsView > Show and save settings 1`] = `
+"<div data-v-a8bb2abf="">
+  <breadcrumbs-nav data-v-a8bb2abf="" links="[object Object],[object Object]"></breadcrumbs-nav>
+  <section data-v-a8bb2abf="">
+    <form data-v-a8bb2abf="">
+      <o-field data-v-a8bb2abf="" label="Instance Name" label-for="instance-name">
+        <o-input data-v-a8bb2abf="" modelvalue="Mobilizon.test" id="instance-name" expanded=""></o-input>
+      </o-field>
+      <div data-v-a8bb2abf="" class="field flex flex-col"><label data-v-a8bb2abf="" class="" for="instance-description">Instance Short Description</label><small data-v-a8bb2abf="">Displayed on homepage and meta tags. Describe what Mobilizon is and what makes this instance special in a single paragraph.</small>
+        <o-input data-v-a8bb2abf="" type="textarea" modelvalue="Welcome to Mobilizon" rows="2" id="instance-description"></o-input>
+      </div>
+      <div data-v-a8bb2abf="" class="field flex flex-col"><label data-v-a8bb2abf="" class="" for="instance-slogan">Instance Slogan</label><small data-v-a8bb2abf="">A short tagline for your instance homepage. Defaults to "Gather ⋅ Organize ⋅ Mobilize"</small>
+        <o-input data-v-a8bb2abf="" modelvalue="Long life to Mobilizon" placeholder="Gather ⋅ Organize ⋅ Mobilize" id="instance-slogan"></o-input>
+      </div>
+      <div data-v-a8bb2abf="" class="field flex flex-col"><label data-v-a8bb2abf="" class="" for="instance-contact">Contact</label><small data-v-a8bb2abf="">Can be an email or a link, or just plain text.</small>
+        <o-input data-v-a8bb2abf="" modelvalue="info@mobilizon.test" id="instance-contact"></o-input>
+      </div><label data-v-a8bb2abf="" class="field flex flex-col">
+        <p data-v-a8bb2abf="">Logo</p><small data-v-a8bb2abf="">Logo of the instance. Defaults to the upstream Mobilizon logo.</small>
+        <picture-upload-stub data-v-a8bb2abf="" textfallback="Logo" accept="image/gif,image/png,image/jpeg,image/webp" maxsize="10485760"></picture-upload-stub>
+      </label><label data-v-a8bb2abf="" class="field flex flex-col">
+        <p data-v-a8bb2abf="">Favicon</p><small data-v-a8bb2abf="">Browser tab icon and PWA icon of the instance. Defaults to the upstream Mobilizon icon.</small>
+        <picture-upload-stub data-v-a8bb2abf="" textfallback="Favicon" accept="image/gif,image/png,image/jpeg,image/webp" maxsize="10485760"></picture-upload-stub>
+      </label><label data-v-a8bb2abf="" class="field flex flex-col">
+        <p data-v-a8bb2abf="">Default Picture</p><small data-v-a8bb2abf="">Default picture when an event or group doesn't have one.</small>
+        <picture-upload-stub data-v-a8bb2abf="" textfallback="Default Picture" accept="image/gif,image/png,image/jpeg,image/webp" maxsize="10485760"></picture-upload-stub>
+      </label>
+      <!-- piece of code to manage instance colors
+        <div class="field flex flex-col">
+          <label class="" for="primary-color">{{ t("Primary Color") }}</label>
+          <o-input
+            type="color"
+            v-model="settingsToWrite.primaryColor"
+            id="primary-color"
+          />
+        </div>
+        <div class="field flex flex-col">
+          <label class="" for="secondary-color">{{
+            t("Secondary Color")
+          }}</label>
+          <o-input
+            type="color"
+            v-model="settingsToWrite.secondaryColor"
+            id="secondary-color"
+          />
+        </div>
+        -->
+      <o-field data-v-a8bb2abf="" label="Allow registrations">
+        <fieldset data-v-a8bb2abf="">
+          <o-field data-v-a8bb2abf="">
+            <o-radio data-v-a8bb2abf="" modelvalue="OPEN" name="registrationsModeType" native-value="CLOSE">Registration is closed.</o-radio>
+          </o-field>
+          <o-field data-v-a8bb2abf="">
+            <o-radio data-v-a8bb2abf="" modelvalue="OPEN" name="registrationsModeType" native-value="OPEN">Registration is allowed, anyone can register.</o-radio>
+          </o-field>
+          <o-field data-v-a8bb2abf="">
+            <o-radio data-v-a8bb2abf="" modelvalue="OPEN" name="registrationsModeType" native-value="MODERATED">Registration is moderated, new user must be validated.</o-radio>
+          </o-field>
+        </fieldset>
+      </o-field>
+      <div data-v-a8bb2abf="" class="field flex flex-col"><label data-v-a8bb2abf="" class="" for="instance-languages">Instance languages</label><small data-v-a8bb2abf="">Main languages you/your moderators speak</small>
+        <o-taginput data-v-a8bb2abf="" modelvalue="" data="" allow-autocomplete="" open-on-focus="true" field="name" icon="label" placeholder="Select languages" id="instance-languages"></o-taginput>
+      </div>
+      <div data-v-a8bb2abf="" class="field flex flex-col"><label data-v-a8bb2abf="" class="" for="instance-long-description">Instance Long Description</label><small data-v-a8bb2abf="">A place to explain who you are and the things that set your instance apart. You can use HTML tags.</small>
+        <o-input data-v-a8bb2abf="" type="textarea" modelvalue="Mobilizon instance." rows="4" id="instance-long-description"></o-input>
+      </div>
+      <div data-v-a8bb2abf="" class="field flex flex-col"><label data-v-a8bb2abf="" class="" for="instance-rules">Instance Rules</label><small data-v-a8bb2abf="">A place for your code of conduct, rules or guidelines. You can use HTML tags.</small>
+        <o-input data-v-a8bb2abf="" type="textarea" id="instance-rules"></o-input>
+      </div>
+      <o-field data-v-a8bb2abf="" label="Instance Terms Source">
+        <div data-v-a8bb2abf="" class="">
+          <div data-v-a8bb2abf="" class="">
+            <fieldset data-v-a8bb2abf="">
+              <legend data-v-a8bb2abf="">Choose the source of the instance's Terms</legend>
+              <o-field data-v-a8bb2abf="">
+                <o-radio data-v-a8bb2abf="" modelvalue="DEFAULT" name="instanceTermsType" native-value="DEFAULT">Default Mobilizon terms</o-radio>
+              </o-field>
+              <o-field data-v-a8bb2abf="">
+                <o-radio data-v-a8bb2abf="" modelvalue="DEFAULT" name="instanceTermsType" native-value="URL">Custom URL</o-radio>
+              </o-field>
+              <o-field data-v-a8bb2abf="">
+                <o-radio data-v-a8bb2abf="" modelvalue="DEFAULT" name="instanceTermsType" native-value="CUSTOM">Custom text</o-radio>
+              </o-field>
+            </fieldset>
+          </div>
+          <div data-v-a8bb2abf="" class="">
+            <o-notification data-v-a8bb2abf="" class="bg-slate-700"><b data-v-a8bb2abf="">Default</b>
+              <i18n-t-stub data-v-a8bb2abf="" tag="p" keypath="The {default_terms} will be used. They will be translated in the user's language." scope="parent" class="prose dark:prose-invert"></i18n-t-stub><b data-v-a8bb2abf="">NOTE! The default terms have not been checked over by a lawyer and thus are unlikely to provide full legal protection for all situations for an instance admin using them. They are also not specific to all countries and jurisdictions. If you are unsure, please check with a lawyer.</b>
+            </o-notification>
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+        </div>
+      </o-field>
+      <!--v-if-->
+      <!--v-if-->
+      <o-field data-v-a8bb2abf="" label="Instance Privacy Policy Source">
+        <div data-v-a8bb2abf="" class="">
+          <div data-v-a8bb2abf="" class="">
+            <fieldset data-v-a8bb2abf="">
+              <legend data-v-a8bb2abf="">Choose the source of the instance's Privacy Policy</legend>
+              <o-field data-v-a8bb2abf="">
+                <o-radio data-v-a8bb2abf="" modelvalue="DEFAULT" name="instancePrivacyType" native-value="DEFAULT">Default Mobilizon privacy policy</o-radio>
+              </o-field>
+              <o-field data-v-a8bb2abf="">
+                <o-radio data-v-a8bb2abf="" modelvalue="DEFAULT" name="instancePrivacyType" native-value="URL">Custom URL</o-radio>
+              </o-field>
+              <o-field data-v-a8bb2abf="">
+                <o-radio data-v-a8bb2abf="" modelvalue="DEFAULT" name="instancePrivacyType" native-value="CUSTOM">Custom text</o-radio>
+              </o-field>
+            </fieldset>
+          </div>
+          <div data-v-a8bb2abf="" class="">
+            <div data-v-a8bb2abf="" class="notification"><b data-v-a8bb2abf="">Default</b>
+              <i18n-t-stub data-v-a8bb2abf="" tag="p" keypath="The {default_privacy_policy} will be used. They will be translated in the user's language." scope="parent" class="prose dark:prose-invert"></i18n-t-stub>
+            </div>
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+        </div>
+      </o-field>
+      <!--v-if-->
+      <!--v-if-->
+      <o-button data-v-a8bb2abf="" native-type="submit" variant="primary">Save</o-button>
+    </form>
+  </section>
+</div>"
+`;

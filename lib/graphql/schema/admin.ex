@@ -153,6 +153,11 @@ defmodule Mobilizon.GraphQL.Schema.AdminType do
     field(:instance_privacy_policy_url, :string, description: "The instance's privacy policy URL")
     field(:instance_rules, :string, description: "The instance's rules")
     field(:registrations_open, :boolean, description: "Whether the registrations are opened")
+
+    field(:registrations_moderation, :boolean,
+      description: "Whether the registrations want moderation"
+    )
+
     field(:instance_languages, list_of(:string), description: "The instance's languages")
   end
 
@@ -464,6 +469,11 @@ defmodule Mobilizon.GraphQL.Schema.AdminType do
       arg(:instance_privacy_policy_url, :string, description: "The instance's privacy policy URL")
       arg(:instance_rules, :string, description: "The instance's rules")
       arg(:registrations_open, :boolean, description: "Whether the registrations are opened")
+
+      arg(:registrations_moderation, :boolean,
+        description: "Whether the registrations want moderation"
+      )
+
       arg(:instance_languages, list_of(:string), description: "The instance's languages")
       middleware(Rajska.QueryAuthorization, permit: :administrator)
       resolve(&Admin.save_settings/3)

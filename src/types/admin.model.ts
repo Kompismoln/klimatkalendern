@@ -39,5 +39,6 @@ export interface IAdminSettings {
   instancePrivacyPolicyUrl: string | null;
   instanceRules: string;
   registrationsOpen: boolean;
+  registrationsModeration: boolean;
   instanceLanguages: string[];
 }

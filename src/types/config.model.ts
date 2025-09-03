@@ -43,6 +43,7 @@ export interface IConfig {
   secondaryColor: string;
 
   registrationsOpen: boolean;
+  registrationsModeration: boolean;
   registrationsAllowlist: boolean;
   demoMode: boolean;
   longEvents: boolean;

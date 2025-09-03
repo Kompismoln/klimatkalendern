@@ -26,6 +26,10 @@ defmodule Mobilizon.GraphQL.Schema.ConfigType do
 
     field(:registrations_open, :boolean, description: "Whether the registrations are opened")
 
+    field(:registrations_moderation, :boolean,
+      description: "Whether the registrations want moderation"
+    )
+
     field(:registrations_allowlist, :boolean,
       description: "Whether the registration are on an allowlist"
     )

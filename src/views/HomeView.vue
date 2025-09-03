@@ -212,7 +212,11 @@ const EventParticipationCard = defineAsyncComponent(
 const { result: aboutConfigResult } = useQuery<{
   config: Pick<
     IConfig,
-    "name" | "description" | "slogan" | "registrationsOpen"
+    | "name"
+    | "description"
+    | "slogan"
+    | "registrationsOpen"
+    | "registrationsModeration"
   >;
 }>(CONFIG);
 

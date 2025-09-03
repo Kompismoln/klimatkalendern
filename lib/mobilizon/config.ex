@@ -15,6 +15,7 @@ defmodule Mobilizon.Config do
           description: String.t(),
           hostname: String.t(),
           registrations_open: boolean(),
+          registrations_moderation: boolean(),
           languages: list(String.t()),
           default_language: String.t(),
           registration_email_allowlist: list(String.t()),
@@ -151,6 +152,17 @@ defmodule Mobilizon.Config do
           "instance",
           "registrations_open",
           instance_config()[:registrations_open]
+        )
+      )
+
+  @spec instance_registrations_moderation? :: boolean
+  def instance_registrations_moderation?,
+    do:
+      to_boolean(
+        config_cached_value(
+          "instance",
+          "registrations_moderation",
+          instance_config()[:registrations_moderation]
         )
       )
 
@@ -451,6 +463,7 @@ defmodule Mobilizon.Config do
       instance_name: instance_name(),
       instance_slogan: instance_slogan(),
       registrations_open: instance_registrations_open?(),
+      registrations_moderation: instance_registrations_moderation?(),
       contact: contact(),
       primary_color: primary_color(),
       secondary_color: secondary_color(),

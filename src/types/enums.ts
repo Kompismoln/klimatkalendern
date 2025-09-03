@@ -11,6 +11,12 @@ export enum InstancePrivacyType {
   CUSTOM = "CUSTOM",
 }
 
+export enum registrationsModeType {
+  CLOSE = "CLOSE",
+  OPEN = "OPEN",
+  MODERATED = "MODERATED",
+}
+
 export enum ICurrentUserRole {
   USER = "USER",
   MODERATOR = "MODERATOR",

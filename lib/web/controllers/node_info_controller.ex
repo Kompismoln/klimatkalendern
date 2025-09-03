@@ -53,6 +53,7 @@ defmodule Mobilizon.Web.NodeInfoController do
         outbound: ["atom1.0"]
       },
       openRegistrations: Config.instance_registrations_open?(),
+      moderationRegistrations: Config.instance_registrations_moderation?(),
       usage: %{
         users: %{
           total: Statistics.get_cached_value(:local_users)

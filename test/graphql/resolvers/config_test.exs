@@ -11,6 +11,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ConfigTest do
       Mobilizon.Config.clear_config_cache()
       Config.put([:instance, :name], "Test instance")
       Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], true)
       Config.put([:instance, :demo], false)
       Config.put([:instance, :duration_of_long_event], 0)
 
@@ -26,6 +27,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ConfigTest do
         config {
             name,
             registrationsOpen
+            registrationsModeration
             anonymous {
               participation {
                 allowed,
@@ -48,6 +50,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ConfigTest do
 
       assert res["data"]["config"]["name"] == "Test instance"
       assert res["data"]["config"]["registrationsOpen"] == true
+      assert res["data"]["config"]["registrationsModeration"] == true
 
       assert res["data"]["config"]["anonymous"]["participation"]["validation"]["email"]["enabled"] ==
                true
@@ -65,6 +68,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ConfigTest do
       Mobilizon.Config.clear_config_cache()
       Config.put([:instance, :name], "Test instance")
       Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
       Config.put([:instance, :demo], false)
       Config.put([:instance, :duration_of_long_event], 0)
 
@@ -80,6 +84,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ConfigTest do
         config {
             name,
             registrationsOpen,
+            registrationsModeration
             registrations_allowlist,
             contact,
             demo_mode,
@@ -102,6 +107,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ConfigTest do
 
       assert res["data"]["config"]["name"] == "Test instance"
       assert res["data"]["config"]["registrationsOpen"] == true
+      assert res["data"]["config"]["registrationsModeration"] == false
       assert res["data"]["config"]["registrations_allowlist"] == false
       assert res["data"]["config"]["contact"] == nil
       assert res["data"]["config"]["demo_mode"] == false
@@ -126,6 +132,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ConfigTest do
       Mobilizon.Config.clear_config_cache()
       Config.put([:instance, :name], "My instance")
       Config.put([:instance, :registrations_open], false)
+      Config.put([:instance, :registrations_moderation], false)
       Config.put([:instance, :demo], true)
       Config.put([:instance, :duration_of_long_event], 30)
       Config.put([:instance, :description], "My description")
@@ -136,6 +143,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ConfigTest do
         config {
             name,
             registrationsOpen,
+            registrationsModeration
             demo_mode,
             long_events,
             description,
@@ -150,6 +158,7 @@ defmodule Mobilizon.GraphQL.Resolvers.ConfigTest do
 
       assert res["data"]["config"]["name"] == "My instance"
       assert res["data"]["config"]["registrationsOpen"] == false
+      assert res["data"]["config"]["registrationsModeration"] == false
       assert res["data"]["config"]["demo_mode"] == true
       assert res["data"]["config"]["long_events"] == true
       assert res["data"]["config"]["description"] == "My description"

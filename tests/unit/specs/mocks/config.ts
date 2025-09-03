@@ -87,6 +87,7 @@ export const configMock = {
       name: "Mobilizon",
       registrationsAllowlist: false,
       registrationsOpen: true,
+      registrationsModeration: false,
       resourceProviders: [
         {
           __typename: "ResourceProvider",
@@ -139,6 +140,7 @@ export const loginMock = {
         oauthProviders: [],
       },
       registrationsOpen: true,
+      registrationsModeration: false,
     },
   },
 };

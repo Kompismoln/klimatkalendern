@@ -333,6 +333,7 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
     instancePrivacyPolicyUrl
     instanceRules
     registrationsOpen
+    registrationsModeration
   }
   """
 
@@ -365,13 +366,17 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
 
       assert res["data"]["adminSettings"]["registrationsOpen"] ==
                Application.get_env(:mobilizon, :instance)[:registrations_open]
+
+      assert res["data"]["adminSettings"]["registrationsModeration"] ==
+               Application.get_env(:mobilizon, :instance)[:registrations_moderation]
     end
 
     @instance_name "My Awesome Instance"
-    test "from DB", %{conn: conn} do
+    test "from DB 1", %{conn: conn} do
       admin = insert(:user, role: :administrator)
       insert(:admin_setting, group: "instance", name: "instance_name", value: @instance_name)
       insert(:admin_setting, group: "instance", name: "registrations_open", value: "false")
+      insert(:admin_setting, group: "instance", name: "registrations_moderation", value: "false")
 
       res =
         conn
@@ -381,6 +386,43 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
       assert res["data"]["adminSettings"]["instanceName"] == @instance_name
 
       assert res["data"]["adminSettings"]["registrationsOpen"] == false
+      assert res["data"]["adminSettings"]["registrationsModeration"] == false
+    end
+
+    @instance_name "My Awesome Instance"
+    test "from DB 2", %{conn: conn} do
+      admin = insert(:user, role: :administrator)
+      insert(:admin_setting, group: "instance", name: "instance_name", value: @instance_name)
+      insert(:admin_setting, group: "instance", name: "registrations_open", value: "true")
+      insert(:admin_setting, group: "instance", name: "registrations_moderation", value: "false")
+
+      res =
+        conn
+        |> auth_conn(admin)
+        |> AbsintheHelpers.graphql_query(query: @admin_settings_query)
+
+      assert res["data"]["adminSettings"]["instanceName"] == @instance_name
+
+      assert res["data"]["adminSettings"]["registrationsOpen"] == true
+      assert res["data"]["adminSettings"]["registrationsModeration"] == false
+    end
+
+    @instance_name "My Awesome Instance"
+    test "from DB 3", %{conn: conn} do
+      admin = insert(:user, role: :administrator)
+      insert(:admin_setting, group: "instance", name: "instance_name", value: @instance_name)
+      insert(:admin_setting, group: "instance", name: "registrations_open", value: "true")
+      insert(:admin_setting, group: "instance", name: "registrations_moderation", value: "true")
+
+      res =
+        conn
+        |> auth_conn(admin)
+        |> AbsintheHelpers.graphql_query(query: @admin_settings_query)
+
+      assert res["data"]["adminSettings"]["instanceName"] == @instance_name
+
+      assert res["data"]["adminSettings"]["registrationsOpen"] == true
+      assert res["data"]["adminSettings"]["registrationsModeration"] == true
     end
 
     test "unless user isn't admin", %{conn: conn} do
@@ -416,6 +458,7 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
       $instancePrivacyPolicyUrl: String
       $instanceRules: String
       $registrationsOpen: Boolean
+      $registrationsModeration: Boolean
       ) {
       saveAdminSettings(
         instanceName: $instanceName
@@ -430,6 +473,7 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
         instancePrivacyPolicyUrl: $instancePrivacyPolicyUrl
         instanceRules: $instanceRules
         registrationsOpen: $registrationsOpen
+        registrationsModeration: $registrationsModeration
       ) {
         ...adminSettingsFragment
       }
@@ -453,16 +497,24 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
       assert res["data"]["adminSettings"]["registrationsOpen"] ==
                Application.get_env(:mobilizon, :instance)[:registrations_open]
 
+      assert res["data"]["adminSettings"]["registrationsModeration"] ==
+               Application.get_env(:mobilizon, :instance)[:registrations_moderation]
+
       res =
         conn
         |> auth_conn(admin)
         |> AbsintheHelpers.graphql_query(
           query: @update_instance_admin_settings_mutation,
-          variables: %{"instanceName" => @new_instance_name, "registrationsOpen" => false}
+          variables: %{
+            "instanceName" => @new_instance_name,
+            "registrationsOpen" => false,
+            "registrationsModeration" => false
+          }
         )
 
       assert res["data"]["saveAdminSettings"]["instanceName"] == @new_instance_name
       assert res["data"]["saveAdminSettings"]["registrationsOpen"] == false
+      assert res["data"]["saveAdminSettings"]["registrationsModeration"] == false
 
       assert %Actor{name: @new_instance_name} = Relay.get_actor()
     end
@@ -475,7 +527,11 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
         |> auth_conn(user)
         |> AbsintheHelpers.graphql_query(
           query: @update_instance_admin_settings_mutation,
-          variables: %{"instanceName" => @new_instance_name, "registrationsOpen" => false}
+          variables: %{
+            "instanceName" => @new_instance_name,
+            "registrationsOpen" => false,
+            "registrationsModeration" => false
+          }
         )
 
       assert hd(res["errors"])["message"] ==

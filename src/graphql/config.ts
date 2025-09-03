@@ -11,6 +11,7 @@ export const CONFIG = gql`
       version
       federating
       registrationsOpen
+      registrationsModeration
       registrationsAllowlist
       demoMode
       longEvents
@@ -205,6 +206,7 @@ export const ABOUT = gql`
       contact
       languages
       registrationsOpen
+      registrationsModeration
       registrationsAllowlist
       anonymous {
         participation {

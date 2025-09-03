@@ -975,6 +975,7 @@
   "Registration is allowed, anyone can register.": "Registration is allowed, anyone can register.",
   "Registration is closed.": "Registration is closed.",
   "Registration is currently closed.": "Registration is currently closed.",
+  "Registration is moderated, new user must be validated.": "Registration is moderated, new user must be validated.",
   "Registrations": "Registrations",
   "Registrations are restricted by allowlisting.": "Registrations are restricted by allowlisting.",
   "Reject": "Reject",

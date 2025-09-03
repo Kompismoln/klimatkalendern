@@ -229,12 +229,18 @@ export function useRegistrationConfig() {
   const { result, error, loading, onResult } = useQuery<{
     config: Pick<
       IConfig,
-      "registrationsOpen" | "registrationsAllowlist" | "auth"
+      | "registrationsOpen"
+      | "registrationsModeration"
+      | "registrationsAllowlist"
+      | "auth"
     >;
   }>(CONFIG);
 
   const registrationsOpen = computed(
     () => result.value?.config?.registrationsOpen
+  );
+  const registrationsModeration = computed(
+    () => result.value?.config?.registrationsModeration
   );
   const registrationsAllowlist = computed(
     () => result.value?.config?.registrationsAllowlist
@@ -244,6 +250,7 @@ export function useRegistrationConfig() {
   );
   return {
     registrationsOpen,
+    registrationsModeration,
     registrationsAllowlist,
     databaseLogin,
     error,

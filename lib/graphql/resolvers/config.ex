@@ -90,6 +90,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Config do
     %{
       name: Config.instance_name(),
       registrations_open: Config.instance_registrations_open?(),
+      registrations_moderation: Config.instance_registrations_moderation?(),
       registrations_allowlist: Config.instance_registrations_allowlist?(),
       contact: Config.contact(),
       demo_mode: Config.instance_demo_mode?(),
