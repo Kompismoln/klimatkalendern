@@ -107,7 +107,7 @@
 
           <o-field
             :label="t('Password')"
-            :type="errorPasswordType"
+            :variant="errorPasswordType"
             :message="errorPasswordMessage"
             label-for="password"
           >
@@ -119,6 +119,28 @@
               password-reveal
               minlength="6"
               v-model="credentials.password"
+              expanded
+            />
+          </o-field>
+
+          <o-field
+            v-if="config?.registrationsModeration"
+            :label="
+              t(
+                'Registration is subject to moderation, indicate your motivation.'
+              )
+            "
+            :variant="errorModerationType"
+            :message="errorModerationMessage"
+            label-for="moderation"
+          >
+            <o-input
+              aria-required="true"
+              required
+              :autosize="false"
+              id="moderation"
+              type="textarea"
+              v-model="credentials.moderation"
               expanded
             />
           </o-field>
@@ -184,6 +206,7 @@
                 query: {
                   email: credentials.email,
                   password: credentials.password,
+                  moderation: credentials.moderation,
                 },
               }"
               >{{ t("Login") }}</o-button
@@ -241,7 +264,12 @@ import { AbsintheGraphQLErrors } from "@/types/errors.model";
 
 type errorType = "danger" | "warning";
 type errorMessage = { type: errorType; message: string };
-type credentialsType = { email: string; password: string; locale: string };
+type credentialsType = {
+  email: string;
+  password: string;
+  moderation: string;
+  locale: string;
+};
 
 const { t, locale } = useI18n({ useScope: "global" });
 const route = useRoute();
@@ -255,11 +283,14 @@ const credentials = reactive<credentialsType>({
   email: typeof route.query.email === "string" ? route.query.email : "",
   password:
     typeof route.query.password === "string" ? route.query.password : "",
+  moderation:
+    typeof route.query.moderation === "string" ? route.query.moderation : "",
   locale: "en",
 });
 
 const emailErrors = ref<errorMessage[]>([]);
 const passwordErrors = ref<errorMessage[]>([]);
+const moderationError = ref<errorMessage[]>([]);
 
 const sendingForm = ref(false);
 
@@ -298,6 +329,12 @@ onError((error) => {
             message: message[0] as string,
           });
           break;
+        case "moderation":
+          moderationError.value.push({
+            type: "danger" as errorType,
+            message: message[0] as string,
+          });
+          break;
         default:
       }
     }
@@ -311,6 +348,7 @@ const submit = async (): Promise<void> => {
   try {
     emailErrors.value = [];
     passwordErrors.value = [];
+    moderationError.value = [];
 
     mutate(credentials);
   } catch (error: any) {
@@ -343,9 +381,12 @@ const maxErrorType = (errors: errorMessage[]): errorType | undefined => {
 const errorEmailType = computed((): errorType | undefined => {
   return maxErrorType(emailErrors.value);
 });
-
 const errorPasswordType = computed((): errorType | undefined => {
   return maxErrorType(passwordErrors.value);
+});
+
+const errorModerationType = computed((): errorType | undefined => {
+  return maxErrorType(moderationError.value);
 });
 
 const errorEmailMessage = computed((): string => {
@@ -354,5 +395,9 @@ const errorEmailMessage = computed((): string => {
 
 const errorPasswordMessage = computed((): string => {
   return passwordErrors.value?.map(({ message }) => message).join(" ");
+});
+
+const errorModerationMessage = computed((): string => {
+  return moderationError.value?.map(({ message }) => message).join(" ");
 });
 </script>

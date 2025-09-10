@@ -2,8 +2,18 @@ import gql from "graphql-tag";
 import { ACTOR_FRAGMENT } from "./actor";
 
 export const CREATE_USER = gql`
-  mutation CreateUser($email: String!, $password: String!, $locale: String) {
-    createUser(email: $email, password: $password, locale: $locale) {
+  mutation CreateUser(
+    $email: String!
+    $password: String!
+    $moderation: String!
+    $locale: String
+  ) {
+    createUser(
+      email: $email
+      password: $password
+      moderation: $moderation
+      locale: $locale
+    ) {
       email
       confirmationSentAt
     }

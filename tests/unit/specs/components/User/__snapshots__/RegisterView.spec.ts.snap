@@ -1,0 +1,158 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Register page > register with moderation 1`] = `
+"<div class="container mx-auto py-6">
+  <section class="">
+    <h1>Register an account on Mobilizon!</h1>
+    <p><b>Mobilizon</b> is an instance of the <a href="https://mobilizon.org" target="_blank" class="out">Mobilizon</a> software.</p>
+  </section>
+  <section class="flex flex-wrap gap-6">
+    <div class="">
+      <div class="my-4">
+        <h2 class="text-xl">Why create an account?</h2>
+        <div class="prose dark:prose-invert">
+          <ul>
+            <li>To create and manage your events</li>
+            <li>To create and manage multiples identities from a same account</li>
+            <li>To register for an event by choosing one of your identities</li>
+            <li>To create or join an group and start organizing with other people</li>
+            <li>To follow groups and be informed of their latest events</li>
+          </ul>
+        </div>
+      </div>
+      <router-link-stub to="[object Object]" replace="false" custom="false" ariacurrentvalue="page" viewtransition="false" class="out block my-4"></router-link-stub>
+      <hr role="presentation">
+      <div class="my-4">
+        <h2 class="text-xl">About Mobilizon</h2>
+        <div class="prose dark:prose-invert">Mobilizon.fr est l'instance Mobilizon de Framasoft.</div>
+        <p>Please read the <router-link-stub to="[object Object]" replace="false" custom="false" ariacurrentvalue="page" viewtransition="false" class="out"></router-link-stub> published by <b>Mobilizon</b>'s administrators.</p>
+      </div>
+    </div>
+    <div>
+      <!--v-if-->
+      <form>
+        <div data-oruga="field" class="o-field"><label for="email" class="o-field__label">Email</label>
+          <div class="o-field__body">
+            <div class="o-field o-field--addons">
+              <div data-oruga="input" class="o-input__wrapper o-input__wrapper--expanded"><input aria-required="true" required="" id="email" data-oruga-input="email" type="email" class="o-input" autocomplete="off">
+                <!---->
+                <!---->
+                <!---->
+              </div>
+            </div>
+          </div>
+          <!---->
+        </div>
+        <div data-oruga="field" class="o-field"><label for="password" class="o-field__label">Password</label>
+          <div class="o-field__body">
+            <div class="o-field o-field--addons">
+              <div data-oruga="input" class="o-input__wrapper o-input__wrapper--expanded o-input__wrapper--has-icon-right"><input aria-required="true" required="" minlength="6" id="password" data-oruga-input="password" type="password" class="o-input o-input--iconspace-right" autocomplete="off">
+                <!----><span class="o-icon o-icon--clickable o-input__icon-right" data-oruga="icon"><i class="mdi mdi-eye mdi-24px"></i></span>
+                <!---->
+              </div>
+            </div>
+          </div>
+          <!---->
+        </div>
+        <div data-oruga="field" class="o-field"><label for="moderation" class="o-field__label">Registration is subject to moderation, indicate your motivation.</label>
+          <div class="o-field__body">
+            <div class="o-field o-field--addons">
+              <div data-oruga="input" class="o-input__wrapper o-input__wrapper--expanded"><textarea aria-required="true" required="" id="moderation" data-oruga-input="textarea" class="o-input o-input__textarea"></textarea>
+                <!---->
+                <!---->
+                <!---->
+              </div>
+            </div>
+          </div>
+          <!---->
+        </div>
+        <div class="flex items-start mb-6 mt-2">
+          <div class="flex items-center h-5"><input type="checkbox" id="accept_rules_terms" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required=""></div><label for="accept_rules_terms" class="ml-2 text-gray-900 dark:text-gray-300"><span>I agree to the <router-link-stub to="[object Object]" replace="false" custom="false" ariacurrentvalue="page" viewtransition="false" class="out"></router-link-stub> and <router-link-stub to="[object Object]" replace="false" custom="false" ariacurrentvalue="page" viewtransition="false" class="out"></router-link-stub></span></label>
+        </div>
+        <p><button type="submit" class="o-btn o-btn--large o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Create an account</span>
+            <!----></span>
+          </button></p>
+        <p class="my-6">
+          <router-link-stub class="o-btn o-btn--text" role="button" data-oruga="button" to="[object Object]"></router-link-stub>
+          <router-link-stub class="o-btn o-btn--text" role="button" data-oruga="button" to="[object Object]"></router-link-stub>
+        </p>
+        <hr role="presentation">
+        <!--v-if-->
+      </form>
+    </div>
+  </section>
+</div>"
+`;
+
+exports[`Register page > register without moderation 1`] = `
+"<div class="container mx-auto py-6">
+  <section class="">
+    <h1>Register an account on Mobilizon!</h1>
+    <p><b>Mobilizon</b> is an instance of the <a href="https://mobilizon.org" target="_blank" class="out">Mobilizon</a> software.</p>
+  </section>
+  <section class="flex flex-wrap gap-6">
+    <div class="">
+      <div class="my-4">
+        <h2 class="text-xl">Why create an account?</h2>
+        <div class="prose dark:prose-invert">
+          <ul>
+            <li>To create and manage your events</li>
+            <li>To create and manage multiples identities from a same account</li>
+            <li>To register for an event by choosing one of your identities</li>
+            <li>To create or join an group and start organizing with other people</li>
+            <li>To follow groups and be informed of their latest events</li>
+          </ul>
+        </div>
+      </div>
+      <router-link-stub to="[object Object]" replace="false" custom="false" ariacurrentvalue="page" viewtransition="false" class="out block my-4"></router-link-stub>
+      <hr role="presentation">
+      <div class="my-4">
+        <h2 class="text-xl">About Mobilizon</h2>
+        <div class="prose dark:prose-invert">Mobilizon.fr est l'instance Mobilizon de Framasoft.</div>
+        <p>Please read the <router-link-stub to="[object Object]" replace="false" custom="false" ariacurrentvalue="page" viewtransition="false" class="out"></router-link-stub> published by <b>Mobilizon</b>'s administrators.</p>
+      </div>
+    </div>
+    <div>
+      <!--v-if-->
+      <form>
+        <div data-oruga="field" class="o-field"><label for="email" class="o-field__label">Email</label>
+          <div class="o-field__body">
+            <div class="o-field o-field--addons">
+              <div data-oruga="input" class="o-input__wrapper o-input__wrapper--expanded"><input aria-required="true" required="" id="email" data-oruga-input="email" type="email" class="o-input" autocomplete="off">
+                <!---->
+                <!---->
+                <!---->
+              </div>
+            </div>
+          </div>
+          <!---->
+        </div>
+        <div data-oruga="field" class="o-field"><label for="password" class="o-field__label">Password</label>
+          <div class="o-field__body">
+            <div class="o-field o-field--addons">
+              <div data-oruga="input" class="o-input__wrapper o-input__wrapper--expanded o-input__wrapper--has-icon-right"><input aria-required="true" required="" minlength="6" id="password" data-oruga-input="password" type="password" class="o-input o-input--iconspace-right" autocomplete="off">
+                <!----><span class="o-icon o-icon--clickable o-input__icon-right" data-oruga="icon"><i class="mdi mdi-eye mdi-24px"></i></span>
+                <!---->
+              </div>
+            </div>
+          </div>
+          <!---->
+        </div>
+        <!--v-if-->
+        <div class="flex items-start mb-6 mt-2">
+          <div class="flex items-center h-5"><input type="checkbox" id="accept_rules_terms" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required=""></div><label for="accept_rules_terms" class="ml-2 text-gray-900 dark:text-gray-300"><span>I agree to the <router-link-stub to="[object Object]" replace="false" custom="false" ariacurrentvalue="page" viewtransition="false" class="out"></router-link-stub> and <router-link-stub to="[object Object]" replace="false" custom="false" ariacurrentvalue="page" viewtransition="false" class="out"></router-link-stub></span></label>
+        </div>
+        <p><button type="submit" class="o-btn o-btn--large o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Create an account</span>
+            <!----></span>
+          </button></p>
+        <p class="my-6">
+          <router-link-stub class="o-btn o-btn--text" role="button" data-oruga="button" to="[object Object]"></router-link-stub>
+          <router-link-stub class="o-btn o-btn--text" role="button" data-oruga="button" to="[object Object]"></router-link-stub>
+        </p>
+        <hr role="presentation">
+        <!--v-if-->
+      </form>
+    </div>
+  </section>
+</div>"
+`;
