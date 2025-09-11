@@ -92,17 +92,16 @@ describe("Register page", () => {
       }),
     });
     expect(wrapper.find("form").exists()).toBe(true);
-    wrapper
-      .findAll('input[type="password"')
-      .forEach((inputField) => inputField.setValue("my password"));
+    wrapper.find('form input[type="email"]').setValue("some@email.tld");
+    wrapper.find('form input[type="password"]').setValue("somepassword");
     wrapper.find("form").trigger("submit");
     await wrapper.vm.$nextTick();
     expect(requestHandlers.createUserHandler).toBeCalledTimes(1);
     expect(requestHandlers.createUserHandler).toHaveBeenCalledWith({
-      email: "",
+      email: "some@email.tld",
       locale: "en_US",
       moderation: "",
-      password: "my password",
+      password: "somepassword",
     });
     await flushPromises();
     expect(wrapper.find("form").exists()).toBe(true);
@@ -118,17 +117,16 @@ describe("Register page", () => {
       }),
     });
     expect(wrapper.find("form").exists()).toBe(true);
-    wrapper
-      .findAll('input[type="password"')
-      .forEach((inputField) => inputField.setValue("my password"));
+    wrapper.find('form input[type="email"]').setValue("some@email.tld");
+    wrapper.find('form input[type="password"]').setValue("somepassword");
     wrapper.find("form").trigger("submit");
     await wrapper.vm.$nextTick();
     expect(requestHandlers.createUserHandler).toBeCalledTimes(1);
     expect(requestHandlers.createUserHandler).toHaveBeenCalledWith({
-      email: "",
+      email: "some@email.tld",
       locale: "en_US",
       moderation: "",
-      password: "my password",
+      password: "somepassword",
     });
     await flushPromises();
     expect(wrapper.find("form").exists()).toBe(true);
@@ -145,12 +143,13 @@ describe("Register page", () => {
     expect(wrapper.find("form").exists()).toBe(true);
     wrapper.find('form input[type="email"]').setValue("some@email.tld");
     wrapper.find('form input[type="password"]').setValue("somepassword");
+    wrapper.find("form .o-input__textarea").setValue("text for moderation");
     wrapper.find("form").trigger("submit");
     await wrapper.vm.$nextTick();
     expect(requestHandlers.createUserHandler).toHaveBeenCalledWith({
       email: "some@email.tld",
       locale: "en_US",
-      moderation: "",
+      moderation: "text for moderation",
       password: "somepassword",
     });
     await flushPromises();
@@ -163,18 +162,19 @@ describe("Register page", () => {
         errors: [{ field: "moderation", message: ["Bad moderation."] }],
       }),
     });
+    await flushPromises();
     expect(wrapper.find("form").exists()).toBe(true);
-    wrapper
-      .findAll('input[type="password"')
-      .forEach((inputField) => inputField.setValue("my password"));
+    wrapper.find('form input[type="email"]').setValue("some@email.tld");
+    wrapper.find('form input[type="password"]').setValue("somepassword");
+    wrapper.find("form .o-input__textarea").setValue("text for moderation");
     wrapper.find("form").trigger("submit");
     await wrapper.vm.$nextTick();
     expect(requestHandlers.createUserHandler).toBeCalledTimes(1);
     expect(requestHandlers.createUserHandler).toHaveBeenCalledWith({
-      email: "",
+      email: "some@email.tld",
       locale: "en_US",
-      moderation: "",
-      password: "my password",
+      moderation: "text for moderation",
+      password: "somepassword",
     });
     await flushPromises();
     expect(wrapper.find("form").exists()).toBe(true);
