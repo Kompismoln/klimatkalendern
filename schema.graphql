@@ -1263,6 +1263,9 @@ type RootMutationType {
     "The new user's password"
     password: String!
 
+    "The new user's moderation text"
+    moderation: String!
+
     "The new user's locale"
     locale: String
   ): User

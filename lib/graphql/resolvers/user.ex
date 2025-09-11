@@ -153,13 +153,13 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
     - send a validation email to the user
   """
   @spec create_user(any, %{email: String.t()}, any) :: {:ok, User.t()} | {:error, String.t()}
-  def create_user(_parent, %{email: email} = args, %{context: context}) do
+  def create_user(_parent, %{email: email, moderation: moderation} = args, %{context: context}) do
     current_ip = Map.get(context, :ip)
     user_agent = Map.get(context, :user_agent, "")
     now = DateTime.utc_now()
 
     with {:ok, email} <- lowercase_domain(email),
-         :registration_ok <- check_registration_config(email),
+         :registration_ok <- check_registration_config(email, moderation),
          :not_deny_listed <- check_registration_denylist(email),
          {:spam, :ham} <-
            {:spam, AntiSpam.service().check_user(email, current_ip, user_agent)},
@@ -175,6 +175,9 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
 
       :registration_closed ->
         {:error, dgettext("errors", "Registrations are not open")}
+
+      :moderation_empty ->
+        {:error, dgettext("errors", "Moderation text must not be empty")}
 
       :not_allowlisted ->
         {:error, dgettext("errors", "Your email is not on the allowlist")}
@@ -198,12 +201,12 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
     end
   end
 
-  @spec check_registration_config(String.t()) ::
-          :registration_ok | :registration_closed | :not_allowlisted
-  defp check_registration_config(email) do
+  @spec check_registration_config(String.t(), String.t()) ::
+          :registration_ok | :registration_closed | :not_allowlisted | :moderation_empty
+  defp check_registration_config(email, moderation) do
     cond do
       Config.instance_registrations_open?() ->
-        :registration_ok
+        check_moderation(moderation)
 
       Config.instance_registrations_allowlist?() ->
         check_allow_listed_email(email)
@@ -221,6 +224,19 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
     if email_in_list?(email, Config.instance_registrations_denylist()),
       do: :deny_listed,
       else: :not_deny_listed
+  end
+
+  @spec check_moderation(String.t()) :: :registration_ok | :moderation_empty
+  defp check_moderation(moderation) do
+    if Config.instance_registrations_moderation?() do
+      if moderation |> String.trim() == "" do
+        :moderation_empty
+      else
+        :registration_ok
+      end
+    else
+      :registration_ok
+    end
   end
 
   @spec check_allow_listed_email(String.t()) :: :registration_ok | :not_allowlisted

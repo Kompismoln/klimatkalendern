@@ -60,10 +60,11 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
   """
 
   @create_user_mutation """
-  mutation CreateUser($email: String!, $password: String!, $locale: String) {
+  mutation CreateUser($email: String!, $password: String!, $moderation: String!, $locale: String) {
     createUser(
       email: $email
       password: $password
+      moderation: $moderation
       locale: $locale
   ) {
       id,
@@ -133,7 +134,12 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     }
   """
 
-  @valid_actor_params %{email: "test@test.tld", password: "testest", username: "test"}
+  @valid_actor_params %{
+    email: "test@test.tld",
+    password: "testest",
+    moderation: "",
+    username: "test"
+  }
   @valid_single_actor_params %{preferred_username: "test2", keys: "yolo"}
 
   describe "Resolver: Get an user" do
@@ -355,17 +361,31 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       email: "test@demo.tld",
       password: "long password",
       locale: "fr_FR",
+      moderation: "  ",
+      preferredUsername: "toto",
+      name: "Sir Toto",
+      summary: "Sir Toto, prince of the functional tests"
+    }
+    @user_creation_with_moderation %{
+      email: "test@demo.tld",
+      password: "long password",
+      locale: "fr_FR",
+      moderation: "moderation text",
       preferredUsername: "toto",
       name: "Sir Toto",
       summary: "Sir Toto, prince of the functional tests"
     }
     @user_creation_bad_email %{
       email: "y@l@",
-      password: "long password"
+      password: "long password",
+      moderation: ""
     }
 
     test "test create_user/3 creates an user",
          %{conn: conn} do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
+
       res =
         conn
         |> AbsintheHelpers.graphql_query(
@@ -382,6 +402,9 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "create_user/3 doesn't allow two users with the same email", %{conn: conn} do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
+
       res =
         conn
         |> put_req_header("accept-language", "fr")
@@ -417,6 +440,44 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         )
 
       assert hd(res["errors"])["message"] == "Registrations are not open"
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
+    end
+
+    test "create_user/3 allows registration with moderation text empty", %{conn: conn} do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], true)
+
+      res =
+        conn
+        |> AbsintheHelpers.graphql_query(
+          query: @create_user_mutation,
+          variables: @user_creation
+        )
+
+      assert hd(res["errors"])["message"] == "Moderation text must not be empty"
+
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
+    end
+
+    test "create_user/3 allows registration with moderation text", %{conn: conn} do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], true)
+
+      res =
+        conn
+        |> AbsintheHelpers.graphql_query(
+          query: @create_user_mutation,
+          variables: @user_creation_with_moderation
+        )
+
+      assert res["data"]["createUser"]["email"] == @user_creation.email
+      assert res["data"]["createUser"]["locale"] == @user_creation.locale
+
+      {:ok, user} = Users.get_user_by_email(@user_creation.email)
+      assert user.moderation == @user_creation_with_moderation.moderation
+
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
     end
@@ -484,6 +545,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     test "create_user/3 doesn't allow registration when user email domain is on the denylist", %{
       conn: conn
     } do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
       Config.put([:instance, :registration_email_denylist], ["demo.tld"])
 
       res =
@@ -504,6 +567,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     test "create_user/3 doesn't allow registration when user email is on the denylist", %{
       conn: conn
     } do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
       Config.put([:instance, :registration_email_denylist], [@user_creation.email])
 
       res =
@@ -525,6 +590,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
          %{
            conn: conn
          } do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
       Config.put([:instance, :registration_email_denylist], [@user_creation.email])
 
       res =
@@ -546,6 +613,9 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
          %{
            conn: conn
          } do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
+
       res =
         conn
         |> AbsintheHelpers.graphql_query(
@@ -621,7 +691,12 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
   describe "Resolver: Resend confirmation emails" do
     test "test resend_confirmation_email/3 with valid email resends an validation email",
          %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: "toto@tata.tld", password: "p4ssw0rd"})
+      {:ok, %User{} = user} =
+        Users.register(%{
+          email: "toto@tata.tld",
+          password: "p4ssw0rd",
+          moderation: @moderation_empty
+        })
 
       res =
         AbsintheHelpers.graphql_query(conn,
@@ -714,7 +789,11 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
     test "test send_reset_password/3 for a deactivated user doesn't send email", %{conn: conn} do
       {:ok, %User{email: email} = user} =
-        Users.register(%{email: "toto@tata.tld", password: "p4ssw0rd"})
+        Users.register(%{
+          email: "toto@tata.tld",
+          password: "p4ssw0rd",
+          moderation: @moderation_empty
+        })
 
       Users.update_user(user, %{confirmed_at: DateTime.utc_now(), disabled: true})
 
@@ -732,7 +811,13 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
   describe "Resolver: Reset user's password" do
     test "test reset_password/3 with valid email", context do
-      {:ok, %User{} = user} = Users.register(%{email: "toto@tata.tld", password: "p4ssw0rd"})
+      {:ok, %User{} = user} =
+        Users.register(%{
+          email: "toto@tata.tld",
+          password: "p4ssw0rd",
+          moderation: @moderation_empty
+        })
+
       Users.update_user(user, %{confirmed_at: DateTime.utc_now()})
       %Actor{} = insert(:actor, user: user)
       {:ok, _email_sent} = Email.User.send_password_reset_email(user)
@@ -814,7 +899,12 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
   describe "Resolver: Login a user" do
     test "test login_user/3 with valid credentials", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: "toto@tata.tld", password: "p4ssw0rd"})
+      {:ok, %User{} = user} =
+        Users.register(%{
+          email: "toto@tata.tld",
+          password: "p4ssw0rd",
+          moderation: @moderation_empty
+        })
 
       {:ok, %User{} = _user} =
         Users.update_user(user, %{
@@ -835,7 +925,12 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "test login_user/3 with invalid password", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: "toto@tata.tld", password: "p4ssw0rd"})
+      {:ok, %User{} = user} =
+        Users.register(%{
+          email: "toto@tata.tld",
+          password: "p4ssw0rd",
+          moderation: @moderation_empty
+        })
 
       {:ok, %User{} = _user} =
         Users.update_user(user, %{
@@ -868,7 +963,12 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "test login_user/3 with unconfirmed user", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: "toto@tata.tld", password: "p4ssw0rd"})
+      {:ok, %User{} = user} =
+        Users.register(%{
+          email: "toto@tata.tld",
+          password: "p4ssw0rd",
+          moderation: @moderation_empty
+        })
 
       res =
         conn
@@ -990,11 +1090,14 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
   describe "Resolver: Change password for an user" do
     @email "toto@tata.tld"
+    @moderation_fill "moderation text"
+    @moderation_empty ""
     @old_password "p4ssw0rd"
     @new_password "upd4t3d"
 
     test "change_password/3 with valid password", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @email, password: @old_password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @email, password: @old_password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =
@@ -1066,7 +1169,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "change_password/3 with invalid password", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @email, password: @old_password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @email, password: @old_password, moderation: @moderation_empty})
 
       # Hammer time !
 
@@ -1094,7 +1198,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "change_password/3 with same password", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @email, password: @old_password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @email, password: @old_password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =
@@ -1122,7 +1227,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "change_password/3 with new password too short", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @email, password: @old_password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @email, password: @old_password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =
@@ -1150,7 +1256,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "change_password/3 without being authenticated", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @email, password: @old_password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @email, password: @old_password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =
@@ -1183,7 +1290,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     @password "p4ssw0rd"
 
     test "change_email/3 with valid email", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @old_email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @old_email, password: @password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =
@@ -1233,7 +1341,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "change_email/3 with valid email but invalid token", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @old_email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @old_email, password: @password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =
@@ -1286,7 +1395,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "change_email/3 with invalid password", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @old_email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @old_email, password: @password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =
@@ -1308,7 +1418,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "change_email/3 with same email", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @old_email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @old_email, password: @password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =
@@ -1330,7 +1441,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "change_email/3 with invalid email", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @old_email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @old_email, password: @password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =
@@ -1352,7 +1464,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "change_password/3 without being authenticated", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @old_email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @old_email, password: @password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =
@@ -1379,7 +1492,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     @password "p4ssw0rd"
 
     test "delete_account/3 with valid password", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @email, password: @password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = user} =
@@ -1453,7 +1567,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "delete_account/3 with invalid password", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @email, password: @password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = user} =
@@ -1475,7 +1590,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     end
 
     test "delete_account/3 without being authenticated", %{conn: conn} do
-      {:ok, %User{} = user} = Users.register(%{email: @email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @email, password: @password, moderation: @moderation_empty})
 
       # Hammer time !
       {:ok, %User{} = _user} =

@@ -7,9 +7,9 @@ defmodule Mobilizon.UsersTest do
   import Mobilizon.Factory
 
   describe "users" do
-    @valid_attrs %{email: "foo@bar.tld", password: "some password"}
+    @valid_attrs %{email: "foo@bar.tld", password: "some password", moderation: "moderation text"}
     @update_attrs %{email: "foo@fighters.tld", password: "some updated password"}
-    @invalid_attrs %{email: nil, password: nil}
+    @invalid_attrs %{email: nil, password: nil, moderation: nil}
 
     test "list_users/0 returns all users" do
       user = insert(:user)
@@ -69,9 +69,11 @@ defmodule Mobilizon.UsersTest do
 
     @email "email@domain.tld"
     @password "password"
+    @moderation "moderation text"
 
     test "get_user_by_email/1 finds an user by its email" do
-      {:ok, %User{email: email} = user} = Users.register(%{email: @email, password: @password})
+      {:ok, %User{email: email} = user} =
+        Users.register(%{email: @email, password: @password, moderation: @moderation})
 
       assert email == @email
       {:ok, %User{id: id}} = Users.get_user_by_email(@email)
@@ -80,7 +82,8 @@ defmodule Mobilizon.UsersTest do
     end
 
     test "get_user_by_email/1 finds an activated user by its email" do
-      {:ok, %User{} = user} = Users.register(%{email: @email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @email, password: @password, moderation: @moderation})
 
       {:ok, %User{id: id}} = Users.get_user_by_email(@email, activated: false)
       assert id == user.id
@@ -99,7 +102,8 @@ defmodule Mobilizon.UsersTest do
 
     @unconfirmed_email "unconfirmed@email.com"
     test "get_user_by_email/1 finds an user by its pending email" do
-      {:ok, %User{} = user} = Users.register(%{email: @email, password: @password})
+      {:ok, %User{} = user} =
+        Users.register(%{email: @email, password: @password, moderation: @moderation})
 
       Users.update_user(user, %{
         "confirmed_at" => DateTime.utc_now() |> DateTime.truncate(:second),

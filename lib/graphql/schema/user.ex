@@ -25,6 +25,7 @@ defmodule Mobilizon.GraphQL.Schema.UserType do
     interfaces([:action_log_object])
     field(:id, :id, description: "The user's ID")
     field(:email, non_null(:string), description: "The user's email")
+    field(:moderation, :string, description: "The user's moderation text")
 
     field(:actors, non_null(list_of(:person)),
       description: "The user's list of profiles (identities)"
@@ -345,6 +346,7 @@ defmodule Mobilizon.GraphQL.Schema.UserType do
     field :create_user, type: :user do
       arg(:email, non_null(:string), description: "The new user's email")
       arg(:password, non_null(:string), description: "The new user's password")
+      arg(:moderation, :string, description: "The new user's moderation text")
       arg(:locale, :string, description: "The new user's locale")
       middleware(Rajska.QueryAuthorization, permit: :all)
       middleware(Rajska.RateLimiter, limit: user_ip_limiter(@env))

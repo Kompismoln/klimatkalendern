@@ -16,6 +16,7 @@ defmodule Mobilizon.Users.User do
 
   @type t :: %__MODULE__{
           email: String.t(),
+          moderation: String.t(),
           password_hash: String.t(),
           password: String.t(),
           role: atom(),
@@ -40,6 +41,7 @@ defmodule Mobilizon.Users.User do
 
   @required_attrs [:email]
   @optional_attrs [
+    :moderation,
     :role,
     :password,
     :password_hash,
@@ -61,7 +63,6 @@ defmodule Mobilizon.Users.User do
   @attrs @required_attrs ++ @optional_attrs
 
   @registration_required_attrs @required_attrs ++ [:password]
-
   @auth_provider_required_attrs @required_attrs ++ [:provider]
 
   @password_change_required_attrs [:password]
@@ -72,6 +73,7 @@ defmodule Mobilizon.Users.User do
 
   schema "users" do
     field(:email, :string)
+    field(:moderation, :string)
     field(:password_hash, :string)
     field(:password, :string, virtual: true)
     field(:role, UserRole, default: :user)
