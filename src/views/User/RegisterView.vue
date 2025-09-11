@@ -88,6 +88,8 @@
         <o-notification variant="warning" v-if="config?.registrationsAllowlist">
           {{ t("Registrations are restricted by allowlisting.") }}
         </o-notification>
+        <o-field :variant="errorOtherType" :message="errorOtherMessage" />
+
         <form @submit.prevent="submit">
           <o-field
             :label="t('Email')"
@@ -288,6 +290,7 @@ const credentials = reactive<credentialsType>({
   locale: "en",
 });
 
+const otherErrors = ref<errorMessage[]>([]);
 const emailErrors = ref<errorMessage[]>([]);
 const passwordErrors = ref<errorMessage[]>([]);
 const moderationError = ref<errorMessage[]>([]);
@@ -316,26 +319,36 @@ onDone(() => {
 onError((error) => {
   (error.graphQLErrors as AbsintheGraphQLErrors).forEach(
     ({ field, message }) => {
+      let message_txt;
+      if (Array.isArray(message)) {
+        message_txt = message[0] as string;
+      } else {
+        message_txt = message as string;
+      }
       switch (field) {
         case "email":
           emailErrors.value.push({
             type: "danger" as errorType,
-            message: message[0] as string,
+            message: message_txt,
           });
           break;
         case "password":
           passwordErrors.value.push({
             type: "danger" as errorType,
-            message: message[0] as string,
+            message: message_txt,
           });
           break;
         case "moderation":
           moderationError.value.push({
             type: "danger" as errorType,
-            message: message[0] as string,
+            message: message_txt,
           });
           break;
         default:
+          otherErrors.value.push({
+            type: "danger" as errorType,
+            message: message_txt,
+          });
       }
     }
   );
@@ -378,6 +391,10 @@ const maxErrorType = (errors: errorMessage[]): errorType | undefined => {
   }, "warning");
 };
 
+const errorOtherType = computed((): errorType | undefined => {
+  return maxErrorType(otherErrors.value);
+});
+
 const errorEmailType = computed((): errorType | undefined => {
   return maxErrorType(emailErrors.value);
 });
@@ -387,6 +404,10 @@ const errorPasswordType = computed((): errorType | undefined => {
 
 const errorModerationType = computed((): errorType | undefined => {
   return maxErrorType(moderationError.value);
+});
+
+const errorOtherMessage = computed((): string => {
+  return otherErrors.value.map(({ message }) => message).join(" ");
 });
 
 const errorEmailMessage = computed((): string => {

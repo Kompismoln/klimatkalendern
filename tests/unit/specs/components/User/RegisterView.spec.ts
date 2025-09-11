@@ -159,7 +159,7 @@ describe("Register page", () => {
   it("shows error with moderation", async () => {
     const wrapper = generateWrapper(true, {
       createUserHandler: vi.fn().mockResolvedValue({
-        errors: [{ field: "moderation", message: ["Bad moderation."] }],
+        errors: [{ field: null, message: ["Bad moderation."] }],
       }),
     });
     await flushPromises();

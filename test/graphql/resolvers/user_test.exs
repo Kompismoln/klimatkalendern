@@ -424,6 +424,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
           variables: @user_creation
         )
 
+      assert hd(res["errors"])["field"] == "email"
       assert hd(res["errors"])["message"] == ["Cette adresse e-mail est déjà utilisée."]
     end
 
@@ -439,6 +440,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
           variables: @user_creation
         )
 
+      assert hd(res["errors"])["field"] == nil
       assert hd(res["errors"])["message"] == "Registrations are not open"
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
@@ -455,6 +457,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
           variables: @user_creation
         )
 
+      assert hd(res["errors"])["field"] == nil
       assert hd(res["errors"])["message"] == "Moderation text must not be empty"
 
       Config.put([:instance, :registrations_open], true)
@@ -496,6 +499,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
           variables: @user_creation
         )
 
+      assert hd(res["errors"])["field"] == nil
       assert hd(res["errors"])["message"] == "Your email is not on the allowlist"
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
@@ -556,6 +560,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
           variables: @user_creation
         )
 
+      assert hd(res["errors"])["field"] == nil
+
       assert hd(res["errors"])["message"] ==
                "Your e-mail has been denied registration or uses a disallowed e-mail provider"
 
@@ -577,6 +583,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
           query: @create_user_mutation,
           variables: @user_creation
         )
+
+      assert hd(res["errors"])["field"] == nil
 
       assert hd(res["errors"])["message"] ==
                "Your e-mail has been denied registration or uses a disallowed e-mail provider"
@@ -600,6 +608,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
           query: @create_user_mutation,
           variables: Map.put(@user_creation, :email, "test+alias@demo.tld")
         )
+
+      assert hd(res["errors"])["field"] == nil
 
       assert hd(res["errors"])["message"] ==
                "Your e-mail has been denied registration or uses a disallowed e-mail provider"
@@ -634,6 +644,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
           query: @create_user_mutation,
           variables: @user_creation_bad_email
         )
+
+      assert hd(res["errors"])["field"] == "email"
 
       assert hd(res["errors"])["message"] ==
                ["Email doesn't fit required format"]

@@ -30,6 +30,10 @@ exports[`Register page > register with moderation 1`] = `
     </div>
     <div>
       <!--v-if-->
+      <div data-oruga="field" class="o-field">
+        <!---->
+        <!---->
+      </div>
       <form>
         <div data-oruga="field" class="o-field"><label for="email" class="o-field__label">Email</label>
           <div class="o-field__body">
@@ -114,6 +118,10 @@ exports[`Register page > register without moderation 1`] = `
     </div>
     <div>
       <!--v-if-->
+      <div data-oruga="field" class="o-field">
+        <!---->
+        <!---->
+      </div>
       <form>
         <div data-oruga="field" class="o-field"><label for="email" class="o-field__label">Email</label>
           <div class="o-field__body">
