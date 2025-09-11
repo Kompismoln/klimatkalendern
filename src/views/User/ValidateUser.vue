@@ -17,6 +17,9 @@
         </o-notification>
       </div>
       <h1 class="title" v-else>{{ $t("Your account has been validated") }}</h1>
+      <h2 class="title" v-if="moderated">
+        {{ $t("A moderator will take care of your request.") }}
+      </h2>
     </div>
   </section>
 </template>
@@ -45,6 +48,7 @@ const props = defineProps<{
 
 const loading = ref(true);
 const failed = ref(false);
+const moderated = ref(false);
 
 onBeforeMount(() => {
   validateAction({ token: props.token });
@@ -79,18 +83,22 @@ onUpdatingCurrentUserClientDone(async () => {
 
 onValidatingUserMutationDone(async ({ data }) => {
   if (data) {
-    saveUserData(data.validateUser);
-    saveTokenData(data.validateUser);
-
     const { user: validatedUser } = data.validateUser;
     user.value = validatedUser;
 
-    updateCurrentUserClient({
-      id: validatedUser.id,
-      email: validatedUser.email,
-      isLoggedIn: true,
-      role: ICurrentUserRole.USER,
-    });
+    if (validatedUser.role != ICurrentUserRole.PENDING) {
+      saveUserData(data.validateUser);
+      saveTokenData(data.validateUser);
+      await updateCurrentUserClient({
+        id: validatedUser.id,
+        email: validatedUser.email,
+        isLoggedIn: true,
+        role: validatedUser.role,
+      });
+    } else {
+      moderated.value = true;
+      loading.value = false;
+    }
   }
 });
 

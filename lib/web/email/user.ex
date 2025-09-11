@@ -70,7 +70,13 @@ defmodule Mobilizon.Web.Email.User do
                confirmed_at: DateTime.utc_now() |> DateTime.truncate(:second),
                confirmation_sent_at: nil,
                confirmation_token: nil,
-               email: user.unconfirmed_email || user.email
+               email: user.unconfirmed_email || user.email,
+               role:
+                 if Config.instance_registrations_moderation?() do
+                   :pending
+                 else
+                   user.role
+                 end
              }) do
           {:ok, %User{} = user} ->
             Logger.info("User #{user.email} has been confirmed")

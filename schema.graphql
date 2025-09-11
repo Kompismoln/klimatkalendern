@@ -315,6 +315,9 @@ enum UserRole {
 
   "User role"
   USER
+
+  "Pending role"
+  PENDING
 }
 
 """

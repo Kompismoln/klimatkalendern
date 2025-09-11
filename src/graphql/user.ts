@@ -28,6 +28,7 @@ export const VALIDATE_USER = gql`
       user {
         id
         email
+        role
         defaultActor {
           ...ActorFragment
         }

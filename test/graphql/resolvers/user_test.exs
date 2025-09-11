@@ -654,6 +654,9 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
   describe "Resolver: Validate an user" do
     test "test validate_user/3 validates an user", context do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
+
       {:ok, %User{} = user} = Users.register(@valid_actor_params)
 
       mutation = """
@@ -664,6 +667,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
                 accessToken,
                 user {
                   id,
+                  role,
                 },
               }
             }
@@ -674,9 +678,50 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         |> post("/api", AbsintheHelpers.mutation_skeleton(mutation))
 
       assert json_response(res, 200)["data"]["validateUser"]["user"]["id"] == to_string(user.id)
+      assert json_response(res, 200)["data"]["validateUser"]["user"]["role"] == "USER"
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
+    end
+
+    test "test validate_user/3 validates an user with moderation", context do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], true)
+
+      user =
+        insert(:user,
+          email: "test@test.tld",
+          password: "testest",
+          moderation: "moderation text",
+          confirmation_token: "t0t0"
+        )
+
+      mutation = """
+          mutation {
+            validateUser(
+                  token: "#{user.confirmation_token}"
+              ) {
+                accessToken,
+                user {
+                  id,
+                  role,
+                },
+              }
+            }
+      """
+
+      res =
+        context.conn
+        |> post("/api", AbsintheHelpers.mutation_skeleton(mutation))
+
+      assert json_response(res, 200)["data"]["validateUser"]["user"]["id"] == to_string(user.id)
+      assert json_response(res, 200)["data"]["validateUser"]["user"]["role"] == "PENDING"
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
     end
 
     test "test validate_user/3 with invalid token doesn't validate an user", context do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
       insert(:user, confirmation_token: "t0t0")
 
       mutation = """
@@ -697,6 +742,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         |> post("/api", AbsintheHelpers.mutation_skeleton(mutation))
 
       assert hd(json_response(res, 200)["errors"])["message"] == "Unable to validate user"
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
     end
   end
 

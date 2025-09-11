@@ -21,6 +21,7 @@ export enum ICurrentUserRole {
   USER = "USER",
   MODERATOR = "MODERATOR",
   ADMINISTRATOR = "ADMINISTRATOR",
+  PENDING = "PENDING",
 }
 
 export enum INotificationPendingEnum {

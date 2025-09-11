@@ -206,6 +206,7 @@ defmodule Mobilizon.GraphQL.Schema.UserType do
     value(:administrator, description: "Administrator role")
     value(:moderator, description: "Moderator role")
     value(:user, description: "User role")
+    value(:pending, description: "Pending role")
   end
 
   @desc "Token"

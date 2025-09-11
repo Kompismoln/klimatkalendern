@@ -15,7 +15,7 @@ defmodule Mobilizon.Users do
   alias Mobilizon.Storage.{Page, Repo}
   alias Mobilizon.Users.{ActivitySetting, PushSubscription, Setting, User}
 
-  defenum(UserRole, :user_role, [:administrator, :moderator, :user])
+  defenum(UserRole, :user_role, [:administrator, :moderator, :user, :pending])
 
   defenum(NotificationPendingNotificationDelay,
     none: 0,

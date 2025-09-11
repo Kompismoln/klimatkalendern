@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Validate user page > moderate 1`] = `
+"<section class="container mx-auto">
+  <div>
+    <h1 class="title">Your account has been validated</h1>
+    <h2 class="title">A moderator will take care of your request.</h2>
+  </div>
+</section>"
+`;
+
+exports[`Validate user page > simple 1`] = `
+"<section class="container mx-auto">
+  <h1 class="title">Your account is being validated</h1>
+</section>"
+`;

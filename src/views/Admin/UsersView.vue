@@ -63,12 +63,11 @@
           :centered="true"
           v-slot="props"
         >
-          <template v-if="props.row.currentSignInAt">
+          <template v-if="props.row.confirmedAt">
             <time :datetime="props.row.currentSignInAt">
               {{ formatDateTimeString(props.row.currentSignInAt) }}
             </time>
           </template>
-          <template v-else-if="props.row.confirmedAt"> - </template>
           <template v-else>
             {{ $t("Not confirmed") }}
           </template>
