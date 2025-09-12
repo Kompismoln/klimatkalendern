@@ -15,6 +15,7 @@ import { LANGUAGES_CODES } from "@/graphql/admin";
 import { createRouter, createWebHistory, Router } from "vue-router";
 import { routes } from "@/router";
 import { Oruga } from "@oruga-ui/oruga-next";
+import { htmlRemoveId } from "../../common";
 
 let router: Router;
 
@@ -102,14 +103,14 @@ const listUsersMock = {
 
 config.global.plugins.push(Oruga);
 
-const generateWrapper = () => {
+const generateWrapper = (currentUsersMock = listUsersMock) => {
   mockClient = createMockClient({
     cache,
     resolvers: buildCurrentUserResolver(cache),
   });
   requestHandlers = {
     languagecode: vi.fn().mockResolvedValue(languageCodeMock),
-    list_users: vi.fn().mockResolvedValue(listUsersMock),
+    list_users: vi.fn().mockResolvedValue(currentUsersMock),
   };
   mockClient.setRequestHandler(LANGUAGES_CODES, requestHandlers.languagecode);
   mockClient.setRequestHandler(LIST_USERS, requestHandlers.list_users);
@@ -144,5 +145,6 @@ describe("UsersView", () => {
     expect(wrapper.exists()).toBe(true);
     expect(requestHandlers.languagecode).toHaveBeenCalled();
     expect(requestHandlers.list_users).toHaveBeenCalled();
+    expect(htmlRemoveId(wrapper.html())).toMatchSnapshot();
   });
 });

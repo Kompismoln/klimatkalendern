@@ -4,7 +4,7 @@ defmodule Mobilizon.GraphQL.Authorization do
   """
 
   use Rajska,
-    valid_roles: [:user, :moderator, :administrator],
+    valid_roles: [:user, :moderator, :administrator, :pending],
     super_role: :administrator,
     default_rule: :default
 

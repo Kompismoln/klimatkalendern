@@ -68,6 +68,12 @@ export function defaultResolvers(
   } satisfies Resolvers;
 }
 
+export function htmlRemoveId(htmlText: string) {
+  return htmlText
+    .replaceAll(/ id="[a-z0-9]+" /gi, ' id="" ')
+    .replaceAll(/ for="[a-z0-9]+"/gi, ' for=""');
+}
+
 export const nullMock = {
   data: {},
 };

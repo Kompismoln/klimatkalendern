@@ -1,5 +1,89 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`UsersView > Show moderate list 1`] = `
+"<div>
+  <breadcrumbs-nav links="[object Object],[object Object],[object Object]"></breadcrumbs-nav>
+  <section>
+    <h2 class="text-lg font-bold mb-3">Details</h2>
+    <div class="flex flex-col">
+      <div class="overflow-x-auto">
+        <div class="inline-block py-2 min-w-full sm:px-2">
+          <div class="overflow-hidden shadow-md sm:rounded-lg">
+            <table class="table w-full">
+              <tbody>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Email</td>
+                  <td class="py-4 px-2 align-middle">truc@mobilizon.test</td>
+                  <td class="py-4 px-2 whitespace-nowrap flex flex flex-col items-start gap-2">
+                    <!--v-if-->
+                    <o-button-stub tag="router-link" variant="text" size="small" iconleft="magnify" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false" to="[object Object]"></o-button-stub>
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Language</td>
+                  <td class="py-4 px-2 align-middle">French</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Role</td>
+                  <td class="py-4 px-2 whitespace-nowrap"><span class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Pending</span></td>
+                  <td class="py-4 px-2 whitespace-nowrap flex items-center">
+                    <!--v-if-->
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Moderation</td>
+                  <td class="py-4 px-2 align-middle">moderation text</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Confirmed</td>
+                  <td class="py-4 px-2 align-middle">Saturday, August 30, 2025 at 11:56 AM</td>
+                  <td class="py-4 px-2 whitespace-nowrap flex items-center">
+                    <!--v-if-->
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Last sign-in</td>
+                  <td class="py-4 px-2 align-middle">Unknown</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Last IP adress</td>
+                  <td class="py-4 px-2 align-middle">Unknown</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--v-if-->
+  <section class="my-4">
+    <h2 class="text-lg font-bold mb-3">Actions</h2>
+    <table>
+      <tr>
+        <td>
+          <div class="buttons">
+            <o-button-stub tag="button" variant="success" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false"></o-button-stub>
+          </div>
+        </td>
+        <td>
+          <div class="buttons">
+            <o-button-stub tag="button" variant="danger" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false"></o-button-stub>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </section>
+  <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" close-button-aria-label="Close" aria-modal=""></o-modal-stub>
+  <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" has-modal-card="" close-button-aria-label="Close" aria-modal=""></o-modal-stub>
+  <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" has-modal-card="" close-button-aria-label="Close" aria-modal=""></o-modal-stub>
+</div>"
+`;
+
 exports[`UsersView > Show simple list 1`] = `
 "<div>
   <breadcrumbs-nav links="[object Object],[object Object],[object Object]"></breadcrumbs-nav>
@@ -78,9 +162,16 @@ exports[`UsersView > Show simple list 1`] = `
   </section>
   <section class="my-4">
     <h2 class="text-lg font-bold mb-3">Actions</h2>
-    <div class="buttons">
-      <o-button-stub tag="button" variant="danger" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false"></o-button-stub>
-    </div>
+    <table>
+      <tr>
+        <!--v-if-->
+        <td>
+          <div class="buttons">
+            <o-button-stub tag="button" variant="danger" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false"></o-button-stub>
+          </div>
+        </td>
+      </tr>
+    </table>
   </section>
   <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" close-button-aria-label="Close" aria-modal=""></o-modal-stub>
   <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" has-modal-card="" close-button-aria-label="Close" aria-modal=""></o-modal-stub>

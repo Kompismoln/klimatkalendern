@@ -279,15 +279,24 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
       {:ok, %User{} = user} ->
         actor = Users.get_actor_for_user(user)
 
-        {:ok, %{access_token: access_token, refresh_token: refresh_token}} =
-          Authenticator.generate_tokens(user)
+        if Config.instance_registrations_moderation?() do
+          {:ok,
+           %{
+             access_token: "",
+             refresh_token: "",
+             user: Map.put(user, :default_actor, actor)
+           }}
+        else
+          {:ok, %{access_token: access_token, refresh_token: refresh_token}} =
+            Authenticator.generate_tokens(user)
 
-        {:ok,
-         %{
-           access_token: access_token,
-           refresh_token: refresh_token,
-           user: Map.put(user, :default_actor, actor)
-         }}
+          {:ok,
+           %{
+             access_token: access_token,
+             refresh_token: refresh_token,
+             user: Map.put(user, :default_actor, actor)
+           }}
+        end
 
       {:error, :invalid_token} ->
         Logger.info("Invalid token #{token} to validate user")

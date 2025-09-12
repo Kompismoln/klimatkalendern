@@ -679,6 +679,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert json_response(res, 200)["data"]["validateUser"]["user"]["id"] == to_string(user.id)
       assert json_response(res, 200)["data"]["validateUser"]["user"]["role"] == "USER"
+      assert json_response(res, 200)["data"]["validateUser"]["accessToken"] != ""
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
     end
@@ -715,6 +716,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert json_response(res, 200)["data"]["validateUser"]["user"]["id"] == to_string(user.id)
       assert json_response(res, 200)["data"]["validateUser"]["user"]["role"] == "PENDING"
+      assert json_response(res, 200)["data"]["validateUser"]["accessToken"] == ""
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
     end

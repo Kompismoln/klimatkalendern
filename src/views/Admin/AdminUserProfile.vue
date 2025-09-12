@@ -52,6 +52,8 @@
                             user.role == ICurrentUserRole.MODERATOR,
                           'bg-blue-100 text-blue-800':
                             user.role == ICurrentUserRole.USER,
+                          'bg-orange-100 text-orange-800':
+                            user.role == ICurrentUserRole.PENDING,
                         }"
                         class="text-sm font-medium mr-2 px-2.5 py-0.5 rounded"
                       >
@@ -67,7 +69,10 @@
                     >
                       <o-button
                         size="small"
-                        v-if="!user.disabled"
+                        v-if="
+                          !user.disabled &&
+                          user.role != ICurrentUserRole.PENDING
+                        "
                         @click="isEmailChangeModalActive = true"
                         variant="text"
                         icon-left="pencil"
@@ -106,7 +111,10 @@
                     >
                       <o-button
                         size="small"
-                        v-if="!user.disabled"
+                        v-if="
+                          !user.disabled &&
+                          user.role != ICurrentUserRole.PENDING
+                        "
                         @click="isRoleChangeModalActive = true"
                         variant="text"
                         icon-left="chevron-double-up"
@@ -140,7 +148,7 @@
         </div>
       </div>
     </section>
-    <section class="my-4">
+    <section v-if="user.role != ICurrentUserRole.PENDING" class="my-4">
       <h2 class="text-lg font-bold mb-3">{{ t("Profiles") }}</h2>
       <div
         class="flex flex-wrap justify-center sm:justify-start gap-4"
@@ -165,18 +173,31 @@
     </section>
     <section class="my-4">
       <h2 class="text-lg font-bold mb-3">{{ t("Actions") }}</h2>
-      <div class="buttons" v-if="!user.disabled">
-        <o-button @click="suspendAccount" variant="danger">{{
-          t("Suspend")
-        }}</o-button>
-      </div>
-      <div
-        v-else
-        class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"
-        role="alert"
-      >
-        {{ t("The user has been disabled") }}
-      </div>
+      <table>
+        <tr>
+          <td v-if="user.role == ICurrentUserRole.PENDING">
+            <div class="buttons">
+              <o-button @click="acceptAccount" variant="success">{{
+                t("Accept")
+              }}</o-button>
+            </div>
+          </td>
+          <td>
+            <div class="buttons" v-if="!user.disabled">
+              <o-button @click="suspendAccount" variant="danger">{{
+                t("Suspend")
+              }}</o-button>
+            </div>
+            <div
+              v-else
+              class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"
+              role="alert"
+            >
+              {{ t("The user has been disabled") }}
+            </div>
+          </td>
+        </tr>
+      </table>
     </section>
     <o-modal
       v-model:active="isEmailChangeModalActive"
@@ -379,7 +400,7 @@ const newUser = reactive({
 const metadata = computed(
   (): Array<{ key: string; value: string; type?: string }> => {
     if (!user.value) return [];
-    return [
+    let fields = [
       {
         key: t("Email"),
         value: user.value.email,
@@ -394,10 +415,19 @@ const metadata = computed(
         value: roleName(user.value.role),
         type: "role",
       },
-      {
+    ];
+    if (user.value.role == ICurrentUserRole.PENDING) {
+      fields.push({
+        key: t("Moderation"),
+        value: user.value.moderation,
+      });
+    } else {
+      fields.push({
         key: t("Login status"),
         value: user.value.disabled ? t("Disabled") : t("Activated"),
-      },
+      });
+    }
+    fields = fields.concat([
       {
         key: t("Confirmed"),
         value: user.value.confirmedAt
@@ -416,15 +446,20 @@ const metadata = computed(
         value: user.value.currentSignInIp || t("Unknown"),
         type: user.value.currentSignInIp ? "ip" : undefined,
       },
-      {
-        key: t("Total number of participations"),
-        value: user.value.participations.total.toString(),
-      },
-      {
-        key: t("Uploaded media total size"),
-        value: formatBytes(user.value.mediaSize),
-      },
-    ];
+    ]);
+    if (user.value.role != ICurrentUserRole.PENDING) {
+      fields = fields.concat([
+        {
+          key: t("Total number of participations"),
+          value: user.value.participations.total.toString(),
+        },
+        {
+          key: t("Uploaded media total size"),
+          value: formatBytes(user.value.mediaSize),
+        },
+      ]);
+    }
+    return fields;
   }
 );
 
@@ -434,6 +469,8 @@ const roleName = (role: ICurrentUserRole): string => {
       return t("Administrator");
     case ICurrentUserRole.MODERATOR:
       return t("Moderator");
+    case ICurrentUserRole.PENDING:
+      return t("Pending");
     case ICurrentUserRole.USER:
     default:
       return t("User");
@@ -467,6 +504,16 @@ const suspendAccount = async (): Promise<void> => {
   });
 };
 
+const acceptAccount = async () => {
+  isRoleChangeModalActive.value = false;
+  await updateUser({
+    id: props.id,
+    role: ICurrentUserRole.USER,
+    notify: true,
+  });
+  router.push({ name: RouteName.ADMIN_USER_PROFILE, id: props.id });
+};
+
 const profiles = computed((): IPerson[] | undefined => {
   return user.value?.actors;
 });
@@ -478,6 +525,7 @@ const confirmUser = async () => {
     confirmed: true,
     notify: newUser.notify,
   });
+  router.push({ name: RouteName.ADMIN_USER_PROFILE, id: props.id });
 };
 
 const updateUserRole = async () => {
@@ -487,6 +535,7 @@ const updateUserRole = async () => {
     role: newUser.role,
     notify: newUser.notify,
   });
+  router.push({ name: RouteName.ADMIN_USER_PROFILE, id: props.id });
 };
 
 const updateUserEmail = async () => {
@@ -496,6 +545,7 @@ const updateUserEmail = async () => {
     email: newUser.email,
     notify: newUser.notify,
   });
+  router.push({ name: RouteName.ADMIN_USER_PROFILE, id: props.id });
 };
 
 const { mutate: updateUser } = useMutation<
