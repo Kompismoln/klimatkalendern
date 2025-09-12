@@ -133,35 +133,35 @@
           <h2>{{ t("Options") }}</h2>
           <o-field :label="t('Allow registrations')">
             <fieldset>
-            <o-field>
-              <o-radio
-                v-model="registrationsMode"
-                name="registrationsModeType"
-                :native-value="registrationsModeType.CLOSE"
-                >{{ t("Registration is closed.") }}</o-radio
-              >
-            </o-field>
-            <o-field>
-              <o-radio
-                v-model="registrationsMode"
-                name="registrationsModeType"
-                :native-value="registrationsModeType.OPEN"
-                >{{
-                  t("Registration is allowed, anyone can register.")
-                }}</o-radio
-              >
-            </o-field>
-            <o-field>
-              <o-radio
-                v-model="registrationsMode"
-                name="registrationsModeType"
-                :native-value="registrationsModeType.MODERATED"
-                >{{
-                  t("Registration is moderated, new user must be validated.")
-                }}</o-radio
-              >
-            </o-field>
-          </fieldset>
+              <o-field>
+                <o-radio
+                  v-model="registrationsMode"
+                  name="registrationsModeType"
+                  :native-value="registrationsModeType.CLOSE"
+                  >{{ t("Registration is closed.") }}</o-radio
+                >
+              </o-field>
+              <o-field>
+                <o-radio
+                  v-model="registrationsMode"
+                  name="registrationsModeType"
+                  :native-value="registrationsModeType.OPEN"
+                  >{{
+                    t("Registration is allowed, anyone can register.")
+                  }}</o-radio
+                >
+              </o-field>
+              <o-field>
+                <o-radio
+                  v-model="registrationsMode"
+                  name="registrationsModeType"
+                  :native-value="registrationsModeType.MODERATED"
+                  >{{
+                    t("Registration is moderated, new user must be validated.")
+                  }}</o-radio
+                >
+              </o-field>
+            </fieldset>
           </o-field>
           <div class="field flex flex-col">
             <label for="instance-languages">{{
@@ -472,7 +472,7 @@
           </o-field>
           <div
             class="mt-5 grid lg:grid-cols-[repeat(auto-fit,minmax(250px,0.5fr))] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-2"
-            v-if="settingsToWrite.externalLinks.length > 0"
+            v-if="settingsToWrite.externalLinks?.length > 0"
           >
             <div
               class="bg-mbz-yellow-alt-100 p-5"
