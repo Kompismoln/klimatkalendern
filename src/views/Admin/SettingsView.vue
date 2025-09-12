@@ -480,11 +480,17 @@
               :key="index"
             >
               <o-field :label="t('URL')" class="!mt-0"
-                ><o-input expanded v-model="link.url" type="text"
+                ><o-input expanded v-model="link.url" type="url" required
               /></o-field>
 
               <o-field :label="t('Label')"
-                ><o-input expanded v-model="link.label" type="text"
+                ><o-input
+                  expanded
+                  v-model="link.label"
+                  type="text"
+                  minlength="2"
+                  maxlength="256"
+                  required
               /></o-field>
 
               <o-field
@@ -609,7 +615,7 @@ const addLink = () => {
   settingsToWrite.value.externalLinks.push({
     url: "",
     label: "",
-    enabled: false,
+    enabled: true,
   });
 };
 
@@ -700,7 +706,9 @@ saveAdminSettingsDone(() => {
 
 saveAdminSettingsError((e) => {
   console.error(e);
-  notifier?.error(t("Failed to save admin settings") as string);
+  notifier?.error(
+    (t("Failed to save admin settings") as string) + ": " + e.message
+  );
 });
 
 const updateSettings = async (): Promise<void> => {

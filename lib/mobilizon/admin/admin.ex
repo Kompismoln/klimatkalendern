@@ -5,6 +5,7 @@ defmodule Mobilizon.Admin do
 
   import Ecto.Query
   import EctoEnum
+  import Mobilizon.Web.Gettext, only: [dgettext: 2]
 
   alias Mobilizon.Actors.Actor
   alias Mobilizon.{Admin, Users}
@@ -182,10 +183,19 @@ defmodule Mobilizon.Admin do
   def save_settings(group, args) do
     {medias, values} = Map.split(args, [:instance_logo, :instance_favicon, :default_picture])
 
-    Multi.new()
-    |> do_save_media_setting(group, medias)
-    |> do_save_value_setting(group, values)
-    |> Repo.transaction()
+    multi =
+      Multi.new()
+      |> do_save_media_setting(group, medias)
+      |> do_save_value_setting(group, values)
+      |> Repo.transaction()
+
+    case multi do
+      {:ok, result} ->
+        {:ok, result}
+
+      {:error, _err, %Ecto.Changeset{} = err, _} ->
+        {:error, err}
+    end
   end
 
   @spec do_save_value_setting(Ecto.Multi.t(), String.t(), map()) :: Ecto.Multi.t()
@@ -195,15 +205,20 @@ defmodule Mobilizon.Admin do
     key = hd(Map.keys(args))
     {val, rest} = Map.pop(args, key)
 
+    changeset =
+      %Setting{}
+      |> Setting.changeset(%{
+        group: group,
+        name: Atom.to_string(key),
+        value: convert_to_string(val)
+      })
+      |> maybe_validate_external_links(key, val)
+
     transaction =
       Multi.insert(
         transaction,
         key,
-        Setting.changeset(%Setting{}, %{
-          group: group,
-          name: Atom.to_string(key),
-          value: convert_to_string(val)
-        }),
+        changeset,
         on_conflict: :replace_all,
         conflict_target: [:group, :name]
       )
@@ -249,6 +264,40 @@ defmodule Mobilizon.Admin do
     case val do
       val when is_list(val) -> Jason.encode!(val)
       val -> to_string(val)
+    end
+  end
+
+  defp maybe_validate_external_links(changeset, :external_links, external_links) do
+    external_links
+    |> List.wrap()
+    |> Enum.reduce(changeset, fn link, cs ->
+      case validate_external_link(link) do
+        {:ok, _} -> cs
+        {:error, msg} -> Ecto.Changeset.add_error(cs, :external_links, msg)
+      end
+    end)
+  end
+
+  defp maybe_validate_external_links(changeset, _key, _val), do: changeset
+
+  defp validate_external_link(%{:url => url, :label => label} = link) do
+    uri = URI.parse(url)
+
+    cond do
+      is_nil(label) or String.trim(label) == "" ->
+        {:error, dgettext("errors", "External link label cannot be blank")}
+
+      String.length(label) < 2 ->
+        {:error, dgettext("errors", "External link label must be at least 2 characters")}
+
+      String.length(label) > 256 ->
+        {:error, dgettext("errors", "External link label must be at most 256 characters")}
+
+      not (uri.scheme in ["http", "https"] and is_binary(uri.host) and uri.host != "") ->
+        {:error, dgettext("errors", "External link URL must be a valid http/https URL")}
+
+      true ->
+        {:ok, link}
     end
   end
 end
