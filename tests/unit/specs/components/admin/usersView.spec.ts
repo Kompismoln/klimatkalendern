@@ -16,6 +16,7 @@ import { createRouter, createWebHistory, Router } from "vue-router";
 import { routes } from "@/router";
 import { Oruga } from "@oruga-ui/oruga-next";
 import { htmlRemoveId } from "../../common";
+import { CONFIG } from "@/graphql/config";
 
 let router: Router;
 
@@ -103,15 +104,23 @@ const listUsersMock = {
 
 config.global.plugins.push(Oruga);
 
-const generateWrapper = (currentUsersMock = listUsersMock) => {
+const generateWrapper = (currentModeration = false) => {
   mockClient = createMockClient({
     cache,
     resolvers: buildCurrentUserResolver(cache),
   });
   requestHandlers = {
+    config: vi.fn().mockResolvedValue({
+      data: {
+        config: {
+          registrationsModeration: currentModeration,
+        },
+      },
+    }),
     languagecode: vi.fn().mockResolvedValue(languageCodeMock),
-    list_users: vi.fn().mockResolvedValue(currentUsersMock),
+    list_users: vi.fn().mockResolvedValue(listUsersMock),
   };
+  mockClient.setRequestHandler(CONFIG, requestHandlers.config);
   mockClient.setRequestHandler(LANGUAGES_CODES, requestHandlers.languagecode);
   mockClient.setRequestHandler(LIST_USERS, requestHandlers.list_users);
 
@@ -145,6 +154,44 @@ describe("UsersView", () => {
     expect(wrapper.exists()).toBe(true);
     expect(requestHandlers.languagecode).toHaveBeenCalled();
     expect(requestHandlers.list_users).toHaveBeenCalled();
+    expect(requestHandlers.list_users).toHaveBeenCalledWith({
+      currentSignInIp: "",
+      email: "",
+      limit: 10,
+      page: 1,
+      pendingUser: false,
+    });
     expect(htmlRemoveId(wrapper.html())).toMatchSnapshot();
+  });
+
+  it("Show list with moderation", async () => {
+    const wrapper = generateWrapper(true);
+    await wrapper.vm.$nextTick();
+    await flushPromises();
+    expect(wrapper.exists()).toBe(true);
+    expect(requestHandlers.languagecode).toHaveBeenCalledTimes(0);
+    expect(requestHandlers.list_users).toHaveBeenCalledTimes(1);
+    expect(requestHandlers.list_users).toHaveBeenCalledWith({
+      currentSignInIp: "",
+      email: "",
+      limit: 10,
+      page: 1,
+      pendingUser: true,
+    });
+    expect(htmlRemoveId(wrapper.html())).toMatchSnapshot();
+
+    wrapper.vm.pendingFieldValue = false;
+    //wrapper.find('input[type="checkbox"]').trigger("change");
+    wrapper.find('input[type="text"]').setValue("@email.tld");
+    wrapper.find('button[type="button"]').trigger("click");
+    await flushPromises();
+    expect(requestHandlers.list_users).toHaveBeenCalledTimes(3);
+    expect(requestHandlers.list_users).toHaveBeenNthCalledWith(3, {
+      currentSignInIp: "",
+      email: "@email.tld",
+      limit: 10,
+      page: 1,
+      pendingUser: false,
+    });
   });
 });

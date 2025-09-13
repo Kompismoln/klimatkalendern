@@ -290,6 +290,7 @@ defmodule Mobilizon.Users do
   @spec list_users(Keyword.t()) :: Page.t(User.t())
   def list_users(options) do
     User
+    |> filter_by_pending(Keyword.get(options, :pending_user))
     |> filter_by_email(Keyword.get(options, :email))
     |> filter_by_ip(Keyword.get(options, :current_sign_in_ip))
     |> sort(Keyword.get(options, :sort), Keyword.get(options, :direction))
@@ -533,6 +534,11 @@ defmodule Mobilizon.Users do
   defp update_user_default_actor_query(user_id) do
     where(User, [u], u.id == ^user_id)
   end
+
+  @spec filter_by_pending(Ecto.Queryable.t(), Boolean.t() | nil) :: Ecto.Query.t()
+  defp filter_by_pending(query, nil), do: query
+  defp filter_by_pending(query, true), do: where(query, [q], q.role == :pending)
+  defp filter_by_pending(query, false), do: where(query, [q], q.role != :pending)
 
   @spec filter_by_email(Ecto.Queryable.t(), String.t() | nil) :: Ecto.Query.t()
   defp filter_by_email(query, nil), do: query

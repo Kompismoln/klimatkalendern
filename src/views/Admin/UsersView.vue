@@ -10,8 +10,13 @@
       ]"
     />
     <div v-if="users">
-      <form @submit.prevent="activateFilters">
+      <form>
         <o-field class="mb-5" grouped group-multiline>
+          <p class="control mb-3 m-auto" v-if="registrationsModeration">
+            <o-checkbox v-model="pendingFieldValue">{{
+              $t("Users pending for moderation")
+            }}</o-checkbox>
+          </p>
           <o-field :label="$t('Email')" expanded>
             <o-input trap-focus icon="email" v-model="emailFilterFieldValue" />
           </o-field>
@@ -19,7 +24,7 @@
             <o-input icon="web" v-model="ipFilterFieldValue" />
           </o-field>
           <p class="control self-end mb-0">
-            <o-button variant="primary" native-type="submit">{{
+            <o-button variant="primary" @click="filterUsers">{{
               $t("Filter")
             }}</o-button>
           </p>
@@ -112,15 +117,27 @@ import { useI18n } from "vue-i18n";
 import { useHead } from "@/utils/head";
 import { integerTransformer, useRouteQuery } from "vue-use-route-query";
 import { formatDateTimeString } from "@/filters/datetime";
+import { useRegistrationConfig } from "@/composition/apollo/config";
+
+const { registrationsModeration } = useRegistrationConfig();
 
 const USERS_PER_PAGE = 10;
 
 const emailFilter = useRouteQuery("emailFilter", "");
 const ipFilter = useRouteQuery("ipFilter", "");
+const pendingFilter = useRouteQuery("pendingFilter", "true");
 const page = useRouteQuery("page", 1, integerTransformer);
 
 const languagesCodes = computed((): string[] => {
   return (users.value?.elements ?? []).map((user: IUser) => user.locale);
+});
+
+const pendingFilterBuilder = computed(() => {
+  if (registrationsModeration.value) {
+    return pendingFilter.value == "true";
+  } else {
+    return false;
+  }
 });
 
 const {
@@ -130,6 +147,7 @@ const {
 } = useQuery<{ users: Paginate<IUser> }>(LIST_USERS, () => ({
   email: emailFilter.value,
   currentSignInIp: ipFilter.value,
+  pendingUser: pendingFilterBuilder.value,
   page: page.value,
   limit: USERS_PER_PAGE,
 }));
@@ -156,6 +174,7 @@ useHead({
 
 const emailFilterFieldValue = ref(emailFilter.value);
 const ipFilterFieldValue = ref(ipFilter.value);
+const pendingFieldValue = ref(pendingFilter.value == "true");
 
 const getLanguageNameForCode = (code: string): string => {
   return (
@@ -171,20 +190,31 @@ const onPageChange = async (newPage: number): Promise<void> => {
     variables: {
       email: emailFilter.value,
       currentSignInIp: ipFilter.value,
+      pendingUser: pendingFilterBuilder.value,
       page: page.value,
       limit: USERS_PER_PAGE,
     },
   });
 };
 
-const activateFilters = (): void => {
+const filterUsers = async (): void => {
   emailFilter.value = emailFilterFieldValue.value;
   ipFilter.value = ipFilterFieldValue.value;
+  if (registrationsModeration.value) {
+    if (pendingFieldValue.value) {
+      pendingFilter.value = "true";
+    } else {
+      pendingFilter.value = "false";
+    }
+  } else {
+    pendingFilter.value = "";
+  }
 };
 
 const resetFilters = (): void => {
   emailFilterFieldValue.value = "";
   ipFilterFieldValue.value = "";
+  pendingFieldValue.value = true;
   activateFilters();
 };
 </script>

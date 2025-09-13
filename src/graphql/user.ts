@@ -271,6 +271,7 @@ export const LIST_USERS = gql`
   query ListUsers(
     $email: String
     $currentSignInIp: String
+    $pendingUser: Boolean
     $page: Int
     $limit: Int
     $sort: SortableUserField
@@ -279,6 +280,7 @@ export const LIST_USERS = gql`
     users(
       email: $email
       currentSignInIp: $currentSignInIp
+      pendingUser: $pendingUser
       page: $page
       limit: $limit
       sort: $sort

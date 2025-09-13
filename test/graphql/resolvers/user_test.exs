@@ -38,6 +38,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
   query ListUsers(
     $email: String
     $currentSignInIp: String
+    $pendingUser: Boolean
     $page: Int
     $limit: Int
     $sort: SortableUserField
@@ -46,6 +47,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
     users(
       email: $email
       currentSignInIp: $currentSignInIp
+      pendingUser: $pendingUser
       page: $page
       limit: $limit
       sort: $sort
@@ -246,6 +248,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       user = insert(:user, email: "riri@example.com", role: :moderator)
       insert(:user, email: "fifi@example.com")
       insert(:user, email: "loulou@example.com")
+      insert(:user, email: "picsous@example.com", role: :pending)
 
       res =
         conn
@@ -253,6 +256,25 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         |> AbsintheHelpers.graphql_query(
           query: @list_users_query,
           variables: %{}
+        )
+
+      assert res["errors"] == nil
+      assert res["data"]["users"]["total"] == 3
+      assert res["data"]["users"]["elements"] |> length == 3
+
+      assert res["data"]["users"]["elements"]
+             |> Enum.map(& &1["email"]) == [
+               "loulou@example.com",
+               "fifi@example.com",
+               "riri@example.com"
+             ]
+
+      res =
+        conn
+        |> auth_conn(user)
+        |> AbsintheHelpers.graphql_query(
+          query: @list_users_query,
+          variables: %{pendingUser: false}
         )
 
       assert res["errors"] == nil
@@ -296,6 +318,22 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert res["data"]["users"]["elements"] |> Enum.map(& &1["email"]) == [
                "riri@example.com"
+             ]
+
+      res =
+        conn
+        |> auth_conn(user)
+        |> AbsintheHelpers.graphql_query(
+          query: @list_users_query,
+          variables: %{pendingUser: true}
+        )
+
+      assert res["errors"] == nil
+      assert res["data"]["users"]["total"] == 1
+      assert res["data"]["users"]["elements"] |> length == 1
+
+      assert res["data"]["users"]["elements"] |> Enum.map(& &1["email"]) == [
+               "picsous@example.com"
              ]
     end
 

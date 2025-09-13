@@ -332,6 +332,11 @@ defmodule Mobilizon.GraphQL.Schema.UserType do
         description: "Filter users by current signed-in IP address"
       )
 
+      arg(:pending_user, :boolean,
+        default_value: false,
+        description: "Filter users by pending or not"
+      )
+
       arg(:page, :integer, default_value: 1, description: "The page in the paginated users list")
       arg(:limit, :integer, default_value: 10, description: "The limit of users per page")
 
