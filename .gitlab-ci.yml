@@ -46,6 +46,7 @@ install:
   script:
     - rm -rf ~/.hex/cache.ets 
     - npm ci
+    - mix deps.clean --all
     - mix deps.get
     - mix compile
 
