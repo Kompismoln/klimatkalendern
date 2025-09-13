@@ -92,12 +92,16 @@ defmodule Mobilizon.Service.Auth.Authenticator do
     end
   end
 
-  @spec fetch_user(String.t()) :: User.t() | {:error, :user_not_found}
+  @spec fetch_user(String.t()) :: User.t() | {:error, :user_not_found} | {:error, :pending}
   def fetch_user(nil), do: {:error, :user_not_found}
 
   def fetch_user(email) when not is_nil(email) do
     with {:ok, %User{} = user} <- Users.get_user_by_email(email, activated: true) do
-      user
+      if user.role == :pending do
+        {:error, :user_pending}
+      else
+        user
+      end
     end
   end
 end

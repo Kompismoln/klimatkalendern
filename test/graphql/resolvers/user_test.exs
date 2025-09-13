@@ -397,6 +397,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       assert res["data"]["createUser"]["locale"] == @user_creation.locale
 
       {:ok, user} = Users.get_user_by_email(@user_creation.email)
+      assert user.role == :user
 
       assert_email_sent(to: user.email)
     end
@@ -480,6 +481,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       {:ok, user} = Users.get_user_by_email(@user_creation.email)
       assert user.moderation == @user_creation_with_moderation.moderation
+      assert user.role == :pending
 
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
@@ -1039,6 +1041,32 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         )
 
       assert hd(res["errors"])["message"] == "User not found"
+    end
+
+    test "test login_user/3 with pending user", %{conn: conn} do
+      {:ok, %User{} = user} =
+        Users.register(%{
+          email: "toto@tata.tld",
+          password: "p4ssw0rd",
+          moderation: @moderation_empty
+        })
+
+      {:ok, %User{} = _user} =
+        Users.update_user(user, %{
+          "confirmed_at" => DateTime.utc_now() |> DateTime.truncate(:second),
+          "confirmation_sent_at" => nil,
+          "confirmation_token" => nil,
+          "role" => :pending
+        })
+
+      res =
+        conn
+        |> AbsintheHelpers.graphql_query(
+          query: @login_mutation,
+          variables: %{email: user.email, password: user.password}
+        )
+
+      assert hd(res["errors"])["message"] == "User pending"
     end
   end
 

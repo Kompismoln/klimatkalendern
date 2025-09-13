@@ -28,6 +28,9 @@ defmodule Mobilizon.Service.Auth.MobilizonAuthenticator do
       {:user, {:error, :user_not_found}} ->
         {:error, :user_not_found}
 
+      {:user, {:error, :user_pending}} ->
+        {:error, :user_pending}
+
       {:acceptable_password, false} ->
         {:error, :bad_password}
 

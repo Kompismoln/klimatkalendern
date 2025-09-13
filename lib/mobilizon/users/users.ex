@@ -82,7 +82,7 @@ defmodule Mobilizon.Users do
   Gets an user by its email.
   """
   @spec get_user_by_email(String.t(), Keyword.t()) ::
-          {:ok, User.t()} | {:error, :user_not_found}
+          {:ok, User.t()} | {:error, :user_not_found} | {:error, :user_pending}
   def get_user_by_email(email, options \\ []) do
     activated = Keyword.get(options, :activated, nil)
     unconfirmed = Keyword.get(options, :unconfirmed, true)

@@ -86,6 +86,9 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
       {:error, :user_not_found} ->
         {:error, :user_not_found}
 
+      {:error, :user_pending} ->
+        {:error, :user_pending}
+
       {:error, :disabled_user} ->
         {:error, dgettext("errors", "This user has been disabled")}
 
@@ -158,6 +161,13 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
     user_agent = Map.get(context, :user_agent, "")
     now = DateTime.utc_now()
 
+    role =
+      if Config.instance_registrations_moderation?() do
+        :pending
+      else
+        :user
+      end
+
     with {:ok, email} <- lowercase_domain(email),
          :registration_ok <- check_registration_config(email, moderation),
          :not_deny_listed <- check_registration_denylist(email),
@@ -165,7 +175,12 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
            {:spam, AntiSpam.service().check_user(email, current_ip, user_agent)},
          {:ok, %User{} = user} <-
            args
-           |> Map.merge(%{email: email, current_sign_in_ip: current_ip, current_sign_in_at: now})
+           |> Map.merge(%{
+             email: email,
+             current_sign_in_ip: current_ip,
+             current_sign_in_at: now,
+             role: role
+           })
            |> Users.register() do
       Email.User.send_confirmation_email(user, Map.get(args, :locale, "en"))
       {:ok, user}
@@ -360,6 +375,9 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
       {:error, :user_not_found} ->
         # TODO : implement rate limits for this endpoint
         {:error, dgettext("errors", "No user with this email was found")}
+
+      {:error, :user_pending} ->
+        {:error, dgettext("errors", "User is pending")}
 
       {:error, :email_too_soon} ->
         {:error,
