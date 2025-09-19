@@ -1,4 +1,4 @@
-defmodule Mobilizon.Storage.Repo.Migrations.AddModerationToUser do
+defmodule Mobilizon.Storage.Repo.Migrations.UpdateRoleToUser do
   use Ecto.Migration
 
   def change do
