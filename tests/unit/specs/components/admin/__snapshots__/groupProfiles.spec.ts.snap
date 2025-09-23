@@ -1,0 +1,122 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GroupProfiles > Show simple 1`] = `
+"<div data-v-0a4382af="">
+  <breadcrumbs-nav data-v-0a4382af="" links="[object Object],[object Object]"></breadcrumbs-nav>
+  <!--v-if-->
+  <div data-v-0a4382af="">
+    <div data-v-0a4382af="" class="flex gap-2"><label data-v-0a4382af="" class="o-switch o-switch--right" data-oruga="switch" role="switch" aria-checked="true"><input type="checkbox" role="switch" data-oruga-input="switch" class="o-switch__input o-switch__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-switch__check o-switch__check--checked o-switch--rounded"><span class="o-switch__check-switch o-switch--rounded"></span></span><span class="o-switch__label">Local</span></label><label data-v-0a4382af="" class="o-switch o-switch--right" data-oruga="switch" role="switch" aria-checked="false"><input type="checkbox" role="switch" data-oruga-input="switch" class="o-switch__input" autocomplete="off" true-value="true" false-value="false"><span class="o-switch__check o-switch--rounded"><span class="o-switch__check-switch o-switch--rounded"></span></span><span class="o-switch__label">Suspended</span></label></div>
+    <div data-v-0a4382af="" class="o-table__root" data-oruga="table">
+      <div style="display: none;"><span data-v-0a4382af="" data-id="1" data-oruga="table-column">Username <!----></span><span data-v-0a4382af="" data-id="2" data-oruga="table-column">Domain <!----></span></div>
+      <!---->
+      <!---->
+      <div class="o-table__wrapper">
+        <table class="o-table">
+          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="o-table__th" draggable="false"><span>Username <span class="o-table__th__sort-icon" style="display: none;"><span class="o-icon o-icon--small" data-oruga="icon"><i class="mdi mdi-arrow-up"></i></span></span></span></th>
+              <th class="o-table__th" draggable="false"><span>Domain <span class="o-table__th__sort-icon" style="display: none;"><span class="o-icon o-icon--small" data-oruga="icon"><i class="mdi mdi-arrow-up"></i></span></span></span></th>
+              <!---->
+            </tr>
+            <tr>
+              <!---->
+              <!---->
+              <th class="o-table__th"><span><div data-v-0a4382af="" data-oruga="input" class="o-input__wrapper"><input aria-label="Filter" id="" data-oruga-input="text" type="text" class="o-input o-input--iconspace-left" autocomplete="off" placeholder="Filter"><span class="o-icon o-input__icon-left" data-oruga="icon"><i class="mdi mdi-magnify mdi-24px"></i></span>
+                <!---->
+                <!---->
+      </div></span></th>
+      <th class="o-table__th"><span><div data-v-0a4382af="" data-oruga="input" class="o-input__wrapper"><input aria-label="Filter" id="" data-oruga-input="text" type="text" class="o-input o-input--iconspace-left" autocomplete="off" placeholder="Filter"><span class="o-icon o-input__icon-left" data-oruga="icon"><i class="mdi mdi-magnify mdi-24px"></i></span>
+        <!---->
+        <!---->
+    </div></span></th>
+    <!---->
+    </tr>
+    <!---->
+    </thead>
+    <tbody>
+      <tr class="" draggable="false">
+        <!---->
+        <!---->
+        <td class="o-table__td" data-label="Username"><a data-v-0a4382af="" href="/settings/admin/groups/1125368" class="profile">
+            <article data-v-0a4382af="" class="flex gap-1"><span data-v-0a4382af="" aria-hidden="true" class="material-design-icon account-group-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="48" height="48" viewBox="0 0 24 24"><path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z"><!--v-if--></path></svg></span>
+              <div data-v-0a4382af="" class="">
+                <div data-v-0a4382af="" class="prose dark:prose-invert">
+                  <p data-v-0a4382af="" class="font-bold mb-0">Group #1</p><span data-v-0a4382af="" class="text-sm">@group1</span>
+                </div>
+              </div>
+            </article>
+          </a></td>
+        <td class="o-table__td" data-label="Domain"></td>
+        <!---->
+      </tr>
+      <transition-stub name="slide" appear="false" persisted="false" css="true">
+        <!---->
+      </transition-stub>
+      <!---->
+      <tr class="" draggable="false">
+        <!---->
+        <!---->
+        <td class="o-table__td" data-label="Username"><a data-v-0a4382af="" href="/settings/admin/groups/175368" class="profile">
+            <article data-v-0a4382af="" class="flex gap-1"><span data-v-0a4382af="" aria-hidden="true" class="material-design-icon account-group-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="48" height="48" viewBox="0 0 24 24"><path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z"><!--v-if--></path></svg></span>
+              <div data-v-0a4382af="" class="">
+                <div data-v-0a4382af="" class="prose dark:prose-invert">
+                  <p data-v-0a4382af="" class="font-bold mb-0">Group #4</p><span data-v-0a4382af="" class="text-sm">@group4</span>
+                </div>
+              </div>
+            </article>
+          </a></td>
+        <td class="o-table__td" data-label="Domain"></td>
+        <!---->
+      </tr>
+      <transition-stub name="slide" appear="false" persisted="false" css="true">
+        <!---->
+      </transition-stub>
+      <!---->
+      <tr class="" draggable="false">
+        <!---->
+        <!---->
+        <td class="o-table__td" data-label="Username"><a data-v-0a4382af="" href="/settings/admin/groups/1126368" class="profile">
+            <article data-v-0a4382af="" class="flex gap-1"><span data-v-0a4382af="" aria-hidden="true" class="material-design-icon account-group-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="48" height="48" viewBox="0 0 24 24"><path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z"><!--v-if--></path></svg></span>
+              <div data-v-0a4382af="" class="">
+                <div data-v-0a4382af="" class="prose dark:prose-invert">
+                  <p data-v-0a4382af="" class="font-bold mb-0">Group #2</p><span data-v-0a4382af="" class="text-sm">@group2</span>
+                </div>
+              </div>
+            </article>
+          </a></td>
+        <td class="o-table__td" data-label="Domain"></td>
+        <!---->
+      </tr>
+      <transition-stub name="slide" appear="false" persisted="false" css="true">
+        <!---->
+      </transition-stub>
+      <!---->
+      <!---->
+    </tbody>
+    <!---->
+    </table>
+    <transition-stub name="fade" appear="false" persisted="false" css="true">
+      <!---->
+    </transition-stub>
+  </div>
+  <div class="o-table__pagination" per-page="10" total="3" rounded="false" size="small" simple="false" aria-next-label="Next page" aria-previous-label="Previous page" aria-page-label="Page" aria-current-label="Current page">
+    <div></div>
+    <div>
+      <nav class="o-pag o-pag--right o-pag--small" data-oruga="pagination"><button role="button" tabindex="0" class="o-pag__link o-pag__previous o-pag__link--disabled" aria-label="Previous page" aria-current="false"><span class="o-icon" data-oruga="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></button><button role="button" tabindex="0" class="o-pag__link o-pag__next o-pag__link--disabled" aria-label="Next page" aria-current="false"><span class="o-icon" data-oruga="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></button>
+        <ul class="o-pag__list">
+          <!---->
+          <!---->
+          <li class="o-pag__item"><button role="button" tabindex="0" class="o-pag__link o-pag__link--current" aria-label="Current page, Page 1." aria-current="true">1</button></li>
+          <!---->
+          <!---->
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+</div>
+</div>"
+`;

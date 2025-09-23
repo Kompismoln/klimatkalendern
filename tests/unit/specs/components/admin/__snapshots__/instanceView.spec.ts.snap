@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InstanceView > Show simple 1`] = `
+"<div>
+  <breadcrumbs-nav links="[object Object],[object Object],[object Object]"></breadcrumbs-nav>
+  <section class="flex flex-wrap md:flex-nowrap items-center justify-between gap-4">
+    <div>
+      <h2 class="text-4xl font-bold">Mobilizon</h2>
+      <p class="text-slate-700 dark:text-slate-400 my-4">Mobilizon for test</p>Software details: <span class="capitalize">Mobilizon - 5.1.5</span>
+    </div><a class="o-btn mx-auto md:mx-0" role="button" data-oruga="button" href="https://mobilizon.test" target="_blank" rel="noopener noreferrer"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Visit mobilizon.test</span><span class="o-icon o-btn__icon o-btn__icon-right" data-oruga="icon"><i class="mdi mdi-open-in-new mdi-24px"></i></span></span></a>
+  </section>
+  <section>
+    <div class="grid md:grid-cols-2 xl:grid-cols-4 gap-2 content-center text-center mt-2">
+      <div class="bg-zinc-50 dark:bg-mbz-purple-500 rounded-xl p-8"><a href="/settings/admin/profiles?domain=mobilizon.test" class=""><span class="mb-4 text-xl font-semibold block">5</span><span class="text-sm block">Profiles</span></a></div>
+      <div class="bg-gray-50 dark:bg-mbz-purple-500 rounded-xl p-8"><a href="/settings/admin/groups?domain=mobilizon.test" class=""><span class="mb-4 text-xl font-semibold block">1</span><span class="text-sm block">Groups</span></a></div>
+      <div class="bg-zinc-50 dark:bg-mbz-purple-500 rounded-xl p-8"><span class="mb-4 text-xl font-semibold block">0</span><span class="text-sm block">Followings</span></div>
+      <div class="bg-zinc-50 dark:bg-mbz-purple-500 rounded-xl p-8"><span class="mb-4 text-xl font-semibold block">0</span><span class="text-sm block">Followers</span></div>
+      <div class="bg-zinc-50 dark:bg-mbz-purple-500 rounded-xl p-8"><a href="/moderation/reports?domain=mobilizon.test" class=""><span class="mb-4 text-xl font-semibold block">1</span><span class="text-sm block">Reports</span></a></div>
+      <div class="bg-zinc-50 dark:bg-mbz-purple-500 rounded-xl p-8"><span class="mb-4 font-semibold block">2,81&nbsp;mégaoctets</span><span class="text-sm block">Uploaded media size</span></div>
+    </div>
+  </section>
+  <section>
+    <div class="mt-3 grid xl:grid-cols-2 gap-4">
+      <div class="border bg-white dark:bg-mbz-purple-500 dark:border-mbz-purple-700 p-6 shadow-md rounded-md flex flex-col gap-2 justify-center"><button class="bg-primary hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-gray-50 text-white hover:text-white font-semibold h-12 px-6 rounded-lg w-full flex items-center justify-center sm:w-auto">Follow instance</button></div>
+      <div class="border bg-white dark:bg-mbz-purple-500 dark:border-mbz-purple-700 p-6 shadow-md rounded-md flex flex-col gap-2 justify-center">
+        <!--v-if-->
+        <!--v-if-->
+        <p>This instance doesn't follow yours.</p>
+      </div>
+    </div>
+  </section>
+</div>"
+`;

@@ -1,0 +1,255 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AdminGroupProfile > Show simple 1`] = `
+"<div class="section">
+  <breadcrumbs-nav links="[object Object],[object Object],[object Object]"></breadcrumbs-nav>
+  <div><a href="/@group_name" class="mx-auto max-w-sm block mb-2">
+      <div data-v-b0ff4ece="" class="bg-white dark:bg-mbz-purple rounded-lg flex space-x-4 items-center flex-col p-4 shadow-md sm:p-8 pb-10 w-80">
+        <div data-v-b0ff4ece="" class="flex pl-2"><span data-v-b0ff4ece="" class="ltr:-mr-0.5 rtl:-ml-0.5 material-design-icon account-circle-icon ltr:-mr-0.5 rtl:-ml-0.5" aria-hidden="true" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="48" height="48" viewBox="0 0 24 24"><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"><!--v-if--></path></svg></span></div>
+        <div data-v-b0ff4ece="" class="text-center overflow-hidden w-full">
+          <h5 data-v-b0ff4ece="" class="text-xl font-medium violet-title tracking-tight text-gray-900 dark:text-gray-200 whitespace-pre-line line-clamp-2">Group name</h5>
+          <p data-v-b0ff4ece="" class="text-gray-500 dark:text-gray-200 truncate"><span data-v-b0ff4ece="" dir="ltr">@group_name</span></p>
+          <div data-v-b0ff4ece="" class="only-first-child line-clamp-10"></div>
+          <!--v-if-->
+        </div>
+        <!--v-if-->
+      </div>
+      <!-- <div
+    class="p-4 bg-white rounded-lg shadow-md sm:p-8 flex items-center space-x-4"
+    dir="auto"
+  >
+    <div class="flex-shrink-0">
+      <figure class="w-12 h-12" v-if="actor.avatar">
+        <img
+          class="rounded-lg"
+          :src="actor.avatar.url"
+          alt=""
+          width="48"
+          height="48"
+        />
+      </figure>
+      <o-icon
+        v-else
+        size="large"
+        icon="account-circle"
+        class="ltr:-mr-0.5 rtl:-ml-0.5"
+      />
+    </div>
+
+    <div class="flex-1 min-w-0">
+      <h5 class="text-xl font-medium violet-title tracking-tight text-gray-900">
+        {{ displayName(actor) }}
+      </h5>
+      <p class="text-gray-500 truncate" v-if="actor.name">
+        <span dir="ltr">@{{ usernameWithDomain(actor) }}</span>
+      </p>
+      <div
+        v-if="full"
+        class="line-clamp-3"
+        :class="{ limit: limit }"
+        v-html="actor.summary"
+      />
+    </div>
+  </div> -->
+    </a></div>
+  <table class="table w-full">
+    <tbody>
+      <tr>
+        <td>Status</td>
+        <td>Active</td>
+      </tr>
+      <tr>
+        <td>Domain</td>
+        <td>Local</td>
+      </tr>
+      <tr>
+        <td>Uploaded media size</td>
+        <td>0&nbsp;octet</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="flex gap-1"><button type="button" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Suspend</span>
+      <!----></span>
+    </button>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <section>
+    <h2>1 members</h2>
+    <div class="o-table__root" data-oruga="table">
+      <div style="display: none;"><span data-id="1" data-oruga="table-column">Member <!----></span><span data-id="2" data-oruga="table-column">Role <!----></span><span data-id="3" data-oruga="table-column">Date <!----></span></div>
+      <!---->
+      <!---->
+      <div class="o-table__wrapper">
+        <table class="o-table">
+          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="o-table__th" draggable="false"><span>Member <span class="o-table__th__sort-icon" style="display: none;"><span class="o-icon o-icon--small" data-oruga="icon"><i class="mdi mdi-arrow-up"></i></span></span></span></th>
+              <th class="o-table__th" draggable="false"><span>Role <span class="o-table__th__sort-icon" style="display: none;"><span class="o-icon o-icon--small" data-oruga="icon"><i class="mdi mdi-arrow-up"></i></span></span></span></th>
+              <th class="o-table__th" draggable="false"><span>Date <span class="o-table__th__sort-icon" style="display: none;"><span class="o-icon o-icon--small" data-oruga="icon"><i class="mdi mdi-arrow-up"></i></span></span></span></th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr class="" draggable="false">
+              <!---->
+              <!---->
+              <td class="o-table__td" data-label="Member">
+                <article class="flex gap-1">
+                  <div class="flex-none"><a href="/settings/admin/profiles/6548012" class="no-underline"><span aria-hidden="true" class="material-design-icon account-circle-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="48" height="48" viewBox="0 0 24 24"><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"><!--v-if--></path></svg></span></a></div>
+                  <div>
+                    <div class="prose dark:prose-invert"><a href="/settings/admin/profiles/6548012" class="no-underline">member #1</a><br><a href="/settings/admin/profiles/6548012" class="no-underline">@member_1</a></div>
+                  </div>
+                </article>
+              </td>
+              <td class="o-table__td" data-label="Role"><span data-v-6955ca87="" class="rounded-md truncate text-sm text-black px-2 py-1 bg-purple-3 dark:text-violet-3">Administrator</span></td>
+              <td class="o-table__td" data-label="Date"><span class="has-text-centered">Sunday, June 13, 2021<br>9:24 AM</span></td>
+              <!---->
+            </tr>
+            <transition-stub name="slide" appear="false" persisted="false" css="true">
+              <!---->
+            </transition-stub>
+            <!---->
+            <!---->
+          </tbody>
+          <!---->
+        </table>
+        <transition-stub name="fade" appear="false" persisted="false" css="true">
+          <!---->
+        </transition-stub>
+      </div>
+      <div class="o-table__pagination" per-page="10" total="1" rounded="false" size="small" simple="false" aria-next-label="Next page" aria-previous-label="Previous page" aria-page-label="Page" aria-current-label="Current page">
+        <div></div>
+        <div>
+          <nav class="o-pag o-pag--right o-pag--small" data-oruga="pagination"><button role="button" tabindex="0" class="o-pag__link o-pag__previous o-pag__link--disabled" aria-label="Previous page" aria-current="false"><span class="o-icon" data-oruga="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></button><button role="button" tabindex="0" class="o-pag__link o-pag__next o-pag__link--disabled" aria-label="Next page" aria-current="false"><span class="o-icon" data-oruga="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></button>
+            <ul class="o-pag__list">
+              <!---->
+              <!---->
+              <li class="o-pag__item"><button role="button" tabindex="0" class="o-pag__link o-pag__link--current" aria-label="Current page, Page 1." aria-current="true">1</button></li>
+              <!---->
+              <!---->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>30410 organized events</h2>
+    <div class="o-table__root" data-oruga="table">
+      <div style="display: none;"><span data-id="1" data-oruga="table-column">Title <!----></span><span data-id="2" data-oruga="table-column">Begins on <!----></span></div>
+      <!---->
+      <!---->
+      <div class="o-table__wrapper">
+        <table class="o-table o-table--table__empty">
+          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="o-table__th" draggable="false"><span>Title <span class="o-table__th__sort-icon" style="display: none;"><span class="o-icon o-icon--small" data-oruga="icon"><i class="mdi mdi-arrow-up"></i></span></span></span></th>
+              <th class="o-table__th" draggable="false"><span>Begins on <span class="o-table__th__sort-icon" style="display: none;"><span class="o-icon o-icon--small" data-oruga="icon"><i class="mdi mdi-arrow-up"></i></span></span></span></th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2">
+                <div class="flex flex-col items-center mt-20 mb-10" role="note"><span class="o-icon" data-oruga="icon"><i class="mdi mdi-account-group 48"></i></span>
+                  <h2 class="mb-3">
+                    <!-- @slot Mandatory title -->No organized events found
+                  </h2>
+                  <p class="" style="display: none;">
+                    <!-- @slot Optional description -->
+                  </p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <!---->
+        </table>
+        <transition-stub name="fade" appear="false" persisted="false" css="true">
+          <!---->
+        </transition-stub>
+      </div>
+      <div class="o-table__pagination" per-page="10" total="30410" rounded="false" size="small" simple="false" aria-next-label="Next page" aria-previous-label="Previous page" aria-page-label="Page" aria-current-label="Current page">
+        <div></div>
+        <div>
+          <nav class="o-pag o-pag--right o-pag--small" data-oruga="pagination"><button role="button" tabindex="0" class="o-pag__link o-pag__previous o-pag__link--disabled" aria-label="Previous page" aria-current="false"><span class="o-icon" data-oruga="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></button><button role="button" tabindex="0" class="o-pag__link o-pag__next" aria-label="Next page" aria-current="false"><span class="o-icon" data-oruga="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></button>
+            <ul class="o-pag__list">
+              <!---->
+              <!---->
+              <li class="o-pag__item"><button role="button" tabindex="0" class="o-pag__link o-pag__link--current" aria-label="Current page, Page 1." aria-current="true">1</button></li>
+              <li class="o-pag__item"><button role="button" tabindex="0" class="o-pag__link" aria-label="Page 2." aria-current="false">2</button></li>
+              <li class="o-pag__item"><span class="o-pag__ellipsis">…</span></li>
+              <li class="o-pag__item"><button role="button" tabindex="0" class="o-pag__link" aria-label="Page 3041." aria-current="false">3041</button></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>0 posts</h2>
+    <div class="o-table__root" data-oruga="table">
+      <div style="display: none;"><span data-id="1" data-oruga="table-column">Title <!----></span><span data-id="2" data-oruga="table-column">Publication date <!----></span></div>
+      <!---->
+      <!---->
+      <div class="o-table__wrapper">
+        <table class="o-table o-table--table__empty">
+          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="o-table__th" draggable="false"><span>Title <span class="o-table__th__sort-icon" style="display: none;"><span class="o-icon o-icon--small" data-oruga="icon"><i class="mdi mdi-arrow-up"></i></span></span></span></th>
+              <th class="o-table__th" draggable="false"><span>Publication date <span class="o-table__th__sort-icon" style="display: none;"><span class="o-icon o-icon--small" data-oruga="icon"><i class="mdi mdi-arrow-up"></i></span></span></span></th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="2">
+                <div class="flex flex-col items-center mt-20 mb-10" role="note"><span class="o-icon" data-oruga="icon"><i class="mdi mdi-bullhorn 48"></i></span>
+                  <h2 class="mb-3">
+                    <!-- @slot Mandatory title -->No posts found
+                  </h2>
+                  <p class="" style="display: none;">
+                    <!-- @slot Optional description -->
+                  </p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <!---->
+        </table>
+        <transition-stub name="fade" appear="false" persisted="false" css="true">
+          <!---->
+        </transition-stub>
+      </div>
+      <div class="o-table__pagination" per-page="10" total="0" rounded="false" size="small" simple="false" aria-next-label="Next page" aria-previous-label="Previous page" aria-page-label="Page" aria-current-label="Current page">
+        <div></div>
+        <div>
+          <nav class="o-pag o-pag--right o-pag--small" data-oruga="pagination"><button role="button" tabindex="0" class="o-pag__link o-pag__previous o-pag__link--disabled" aria-label="Previous page" aria-current="false"><span class="o-icon" data-oruga="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></button><button role="button" tabindex="0" class="o-pag__link o-pag__next o-pag__link--disabled" aria-label="Next page" aria-current="false"><span class="o-icon" data-oruga="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></button>
+            <ul class="o-pag__list">
+              <!---->
+              <!---->
+              <!---->
+              <!---->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>"
+`;

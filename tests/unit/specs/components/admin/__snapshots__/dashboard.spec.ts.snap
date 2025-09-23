@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Dashboard > Show simple 1`] = `
+"<div>
+  <breadcrumbs-nav links="[object Object],[object Object]"></breadcrumbs-nav>
+  <section>
+    <h1>Administration</h1>
+    <div class="grid grid-cols-1 lg:grid-rows-2 lg:grid-flow-col gap-x-4 items-stretch">
+      <number-dashboard-tile-stub number="340"></number-dashboard-tile-stub>
+      <linked-number-dashboard-tile-stub subtitle="Groups" to="[object Object]" number="67"></linked-number-dashboard-tile-stub>
+      <linked-number-dashboard-tile-stub subtitle="Users" to="[object Object]" number="220"></linked-number-dashboard-tile-stub>
+      <linked-number-dashboard-tile-stub subtitle="Opened reports" to="[object Object]" number="9"></linked-number-dashboard-tile-stub>
+      <linked-number-dashboard-tile-stub subtitle="Instances following you" to="[object Object]" number="12"></linked-number-dashboard-tile-stub>
+      <linked-number-dashboard-tile-stub subtitle="Instances you follow" to="[object Object]" number="35"></linked-number-dashboard-tile-stub>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <div>
+        <h2>Last published event</h2>
+        <event-card-stub event="[object Object]" mode="column"></event-card-stub>
+      </div>
+      <div>
+        <h2>Last group created</h2>
+        <group-card-stub group="[object Object]" showsummary="true" isremotegroup="false" isloggedin="true" mode="column"></group-card-stub>
+      </div>
+    </div>
+  </section>
+</div>"
+`;

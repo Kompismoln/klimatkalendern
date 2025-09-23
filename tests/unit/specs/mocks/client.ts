@@ -10,9 +10,9 @@ import { vi } from "vitest";
 import { nullMock } from "../common";
 
 let mockClient: MockApolloClient | null;
-let requestHandlers: Record<string, RequestHandler>;
+export let requestHandlers: Record<string, RequestHandler>;
 
-export function getMockClient(queries: Array<string>): any {
+export function getMockClient(queries: Array<any>): any {
   mockClient = createMockClient({
     cache,
     resolvers: buildCurrentUserResolver(cache),
@@ -20,8 +20,23 @@ export function getMockClient(queries: Array<string>): any {
   requestHandlers = {
     nullHandle: vi.fn().mockResolvedValue(nullMock),
   };
-  queries.forEach((query: any) => {
-    mockClient.setRequestHandler(query, requestHandlers.nullHandle);
+  queries.forEach((query: any, index: number) => {
+    let mock_val = null;
+    let query_gq = null;
+    if (Array.isArray(query)) {
+      query_gq = query[0];
+      mock_val = query[1];
+    } else {
+      query_gq = query;
+      mock_val = nullMock;
+    }
+    requestHandlers["handle_" + index.toString()] = vi
+      .fn()
+      .mockResolvedValue(mock_val);
+    mockClient.setRequestHandler(
+      query_gq,
+      requestHandlers["handle_" + index.toString()]
+    );
   });
   return { provide: { [DefaultApolloClient]: mockClient } };
 }

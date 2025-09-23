@@ -1,0 +1,119 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InstancesView > Show simple 1`] = `
+"<div data-v-364450c8="">
+  <breadcrumbs-nav data-v-364450c8="" links="[object Object],[object Object]"></breadcrumbs-nav>
+  <section data-v-364450c8="">
+    <h1 data-v-364450c8="" class="title">Instances</h1>
+    <form data-v-364450c8="" class="my-4">
+      <div data-v-364450c8="" data-oruga="field" class="o-field o-field--horizontal">
+        <div class="o-field__horizontal-label"><label for="newRelayAddress" class="o-field__label">Follow a new instance</label></div>
+        <div class="o-field__horizontal-body">
+          <div data-oruga="field" class="o-field">
+            <!---->
+            <div class="o-field__body">
+              <div class="o-field">
+                <div data-v-364450c8="" data-oruga="field" class="o-field" expanded="" size="large">
+                  <!---->
+                  <div class="o-field__body">
+                    <div class="o-field o-field--grouped-multiline o-field--grouped">
+                      <p data-v-364450c8="" class="control">
+                      <div data-v-364450c8="" data-oruga="input" class="o-input__wrapper"><input id="newRelayAddress" data-oruga-input="text" type="text" class="o-input" autocomplete="off" placeholder="Ex: mobilizon.fr">
+                        <!---->
+                        <!---->
+                        <!---->
+                      </div>
+                      </p>
+                      <p data-v-364450c8="" class="control"><button data-v-364450c8="" type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Add an instance</span>
+                          <!----></span>
+                        </button>
+                        <transition-stub data-v-364450c8="" name="fade" appear="false" persisted="false" css="true">
+                          <!---->
+                        </transition-stub>
+                      </p>
+                    </div>
+                  </div>
+                  <!---->
+                </div>
+              </div>
+            </div>
+            <p class="o-field__message"></p>
+          </div>
+        </div>
+        <!---->
+      </div>
+    </form>
+    <div data-v-364450c8="" class="flex flex-wrap gap-2">
+      <div data-v-364450c8="" data-oruga="field" class="o-field"><label class="o-field__label">Follow status</label>
+        <div class="o-field__body">
+          <div class="o-field o-field--addons"><label data-v-364450c8="" class="o-radio o-radio--checked" data-oruga="radio" role="radio" aria-checked="true"><input type="radio" data-oruga-input="radio" class="o-radio__input o-radio__input--checked" autocomplete="off" value="ALL"><span class="o-radio__label">All</span></label><label data-v-364450c8="" class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="FOLLOWING"><span class="o-radio__label">Following</span></label><label data-v-364450c8="" class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="FOLLOWED"><span class="o-radio__label">Followed</span></label></div>
+        </div>
+        <!---->
+      </div>
+      <div data-v-364450c8="" data-oruga="field" class="o-field flex-auto"><label for="domain-filter" class="o-field__label">Domain or instance name</label>
+        <div class="o-field__body">
+          <div class="o-field o-field--addons">
+            <div data-v-364450c8="" data-oruga="input" class="o-input__wrapper"><input id="domain-filter" data-oruga-input="text" type="text" class="o-input" autocomplete="off" placeholder="mobilizon-instance.tld">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+          </div>
+        </div>
+        <!---->
+      </div>
+    </div>
+    <div data-v-364450c8="" class="my-3"><a data-v-364450c8="" href="/settings/admin/instances/mobilizon.test" class="min-w-0 flex items-center mb-2 rounded bg-mbz-yellow-alt-300 hover:bg-mbz-yellow-alt-200 dark:bg-mbz-purple-600 dark:hover:bg-mbz-purple-700 p-4 flex-wrap md:flex-nowrap justify-center gap-x-2 gap-y-3">
+        <div data-v-364450c8="" class="flex-1 overflow-hidden flex items-center gap-1"><img data-v-364450c8="" class="w-12" src="/img/logo.svg" alt="">
+          <div data-v-364450c8="" class="">
+            <h3 data-v-364450c8="" class="text-lg truncate font-bold line-clamp-1 text-slate-800 dark:text-slate-100">Mobilizon</h3>
+            <div data-v-364450c8="">
+              <div data-v-364450c8="" class="flex flex-wrap gap-x-2 gap-y-1">
+                <p data-v-364450c8="" class="min-w-0 inline-flex gap-1 truncate text-slate-700 dark:text-slate-300"><span data-v-364450c8="" class="o-icon" data-oruga="icon"><i class="mdi mdi-web mdi-24px"></i></span><span data-v-364450c8="">mobilizon.test</span></p>
+                <p data-v-364450c8="" class="capitalize text-slate-700 dark:text-slate-300 inline-flex gap-1"><span data-v-364450c8="" class="o-icon" data-oruga="icon"><i class="mdi mdi-server mdi-24px"></i></span> Mobilizon</p>
+              </div>
+              <div data-v-364450c8="">
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-v-364450c8="" class="flex-none flex gap-3 ltr:ml-3 rtl:mr-3">
+          <p data-v-364450c8="" class="flex flex-col text-center"><span data-v-364450c8="" class="text-xl">20</span><span data-v-364450c8="" class="text-sm">Events</span></p>
+          <p data-v-364450c8="" class="flex flex-col text-center"><span data-v-364450c8="" class="text-xl">5</span><span data-v-364450c8="" class="text-sm">Profiles</span></p>
+        </div>
+      </a><a data-v-364450c8="" href="/settings/admin/instances/agenda.test" class="min-w-0 flex items-center mb-2 rounded bg-mbz-yellow-alt-300 hover:bg-mbz-yellow-alt-200 dark:bg-mbz-purple-600 dark:hover:bg-mbz-purple-700 p-4 flex-wrap md:flex-nowrap justify-center gap-x-2 gap-y-3">
+        <div data-v-364450c8="" class="flex-1 overflow-hidden flex items-center gap-1"><img data-v-364450c8="" class="w-8 mx-2" src="/img/gancio.png" alt="">
+          <div data-v-364450c8="" class="">
+            <h3 data-v-364450c8="" class="text-lg truncate font-bold line-clamp-1 text-slate-800 dark:text-slate-100">Agenda de Crémeaux</h3>
+            <div data-v-364450c8="">
+              <div data-v-364450c8="" class="flex flex-wrap gap-x-2 gap-y-1">
+                <p data-v-364450c8="" class="min-w-0 inline-flex gap-1 truncate text-slate-700 dark:text-slate-300"><span data-v-364450c8="" class="o-icon" data-oruga="icon"><i class="mdi mdi-web mdi-24px"></i></span><span data-v-364450c8="">agenda.test</span></p>
+                <p data-v-364450c8="" class="capitalize text-slate-700 dark:text-slate-300 inline-flex gap-1"><span data-v-364450c8="" class="o-icon" data-oruga="icon"><i class="mdi mdi-server mdi-24px"></i></span> gancio</p>
+              </div>
+              <div data-v-364450c8="">
+                <p data-v-364450c8="" class="inline-flex gap-1 text-slate-700 dark:text-slate-300"><span data-v-364450c8="" class="o-icon" data-oruga="icon"><i class="mdi mdi-inbox-arrow-down mdi-24px"></i></span> Followed</p>
+                <!--v-if-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div data-v-364450c8="" class="flex-none flex gap-3 ltr:ml-3 rtl:mr-3">
+          <p data-v-364450c8="" class="flex flex-col text-center"><span data-v-364450c8="" class="text-xl">4</span><span data-v-364450c8="" class="text-sm">Events</span></p>
+          <p data-v-364450c8="" class="flex flex-col text-center"><span data-v-364450c8="" class="text-xl">0</span><span data-v-364450c8="" class="text-sm">Profiles</span></p>
+        </div>
+      </a>
+      <nav data-v-364450c8="" class="o-pag o-pag--right" data-oruga="pagination" style="display: none;"><button role="button" tabindex="0" class="o-pag__link o-pag__previous o-pag__link--disabled" aria-label="Previous page" aria-current="false"><span class="o-icon" data-oruga="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></button><button role="button" tabindex="0" class="o-pag__link o-pag__next o-pag__link--disabled" aria-label="Next page" aria-current="false"><span class="o-icon" data-oruga="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></button>
+        <ul class="o-pag__list">
+          <!---->
+          <!---->
+          <li class="o-pag__item"><button role="button" tabindex="0" class="o-pag__link o-pag__link--current" aria-label="Current page, Page 1." aria-current="true">1</button></li>
+          <!---->
+          <!---->
+        </ul>
+      </nav>
+    </div>
+  </section>
+</div>"
+`;
