@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EmailValidate > Show simple 1`] = `
+"<section class="container mx-auto">
+  <div>
+    <h1 class="title">Your email has been changed</h1>
+  </div>
+</section>"
+`;

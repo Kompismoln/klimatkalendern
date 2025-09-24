@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SettingsOnboard > Show simple - step 1 1`] = `
+"<div data-v-68ff875c="" class="container mx-auto">
+  <h1 data-v-68ff875c="" class="title">Let's define a few settings</h1>
+  <o-steps-stub data-v-68ff875c="" modelvalue="0" vertical="false" iconprev="chevron-left" iconnext="chevron-right" hasnavigation="false" destroyonhide="false" animated="true" animation="slide-next,slide-prev,slide-down,slide-up" animateinitially="false" labelposition="bottom" rounded="true"></o-steps-stub>
+  <section data-v-68ff875c="" class="has-text-centered section buttons">
+    <o-button-stub data-v-68ff875c="" tag="router-link" rounded="false" expanded="false" disabled="true" outlined="true" loading="false" inverted="false" nativetype="button" role="button" iconboth="false" to="[object Object]"></o-button-stub>
+    <o-button-stub data-v-68ff875c="" tag="router-link" variant="success" rounded="false" expanded="false" disabled="false" outlined="true" loading="false" inverted="false" nativetype="button" role="button" iconboth="false" to="[object Object]"></o-button-stub>
+    <!--v-if-->
+  </section>
+</div>"
+`;
+
+exports[`SettingsOnboard > Show simple - step 2 1`] = `
+"<div data-v-68ff875c="" class="container mx-auto">
+  <h1 data-v-68ff875c="" class="title">Let's define a few settings</h1>
+  <o-steps-stub data-v-68ff875c="" modelvalue="1" vertical="false" iconprev="chevron-left" iconnext="chevron-right" hasnavigation="false" destroyonhide="false" animated="true" animation="slide-next,slide-prev,slide-down,slide-up" animateinitially="false" labelposition="bottom" rounded="true"></o-steps-stub>
+  <section data-v-68ff875c="" class="has-text-centered section buttons">
+    <o-button-stub data-v-68ff875c="" tag="router-link" rounded="false" expanded="false" disabled="false" outlined="true" loading="false" inverted="false" nativetype="button" role="button" iconboth="false" to="[object Object]"></o-button-stub>
+    <o-button-stub data-v-68ff875c="" tag="router-link" variant="success" rounded="false" expanded="false" disabled="false" outlined="true" loading="false" inverted="false" nativetype="button" role="button" iconboth="false" to="[object Object]"></o-button-stub>
+    <!--v-if-->
+  </section>
+</div>"
+`;
+
+exports[`SettingsOnboard > Show simple - step 3 1`] = `
+"<div data-v-68ff875c="" class="container mx-auto">
+  <h1 data-v-68ff875c="" class="title">Let's define a few settings</h1>
+  <o-steps-stub data-v-68ff875c="" modelvalue="2" vertical="false" iconprev="chevron-left" iconnext="chevron-right" hasnavigation="false" destroyonhide="false" animated="true" animation="slide-next,slide-prev,slide-down,slide-up" animateinitially="false" labelposition="bottom" rounded="true"></o-steps-stub>
+  <section data-v-68ff875c="" class="has-text-centered section buttons">
+    <o-button-stub data-v-68ff875c="" tag="router-link" rounded="false" expanded="false" disabled="false" outlined="true" loading="false" inverted="false" nativetype="button" role="button" iconboth="false" to="[object Object]"></o-button-stub>
+    <!--v-if-->
+    <o-button-stub data-v-68ff875c="" tag="router-link" variant="success" size="big" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false" to="[object Object]"></o-button-stub>
+  </section>
+</div>"
+`;

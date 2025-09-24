@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ResendConfirmation > Show simple 1`] = `
+"<section class="container mx-auto pt-4 max-w-2xl">
+  <h1>Resend confirmation email</h1>
+  <!--v-if-->
+  <form>
+    <div data-oruga="field" class="o-field"><label for="emailAddress" class="o-field__label">Email address</label>
+      <div class="o-field__body">
+        <div class="o-field o-field--addons">
+          <div data-oruga="input" class="o-input__wrapper o-input__wrapper--expanded"><input aria-required="true" required="" id="emailAddress" data-oruga-input="email" type="email" class="o-input" autocomplete="off">
+            <!---->
+            <!---->
+            <!---->
+          </div>
+        </div>
+      </div>
+      <!---->
+    </div>
+    <p class="flex flex-wrap gap-1 mt-2"><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Send the confirmation email again</span>
+        <!----></span>
+      </button><a href="/login" class="o-btn o-btn--primary o-btn--outlined-primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Cancel</span>
+        <!----></span>
+      </a></p>
+  </form>
+</section>"
+`;
+
+exports[`ResendConfirmation > Show simple 2`] = `
+"<section class="container mx-auto pt-4 max-w-2xl">
+  <h1>Resend confirmation email</h1>
+  <!--v-if-->
+  <div>
+    <transition-stub name="fade" appear="false" persisted="false" css="true">
+      <article title="Success" class="o-notification o-notification--success o-notification--top" data-oruga="notification">
+        <!---->
+        <div class="o-notification__wrapper">
+          <!---->
+          <div class="o-notification__content">If an account with this email exists, we just sent another confirmation email to some@email.tld</div>
+        </div>
+      </article>
+    </transition-stub>
+    <transition-stub name="fade" appear="false" persisted="false" css="true">
+      <article class="mt-2 o-notification o-notification--info o-notification--top" data-oruga="notification">
+        <!---->
+        <div class="o-notification__wrapper">
+          <!---->
+          <div class="o-notification__content">Please check your spam folder if you didn't receive the email.</div>
+        </div>
+      </article>
+    </transition-stub>
+  </div>
+</section>"
+`;
