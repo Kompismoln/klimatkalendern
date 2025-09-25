@@ -9,8 +9,12 @@ import AdminGroupProfile from "@/views/Admin/AdminGroupProfile.vue";
 import { config, mount } from "@vue/test-utils";
 import { Oruga } from "@oruga-ui/oruga-next";
 import flushPromises from "flush-promises";
+import { dialogPlugin } from "@/plugins/dialog";
+import { notifierPlugin } from "@/plugins/notifier";
 
 config.global.plugins.push(Oruga);
+config.global.plugins.push(dialogPlugin);
+config.global.plugins.push(notifierPlugin);
 
 let router: Router;
 
@@ -51,7 +55,7 @@ const group_mock = {
       __typename: "Group",
       avatar: null,
       banner: null,
-      domain: null,
+      domain: "domain",
       id: "1125368",
       manuallyApprovesFollowers: false,
       mediaSize: 0,
@@ -129,6 +133,18 @@ describe("AdminGroupProfile", () => {
       organizedEventsPage: 1,
       postsLimit: 10,
       postsPage: 1,
+    });
+
+    wrapper.find('button[type="button"]').trigger("click");
+    await flushPromises();
+    wrapper.vm.suspendProfile({ id: "12346" });
+    await flushPromises();
+    expect(requestHandlers.handle_0).toHaveBeenCalledTimes(1);
+    expect(requestHandlers.handle_1).toHaveBeenCalledTimes(0);
+    expect(requestHandlers.handle_2).toHaveBeenCalledTimes(1);
+    expect(requestHandlers.handle_3).toHaveBeenCalledTimes(0);
+    expect(requestHandlers.handle_2).toHaveBeenCalledWith({
+      id: "12346",
     });
   });
 });
