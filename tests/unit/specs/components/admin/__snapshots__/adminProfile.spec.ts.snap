@@ -86,7 +86,7 @@ exports[`AdminProfile > Show simple 1`] = `
   <section class="mt-4 mb-3">
     <h2 class="">Actions</h2>
     <p></p>
-    <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg" role="alert">This profile is located on this instance, so you need to <a href="/settings/admin/users/1" class="underline">access the corresponding account</a> to suspend it.</div>
+    <div class="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg" role="alert">This profile is located on this instance, so you need to <a href="/settings/admin/users/1" class="underline">access the corresponding account</a> to ban it.</div>
   </section>
   <section class="mt-4 mb-3">
     <h2 class="">Organized events</h2>

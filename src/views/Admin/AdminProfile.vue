@@ -84,7 +84,7 @@
         role="alert"
       >
         <i18n-t
-          keypath="This profile is located on this instance, so you need to {access_the_corresponding_account} to suspend it."
+          keypath="This profile is located on this instance, so you need to {access_the_corresponding_account} to ban it."
         >
           <template #access_the_corresponding_account>
             <router-link

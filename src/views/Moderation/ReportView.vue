@@ -130,7 +130,7 @@
                 @click="suspendUser((report.reported as IPerson).user as IUser)"
                 icon-left="delete"
                 size="small"
-                >{{ t("Suspend the account") }}</o-button
+                >{{ t("Ban the account") }}</o-button
               >
             </td>
           </tr>
@@ -429,7 +429,7 @@ import EmptyContent from "@/components/Utils/EmptyContent.vue";
 import EventComment from "@/components/Comment/EventComment.vue";
 import DiscussionComment from "@/components/Discussion/DiscussionComment.vue";
 import { SUSPEND_PROFILE } from "@/graphql/actor";
-import { GET_USER, SUSPEND_USER } from "@/graphql/user";
+import { GET_USER, DELETE_ACCOUNT_AS_MODERATOR } from "@/graphql/user";
 import { IUser } from "@/types/current-user.model";
 
 const router = useRouter();
@@ -757,7 +757,7 @@ const { mutate: doSuspendProfile, onDone: onSuspendProfileDone } = useMutation<
 const { mutate: doSuspendUser, onDone: onSuspendUserDone } = useMutation<
   { suspendProfile: { id: string } },
   { userId: string }
->(SUSPEND_USER);
+>(DELETE_ACCOUNT_AS_MODERATOR);
 
 const { load: loadUserLazyQuery } = useLazyQuery<
   { user: IUser },
@@ -812,9 +812,9 @@ const suspendUser = async (user: IUser): Promise<void> => {
     }
 
     dialog?.confirm({
-      title: t("Suspend the account?"),
+      title: t("Ban the account?"),
       message:
-        t("Do you really want to suspend the account « {emailAccount} » ?", {
+        t("Do you really want to ban the account « {emailAccount} » ?", {
           emailAccount: cachedReportedUser.value.email,
         }) +
         " " +
@@ -822,7 +822,7 @@ const suspendUser = async (user: IUser): Promise<void> => {
         "<b>" +
         t("There will be no way to restore the user's data!") +
         `</b>`,
-      confirmText: t("Suspend the account"),
+      confirmText: t("Ban the account"),
       cancelText: t("Cancel"),
       variant: "danger",
       onConfirm: async () => {

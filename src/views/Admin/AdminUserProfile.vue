@@ -184,8 +184,8 @@
           </td>
           <td>
             <div class="buttons" v-if="!user.disabled">
-              <o-button @click="suspendAccount" variant="danger">{{
-                t("Suspend")
+              <o-button @click="deleteAccount" variant="danger">{{
+                t("Ban")
               }}</o-button>
             </div>
             <div
@@ -193,7 +193,7 @@
               class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"
               role="alert"
             >
-              {{ t("The user has been disabled") }}
+              {{ t("The user has been banned") }}
             </div>
           </td>
         </tr>
@@ -339,7 +339,7 @@
 <script lang="ts" setup>
 import { formatBytes } from "@/utils/datetime";
 import { ICurrentUserRole } from "@/types/enums";
-import { GET_USER, SUSPEND_USER } from "../../graphql/user";
+import { GET_USER, DELETE_ACCOUNT_AS_MODERATOR } from "../../graphql/user";
 import RouteName from "../../router/name";
 import { IUser } from "../../types/current-user.model";
 import EmptyContent from "../../components/Utils/EmptyContent.vue";
@@ -479,24 +479,24 @@ const roleName = (role: ICurrentUserRole): string => {
 
 const router = useRouter();
 
-const { mutate: suspendUser } = useMutation<
-  { suspendProfile: { id: string } },
+const { mutate: deleteUserAccount } = useMutation<
+  { deleteProfile: { id: string } },
   { userId: string }
->(SUSPEND_USER);
+>(DELETE_ACCOUNT_AS_MODERATOR);
 
 const dialog = inject<Dialog>("dialog");
 
-const suspendAccount = async (): Promise<void> => {
+const deleteAccount = async (): Promise<void> => {
   dialog?.confirm({
-    title: t("Suspend the account?"),
+    title: t("Ban the account?"),
     message: t(
-      "Do you really want to suspend this account? All of the user's profiles will be deleted."
+      "Do you really want to ban this account? All of the user's profiles will be deleted."
     ),
-    confirmText: t("Suspend the account"),
+    confirmText: t("Ban the account"),
     cancelText: t("Cancel"),
     variant: "danger",
     onConfirm: async () => {
-      suspendUser({
+      deleteUserAccount({
         userId: props.id,
       });
       return router.push({ name: RouteName.USERS });

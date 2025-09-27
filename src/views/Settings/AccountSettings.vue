@@ -243,7 +243,7 @@ import { useRouter } from "vue-router";
 import {
   CHANGE_EMAIL,
   CHANGE_PASSWORD,
-  DELETE_ACCOUNT,
+  DELETE_ACCOUNT_AS_USER,
 } from "../../graphql/user";
 import RouteName from "../../router/name";
 import { logout, SELECTED_PROVIDERS } from "../../utils/auth";
@@ -342,7 +342,7 @@ const {
   onDone: deleteAccountMutationDone,
   onError: deleteAccountMutationError,
 } = useMutation<{ deleteAccount: { id: string } }, { password?: string }>(
-  DELETE_ACCOUNT
+  DELETE_ACCOUNT_AS_USER
 );
 
 const { notification } = useOruga();

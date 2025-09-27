@@ -76,7 +76,7 @@ export const VALIDATE_EMAIL = gql`
   }
 `;
 
-export const DELETE_ACCOUNT = gql`
+export const DELETE_ACCOUNT_AS_USER = gql`
   mutation DeleteAccount($password: String, $userId: ID) {
     deleteAccount(password: $password, userId: $userId) {
       id
@@ -84,8 +84,8 @@ export const DELETE_ACCOUNT = gql`
   }
 `;
 
-export const SUSPEND_USER = gql`
-  mutation SuspendUser($userId: ID) {
+export const DELETE_ACCOUNT_AS_MODERATOR = gql`
+  mutation DeleteAccount($userId: ID) {
     deleteAccount(userId: $userId) {
       id
     }
