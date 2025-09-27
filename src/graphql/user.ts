@@ -92,6 +92,14 @@ export const DELETE_ACCOUNT_AS_MODERATOR = gql`
   }
 `;
 
+export const UNBAN_ACCOUNT_AS_MODERATOR = gql`
+  mutation UnbanAccount($userId: ID) {
+    unbanAccount(userId: $userId) {
+      id
+    }
+  }
+`;
+
 export const CURRENT_USER_CLIENT = gql`
   query CurrentUserClient {
     currentUser @client {

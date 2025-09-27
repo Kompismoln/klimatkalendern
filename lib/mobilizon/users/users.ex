@@ -170,6 +170,15 @@ defmodule Mobilizon.Users do
 
   @delete_user_default_options [reserve_email: true]
 
+  @spec unban_user(User.t()) :: {:ok, User.t()} | {:error, Ecto.Changeset.t()}
+  def unban_user(%User{} = user) do
+    user
+    |> User.changeset(%{
+      disabled: false
+    })
+    |> Repo.update()
+  end
+
   @doc """
   Deletes an user.
 

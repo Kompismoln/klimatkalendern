@@ -188,12 +188,16 @@
                 t("Ban")
               }}</o-button>
             </div>
-            <div
-              v-else
-              class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"
-              role="alert"
-            >
-              {{ t("The user has been banned") }}
+            <div v-else>
+              <div
+                class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg"
+                role="alert"
+              >
+                {{ t("The user has been banned") }}
+              </div>
+              <o-button @click="unbanAccount" variant="danger">{{
+                t("Unban")
+              }}</o-button>
             </div>
           </td>
         </tr>
@@ -339,7 +343,11 @@
 <script lang="ts" setup>
 import { formatBytes } from "@/utils/datetime";
 import { ICurrentUserRole } from "@/types/enums";
-import { GET_USER, DELETE_ACCOUNT_AS_MODERATOR } from "../../graphql/user";
+import {
+  GET_USER,
+  DELETE_ACCOUNT_AS_MODERATOR,
+  UNBAN_ACCOUNT_AS_MODERATOR,
+} from "../../graphql/user";
 import RouteName from "../../router/name";
 import { IUser } from "../../types/current-user.model";
 import EmptyContent from "../../components/Utils/EmptyContent.vue";
@@ -484,6 +492,11 @@ const { mutate: deleteUserAccount } = useMutation<
   { userId: string }
 >(DELETE_ACCOUNT_AS_MODERATOR);
 
+const { mutate: unbanUserAccount } = useMutation<
+  { unbanProfile: { id: string } },
+  { userId: string }
+>(UNBAN_ACCOUNT_AS_MODERATOR);
+
 const dialog = inject<Dialog>("dialog");
 
 const deleteAccount = async (): Promise<void> => {
@@ -497,6 +510,24 @@ const deleteAccount = async (): Promise<void> => {
     variant: "danger",
     onConfirm: async () => {
       deleteUserAccount({
+        userId: props.id,
+      });
+      return router.push({ name: RouteName.USERS });
+    },
+  });
+};
+
+const unbanAccount = async (): Promise<void> => {
+  dialog?.confirm({
+    title: t("Unban the account?"),
+    message: t(
+      "Do you really want to unban this account? The user will be able to log-in again."
+    ),
+    confirmText: t("Unban the account"),
+    cancelText: t("Cancel"),
+    variant: "danger",
+    onConfirm: async () => {
+      unbanUserAccount({
         userId: props.id,
       });
       return router.push({ name: RouteName.USERS });

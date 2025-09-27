@@ -467,6 +467,13 @@ defmodule Mobilizon.GraphQL.Schema.UserType do
       resolve(&User.delete_account/3)
     end
 
+    @desc "Unban an account"
+    field :unban_account, :user do
+      arg(:user_id, :id, description: "The user's ID")
+      middleware(Rajska.QueryAuthorization, permit: :moderator, scope: false)
+      resolve(&User.unban_account/3)
+    end
+
     @desc "Set user settings"
     field :set_user_settings, :user_settings do
       arg(:timezone, :timezone, description: "The timezone for this user")

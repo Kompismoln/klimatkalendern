@@ -610,6 +610,28 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
     end
   end
 
+  def unban_account(_parent, %{user_id: user_id}, %{
+        context: %{
+          current_user: %User{role: role},
+          current_actor: %Actor{} = moderator_actor
+        }
+      })
+      when is_moderator(role) do
+    with %User{disabled: true} = user <- Users.get_user(user_id),
+         {:ok, %User{} = updated_user} <-
+           Users.unban_user(user) do
+      Admin.log_action(moderator_actor, "unsuspend", user)
+      {:ok, updated_user}
+    else
+      %User{disabled: false} ->
+        {:error, dgettext("errors", "User already enabled")}
+    end
+  end
+
+  def unban_account(_parent, _args, _resolution) do
+    {:error, dgettext("errors", "You need to be logged-in and moderator to unban an account")}
+  end
+
   def delete_account(_parent, %{user_id: user_id}, %{
         context: %{
           current_user: %User{role: role},
