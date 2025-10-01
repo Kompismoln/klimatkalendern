@@ -8,6 +8,7 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
   alias Mobilizon.Events.Event
   alias Mobilizon.Federation.ActivityPub.Relay
   alias Mobilizon.Reports.{Note, Report}
+  alias Mobilizon.Users
   alias Mobilizon.Users.User
 
   alias Mobilizon.GraphQL.{AbsintheHelpers, API}
@@ -673,7 +674,11 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
                "Argument \"role\" has invalid value $role."
     end
 
-    test "with a valid role, and no notification", %{conn: conn, user: user, admin: admin} do
+    test "with a valid role MODERATOR, and no notification", %{
+      conn: conn,
+      user: user,
+      admin: admin
+    } do
       res =
         conn
         |> auth_conn(admin)
@@ -688,7 +693,11 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
       assert res["data"]["adminUpdateUser"]["role"] == "MODERATOR"
     end
 
-    test "with a valid role, and notification", %{conn: conn, user: user, admin: admin} do
+    test "with a valid role USER -> MODERATOR, and notification", %{
+      conn: conn,
+      user: user,
+      admin: admin
+    } do
       res =
         conn
         |> auth_conn(admin)
@@ -701,6 +710,81 @@ defmodule Mobilizon.GraphQL.Resolvers.AdminTest do
 
       assert res["errors"] == nil
       assert res["data"]["adminUpdateUser"]["role"] == "MODERATOR"
+      user = Users.get_user!(user.id)
+      assert user.role == :moderator
+    end
+
+    test "with a valid role USER -> ADMINISTRATOR, and notification", %{
+      conn: conn,
+      user: user,
+      admin: admin
+    } do
+      res =
+        conn
+        |> auth_conn(admin)
+        |> AbsintheHelpers.graphql_query(
+          query: @admin_update_user,
+          variables: %{"id" => user.id, "role" => "ADMINISTRATOR", "notify" => true}
+        )
+
+      assert_email_sent(to: user.email)
+
+      assert res["errors"] == nil
+      assert res["data"]["adminUpdateUser"]["role"] == "ADMINISTRATOR"
+      user = Users.get_user!(user.id)
+      assert user.role == :administrator
+    end
+
+    test "with a valid role ADMINISTRATOR -> USER, and notification", %{
+      conn: conn,
+      user: user,
+      admin: admin
+    } do
+      {:ok, %User{} = _user} =
+        Users.update_user(user, %{
+          "role" => :administrator
+        })
+
+      res =
+        conn
+        |> auth_conn(admin)
+        |> AbsintheHelpers.graphql_query(
+          query: @admin_update_user,
+          variables: %{"id" => user.id, "role" => "USER", "notify" => true}
+        )
+
+      assert_email_sent(to: user.email)
+
+      assert res["errors"] == nil
+      assert res["data"]["adminUpdateUser"]["role"] == "USER"
+      user = Users.get_user!(user.id)
+      assert user.role == :user
+    end
+
+    test "with a valid role PENDING -> USER, and notification", %{
+      conn: conn,
+      user: user,
+      admin: admin
+    } do
+      {:ok, %User{} = _user} =
+        Users.update_user(user, %{
+          "role" => :pending
+        })
+
+      res =
+        conn
+        |> auth_conn(admin)
+        |> AbsintheHelpers.graphql_query(
+          query: @admin_update_user,
+          variables: %{"id" => user.id, "role" => "USER", "notify" => true}
+        )
+
+      assert_email_sent(to: user.email)
+
+      assert res["errors"] == nil
+      assert res["data"]["adminUpdateUser"]["role"] == "USER"
+      user = Users.get_user!(user.id)
+      assert user.role == :user
     end
   end
 
