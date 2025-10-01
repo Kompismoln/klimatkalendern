@@ -295,6 +295,12 @@ defmodule Mobilizon.GraphQL.Resolvers.User do
         actor = Users.get_actor_for_user(user)
 
         if Config.instance_registrations_moderation?() do
+          Enum.each(Users.list_moderators(), fn moderator ->
+            moderator
+            |> Email.Admin.user_pending(user)
+            |> Email.Mailer.send_email()
+          end)
+
           {:ok,
            %{
              access_token: "",

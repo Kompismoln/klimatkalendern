@@ -14,7 +14,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
   alias Mobilizon.GraphQL.AbsintheHelpers
 
   alias Mobilizon.Web.Email
-  import Swoosh.TestAssertions
+  import Swoosh.X.TestAssertions
 
   @get_user_query """
   query GetUser($id: ID!) {
@@ -454,6 +454,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert res["errors"] == nil
       assert res["data"]["createUser"]["email"] == @user_creation.email
+      assert_email_sent(to: @user_creation.email)
+      flush_emails()
 
       res =
         conn
@@ -465,6 +467,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["field"] == "email"
       assert hd(res["errors"])["message"] == ["Cette adresse e-mail est déjà utilisée."]
+      refute_email_sent()
     end
 
     test "create_user/3 doesn't allow registration when registration is closed", %{conn: conn} do
@@ -481,6 +484,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["field"] == nil
       assert hd(res["errors"])["message"] == "Registrations are not open"
+      refute_email_sent()
+
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
     end
@@ -498,6 +503,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["field"] == nil
       assert hd(res["errors"])["message"] == "Moderation text must not be empty"
+      refute_email_sent()
 
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
@@ -520,6 +526,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       {:ok, user} = Users.get_user_by_email(@user_creation.email)
       assert user.moderation == @user_creation_with_moderation.moderation
       assert user.role == :pending
+      assert_email_sent(to: user.email)
 
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
@@ -541,6 +548,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["field"] == nil
       assert hd(res["errors"])["message"] == "Your email is not on the allowlist"
+      refute_email_sent()
+
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
       Config.put([:instance, :registration_email_allowlist], [])
@@ -562,6 +571,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       refute res["errors"]
       assert res["data"]["createUser"]["email"] == @user_creation.email
+      assert_email_sent(to: @user_creation.email)
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
       Config.put([:instance, :registration_email_allowlist], [])
@@ -581,6 +591,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       refute res["errors"]
       assert res["data"]["createUser"]["email"] == @user_creation.email
+      assert_email_sent(to: @user_creation.email)
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
       Config.put([:instance, :registration_email_allowlist], [])
@@ -605,6 +616,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       assert hd(res["errors"])["message"] ==
                "Your e-mail has been denied registration or uses a disallowed e-mail provider"
 
+      refute_email_sent()
+
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
       Config.put([:instance, :registration_email_denylist], [])
@@ -628,6 +641,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["message"] ==
                "Your e-mail has been denied registration or uses a disallowed e-mail provider"
+
+      refute_email_sent()
 
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
@@ -654,6 +669,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       assert hd(res["errors"])["message"] ==
                "Your e-mail has been denied registration or uses a disallowed e-mail provider"
 
+      refute_email_sent()
+
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
       Config.put([:instance, :registration_email_denylist], [])
@@ -675,6 +692,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert res["errors"] == nil
       assert res["data"]["createUser"]["email"] == "test+alias@demo.tld"
+      assert_email_sent(to: "test+alias@demo.tld")
     end
 
     test "test create_user/3 doesn't create an user with bad email", %{conn: conn} do
@@ -689,6 +707,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["message"] ==
                ["Email doesn't fit required format"]
+
+      refute_email_sent()
     end
   end
 
@@ -720,6 +740,40 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       assert json_response(res, 200)["data"]["validateUser"]["user"]["id"] == to_string(user.id)
       assert json_response(res, 200)["data"]["validateUser"]["user"]["role"] == "USER"
       assert json_response(res, 200)["data"]["validateUser"]["accessToken"] != ""
+      refute_email_sent()
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
+    end
+
+    test "test validate_user/3 validates an user with moderator", context do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
+
+      insert(:user, role: :moderator)
+      {:ok, %User{} = user} = Users.register(@valid_actor_params)
+
+      mutation = """
+          mutation {
+            validateUser(
+                  token: "#{user.confirmation_token}"
+              ) {
+                accessToken,
+                user {
+                  id,
+                  role,
+                },
+              }
+            }
+      """
+
+      res =
+        context.conn
+        |> post("/api", AbsintheHelpers.mutation_skeleton(mutation))
+
+      assert json_response(res, 200)["data"]["validateUser"]["user"]["id"] == to_string(user.id)
+      assert json_response(res, 200)["data"]["validateUser"]["user"]["role"] == "USER"
+      assert json_response(res, 200)["data"]["validateUser"]["accessToken"] != ""
+      refute_email_sent()
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
     end
@@ -757,6 +811,46 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       assert json_response(res, 200)["data"]["validateUser"]["user"]["id"] == to_string(user.id)
       assert json_response(res, 200)["data"]["validateUser"]["user"]["role"] == "PENDING"
       assert json_response(res, 200)["data"]["validateUser"]["accessToken"] == ""
+      refute_email_sent()
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], false)
+    end
+
+    test "test validate_user/3 validates an user with moderation and moderator", context do
+      Config.put([:instance, :registrations_open], true)
+      Config.put([:instance, :registrations_moderation], true)
+      modo = insert(:user, role: :moderator)
+
+      user =
+        insert(:user,
+          email: "test@test.tld",
+          password: "testest",
+          moderation: "moderation text",
+          confirmation_token: "t0t0"
+        )
+
+      mutation = """
+          mutation {
+            validateUser(
+                  token: "#{user.confirmation_token}"
+              ) {
+                accessToken,
+                user {
+                  id,
+                  role,
+                },
+              }
+            }
+      """
+
+      res =
+        context.conn
+        |> post("/api", AbsintheHelpers.mutation_skeleton(mutation))
+
+      assert json_response(res, 200)["data"]["validateUser"]["user"]["id"] == to_string(user.id)
+      assert json_response(res, 200)["data"]["validateUser"]["user"]["role"] == "PENDING"
+      assert json_response(res, 200)["data"]["validateUser"]["accessToken"] == ""
+      assert_email_sent(to: modo.email)
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
     end
@@ -784,6 +878,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         |> post("/api", AbsintheHelpers.mutation_skeleton(mutation))
 
       assert hd(json_response(res, 200)["errors"])["message"] == "Unable to validate user"
+      refute_email_sent()
       Config.put([:instance, :registrations_open], true)
       Config.put([:instance, :registrations_moderation], false)
     end
@@ -833,6 +928,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["message"] ==
                "No user to validate with this email was found"
+
+      refute_email_sent()
     end
   end
 
@@ -848,6 +945,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         )
 
       assert res["data"]["sendResetPassword"] == email
+      assert_email_sent(to: email)
     end
 
     test "test send_reset_password/3 with an email with no account", %{conn: conn} do
@@ -860,6 +958,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["message"] ==
                "No user with this email was found"
+
+      refute_email_sent()
     end
 
     test "test send_reset_password/3 with invalid email", %{conn: conn} do
@@ -872,6 +972,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["message"] ==
                "This email doesn't seem to be valid"
+
+      refute_email_sent()
     end
 
     test "test send_reset_password/3 for an LDAP user", %{conn: conn} do
@@ -886,6 +988,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["message"] ==
                "This user can't reset their password"
+
+      refute_email_sent()
     end
 
     test "test send_reset_password/3 for a deactivated user doesn't send email", %{conn: conn} do
@@ -907,6 +1011,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["message"] ==
                "No user with this email was found"
+
+      refute_email_sent()
     end
   end
 
@@ -923,6 +1029,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
       %Actor{} = insert(:actor, user: user)
       {:ok, _email_sent} = Email.User.send_password_reset_email(user)
       %User{reset_password_token: reset_password_token} = Users.get_user!(user.id)
+      assert_email_sent(to: user.email)
+      flush_emails()
 
       mutation = """
           mutation {
@@ -943,12 +1051,15 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert is_nil(json_response(res, 200)["errors"])
       assert json_response(res, 200)["data"]["resetPassword"]["user"]["id"] == to_string(user.id)
+      refute_email_sent()
     end
 
     test "test reset_password/3 with a password too short", context do
       %User{} = user = insert(:user)
       {:ok, _email_sent} = Email.User.send_password_reset_email(user)
       %User{reset_password_token: reset_password_token} = Users.get_user!(user.id)
+      assert_email_sent(to: user.email)
+      flush_emails()
 
       mutation = """
           mutation {
@@ -969,12 +1080,16 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(json_response(res, 200)["errors"])["message"] ==
                "The password you have chosen is too short. Please make sure your password contains at least 6 characters."
+
+      refute_email_sent()
     end
 
     test "test reset_password/3 with an invalid token", context do
       %User{} = user = insert(:user)
       {:ok, _email_sent} = Email.User.send_password_reset_email(user)
       %User{} = Users.get_user!(user.id)
+      assert_email_sent(to: user.email)
+      flush_emails()
 
       mutation = """
           mutation {
@@ -995,6 +1110,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(json_response(res, 200)["errors"])["message"] ==
                "The token you provided is invalid. Make sure that the URL is exactly the one provided inside the email you got."
+
+      refute_email_sent()
     end
   end
 
@@ -1185,6 +1302,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         )
 
       assert hd(res["errors"])["message"] == "You need to be logged in"
+      refute_email_sent()
     end
 
     test "test change_default_actor/3 with valid actor", %{conn: conn} do
@@ -1212,6 +1330,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert res["data"]["changeDefaultActor"]["defaultActor"]["preferredUsername"] ==
                actor2.preferred_username
+
+      refute_email_sent()
     end
   end
 
@@ -1293,6 +1413,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert login = json_response(res, 200)["data"]["login"]
       assert Map.has_key?(login, "accessToken") && not is_nil(login["accessToken"])
+      refute_email_sent()
     end
 
     test "change_password/3 with invalid password", %{conn: conn} do
@@ -1322,6 +1443,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         |> post("/api", AbsintheHelpers.mutation_skeleton(mutation))
 
       assert hd(json_response(res, 200)["errors"])["message"] == "The current password is invalid"
+      refute_email_sent()
     end
 
     test "change_password/3 with same password", %{conn: conn} do
@@ -1351,6 +1473,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(json_response(res, 200)["errors"])["message"] ==
                "The new password must be different"
+
+      refute_email_sent()
     end
 
     test "change_password/3 with new password too short", %{conn: conn} do
@@ -1380,6 +1504,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(json_response(res, 200)["errors"])["message"] ==
                "The password you have chosen is too short. Please make sure your password contains at least 6 characters."
+
+      refute_email_sent()
     end
 
     test "change_password/3 without being authenticated", %{conn: conn} do
@@ -1408,6 +1534,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(json_response(res, 200)["errors"])["message"] ==
                "You need to be logged in"
+
+      refute_email_sent()
     end
   end
 
@@ -1542,6 +1670,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         )
 
       assert hd(res["errors"])["message"] == "The password provided is invalid"
+      refute_email_sent()
     end
 
     test "change_email/3 with same email", %{conn: conn} do
@@ -1565,6 +1694,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         )
 
       assert hd(res["errors"])["message"] == "The new email must be different"
+      refute_email_sent()
     end
 
     test "change_email/3 with invalid email", %{conn: conn} do
@@ -1588,6 +1718,7 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
         )
 
       assert hd(res["errors"])["message"] == "The new email doesn't seem to be valid"
+      refute_email_sent()
     end
 
     test "change_password/3 without being authenticated", %{conn: conn} do
@@ -1611,6 +1742,8 @@ defmodule Mobilizon.GraphQL.Resolvers.UserTest do
 
       assert hd(res["errors"])["message"] ==
                "You need to be logged in"
+
+      refute_email_sent()
     end
   end
 

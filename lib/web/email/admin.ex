@@ -29,6 +29,22 @@ defmodule Mobilizon.Web.Email.Admin do
     |> render_body(:report, %{locale: locale, subject: subject, report: report})
   end
 
+  @spec user_pending(User.t(), User.t()) :: Swoosh.Email.t()
+  def user_pending(%User{email: moderator_email} = moderator, %User{} = user) do
+    locale = Map.get(moderator, :locale, "en")
+    Gettext.put_locale(locale)
+
+    subject =
+      gettext(
+        "New pending user on Mobilizon instance %{instance}",
+        instance: Config.instance_name()
+      )
+
+    [to: moderator_email, subject: subject]
+    |> Email.base_email()
+    |> render_body(:user_pending, %{locale: locale, subject: subject, user: user})
+  end
+
   @spec user_email_change_old(User.t(), String.t()) :: Swoosh.Email.t()
   def user_email_change_old(
         %User{

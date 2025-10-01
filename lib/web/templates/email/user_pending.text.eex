@@ -1,0 +1,3 @@
+<%= gettext "New pending user from %{user} on %{instance}", user: @user.email, instance: @instance_name %>
+
+<%= gettext "Login to view the list of pending users:" %> <%= "#{Mobilizon.Web.Endpoint.url()}/settings/admin/users?pendingFilter=true" %>
