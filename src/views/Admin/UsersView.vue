@@ -125,7 +125,7 @@ const USERS_PER_PAGE = 10;
 
 const emailFilter = useRouteQuery("emailFilter", "");
 const ipFilter = useRouteQuery("ipFilter", "");
-const pendingFilter = useRouteQuery("pendingFilter", "true");
+const pendingFilter = useRouteQuery("pendingFilter", "false");
 const page = useRouteQuery("page", 1, integerTransformer);
 
 const languagesCodes = computed((): string[] => {
@@ -211,11 +211,11 @@ const filterUsers = async (): void => {
   }
 };
 
-const resetFilters = (): void => {
+const resetFilters = async (): void => {
   emailFilterFieldValue.value = "";
   ipFilterFieldValue.value = "";
-  pendingFieldValue.value = true;
-  activateFilters();
+  pendingFieldValue.value = false;
+  await filterUsers();
 };
 </script>
 

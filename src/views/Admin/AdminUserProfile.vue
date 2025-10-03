@@ -175,7 +175,7 @@
       <h2 class="text-lg font-bold mb-3">{{ t("Actions") }}</h2>
       <table>
         <tr>
-          <td v-if="user.role == ICurrentUserRole.PENDING">
+          <td v-if="user.role == ICurrentUserRole.PENDING && !user.disabled">
             <div class="buttons">
               <o-button @click="acceptAccount" variant="success">{{
                 t("Accept")

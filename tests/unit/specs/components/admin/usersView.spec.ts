@@ -152,8 +152,8 @@ describe("UsersView", () => {
     await wrapper.vm.$nextTick();
     await flushPromises();
     expect(wrapper.exists()).toBe(true);
-    expect(requestHandlers.languagecode).toHaveBeenCalled();
-    expect(requestHandlers.list_users).toHaveBeenCalled();
+    expect(requestHandlers.languagecode).toHaveBeenCalledTimes(2);
+    expect(requestHandlers.list_users).toHaveBeenCalledTimes(1);
     expect(requestHandlers.list_users).toHaveBeenCalledWith({
       currentSignInIp: "",
       email: "",
@@ -169,29 +169,29 @@ describe("UsersView", () => {
     await wrapper.vm.$nextTick();
     await flushPromises();
     expect(wrapper.exists()).toBe(true);
+    expect(wrapper.vm.pendingFieldValue).toBe(false);
     expect(requestHandlers.languagecode).toHaveBeenCalledTimes(0);
-    expect(requestHandlers.list_users).toHaveBeenCalledTimes(1);
-    expect(requestHandlers.list_users).toHaveBeenCalledWith({
-      currentSignInIp: "",
-      email: "",
-      limit: 10,
-      page: 1,
-      pendingUser: true,
-    });
     expect(htmlRemoveId(wrapper.html())).toMatchSnapshot();
 
-    wrapper.vm.pendingFieldValue = false;
+    wrapper.vm.pendingFieldValue = true;
     //wrapper.find('input[type="checkbox"]').trigger("change");
     wrapper.find('input[type="text"]').setValue("@email.tld");
     wrapper.find('button[type="button"]').trigger("click");
     await flushPromises();
-    expect(requestHandlers.list_users).toHaveBeenCalledTimes(3);
-    expect(requestHandlers.list_users).toHaveBeenNthCalledWith(3, {
+    expect(requestHandlers.list_users).toHaveBeenCalledTimes(2);
+    expect(requestHandlers.list_users).toHaveBeenNthCalledWith(1, {
       currentSignInIp: "",
       email: "@email.tld",
       limit: 10,
       page: 1,
       pendingUser: false,
+    });
+    expect(requestHandlers.list_users).toHaveBeenNthCalledWith(2, {
+      currentSignInIp: "",
+      email: "@email.tld",
+      limit: 10,
+      page: 1,
+      pendingUser: true,
     });
   });
 });

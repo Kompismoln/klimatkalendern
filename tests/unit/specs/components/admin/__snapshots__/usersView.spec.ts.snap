@@ -9,7 +9,7 @@ exports[`UsersView > Show list with moderation 1`] = `
         <!---->
         <div class="o-field__body">
           <div class="o-field o-field--grouped-multiline o-field--grouped">
-            <p data-v-01123d3b="" class="control mb-3 m-auto"><label data-v-01123d3b="" class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Users pending for moderation</span></label></p>
+            <p data-v-01123d3b="" class="control mb-3 m-auto"><label data-v-01123d3b="" class="o-chk" data-oruga="checkbox" role="checkbox" aria-checked="false"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Users pending for moderation</span></label></p>
             <div data-v-01123d3b="" data-oruga="field" class="o-field" expanded=""><label class="o-field__label" for="">Email</label>
               <div class="o-field__body">
                 <div class="o-field o-field--addons">
