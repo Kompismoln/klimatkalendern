@@ -99,7 +99,6 @@
       <o-button
         variant="primary"
         outlined
-        :aria-controls="`${id}-address-details`"
         :icon-right="detailsAddress ? 'chevron-up' : 'chevron-down'"
       >
         {{ t("Details") }}
