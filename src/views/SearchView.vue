@@ -635,8 +635,8 @@ const userAddress = computed({
     return address.value;
   },
   set(newAddress: IAddress | null) {
-    console.debug("address change", newAddress);
     address.value = newAddress;
+    console.debug("address change", newAddress);
     if (newAddress?.geom) {
       latitude.value = parseFloat(newAddress?.geom.split(";")[1]);
       longitude.value = parseFloat(newAddress?.geom.split(";")[0]);
