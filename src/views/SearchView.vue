@@ -2,7 +2,7 @@
   <div class="max-w-4xl mx-auto">
     <search-fields
       v-model:search="search"
-      v-model:address="address"
+      v-model:address="userAddress"
       v-model:distance="radius"
       :numberOfSearch="numberOfSearch"
       :addressDefaultText="addressName"
@@ -630,23 +630,29 @@ const searchDebounced = refDebounced(search, 1000);
 const addressName = useRouteQuery("locationName", null);
 const address = ref<IAddress | null>(null);
 
-watch(address, (newAddress: IAddress) => {
-  console.debug("address change", newAddress);
-  if (newAddress?.geom) {
-    latitude.value = parseFloat(newAddress?.geom.split(";")[1]);
-    longitude.value = parseFloat(newAddress?.geom.split(";")[0]);
-    addressName.value = newAddress?.description;
-    console.debug("set address", [
-      latitude.value,
-      longitude.value,
-      addressName.value,
-    ]);
-  } else {
-    console.debug("address emptied");
-    latitude.value = undefined;
-    longitude.value = undefined;
-    addressName.value = null;
-  }
+const userAddress = computed({
+  get(): IAddress | null {
+    return address.value;
+  },
+  set(newAddress: IAddress | null) {
+    console.debug("address change", newAddress);
+    address.value = newAddress;
+    if (newAddress?.geom) {
+      latitude.value = parseFloat(newAddress?.geom.split(";")[1]);
+      longitude.value = parseFloat(newAddress?.geom.split(";")[0]);
+      addressName.value = newAddress?.description;
+      console.debug("set address", [
+        latitude.value,
+        longitude.value,
+        addressName.value,
+      ]);
+    } else {
+      console.debug("address emptied");
+      latitude.value = undefined;
+      longitude.value = undefined;
+      addressName.value = null;
+    }
+  },
 });
 
 interface ISearchTimeOption {
