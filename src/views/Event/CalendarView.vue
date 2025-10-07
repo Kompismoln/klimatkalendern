@@ -14,6 +14,19 @@
 import { useI18n } from "vue-i18n";
 import EventsAgenda from "@/components/FullCalendar/EventsAgenda.vue";
 import EventsCalendar from "@/components/FullCalendar/EventsCalendar.vue";
+import { onMounted } from "vue";
+import { getElementByXPath } from "@/utils/html";
+
+onMounted(() => {
+  const icon_left = getElementByXPath(
+    "//span[contains(@class,'fc-icon-chevron-left')]"
+  );
+  icon_left.setAttribute("aria-label", t("Previous"));
+  const icon_right = getElementByXPath(
+    "//span[contains(@class,'fc-icon-chevron-right')]"
+  );
+  icon_right.setAttribute("aria-label", t("Next"));
+});
 
 const { t } = useI18n({ useScope: "global" });
 

@@ -15,3 +15,9 @@ export function escapeHtml(html: string) {
 
   return escapedContent;
 }
+
+export function getElementByXPath(path: string) {
+  return new XPathEvaluator()
+    .createExpression(path)
+    .evaluate(document, XPathResult.FIRST_ORDERED_NODE_TYPE).singleNodeValue;
+}
