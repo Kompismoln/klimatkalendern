@@ -84,7 +84,9 @@ import { AddressSearchType, ContentType } from "@/types/enums";
 import {
   addressToLocation,
   getAddressFromLocal,
+  getRadiusFromLocal,
   storeAddressInLocal,
+  storeRadiusInLocal,
 } from "@/utils/location";
 import { computed, defineAsyncComponent } from "vue";
 import { useI18n } from "vue-i18n";
@@ -145,11 +147,20 @@ const search = computed({
 });
 
 const distance = computed({
-  get(): number {
-    return props.distance;
+  get(): number | null {
+    if (props.distance) {
+      return props.distance;
+    }
+    if (props.fromLocalStorage) {
+      return getRadiusFromLocal();
+    }
+    return null;
   },
   set(newDistance: number) {
     emit("update:distance", newDistance);
+    if (props.fromLocalStorage) {
+      storeRadiusInLocal(newDistance);
+    }
   },
 });
 

@@ -64,6 +64,7 @@ export const storeAddressInLocal = (address: IAddress | null): undefined => {
     window.localStorage.setItem("address", JSON.stringify(address));
   } else {
     window.localStorage.removeItem("address");
+    storeRadiusInLocal(null);
   }
 };
 
@@ -79,6 +80,24 @@ export const getAddressFromLocal = (): IAddress | null => {
   return address;
 };
 
+export const storeRadiusInLocal = (
+  radius: number | null | undefined
+): undefined => {
+  if (radius) {
+    window.localStorage.setItem("radius", JSON.stringify(radius));
+  } else {
+    window.localStorage.removeItem("radius");
+  }
+};
+
+export const getRadiusFromLocal = (): number | null => {
+  const radiusString = window.localStorage.getItem("radius");
+  if (!radiusString) {
+    return null;
+  }
+  return JSON.parse(radiusString) as number;
+};
+
 export const storeUserLocationAndRadiusFromUserSettings = (
   location: IUserPreferredLocation | null
 ): undefined => {
@@ -91,6 +110,7 @@ export const storeUserLocationAndRadiusFromUserSettings = (
         description: location.name || "",
         type: "administrative",
       });
+      storeRadiusInLocal(location.range);
     }
   } else {
     console.debug("user has not set a location");

@@ -193,8 +193,10 @@ import {
   addressToLocation,
   geoHashToCoords,
   getAddressFromLocal,
+  getRadiusFromLocal,
   locationToAddress,
   storeAddressInLocal,
+  storeRadiusInLocal,
 } from "@/utils/location";
 import { useServerProvidedLocation } from "@/composition/apollo/config";
 import QuickPublish from "@/components/Home/QuickPublish.vue";
@@ -520,13 +522,19 @@ const distance = computed({
   get(): number | null {
     if (noAddress.value || !userLocation.value?.name) {
       return null;
-    } else if (current_distance.value == null) {
+    }
+    if (current_distance.value == null) {
+      const local_radius = getRadiusFromLocal();
+      if (local_radius) {
+        return local_radius;
+      }
       return userLocation.value?.isIPLocation ? 150 : 25;
     }
     return current_distance.value;
   },
   set(newDistance: number) {
     current_distance.value = newDistance;
+    storeRadiusInLocal(newDistance);
   },
 });
 
