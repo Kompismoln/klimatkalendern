@@ -50,21 +50,28 @@
           />
         </o-field>
         <o-field v-if="showUpcoming">
-          <o-checkbox v-model="showDrafts" :aria-label="t('Drafts')">{{
-            t("Drafts")
-          }}</o-checkbox>
-        </o-field>
-        <o-field v-if="showUpcoming">
-          <o-checkbox v-model="showAttending" :aria-label="t('Attending')">{{
-            t("Attending")
-          }}</o-checkbox>
+          <o-checkbox
+            id="drafts-checkbox"
+            name="drafts-checkbox"
+            v-model="showDrafts"
+          />
+          <label for="drafts-checkbox">{{ t("Drafts") }}</label>
         </o-field>
         <o-field v-if="showUpcoming">
           <o-checkbox
+            id="attending-checkbox"
+            name="attending-checkbox"
+            v-model="showAttending"
+          />
+          <label for="attending-checkbox">{{ t("Attending") }}</label>
+        </o-field>
+        <o-field v-if="showUpcoming">
+          <o-checkbox
+            id="mygroup-checkbox"
+            name="mygroup-checkbox"
             v-model="showMyGroups"
-            :aria-label="t('From my groups')"
-            >{{ t("From my groups") }}</o-checkbox
-          >
+          />
+          <label for="mygroup-checkbox">{{ t("From my groups") }}</label>
         </o-field>
         <p v-if="!showUpcoming">
           {{
