@@ -25,7 +25,7 @@
       </span>
       <span v-else>
         {{
-          $t("Organized by {name}", {
+          $t("Published by {name}", {
             name: displayName(event.organizerActor),
           })
         }}

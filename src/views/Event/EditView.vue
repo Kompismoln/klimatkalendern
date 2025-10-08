@@ -159,7 +159,7 @@
       </o-field>
 
       <section class="my-4">
-        <h2>{{ t("Organizers") }}</h2>
+        <h2>{{ t("Published by") }}</h2>
 
         <div v-if="features?.groups && organizerActor?.id">
           <o-field>

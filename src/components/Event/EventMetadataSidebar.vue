@@ -43,7 +43,7 @@
     </event-metadata-block>
     <event-metadata-block
       class="metadata-organized-by"
-      :title="t('Organized by')"
+      :title="t('Published by')"
     >
       <router-link
         v-if="event.attributedTo"
