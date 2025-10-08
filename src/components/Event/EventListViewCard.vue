@@ -31,7 +31,7 @@
         }}
       </span>
     </div>
-    <div class="flex gap-1">
+    <div class="flex gap-1" v-if="!event.options.hideNumberOfParticipants">
       <span>
         <Earth v-if="event.visibility === EventVisibility.PUBLIC" />
         <Link v-if="event.visibility === EventVisibility.UNLISTED" />
