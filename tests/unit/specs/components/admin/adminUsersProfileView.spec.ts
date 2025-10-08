@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { DefaultApolloClient } from "@vue/apollo-composable";
-import { config, shallowMount } from "@vue/test-utils";
+import { config, mount } from "@vue/test-utils";
 import buildCurrentUserResolver from "@/apollo/user";
 import flushPromises from "flush-promises";
 import { cache } from "@/apollo/memory";
@@ -10,16 +10,19 @@ import {
   RequestHandler,
 } from "mock-apollo-client";
 import AdminUserProfile from "@/views/Admin/AdminUserProfile.vue";
-import { GET_USER } from "@/graphql/user";
+import {
+  DELETE_ACCOUNT_AS_MODERATOR,
+  GET_USER,
+  UNBAN_ACCOUNT_AS_MODERATOR,
+} from "@/graphql/user";
 import { ADMIN_UPDATE_USER, LANGUAGES_CODES } from "@/graphql/admin";
 import { Oruga } from "@oruga-ui/oruga-next";
-import { nullMock } from "../../common";
+import { htmlRemoveId, nullMock } from "../../common";
 import {
   createRouterMock,
   injectRouterMock,
   VueRouterMock,
 } from "vue-router-mock";
-import { SettingsRouteName } from "@/router/settings";
 
 let mockClient: MockApolloClient | null;
 let requestHandlers: Record<string, RequestHandler>;
@@ -77,6 +80,10 @@ const getUserMock = {
     },
   },
 };
+
+// A copy of the user that is banned
+const getUserMockBan = structuredClone(getUserMock);
+getUserMockBan.data.user.disabled = true;
 
 const getModerateMock = {
   data: {
@@ -137,17 +144,27 @@ describe("UsersView", () => {
     });
     requestHandlers = {
       languagecode: vi.fn().mockResolvedValue(languageCodeMock),
-      get_users: vi.fn().mockResolvedValue(currentUserMock),
+      get_user: vi.fn().mockResolvedValue(currentUserMock),
       update_user: vi.fn().mockResolvedValue(nullMock),
+      ban_user: vi.fn().mockResolvedValue(nullMock),
+      unban_user: vi.fn().mockResolvedValue(nullMock),
     };
     mockClient.setRequestHandler(LANGUAGES_CODES, requestHandlers.languagecode);
-    mockClient.setRequestHandler(GET_USER, requestHandlers.get_users);
+    mockClient.setRequestHandler(GET_USER, requestHandlers.get_user);
     mockClient.setRequestHandler(
       ADMIN_UPDATE_USER,
       requestHandlers.update_user
     );
+    mockClient.setRequestHandler(
+      DELETE_ACCOUNT_AS_MODERATOR,
+      requestHandlers.ban_user
+    );
+    mockClient.setRequestHandler(
+      UNBAN_ACCOUNT_AS_MODERATOR,
+      requestHandlers.unban_user
+    );
 
-    const wrapper = shallowMount(AdminUserProfile, {
+    const wrapper = mount(AdminUserProfile, {
       props: { id: "1234" },
       stubs: ["router-link", "router-view"],
       global: {
@@ -164,9 +181,9 @@ describe("UsersView", () => {
     await wrapper.vm.$nextTick();
     await flushPromises();
     expect(wrapper.exists()).toBe(true);
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(htmlRemoveId(wrapper.html())).toMatchSnapshot();
     expect(requestHandlers.languagecode).toHaveBeenCalledTimes(1);
-    expect(requestHandlers.get_users).toHaveBeenCalledTimes(1);
+    expect(requestHandlers.get_user).toHaveBeenCalledTimes(1);
     expect(requestHandlers.update_user).toHaveBeenCalledTimes(0);
   });
 
@@ -177,27 +194,76 @@ describe("UsersView", () => {
     await wrapper.vm.$nextTick();
     await flushPromises();
     expect(wrapper.exists()).toBe(true);
-    expect(wrapper.html()).toMatchSnapshot();
+    expect(htmlRemoveId(wrapper.html())).toMatchSnapshot();
     expect(requestHandlers.languagecode).toHaveBeenCalledTimes(0);
-    expect(requestHandlers.get_users).toHaveBeenCalledTimes(1);
+    expect(requestHandlers.get_user).toHaveBeenCalledTimes(1);
     expect(requestHandlers.update_user).toHaveBeenCalledTimes(0);
-    const btn = wrapper.find('o-button-stub[variant="success"]');
+    const btn = wrapper.find("#acceptAccount");
     expect(btn.exists()).toBe(true);
     btn.trigger("click");
     await flushPromises();
     expect(requestHandlers.languagecode).toHaveBeenCalledTimes(0);
-    expect(requestHandlers.get_users).toHaveBeenCalledTimes(1);
+    // The user is refreshed after the update
+    expect(requestHandlers.get_user).toHaveBeenCalledTimes(2);
     expect(requestHandlers.update_user).toHaveBeenCalledTimes(1);
     expect(requestHandlers.update_user).toHaveBeenCalledWith({
       id: "1234",
       notify: true,
       role: "USER",
     });
+  });
+
+  it("Ban user", async () => {
+    const wrapper = generateWrapper();
+    await wrapper.vm.$nextTick();
     await flushPromises();
-    await flushPromises();
-    expect(wrapper.router.push).toHaveBeenCalledWith({
-      name: SettingsRouteName.ADMIN_USER_PROFILE,
-      id: "1234",
+    expect(wrapper.exists()).toBe(true);
+    expect(htmlRemoveId(wrapper.html())).toMatchSnapshot();
+    expect(requestHandlers.get_user).toHaveBeenCalledTimes(1);
+    expect(requestHandlers.ban_user).toHaveBeenCalledTimes(0);
+
+    // Find ban button
+    const btn = wrapper.find("#deleteAccount");
+    expect(btn.exists()).toBe(true);
+    btn.trigger("click");
+
+    // TODO The definitive button "Ban the account" is in a dialog pop-up outside of the component
+    // Sadly, we can't access this pop-up and click on the button to fully test
+    /*
+    // ban_user has been called 
+    expect(requestHandlers.ban_user).toHaveBeenCalledTimes(1);
+    expect(requestHandlers.get_user).toHaveBeenCalledTimes(2);
+    expect(requestHandlers.ban_user).toHaveBeenCalledWith({
+      userId: "1234",
     });
+    */
+  });
+
+  it("Unban user", async () => {
+    const wrapper = generateWrapper(getUserMockBan);
+    await wrapper.vm.$nextTick();
+    await flushPromises();
+    expect(wrapper.exists()).toBe(true);
+    expect(htmlRemoveId(wrapper.html())).toMatchSnapshot();
+    expect(requestHandlers.get_user).toHaveBeenCalledTimes(1);
+    expect(requestHandlers.ban_user).toHaveBeenCalledTimes(0);
+    expect(requestHandlers.unban_user).toHaveBeenCalledTimes(0);
+
+    // Find ban button
+    const btn = wrapper.find("#unbanAccount");
+    expect(btn.exists()).toBe(true);
+    btn.trigger("click");
+
+    // TODO The definitive button "Unban the account" is in a dialog pop-up outside of the component
+    // Sadly, we can't access this pop-up and click on the button to fully test
+    /*
+    // unban_user has been called 
+    expect(requestHandlers.get_user).toHaveBeenCalledTimes(2);
+    expect(requestHandlers.ban_user).toHaveBeenCalledTimes(0);
+    expect(requestHandlers.unban_user).toHaveBeenCalledTimes(1);
+    expect(requestHandlers.ban_user).toHaveBeenCalledWith({
+      userId: "1234",
+    });
+    */
   });
 });

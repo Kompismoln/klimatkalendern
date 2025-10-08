@@ -177,16 +177,22 @@
         <tr>
           <td v-if="user.role == ICurrentUserRole.PENDING && !user.disabled">
             <div class="buttons">
-              <o-button @click="acceptAccount" variant="success">{{
-                t("Accept")
-              }}</o-button>
+              <o-button
+                id="acceptAccount"
+                @click="acceptAccount"
+                variant="success"
+                >{{ t("Accept") }}</o-button
+              >
             </div>
           </td>
           <td>
             <div class="buttons" v-if="!user.disabled">
-              <o-button @click="deleteAccount" variant="danger">{{
-                t("Ban")
-              }}</o-button>
+              <o-button
+                id="deleteAccount"
+                @click="deleteAccount"
+                variant="danger"
+                >{{ t("Ban") }}</o-button
+              >
             </div>
             <div v-else>
               <div
@@ -195,9 +201,12 @@
               >
                 {{ t("The user has been banned") }}
               </div>
-              <o-button @click="unbanAccount" variant="danger">{{
-                t("Unban")
-              }}</o-button>
+              <o-button
+                id="unbanAccount"
+                @click="unbanAccount"
+                variant="danger"
+                >{{ t("Unban") }}</o-button
+              >
             </div>
           </td>
         </tr>
@@ -359,18 +368,18 @@ import { computed, inject, reactive, ref, watch } from "vue";
 import { useHead } from "@/utils/head";
 import { useI18n } from "vue-i18n";
 import { formatDateTimeString } from "@/filters/datetime";
-import { useRouter } from "vue-router";
 import { IPerson } from "@/types/actor";
 import { Dialog } from "@/plugins/dialog";
 
 const props = defineProps<{ id: string }>();
 
-const { result: userResult, loading: loadingUser } = useQuery<{ user: IUser }>(
-  GET_USER,
-  () => ({
-    id: props.id,
-  })
-);
+const {
+  result: userResult,
+  loading: loadingUser,
+  refetch: refetchUser,
+} = useQuery<{ user: IUser }>(GET_USER, () => ({
+  id: props.id,
+}));
 
 const user = computed(() => userResult.value?.user);
 
@@ -485,8 +494,6 @@ const roleName = (role: ICurrentUserRole): string => {
   }
 };
 
-const router = useRouter();
-
 const { mutate: deleteUserAccount } = useMutation<
   { deleteProfile: { id: string } },
   { userId: string }
@@ -512,7 +519,7 @@ const deleteAccount = async (): Promise<void> => {
       deleteUserAccount({
         userId: props.id,
       });
-      return router.push({ name: RouteName.USERS });
+      refetchUser();
     },
   });
 };
@@ -530,7 +537,7 @@ const unbanAccount = async (): Promise<void> => {
       unbanUserAccount({
         userId: props.id,
       });
-      return router.push({ name: RouteName.USERS });
+      refetchUser();
     },
   });
 };
@@ -542,7 +549,7 @@ const acceptAccount = async () => {
     role: ICurrentUserRole.USER,
     notify: true,
   });
-  router.push({ name: RouteName.ADMIN_USER_PROFILE, id: props.id });
+  refetchUser();
 };
 
 const profiles = computed((): IPerson[] | undefined => {
@@ -556,7 +563,7 @@ const confirmUser = async () => {
     confirmed: true,
     notify: newUser.notify,
   });
-  router.push({ name: RouteName.ADMIN_USER_PROFILE, id: props.id });
+  refetchUser();
 };
 
 const updateUserRole = async () => {
@@ -566,7 +573,7 @@ const updateUserRole = async () => {
     role: newUser.role,
     notify: newUser.notify,
   });
-  router.push({ name: RouteName.ADMIN_USER_PROFILE, id: props.id });
+  refetchUser();
 };
 
 const updateUserEmail = async () => {
@@ -576,7 +583,7 @@ const updateUserEmail = async () => {
     email: newUser.email,
     notify: newUser.notify,
   });
-  router.push({ name: RouteName.ADMIN_USER_PROFILE, id: props.id });
+  refetchUser();
 };
 
 const { mutate: updateUser } = useMutation<

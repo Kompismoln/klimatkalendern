@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`UsersView > Show moderate list 1`] = `
+exports[`UsersView > Ban user 1`] = `
 "<div>
   <breadcrumbs-nav links="[object Object],[object Object],[object Object]"></breadcrumbs-nav>
   <section>
@@ -14,93 +14,10 @@ exports[`UsersView > Show moderate list 1`] = `
                 <tr class="border-b">
                   <td class="py-4 px-2 whitespace-nowrap align-middle">Email</td>
                   <td class="py-4 px-2 align-middle">truc@mobilizon.test</td>
-                  <td class="py-4 px-2 whitespace-nowrap flex flex flex-col items-start gap-2">
-                    <!--v-if-->
-                    <o-button-stub tag="router-link" variant="text" size="small" iconleft="magnify" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false" to="[object Object]"></o-button-stub>
-                  </td>
-                </tr>
-                <tr class="border-b">
-                  <td class="py-4 px-2 whitespace-nowrap align-middle">Language</td>
-                  <td class="py-4 px-2 align-middle">French</td>
-                  <td></td>
-                </tr>
-                <tr class="border-b">
-                  <td class="py-4 px-2 whitespace-nowrap align-middle">Role</td>
-                  <td class="py-4 px-2 whitespace-nowrap"><span class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Pending</span></td>
-                  <td class="py-4 px-2 whitespace-nowrap flex items-center">
-                    <!--v-if-->
-                  </td>
-                </tr>
-                <tr class="border-b">
-                  <td class="py-4 px-2 whitespace-nowrap align-middle">Moderation</td>
-                  <td class="py-4 px-2 align-middle">moderation text</td>
-                  <td></td>
-                </tr>
-                <tr class="border-b">
-                  <td class="py-4 px-2 whitespace-nowrap align-middle">Confirmed</td>
-                  <td class="py-4 px-2 align-middle">Saturday, August 30, 2025 at 11:56 AM</td>
-                  <td class="py-4 px-2 whitespace-nowrap flex items-center">
-                    <!--v-if-->
-                  </td>
-                </tr>
-                <tr class="border-b">
-                  <td class="py-4 px-2 whitespace-nowrap align-middle">Last sign-in</td>
-                  <td class="py-4 px-2 align-middle">Unknown</td>
-                  <td></td>
-                </tr>
-                <tr class="border-b">
-                  <td class="py-4 px-2 whitespace-nowrap align-middle">Last IP adress</td>
-                  <td class="py-4 px-2 align-middle">Unknown</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--v-if-->
-  <section class="my-4">
-    <h2 class="text-lg font-bold mb-3">Actions</h2>
-    <table>
-      <tr>
-        <td>
-          <div class="buttons">
-            <o-button-stub tag="button" variant="success" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false"></o-button-stub>
-          </div>
-        </td>
-        <td>
-          <div class="buttons">
-            <o-button-stub tag="button" variant="danger" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false"></o-button-stub>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </section>
-  <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" close-button-aria-label="Close" aria-modal=""></o-modal-stub>
-  <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" has-modal-card="" close-button-aria-label="Close" aria-modal=""></o-modal-stub>
-  <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" has-modal-card="" close-button-aria-label="Close" aria-modal=""></o-modal-stub>
-</div>"
-`;
-
-exports[`UsersView > Show simple list 1`] = `
-"<div>
-  <breadcrumbs-nav links="[object Object],[object Object],[object Object]"></breadcrumbs-nav>
-  <section>
-    <h2 class="text-lg font-bold mb-3">Details</h2>
-    <div class="flex flex-col">
-      <div class="overflow-x-auto">
-        <div class="inline-block py-2 min-w-full sm:px-2">
-          <div class="overflow-hidden shadow-md sm:rounded-lg">
-            <table class="table w-full">
-              <tbody>
-                <tr class="border-b">
-                  <td class="py-4 px-2 whitespace-nowrap align-middle">Email</td>
-                  <td class="py-4 px-2 align-middle">truc@mobilizon.test</td>
-                  <td class="py-4 px-2 whitespace-nowrap flex flex flex-col items-start gap-2">
-                    <o-button-stub tag="button" variant="text" size="small" iconleft="pencil" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false"></o-button-stub>
-                    <o-button-stub tag="router-link" variant="text" size="small" iconleft="magnify" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false" to="[object Object]"></o-button-stub>
+                  <td class="py-4 px-2 whitespace-nowrap flex flex flex-col items-start gap-2"><button type="button" class="o-btn o-btn--small o-btn--text" role="button" data-oruga="button"><span class="o-btn__wrapper"><span class="o-icon o-icon--small o-btn__icon o-btn__icon-left" data-oruga="icon"><i class="mdi mdi-pencil"></i></span><span class="o-btn__label">Change email</span>
+                      <!----></span>
+                    </button>
+                    <router-link-stub class="o-btn o-btn--small o-btn--text" role="button" data-oruga="button" to="[object Object]"></router-link-stub>
                   </td>
                 </tr>
                 <tr class="border-b">
@@ -111,9 +28,9 @@ exports[`UsersView > Show simple list 1`] = `
                 <tr class="border-b">
                   <td class="py-4 px-2 whitespace-nowrap align-middle">Role</td>
                   <td class="py-4 px-2 whitespace-nowrap"><span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">User</span></td>
-                  <td class="py-4 px-2 whitespace-nowrap flex items-center">
-                    <o-button-stub tag="button" variant="text" size="small" iconleft="chevron-double-up" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false"></o-button-stub>
-                  </td>
+                  <td class="py-4 px-2 whitespace-nowrap flex items-center"><button type="button" class="o-btn o-btn--small o-btn--text" role="button" data-oruga="button"><span class="o-btn__wrapper"><span class="o-icon o-icon--small o-btn__icon o-btn__icon-left" data-oruga="icon"><i class="mdi mdi-chevron-double-up"></i></span><span class="o-btn__label">Change role</span>
+                      <!----></span>
+                    </button></td>
                 </tr>
                 <tr class="border-b">
                   <td class="py-4 px-2 whitespace-nowrap align-middle">Login status</td>
@@ -166,15 +83,716 @@ exports[`UsersView > Show simple list 1`] = `
       <tr>
         <!--v-if-->
         <td>
-          <div class="buttons">
-            <o-button-stub tag="button" variant="danger" rounded="false" expanded="false" disabled="false" outlined="false" loading="false" inverted="false" nativetype="button" role="button" iconboth="false"></o-button-stub>
+          <div class="buttons"><button type="button" class="o-btn o-btn--danger" role="button" data-oruga="button" id="deleteAccount"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Ban</span>
+              <!----></span>
+            </button></div>
+        </td>
+      </tr>
+    </table>
+  </section>
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <div class="" style="width: auto;">
+            <header class="">
+              <h2>Change user email</h2>
+            </header>
+            <section class="">
+              <div data-oruga="field" class="o-field o-field--filled"><label class="o-field__label" for="">Previous email</label>
+                <div class="o-field__body">
+                  <div class="o-field o-field--addons">
+                    <div data-oruga="input" class="o-input__wrapper"><input id="" data-oruga-input="email" type="email" class="o-input o-input--disabled" autocomplete="off" disabled="">
+                      <!---->
+                      <!---->
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+                <!---->
+              </div>
+              <div data-oruga="field" class="o-field"><label class="o-field__label" for="">New email</label>
+                <div class="o-field__body">
+                  <div class="o-field o-field--addons">
+                    <div data-oruga="input" class="o-input__wrapper"><input required="" id="" data-oruga-input="email" type="email" class="o-input" autocomplete="off" placeholder="new@email.com">
+                      <!---->
+                      <!---->
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+                <!---->
+              </div><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label>
+            </section>
+            <footer class="mt-2 flex gap-2"><button type="button" class="o-btn o-btn--outlined" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+                <!----></span>
+              </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Change email</span>
+                <!----></span>
+              </button></footer>
+          </div>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div has-modal-card="" close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <header>
+            <h2>Change user role</h2>
+          </header>
+          <section>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="ADMINISTRATOR"><span class="o-radio__label">Administrator</span></label></div>
+              </div>
+              <!---->
+            </div>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="MODERATOR"><span class="o-radio__label">Moderator</span></label></div>
+              </div>
+              <!---->
+            </div>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio o-radio--checked" data-oruga="radio" role="radio" aria-checked="true"><input type="radio" data-oruga-input="radio" class="o-radio__input o-radio__input--checked" autocomplete="off" value="USER"><span class="o-radio__label">User</span></label></div>
+              </div>
+              <!---->
+            </div><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label>
+          </section>
+          <footer class="mt-2 flex gap-2"><button type="button" class="o-btn o-btn--outlined" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+              <!----></span>
+            </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Change role</span>
+              <!----></span>
+            </button></footer>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div has-modal-card="" close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <header>
+            <h2>Confirm user</h2>
+          </header>
+          <section><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label></section>
+          <footer><button type="button" class="o-btn" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+              <!----></span>
+            </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Confirm user</span>
+              <!----></span>
+            </button></footer>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+</div>"
+`;
+
+exports[`UsersView > Show moderate list 1`] = `
+"<div>
+  <breadcrumbs-nav links="[object Object],[object Object],[object Object]"></breadcrumbs-nav>
+  <section>
+    <h2 class="text-lg font-bold mb-3">Details</h2>
+    <div class="flex flex-col">
+      <div class="overflow-x-auto">
+        <div class="inline-block py-2 min-w-full sm:px-2">
+          <div class="overflow-hidden shadow-md sm:rounded-lg">
+            <table class="table w-full">
+              <tbody>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Email</td>
+                  <td class="py-4 px-2 align-middle">truc@mobilizon.test</td>
+                  <td class="py-4 px-2 whitespace-nowrap flex flex flex-col items-start gap-2">
+                    <!--v-if-->
+                    <router-link-stub class="o-btn o-btn--small o-btn--text" role="button" data-oruga="button" to="[object Object]"></router-link-stub>
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Language</td>
+                  <td class="py-4 px-2 align-middle">French</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Role</td>
+                  <td class="py-4 px-2 whitespace-nowrap"><span class="bg-orange-100 text-orange-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">Pending</span></td>
+                  <td class="py-4 px-2 whitespace-nowrap flex items-center">
+                    <!--v-if-->
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Moderation</td>
+                  <td class="py-4 px-2 align-middle">moderation text</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Confirmed</td>
+                  <td class="py-4 px-2 align-middle">Saturday, August 30, 2025 at 11:56 AM</td>
+                  <td class="py-4 px-2 whitespace-nowrap flex items-center">
+                    <!--v-if-->
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Last sign-in</td>
+                  <td class="py-4 px-2 align-middle">Unknown</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Last IP adress</td>
+                  <td class="py-4 px-2 align-middle">Unknown</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--v-if-->
+  <section class="my-4">
+    <h2 class="text-lg font-bold mb-3">Actions</h2>
+    <table>
+      <tr>
+        <td>
+          <div class="buttons"><button type="button" class="o-btn o-btn--success" role="button" data-oruga="button" id="acceptAccount"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Accept</span>
+              <!----></span>
+            </button></div>
+        </td>
+        <td>
+          <div class="buttons"><button type="button" class="o-btn o-btn--danger" role="button" data-oruga="button" id="deleteAccount"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Ban</span>
+              <!----></span>
+            </button></div>
+        </td>
+      </tr>
+    </table>
+  </section>
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <div class="" style="width: auto;">
+            <header class="">
+              <h2>Change user email</h2>
+            </header>
+            <section class="">
+              <div data-oruga="field" class="o-field o-field--filled"><label class="o-field__label" for="">Previous email</label>
+                <div class="o-field__body">
+                  <div class="o-field o-field--addons">
+                    <div data-oruga="input" class="o-input__wrapper"><input id="" data-oruga-input="email" type="email" class="o-input o-input--disabled" autocomplete="off" disabled="">
+                      <!---->
+                      <!---->
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+                <!---->
+              </div>
+              <div data-oruga="field" class="o-field"><label class="o-field__label" for="">New email</label>
+                <div class="o-field__body">
+                  <div class="o-field o-field--addons">
+                    <div data-oruga="input" class="o-input__wrapper"><input required="" id="" data-oruga-input="email" type="email" class="o-input" autocomplete="off" placeholder="new@email.com">
+                      <!---->
+                      <!---->
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+                <!---->
+              </div><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label>
+            </section>
+            <footer class="mt-2 flex gap-2"><button type="button" class="o-btn o-btn--outlined" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+                <!----></span>
+              </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Change email</span>
+                <!----></span>
+              </button></footer>
+          </div>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div has-modal-card="" close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <header>
+            <h2>Change user role</h2>
+          </header>
+          <section>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="ADMINISTRATOR"><span class="o-radio__label">Administrator</span></label></div>
+              </div>
+              <!---->
+            </div>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="MODERATOR"><span class="o-radio__label">Moderator</span></label></div>
+              </div>
+              <!---->
+            </div>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="USER"><span class="o-radio__label">User</span></label></div>
+              </div>
+              <!---->
+            </div><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label>
+          </section>
+          <footer class="mt-2 flex gap-2"><button type="button" class="o-btn o-btn--outlined" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+              <!----></span>
+            </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Change role</span>
+              <!----></span>
+            </button></footer>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div has-modal-card="" close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <header>
+            <h2>Confirm user</h2>
+          </header>
+          <section><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label></section>
+          <footer><button type="button" class="o-btn" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+              <!----></span>
+            </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Confirm user</span>
+              <!----></span>
+            </button></footer>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+</div>"
+`;
+
+exports[`UsersView > Show simple list 1`] = `
+"<div>
+  <breadcrumbs-nav links="[object Object],[object Object],[object Object]"></breadcrumbs-nav>
+  <section>
+    <h2 class="text-lg font-bold mb-3">Details</h2>
+    <div class="flex flex-col">
+      <div class="overflow-x-auto">
+        <div class="inline-block py-2 min-w-full sm:px-2">
+          <div class="overflow-hidden shadow-md sm:rounded-lg">
+            <table class="table w-full">
+              <tbody>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Email</td>
+                  <td class="py-4 px-2 align-middle">truc@mobilizon.test</td>
+                  <td class="py-4 px-2 whitespace-nowrap flex flex flex-col items-start gap-2"><button type="button" class="o-btn o-btn--small o-btn--text" role="button" data-oruga="button"><span class="o-btn__wrapper"><span class="o-icon o-icon--small o-btn__icon o-btn__icon-left" data-oruga="icon"><i class="mdi mdi-pencil"></i></span><span class="o-btn__label">Change email</span>
+                      <!----></span>
+                    </button>
+                    <router-link-stub class="o-btn o-btn--small o-btn--text" role="button" data-oruga="button" to="[object Object]"></router-link-stub>
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Language</td>
+                  <td class="py-4 px-2 align-middle">French</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Role</td>
+                  <td class="py-4 px-2 whitespace-nowrap"><span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">User</span></td>
+                  <td class="py-4 px-2 whitespace-nowrap flex items-center"><button type="button" class="o-btn o-btn--small o-btn--text" role="button" data-oruga="button"><span class="o-btn__wrapper"><span class="o-icon o-icon--small o-btn__icon o-btn__icon-left" data-oruga="icon"><i class="mdi mdi-chevron-double-up"></i></span><span class="o-btn__label">Change role</span>
+                      <!----></span>
+                    </button></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Login status</td>
+                  <td class="py-4 px-2 align-middle">Activated</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Confirmed</td>
+                  <td class="py-4 px-2 align-middle">Saturday, August 30, 2025 at 11:56 AM</td>
+                  <td class="py-4 px-2 whitespace-nowrap flex items-center">
+                    <!--v-if-->
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Last sign-in</td>
+                  <td class="py-4 px-2 align-middle">Unknown</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Last IP adress</td>
+                  <td class="py-4 px-2 align-middle">Unknown</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Total number of participations</td>
+                  <td class="py-4 px-2 align-middle">14</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Uploaded media total size</td>
+                  <td class="py-4 px-2 align-middle">6,76&nbsp;mégaoctets</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="my-4">
+    <h2 class="text-lg font-bold mb-3">Profiles</h2>
+    <div class="flex flex-wrap justify-center sm:justify-start gap-4">
+      <router-link-stub to="[object Object]" replace="false" custom="false" ariacurrentvalue="page" viewtransition="false"></router-link-stub>
+    </div>
+  </section>
+  <section class="my-4">
+    <h2 class="text-lg font-bold mb-3">Actions</h2>
+    <table>
+      <tr>
+        <!--v-if-->
+        <td>
+          <div class="buttons"><button type="button" class="o-btn o-btn--danger" role="button" data-oruga="button" id="deleteAccount"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Ban</span>
+              <!----></span>
+            </button></div>
+        </td>
+      </tr>
+    </table>
+  </section>
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <div class="" style="width: auto;">
+            <header class="">
+              <h2>Change user email</h2>
+            </header>
+            <section class="">
+              <div data-oruga="field" class="o-field o-field--filled"><label class="o-field__label" for="">Previous email</label>
+                <div class="o-field__body">
+                  <div class="o-field o-field--addons">
+                    <div data-oruga="input" class="o-input__wrapper"><input id="" data-oruga-input="email" type="email" class="o-input o-input--disabled" autocomplete="off" disabled="">
+                      <!---->
+                      <!---->
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+                <!---->
+              </div>
+              <div data-oruga="field" class="o-field"><label class="o-field__label" for="">New email</label>
+                <div class="o-field__body">
+                  <div class="o-field o-field--addons">
+                    <div data-oruga="input" class="o-input__wrapper"><input required="" id="" data-oruga-input="email" type="email" class="o-input" autocomplete="off" placeholder="new@email.com">
+                      <!---->
+                      <!---->
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+                <!---->
+              </div><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label>
+            </section>
+            <footer class="mt-2 flex gap-2"><button type="button" class="o-btn o-btn--outlined" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+                <!----></span>
+              </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Change email</span>
+                <!----></span>
+              </button></footer>
+          </div>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div has-modal-card="" close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <header>
+            <h2>Change user role</h2>
+          </header>
+          <section>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="ADMINISTRATOR"><span class="o-radio__label">Administrator</span></label></div>
+              </div>
+              <!---->
+            </div>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="MODERATOR"><span class="o-radio__label">Moderator</span></label></div>
+              </div>
+              <!---->
+            </div>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio o-radio--checked" data-oruga="radio" role="radio" aria-checked="true"><input type="radio" data-oruga-input="radio" class="o-radio__input o-radio__input--checked" autocomplete="off" value="USER"><span class="o-radio__label">User</span></label></div>
+              </div>
+              <!---->
+            </div><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label>
+          </section>
+          <footer class="mt-2 flex gap-2"><button type="button" class="o-btn o-btn--outlined" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+              <!----></span>
+            </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Change role</span>
+              <!----></span>
+            </button></footer>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div has-modal-card="" close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <header>
+            <h2>Confirm user</h2>
+          </header>
+          <section><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label></section>
+          <footer><button type="button" class="o-btn" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+              <!----></span>
+            </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Confirm user</span>
+              <!----></span>
+            </button></footer>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+</div>"
+`;
+
+exports[`UsersView > Unban user 1`] = `
+"<div>
+  <breadcrumbs-nav links="[object Object],[object Object],[object Object]"></breadcrumbs-nav>
+  <section>
+    <h2 class="text-lg font-bold mb-3">Details</h2>
+    <div class="flex flex-col">
+      <div class="overflow-x-auto">
+        <div class="inline-block py-2 min-w-full sm:px-2">
+          <div class="overflow-hidden shadow-md sm:rounded-lg">
+            <table class="table w-full">
+              <tbody>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Email</td>
+                  <td class="py-4 px-2 align-middle">truc@mobilizon.test</td>
+                  <td class="py-4 px-2 whitespace-nowrap flex flex flex-col items-start gap-2">
+                    <!--v-if-->
+                    <router-link-stub class="o-btn o-btn--small o-btn--text" role="button" data-oruga="button" to="[object Object]"></router-link-stub>
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Language</td>
+                  <td class="py-4 px-2 align-middle">French</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Role</td>
+                  <td class="py-4 px-2 whitespace-nowrap"><span class="bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">User</span></td>
+                  <td class="py-4 px-2 whitespace-nowrap flex items-center">
+                    <!--v-if-->
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Login status</td>
+                  <td class="py-4 px-2 align-middle">Disabled</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Confirmed</td>
+                  <td class="py-4 px-2 align-middle">Saturday, August 30, 2025 at 11:56 AM</td>
+                  <td class="py-4 px-2 whitespace-nowrap flex items-center"><button type="button" class="o-btn o-btn--small o-btn--text" role="button" data-oruga="button"><span class="o-btn__wrapper"><span class="o-icon o-icon--small o-btn__icon o-btn__icon-left" data-oruga="icon"><i class="mdi mdi-check"></i></span><span class="o-btn__label">Confirm user</span>
+                      <!----></span>
+                    </button></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Last sign-in</td>
+                  <td class="py-4 px-2 align-middle">Unknown</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Last IP adress</td>
+                  <td class="py-4 px-2 align-middle">Unknown</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Total number of participations</td>
+                  <td class="py-4 px-2 align-middle">14</td>
+                  <td></td>
+                </tr>
+                <tr class="border-b">
+                  <td class="py-4 px-2 whitespace-nowrap align-middle">Uploaded media total size</td>
+                  <td class="py-4 px-2 align-middle">6,76&nbsp;mégaoctets</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="my-4">
+    <h2 class="text-lg font-bold mb-3">Profiles</h2>
+    <div class="flex flex-wrap justify-center sm:justify-start gap-4">
+      <router-link-stub to="[object Object]" replace="false" custom="false" ariacurrentvalue="page" viewtransition="false"></router-link-stub>
+    </div>
+  </section>
+  <section class="my-4">
+    <h2 class="text-lg font-bold mb-3">Actions</h2>
+    <table>
+      <tr>
+        <!--v-if-->
+        <td>
+          <div>
+            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">The user has been banned</div><button type="button" class="o-btn o-btn--danger" role="button" data-oruga="button" id="unbanAccount"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Unban</span>
+              <!----></span>
+            </button>
           </div>
         </td>
       </tr>
     </table>
   </section>
-  <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" close-button-aria-label="Close" aria-modal=""></o-modal-stub>
-  <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" has-modal-card="" close-button-aria-label="Close" aria-modal=""></o-modal-stub>
-  <o-modal-stub active="false" fullscreen="false" width="960" animation="zoom-out" cancelable="escape,x,outside,button" scroll="keep" trapfocus="true" ariarole="dialog" aria-label="Edit user email" destroyonhide="false" autofocus="true" closeicon="close" closeiconsize="medium" teleport="false" events="[object Object]" container="body" has-modal-card="" close-button-aria-label="Close" aria-modal=""></o-modal-stub>
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <div class="" style="width: auto;">
+            <header class="">
+              <h2>Change user email</h2>
+            </header>
+            <section class="">
+              <div data-oruga="field" class="o-field o-field--filled"><label class="o-field__label" for="">Previous email</label>
+                <div class="o-field__body">
+                  <div class="o-field o-field--addons">
+                    <div data-oruga="input" class="o-input__wrapper"><input id="" data-oruga-input="email" type="email" class="o-input o-input--disabled" autocomplete="off" disabled="">
+                      <!---->
+                      <!---->
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+                <!---->
+              </div>
+              <div data-oruga="field" class="o-field"><label class="o-field__label" for="">New email</label>
+                <div class="o-field__body">
+                  <div class="o-field o-field--addons">
+                    <div data-oruga="input" class="o-input__wrapper"><input required="" id="" data-oruga-input="email" type="email" class="o-input" autocomplete="off" placeholder="new@email.com">
+                      <!---->
+                      <!---->
+                      <!---->
+                    </div>
+                  </div>
+                </div>
+                <!---->
+              </div><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label>
+            </section>
+            <footer class="mt-2 flex gap-2"><button type="button" class="o-btn o-btn--outlined" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+                <!----></span>
+              </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Change email</span>
+                <!----></span>
+              </button></footer>
+          </div>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div has-modal-card="" close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <header>
+            <h2>Change user role</h2>
+          </header>
+          <section>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="ADMINISTRATOR"><span class="o-radio__label">Administrator</span></label></div>
+              </div>
+              <!---->
+            </div>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio" data-oruga="radio" role="radio" aria-checked="false"><input type="radio" data-oruga-input="radio" class="o-radio__input" autocomplete="off" value="MODERATOR"><span class="o-radio__label">Moderator</span></label></div>
+              </div>
+              <!---->
+            </div>
+            <div data-oruga="field" class="o-field">
+              <!---->
+              <div class="o-field__body">
+                <div class="o-field o-field--addons"><label class="o-radio o-radio--checked" data-oruga="radio" role="radio" aria-checked="true"><input type="radio" data-oruga-input="radio" class="o-radio__input o-radio__input--checked" autocomplete="off" value="USER"><span class="o-radio__label">User</span></label></div>
+              </div>
+              <!---->
+            </div><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label>
+          </section>
+          <footer class="mt-2 flex gap-2"><button type="button" class="o-btn o-btn--outlined" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+              <!----></span>
+            </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Change role</span>
+              <!----></span>
+            </button></footer>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div has-modal-card="" close-button-aria-label="Close" aria-modal="false" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-label="Edit user email" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1" aria-hidden="true"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <form>
+          <header>
+            <h2>Confirm user</h2>
+          </header>
+          <section><label class="o-chk o-chk--checked" data-oruga="checkbox" role="checkbox" aria-checked="true"><input type="checkbox" data-oruga-input="checkbox" class="o-chk__input o-chk__input--checked" autocomplete="off" true-value="true" false-value="false"><span class="o-chk__label">Notify the user of the change</span></label></section>
+          <footer><button type="button" class="o-btn" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Close</span>
+              <!----></span>
+            </button><button type="submit" class="o-btn o-btn--primary" role="button" data-oruga="button"><span class="o-btn__wrapper"><!----><span class="o-btn__label">Confirm user</span>
+              <!----></span>
+            </button></footer>
+        </form><span class="o-icon o-icon--clickable o-icon--medium o-modal__close" data-oruga="icon" style="display: none;"><i class="mdi mdi-close mdi-36px"></i></span>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
 </div>"
 `;
