@@ -133,7 +133,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Person do
   def create_person(
         _parent,
         %{preferred_username: _preferred_username} = args,
-        %{context: %{current_user: user} = context} = _resolution
+        %{context: %{current_user: %{disabled: false} = user} = context} = _resolution
       ) do
     args = Map.put(args, :user_id, user.id)
     user_agent = Map.get(context, :user_agent, "")
@@ -158,6 +158,21 @@ defmodule Mobilizon.GraphQL.Resolvers.Person do
       {:picture, {:error, :file_too_large}} ->
         {:error, dgettext("errors", "The provided picture is too heavy")}
     end
+  end
+
+  @doc """
+  A logged user that is banned stays logged-in.
+  We need to block the person creation to prevent the user to create new content
+  TODO: Best should be to destroy the session but it seems hard to do with token behaviour.
+  Link: https://framagit.org/kaihuri/mobilizon/-/issues/1842
+  Link: https://framagit.org/kaihuri/mobilizon/-/issues/1842#note_2255364
+  """
+  def create_person(
+        _parent,
+        %{preferred_username: _preferred_username} = _args,
+        %{context: %{current_user: %{disabled: true} = _user} = _context} = _resolution
+      ) do
+    {:error, :user_disabled}
   end
 
   def create_person(_parent, _args, _resolution) do

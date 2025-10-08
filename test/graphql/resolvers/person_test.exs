@@ -232,6 +232,30 @@ defmodule Mobilizon.GraphQL.Resolvers.PersonTest do
                MapSet.new([actor.preferred_username, "new_identity"])
     end
 
+    # Link: https://framagit.org/kaihuri/mobilizon/-/issues/1842
+    test "impossible to create a new identity with disabled user", %{conn: conn} do
+      user = insert(:user, disabled: true)
+
+      # Login by email/password is impossible for a disabled user
+      # But it is still possible to use a valid token obtained before the ban
+      app_token = insert(:auth_application_token, user: user)
+
+      res =
+        conn
+        |> auth_conn(app_token)
+        |> AbsintheHelpers.graphql_query(
+          query: @create_person_mutation,
+          variables: %{
+            preferredUsername: "new_identity",
+            name: "secret person",
+            summary: "no-one will know who I am"
+          }
+        )
+
+      assert res["data"]["createPerson"] == nil
+      assert hd(res["errors"])["message"] == "user_disabled"
+    end
+
     test "with an avatar and an banner creates a new identity", %{conn: conn} do
       user = insert(:user)
       insert(:actor, user: user)
