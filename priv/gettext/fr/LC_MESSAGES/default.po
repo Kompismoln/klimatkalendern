@@ -1589,7 +1589,7 @@ msgstr "Connectez-vous pour afficher la liste des utilisateurs en attente :"
 
 #: lib/web/templates/email/user_pending.html.heex:47 lib/web/templates/email/user_pending.text.eex:1
 msgid "New pending user from %{user} on %{instance}"
-msgstr "Nouveau utilisateur en attente depuis %{user} sur %{instance}"
+msgstr "Nouveau utilisateur %{user} en attente sur %{instance}"
 
 #: lib/web/templates/email/user_pending.html.heex:18
 msgid "New pending user on <b>%{instance}</b>"
