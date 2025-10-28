@@ -13,7 +13,7 @@
       :class="{ 'sm:w-full sm:max-w-[20rem]': mode === 'row' }"
     >
       <div
-        class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10"
+        class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 hidden"
         :class="{
           'sm:hidden': mode === 'row',
           'calendar-simple': !isDifferentBeginsEndsDate,
@@ -78,26 +78,13 @@
           :class="{ 'sm:hidden': mode === 'row' }"
         >
           <start-time-icon
+            class="hidden"
             :small="true"
-            v-if="!mergedOptions.hideDate && event.options?.showStartTime"
+            v-if="!mergedOptions.hideDate && event.options.showStartTime"
             :date="event.beginsOn.toString()"
-            :timezone="event.options?.timezone"
+            :timezone="event.options.timezone"
           />
         </div>
-        <span
-          class="text-gray-700 dark:text-white font-semibold hidden"
-          :class="{ 'sm:block': mode === 'row' }"
-          v-if="!isDifferentBeginsEndsDate"
-          >{{ formatDateTimeWithCurrentLocale }}</span
-        >
-        <span
-          class="text-gray-700 dark:text-white font-semibold hidden"
-          :class="{ 'sm:block': mode === 'row' }"
-          v-if="isDifferentBeginsEndsDate"
-          >{{ formatBeginsOnDateWithCurrentLocale }}
-          <ArrowRightThin :small="true" style="display: ruby" />
-          {{ formatEndsOnDateWithCurrentLocale }}</span
-        >
         <div class="w-full flex flex-col justify-between h-full">
           <h2
             class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white"
@@ -106,6 +93,12 @@
           >
             {{ event.title }}
           </h2>
+          <span
+            class="text-gray-700 dark:text-white font-semibold"
+            :class="{ 'sm:block': mode === 'row' }"
+          >
+            🗓 {{ formatedDate }}
+          </span>
           <div class="">
             <div
               class="flex items-center text-violet-3 dark:text-white"
@@ -207,7 +200,6 @@ import {
 } from "@/types/event.model";
 import DateCalendarIcon from "@/components/Event/DateCalendarIcon.vue";
 import StartTimeIcon from "@/components/Event/StartTimeIcon.vue";
-import ArrowRightThin from "vue-material-design-icons/ArrowRightThin.vue";
 import MenuDown from "vue-material-design-icons/MenuDown.vue";
 import LazyImageWrapper from "@/components/Image/LazyImageWrapper.vue";
 import { EventStatus } from "@/types/enums";
@@ -218,7 +210,7 @@ import { computed, inject } from "vue";
 import MobilizonTag from "@/components/TagElement.vue";
 import AccountCircle from "vue-material-design-icons/AccountCircle.vue";
 import Video from "vue-material-design-icons/Video.vue";
-import { formatDateForEvent, formatDateTimeForEvent } from "@/utils/datetime";
+import * as dtutils from "@/utils/datetime";
 import type { Locale } from "date-fns";
 import LinkOrRouterLink from "../core/LinkOrRouterLink.vue";
 import { useI18n } from "vue-i18n";
@@ -262,29 +254,14 @@ const dateFnsLocale = inject<Locale>("dateFnsLocale");
 
 const isDifferentBeginsEndsDate = computed(() => {
   if (!dateFnsLocale) return;
-  const beginsOnStr = formatDateForEvent(
+  const beginsOnStr = dtutils.formatDateForEvent(
     new Date(props.event.beginsOn),
     dateFnsLocale
   );
   const endsOnStr = props.event.endsOn
-    ? formatDateForEvent(new Date(props.event.endsOn), dateFnsLocale)
+    ? dtutils.formatDateForEvent(new Date(props.event.endsOn), dateFnsLocale)
     : null;
   return endsOnStr && endsOnStr != beginsOnStr;
-});
-
-const formatBeginsOnDateWithCurrentLocale = computed(() => {
-  if (!dateFnsLocale) return;
-  return formatDateForEvent(new Date(props.event.beginsOn), dateFnsLocale);
-});
-
-const formatEndsOnDateWithCurrentLocale = computed(() => {
-  if (!dateFnsLocale) return;
-  return formatDateForEvent(new Date(props.event.endsOn), dateFnsLocale);
-});
-
-const formatDateTimeWithCurrentLocale = computed(() => {
-  if (!dateFnsLocale) return;
-  return formatDateTimeForEvent(new Date(props.event.beginsOn), dateFnsLocale);
 });
 
 const isInternal = computed(() => {
@@ -306,4 +283,8 @@ const to = computed(() => {
   }
   return { name: RouteName.EVENT, params: { uuid: props.event.uuid } };
 });
+
+const formatedDate = computed(() =>
+  dtutils.formatEventDatetime(props.event, dateFnsLocale)
+);
 </script>

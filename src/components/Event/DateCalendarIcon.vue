@@ -1,6 +1,6 @@
 <template>
   <div
-    class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white"
+    class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
     :class="{ small }"
     :style="`--small: ${smallStyle}`"
   >

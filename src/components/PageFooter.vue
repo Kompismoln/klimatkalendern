@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="bg-violet-2 color-secondary flex flex-col items-center py-3 px-3"
+    class="bg-green-900 color-secondary flex flex-col items-center py-3 px-3"
     ref="footer"
   >
     <ul
@@ -46,28 +46,6 @@
         <a href="#navbar">{{ t("Back to top") }}</a>
       </li>
     </ul>
-    <div class="text-center flex-1 pt-2 text-yellow-1">
-      <i18n-t
-        tag="span"
-        keypath="Powered by {mobilizon}. © 2018 - {date} The Mobilizon Contributors - Made with the financial support of {contributors}."
-      >
-        <template #mobilizon>
-          <a
-            rel="external"
-            aria-label="mobilizon.org"
-            class="text-white underline decoration-yellow-1"
-            href="https://mobilizon.org"
-            >{{ t("Mobilizon") }}</a
-          >
-        </template>
-        <template #date
-          ><span>{{ new Date().getFullYear() }}</span></template
-        >
-        <template #contributors>
-          <span>{{ t("more than 1360 contributors") }}</span>
-        </template>
-      </i18n-t>
-    </div>
   </footer>
 </template>
 <script setup lang="ts">

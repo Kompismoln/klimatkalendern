@@ -70,7 +70,6 @@ import {
   NoIdentitiesException,
 } from "@/utils/identity";
 import { useI18n } from "vue-i18n";
-import { Snackbar } from "@/plugins/snackbar";
 import { Notifier } from "@/plugins/notifier";
 import { CONFIG } from "@/graphql/config";
 import { IConfig } from "@/types/config.model";
@@ -172,7 +171,6 @@ watch(identities, async () => {
   }
 });
 
-const snackbar = inject<Snackbar>("snackbar");
 const darkModePreference = window.matchMedia("(prefers-color-scheme: dark)");
 
 onMounted(() => {
@@ -185,28 +183,6 @@ onMounted(() => {
   window.addEventListener("online", () => {
     online.value = true;
     console.debug("online");
-  });
-  document.addEventListener("refreshApp", (event: Event) => {
-    snackbar?.open({
-      queue: false,
-      indefinite: true,
-      variant: "dark",
-      actionText: t("Update app"),
-      cancelText: t("Ignore"),
-      message: t("A new version is available."),
-      onAction: async () => {
-        const registration = (
-          event as unknown as { detail: ServiceWorkerRegistration }
-        ).detail;
-        try {
-          await refreshApp(registration);
-          window.location.reload();
-        } catch (err) {
-          console.error(err);
-          notifier?.error(t("An error has occured while refreshing the page."));
-        }
-      },
-    });
   });
   darkModePreference.addEventListener("change", changeTheme);
 });
@@ -238,27 +214,6 @@ const initializeCurrentUser = () => {
   }
   console.debug("We don't seem to have a currently logged-in user");
   return false;
-};
-
-const refreshApp = async (
-  registration: ServiceWorkerRegistration
-): Promise<any> => {
-  const worker = registration.waiting;
-  if (!worker) {
-    return Promise.resolve();
-  }
-  return new Promise((resolve, reject) => {
-    const channel = new MessageChannel();
-
-    channel.port1.onmessage = (event) => {
-      if (event.data.error) {
-        reject(event.data);
-      } else {
-        resolve(event.data);
-      }
-    };
-    worker?.postMessage({ type: "skip-waiting" }, [channel.port2]);
-  });
 };
 
 const showOfflineNetworkWarning = (): void => {

@@ -186,14 +186,6 @@ const { currentActor } = useCurrentActorClient();
 
 const route = useRoute();
 
-// TODO: Remove fetchPolicy: "no-cache" and successfully make the query to automatically trigger when groupId changes.
-// The doc says : "This will re-fetch the query each time a property from the variables object changes."
-// https://apollo.vuejs.org/guide-composable/query#variables
-// But it is not true in our case : when groupId changes, the query still returns the old cached result (related to another group).
-// I found this bug, but I'm not sure it is related : https://github.com/vuejs/apollo/issues/1540
-// All my attempts to trigger a refetch when groupId or other variables change have failed.
-// As a workaround, I changed the fetchPolicy to "no-cache". This way, the query is always triggered and updated.
-// Related issue : https://framagit.org/framasoft/mobilizon/-/issues/1683
 const { result: personMembershipsResult } = useQuery(
   PERSON_GROUP_MEMBERSHIPS,
   () => ({
@@ -204,7 +196,6 @@ const { result: personMembershipsResult } = useQuery(
   }),
   () => ({
     enabled: currentActor.value?.id !== undefined,
-    fetchPolicy: "no-cache",
   })
 );
 
@@ -286,20 +277,13 @@ const setContactFilter = (newContactFilter: string) => {
 
 const debounceSetFilterByName = debounce(setContactFilter, 1000);
 
-// When the app loads for the first time, personMemberships is set and cached.
-// If the app is already loaded, personMemberships remains unchanged.
-// To ensure the watch() function runs at least once, set "immediate: true".
-watch(
-  personMemberships,
-  () => {
-    if (
-      personMemberships.value?.elements[0]?.parent?.id === route.query?.actorId
-    ) {
-      selectedActor.value = personMemberships.value?.elements[0]?.parent;
-    }
-  },
-  { immediate: true }
-);
+watch(personMemberships, () => {
+  if (
+    personMemberships.value?.elements[0]?.parent?.id === route.query?.actorId
+  ) {
+    selectedActor.value = personMemberships.value?.elements[0]?.parent;
+  }
+});
 
 const relay = async (group: IGroup): Promise<void> => {
   actualContacts.value = [];

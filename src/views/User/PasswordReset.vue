@@ -33,9 +33,15 @@
           expanded
         />
       </o-field>
-      <button class="button is-primary">
-        {{ $t("Reset my password") }}
-      </button>
+      <p class="my-4">
+        <o-button
+          variant="primary"
+          size="large"
+          native-type="submit"
+        >
+          {{ $t("Reset my password") }}
+        </o-button>
+      </p>
     </form>
   </section>
 </template>

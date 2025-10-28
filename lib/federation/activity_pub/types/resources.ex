@@ -4,7 +4,7 @@ defmodule Mobilizon.Federation.ActivityPub.Types.Resources do
   alias Mobilizon.Actors.Actor
   alias Mobilizon.Federation.ActivityPub.Permission
   alias Mobilizon.Federation.ActivityPub.Types.Entity
-  alias alias Mobilizon.Federation.ActivityStream
+  alias Mobilizon.Federation.ActivityStream
   alias Mobilizon.Federation.ActivityStream.Convertible
   alias Mobilizon.Resources.Resource
   alias Mobilizon.Service.Activity.Resource, as: ResourceActivity

@@ -1,2 +1,0 @@
-npm run pre-commit
-python3 ./check_i18n.py
