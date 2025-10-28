@@ -1,12 +1,9 @@
 <template>
   <div class="container mx-auto" v-if="hasCurrentActorPermissionsToEdit">
-    <h1 v-if="isUpdate === true">
+    <h1 class="" v-if="isUpdate === true">
       {{ t("Update event {name}", { name: event.title }) }}
     </h1>
-    <h1 v-else-if="configResult?.config.longEvents">
-      {{ t("Create a new event or a new activity") }}
-    </h1>
-    <h1 v-else>
+    <h1 class="" v-else>
       {{ t("Create a new event") }}
     </h1>
 
@@ -38,7 +35,7 @@
         />
       </o-field>
 
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap gap-4 hidden">
         <o-field
           v-if="orderedCategories"
           :label="t('Category')"
@@ -103,21 +100,6 @@
           }}</o-switch>
         </div>
       </o-field>
-
-      <p
-        v-if="
-          configResult?.config.longEvents &&
-          configResult?.config.durationOfLongEvent > 0
-        "
-      >
-        {{
-          t(
-            "Activities are disabled on this instance.|An event with a duration of more than one day will be categorized as an activity.|An event with a duration of more than {number} days will be categorized as an activity.",
-            { number: configResult.config.durationOfLongEvent },
-            configResult.config.durationOfLongEvent
-          )
-        }}
-      </p>
 
       <o-button class="block" variant="text" @click="dateSettingsIsOpen = true">
         {{ t("Timezone parameters") }}
@@ -673,7 +655,7 @@ import {
   useFeatures,
   useTimezones,
 } from "@/composition/apollo/config";
-import { useMutation, useQuery } from "@vue/apollo-composable";
+import { useMutation } from "@vue/apollo-composable";
 import { Dialog } from "@/plugins/dialog";
 import { Notifier } from "@/plugins/notifier";
 import { useHead } from "@/utils/head";
@@ -681,8 +663,6 @@ import { useOruga } from "@oruga-ui/oruga-next";
 import sortBy from "lodash/sortBy";
 import { escapeHtml } from "@/utils/html";
 import EventDatePicker from "@/components/Event/EventDatePicker.vue";
-import { CONFIG } from "@/graphql/config";
-import { IConfig } from "@/types/config.model";
 
 const DEFAULT_LIMIT_NUMBER_OF_PLACES = 10;
 
@@ -716,8 +696,6 @@ useHead({
     props.isUpdate ? t("Event edition") : t("Event creation")
   ),
 });
-
-const { result: configResult } = useQuery<{ config: IConfig }>(CONFIG);
 
 const event = ref<IEditableEvent>(new EventModel());
 const unmodifiedEvent = ref<IEditableEvent>(new EventModel());
@@ -1313,7 +1291,7 @@ watch(endsOn, (newEndsOn) => {
   updateEventDateRelatedToTimezone();
 });
 
-/* 
+/*
 For endsOn, we need to check consistencyBeginsOnBeforeEndsOn() at blur
 because the datetime-local component update itself immediately
 Ex : your event start at 10:00 and stops at 12:00

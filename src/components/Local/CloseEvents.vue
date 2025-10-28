@@ -7,13 +7,13 @@
     <template #title>
       <template v-if="userLocation?.name">
         {{
-          t("Upcoming events nearby {position}", {
+          t("Incoming events nearby {position}", {
             position: userLocation?.name,
           })
         }}
       </template>
       <template v-else>
-        {{ t("Upcoming events") }}
+        {{ t("Incoming events") }}
       </template>
     </template>
     <template #subtitle>
@@ -38,11 +38,12 @@
         :key="i"
         v-show="loading"
       />
-      <event-card
-        v-for="event in events.elements"
-        :event="event"
-        :key="event.uuid"
-      />
+      <span v-for="event in events.elements" :key="event.elem.uuid">
+        <more-content v-if="event.showActorMore" :to="event.actorMoreRoute">
+          {{ t("View more events and activities from ") + event.actorMoreName }}
+        </more-content>
+        <event-card v-else :event="event.elem" :key="event.elem.uuid" />
+      </span>
       <more-content
         v-if="userLocation?.name && userLocation?.lat && userLocation?.lon"
         :to="{
@@ -132,8 +133,45 @@ const eventsQuery = useQuery<{
   limit: 93,
 }));
 
-const events = computed(
-  () => eventsQuery.result.value?.events ?? { elements: [], total: 0 }
+const filterTooMany = ({ elements, total }) => {
+  // Max events to show from one organizer
+  const threshold = 2;
+  const actorsCount = {};
+  const actorsLast = {};
+  const addActor = (id) => {
+    if (!(id in actorsCount)) {
+      actorsCount[id] = 0;
+    }
+    actorsCount[id]++;
+  };
+  const ret = [];
+  for (const elem of elements) {
+    const id = elem.attributedTo
+      ? "grp-" + elem.attributedTo.id
+      : "per-" + elem.organizerActor.id;
+    addActor(id);
+
+    if (actorsCount[id] <= threshold) {
+      ret.push({ elem });
+      actorsLast[id] = ret.length;
+    } else if (actorsCount[id] == threshold + 1) {
+      ret.splice(actorsLast[id], 0, {
+        elem,
+        showActorMore: true,
+        actorMoreName: elem.attributedTo
+          ? elem.attributedTo.name
+          : elem.organizerActor.name,
+        actorMoreRoute: elem.attributedTo
+          ? "@" + elem.attributedTo.preferredUsername + "/events"
+          : "/search",
+      });
+    }
+  }
+  return { elements: ret, total };
+};
+
+const events = computed(() =>
+  filterTooMany(eventsQuery.result.value?.events ?? { elements: [], total: 0 })
 );
 watch(events, (e) => console.debug("events: ", e));
 

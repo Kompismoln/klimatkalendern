@@ -8,15 +8,15 @@
 ## to merge POT files into PO files.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-08-23 23:19+0000\n"
+"PO-Revision-Date: 2023-04-14 22:35+0000\n"
 "Last-Translator: Jiri Podhorecky <j.podhorecky@gmail.com>\n"
 "Language-Team: Czech <https://weblate.framasoft.org/projects/mobilizon/"
 "backend-errors/cs/>\n"
 "Language: cs\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.16.4\n"
 
 #: lib/mobilizon/discussions/discussion.ex:68
 #, elixir-autogen
@@ -1366,71 +1366,65 @@ msgstr ""
 #: lib/graphql/resolvers/user.ex:306
 #, elixir-autogen, elixir-format
 msgid "Couldn't send an email. Internal error."
-msgstr "Nemohl jsem odeslat e-mail. Interní chyba."
+msgstr ""
 
 #: lib/graphql/resolvers/participant.ex:293
 #, elixir-autogen, elixir-format
 msgid "Participation is already confirmed"
-msgstr "Účast je již potvrzena"
+msgstr ""
 
 #: lib/graphql/resolvers/participant.ex:290
 #, elixir-autogen, elixir-format
 msgid "Participation is confirmed but not approved yet by an organizer"
-msgstr "Účast je potvrzena, ale ještě není schválena organizátorem"
+msgstr ""
 
 #: lib/graphql/resolvers/event.ex:287
 #: lib/graphql/resolvers/event.ex:376
 #, elixir-autogen, elixir-format
 msgid "Providing external registration is not allowed"
-msgstr "Poskytování externí registrace není povoleno"
+msgstr ""
 
 #: lib/graphql/resolvers/push_subscription.ex:48
 #, elixir-autogen, elixir-format
 msgid "The same push subscription has already been registered"
-msgstr "Stejný odběr push byl již zaregistrován"
+msgstr ""
 
 #: lib/graphql/resolvers/admin.ex:554
 #, elixir-autogen, elixir-format
 msgid "This instance is pending follow approval"
-msgstr "Tato instance čeká na následné schválení"
+msgstr ""
 
 #: lib/graphql/schema/custom/timezone.ex:25
 #, elixir-autogen, elixir-format
 msgid "Timezone ID %{timezone} is invalid"
-msgstr "ID časového pásma %{timezone} je neplatné"
+msgstr ""
 
 #: lib/graphql/resolvers/admin.ex:557
-#, elixir-autogen, elixir-format
+#, elixir-autogen, elixir-format, fuzzy
 msgid "You are already following this instance"
-msgstr "Tuto instanci již sledujete"
+msgstr "Tuto skupinu již sledujete"
 
 #: lib/graphql/resolvers/user.ex:310
-#, elixir-autogen, elixir-format
+#, elixir-autogen, elixir-format, fuzzy
 msgid "You requested again a confirmation email too soon. Please try again in a few minutes"
-msgstr ""
-"Znovu jste požádali o potvrzovací e-mail příliš brzy. Zkuste to prosím znovu "
-"za několik minut"
+msgstr "Znovu jste si vyžádali potvrzovací e-mail příliš brzy"
 
 #: lib/graphql/resolvers/user.ex:341
 #, elixir-autogen, elixir-format
 msgid "You requested again a password reset email too soon. Please try again in a few minutes"
 msgstr ""
-"Znovu jste si vyžádali e-mail s žádostí o obnovení hesla příliš brzy. Zkuste "
-"to prosím znovu za několik minut"
 
 #: lib/graphql/resolvers/user.ex:368
 #, elixir-autogen, elixir-format
 msgid "The token you provided is invalid. Make sure that the URL is exactly the one provided inside the email you got."
 msgstr ""
-"Zadaný token je neplatný. Ujistěte se, že adresa URL je přesně taková, jaká "
-"byla uvedena v e-mailu, který jste obdrželi."
 
 #: lib/graphql/resolvers/conversation.ex:164
 #, elixir-autogen, elixir-format
 msgid "Conversation needs to mention at least one participant that's not yourself"
-msgstr "V rozhovoru musí být uveden alespoň jeden účastník, který nejste vy"
+msgstr ""
 
 #: lib/graphql/resolvers/participant.ex:401
 #, elixir-autogen, elixir-format
 msgid "There are no participants matching the audience you've selected."
-msgstr "Vámi zvolenému publiku neodpovídají žádní účastníci."
+msgstr ""
