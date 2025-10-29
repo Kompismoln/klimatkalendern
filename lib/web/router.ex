@@ -255,3 +255,4 @@ defmodule Mobilizon.Web.Router do
     get("/*path", PageController, :index)
   end
 end
+
