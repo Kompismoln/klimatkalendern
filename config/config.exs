@@ -22,7 +22,7 @@ config :mobilizon, :instance,
   registration_email_denylist: [],
   disable_database_login: false,
   languages: [],
-  default_language: "en",
+  default_language: "sv",
   demo: false,
   repository: Mix.Project.config()[:source_url],
   allow_relay: true,
@@ -101,7 +101,7 @@ config :mobilizon, Mobilizon.Web.Upload.Uploader.Local, uploads: "/var/lib/mobil
 
 config :tz_world, data_dir: "/var/lib/mobilizon/timezones"
 
-config :mobilizon, Timex.Gettext, default_locale: "en"
+config :mobilizon, Timex.Gettext, default_locale: "sv"
 
 config :mobilizon, :media_proxy,
   enabled: true,
@@ -207,12 +207,12 @@ config :codepagex, :encodings, [
   :"VENDORS/MICSFT/WINDOWS/CP1252"
 ]
 
-config :gettext, :default_locale, "en"
+config :gettext, :default_locale, "sv"
 
 config :mobilizon, Mobilizon.Web.Gettext, split_module_by: [:locale, :domain]
 
 config :ex_cldr,
-  default_locale: "en",
+  default_locale: "sv",
   default_backend: Mobilizon.Cldr
 
 config :http_signatures,
@@ -220,6 +220,7 @@ config :http_signatures,
 
 config :mobilizon, :cldr,
   locales: [
+    "sv",
     "fr",
     "en",
     "ru",
