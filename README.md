@@ -159,15 +159,13 @@ CREATE EXTENSION IF NOT EXISTS pg_trgm;
 ```
 **3. Setup database**
 
-If you are starting with from a clean slate, empty tables and add an admin user:
+If you are starting from a clean slate, migrate database and add an admin user:
 ```
 mix ecto.migrate
 mix mobilizon.users.new john.doe@localhost.com --admin
 ```
 
-If you're using an existing database dump (state-YYYY-MM-DD.sql).
-Then, import it into klimatkalendern (ensure you are not inside the psql console for this command;
-run it from your regular terminal shell):
+If you're using an existing database dump (e.g. dbdump.sql), import it into klimatkalendern and migrate.
 ```bash
 psql -h localhost -U klimatkalendern -d klimatkalendern < path/to/your/downloaded/dbdump.sql
 mix ecto.migrate
