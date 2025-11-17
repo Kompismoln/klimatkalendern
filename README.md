@@ -167,18 +167,19 @@ You have two options:
   mix mobilizon.users.new john.doe@localhost.com --admin
   ```
 
-2. If you're using an existing database dump (e.g. dbdump.sql), import it into klimatkalendern and migrate.
-  ```bash
-  psql -h localhost -U klimatkalendern -d klimatkalendern < path/to/your/downloaded/dbdump.sql
-  mix ecto.migrate
-  ```
+2. If you're using an existing database dump (e.g. dbdump.sql)
+   1. If you have existing data in the DB you need to clear it (see *Reset Database* section)
+   2. import the dump into klimatkalendern and migrate.
+    ```bash
+    psql -h localhost -U klimatkalendern -d klimatkalendern < path/to/your/downloaded/dbdump.sql
+    mix ecto.migrate
+    ```
 
-  Make sure to replace path/to/your/downloaded/dbdump.sql with the actual path to the dump
-  file you downloaded.
+    Make sure to replace path/to/your/downloaded/dbdump.sql with the actual path to the dump
+    file you downloaded.
 
-  Download user-uploaded media files that match the database dump.
-  Unzip this archive into an `./uploads` directory at the root of the cloned project.
-
+    Download user-uploaded media files that match the database dump.
+    Unzip this archive into an `./uploads` directory at the root of the cloned project.
 
 **4. Verify Database Setup:**
 
