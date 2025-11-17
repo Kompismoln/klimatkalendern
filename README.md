@@ -159,23 +159,25 @@ CREATE EXTENSION IF NOT EXISTS pg_trgm;
 ```
 **3. Setup database**
 
-If you are starting from a clean slate, migrate database and add an admin user:
-```
-mix ecto.migrate
-mix mobilizon.users.new john.doe@localhost.com --admin
-```
+You have two options:
 
-If you're using an existing database dump (e.g. dbdump.sql), import it into klimatkalendern and migrate.
-```bash
-psql -h localhost -U klimatkalendern -d klimatkalendern < path/to/your/downloaded/dbdump.sql
-mix ecto.migrate
-```
+1. If you are starting from a clean slate, migrate database and add an admin user:
+  ```
+  mix ecto.migrate
+  mix mobilizon.users.new john.doe@localhost.com --admin
+  ```
 
-Make sure to replace path/to/your/downloaded/dbdump.sql with the actual path to the dump
-file you downloaded.
+2. If you're using an existing database dump (e.g. dbdump.sql), import it into klimatkalendern and migrate.
+  ```bash
+  psql -h localhost -U klimatkalendern -d klimatkalendern < path/to/your/downloaded/dbdump.sql
+  mix ecto.migrate
+  ```
 
-Download user-uploaded media files that match the database dump.
-Unzip this archive into an `./uploads` directory at the root of the cloned project.
+  Make sure to replace path/to/your/downloaded/dbdump.sql with the actual path to the dump
+  file you downloaded.
+
+  Download user-uploaded media files that match the database dump.
+  Unzip this archive into an `./uploads` directory at the root of the cloned project.
 
 
 **4. Verify Database Setup:**
