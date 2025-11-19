@@ -63,7 +63,8 @@ the local mobilizon instance.
 
 First run:
 ```
-mix mobilizon.instance gen
+mix dep.get                # Install elixir dependencies
+mix mobilizon.instance gen # Generate server configuration
 ```
 
 Then answer the following for the questions prompted:
@@ -197,7 +198,7 @@ The database is now installed and configured.
 ### Install and compile Elixir dependencies
 Ensure you are inside the Nix development shell (`nix develop` or via direnv).
 
-Install Elixir Dependencies:
+Install Elixir Dependencies (again):
 ```bash
 mix deps.get
 ```
