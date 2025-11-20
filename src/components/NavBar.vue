@@ -3,89 +3,18 @@
     class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-zinc-900"
     id="navbar"
   >
-    <div
-      class="container md:grid md:grid-flow-col md:items-start md:grid-cols-[auto,1fr,auto,auto] mx-auto flex flex-wrap items-center gap-2 sm:gap-4"
-    >
+    <div class="container mx-auto flex flex-wrap items-center gap-2 sm:gap-4">
       <router-link
         :to="{ name: RouteName.HOME }"
-        :aria-label="t('Back to homepage')"
         class="flex items-center"
         :class="{ 'flex-1': !currentActor?.id }"
       >
-        <MobilizonLogo class="w-100" />
+        <MobilizonLogo />
       </router-link>
       <div
-        class="w-full md:block md:self-center order-4 md:order-none"
-        id="mobile-menu-2"
-        :class="{ hidden: !showMobileMenu }"
+        class="flex items-center md:order-2 ml-auto gap-2"
+        v-if="currentActor?.id"
       >
-        <ul
-          class="flex flex-col md:gap-8 md:justify-start items-center md:flex-wrap md:flex-row mt-2 md:mt-0 md:font-lightbold"
-        >
-          <li>
-            <router-link
-              :to="{ name: RouteName.SEARCH }"
-              class="block relative py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Search") }}</router-link
-            >
-          </li>
-
-          <li>
-            <router-link
-              :to="{ name: RouteName.EVENT_CALENDAR }"
-              class="block relative py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Calendar") }}
-	    </router-link >
-          </li>
-	  <li>
-            <a
-              href="https://www.youtube.com/watch?v=eb9_b4RB7nY"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Instruction video") }}</a
-            >
-          </li>
-          <li v-if="currentActor?.id">
-            <router-link
-              :to="{ name: RouteName.MY_EVENTS }"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("My events") }}</router-link
-            >
-          </li>
-          <li v-if="currentActor?.id">
-            <router-link
-              :to="{ name: RouteName.MY_GROUPS }"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("My groups") }}</router-link
-            >
-          </li>
-          <li v-if="!currentUser?.isLoggedIn">
-            <router-link
-              :to="{ name: RouteName.LOGIN }"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Login") }}</router-link
-            >
-          </li>
-          <li v-if="!currentUser?.isLoggedIn && canRegister">
-            <router-link
-              :to="{ name: RouteName.REGISTER }"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Register") }}</router-link
-            >
-          </li>
-          <li v-for="(link, index) in externalLinksConfig" :key="index">
-            <a
-              :href="link.url"
-              v-if="link.enabled"
-              rel="noopener noreferrer ugc"
-              target="_blank"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ link.label }}</a
-            >
-          </li>
-        </ul>
-      </div>
-      <div class="m-auto md:display:none;"></div>
-      <div class="flex gap-2" v-if="currentUser?.isLoggedIn">
         <router-link
           :to="{ name: RouteName.CONVERSATION_LIST }"
           class="flex sm:mr-3 text-sm md:mr-0 relative"
@@ -131,7 +60,7 @@
             <o-dropdown-item aria-role="listitem">
               <div class="px-4">
                 <span class="block text-sm text-zinc-900 dark:text-white">{{
-                  displayName(currentActor) || currentUser.email
+                  displayName(currentActor)
                 }}</span>
                 <span
                   class="block text-sm font-medium text-zinc-500 truncate dark:text-zinc-400"
@@ -147,7 +76,7 @@
             </o-dropdown-item>
             <o-dropdown-item
               v-for="identity in identities"
-              :active="identity.id === currentActor?.id"
+              :active="identity.id === currentActor.id"
               :key="identity.id"
               tabindex="0"
               @click="
@@ -223,7 +152,7 @@
       <button
         @click="showMobileMenu = !showMobileMenu"
         type="button"
-        class="inline-flex items-center justify-end p-2 ml-1 text-sm text-zinc-500 rounded-lg md:hidden hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:focus:ring-gray-600"
+        class="inline-flex items-center p-2 ml-1 text-sm text-zinc-500 rounded-lg md:hidden hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-zinc-400 dark:hover:bg-zinc-700 dark:focus:ring-gray-600"
         aria-controls="mobile-menu-2"
         aria-expanded="false"
       >
@@ -242,32 +171,67 @@
           ></path>
         </svg>
       </button>
+      <div
+        class="justify-between items-center w-full md:flex md:w-auto md:order-1"
+        id="mobile-menu-2"
+        :class="{ hidden: !showMobileMenu }"
+      >
+        <ul
+          class="flex flex-col md:flex-row md:space-x-8 mt-2 md:mt-0 md:font-lightbold"
+        >
+          <li class="m-auto">
+            <router-link
+              :to="{ name: RouteName.EVENT_CALENDAR }"
+              class="block relative py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("Calendar") }}</router-link
+            >
+          </li>
+          <li class="m-auto" v-if="currentActor?.id">
+            <router-link
+              :to="{ name: RouteName.MY_EVENTS }"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("My events") }}</router-link
+            >
+          </li>
+          <li class="m-auto" v-if="currentActor?.id">
+            <router-link
+              :to="{ name: RouteName.MY_GROUPS }"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("My groups") }}</router-link
+            >
+          </li>
+          <li class="m-auto">
+            <a
+              href="https://www.youtube.com/watch?v=eb9_b4RB7nY"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("Instruction video") }}</a
+            >
+          </li>
+          <li class="m-auto" v-if="!currentActor?.id">
+            <router-link
+              :to="{ name: RouteName.LOGIN }"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("Login") }}</router-link
+            >
+          </li>
+          <li class="m-auto" v-if="!currentActor?.id && canRegister">
+            <router-link
+              :to="{ name: RouteName.REGISTER }"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("Register") }}</router-link
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
-  <div v-if="currentUser?.id && !currentActor?.id" class="p-5">
-    <o-notification variant="warning">
-      <div class="flex place-content-between items-center">
-        <span>
-          {{
-            t("You have to create and select a profile to fully use Mobilizon.")
-          }}
-        </span>
-        <o-button
-          :label="t('Create a new profile')"
-          variant="primary"
-          size="small"
-          @click="createProfile()"
-        />
-      </div>
-    </o-notification>
-  </div>
 </template>
 
 <script lang="ts" setup>
 import MobilizonLogo from "@/components/MobilizonLogo.vue";
 import { ICurrentUserRole } from "@/types/enums";
 import { logout } from "../utils/auth";
-import { displayName, IPerson } from "../types/actor";
+import { displayName } from "../types/actor";
 import RouteName from "../router/name";
 import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -282,10 +246,7 @@ import {
 import { useLazyQuery, useMutation } from "@vue/apollo-composable";
 import { UPDATE_DEFAULT_ACTOR } from "@/graphql/actor";
 import { changeIdentity } from "@/utils/identity";
-import {
-  useExternalLinksConfig,
-  useRegistrationConfig,
-} from "@/composition/apollo/config";
+import { useRegistrationConfig } from "@/composition/apollo/config";
 import { useOruga } from "@oruga-ui/oruga-next";
 import {
   UNREAD_ACTOR_CONVERSATIONS,
@@ -295,12 +256,11 @@ import { ICurrentUser } from "@/types/current-user.model";
 
 const { currentUser } = useCurrentUserClient();
 const { currentActor } = useCurrentActorClient();
-const { identities } = useCurrentUserIdentities();
 
 const router = useRouter();
 const route = useRoute();
 
-const { externalLinksConfig } = useExternalLinksConfig();
+const { identities } = useCurrentUserIdentities();
 const { registrationsOpen, registrationsAllowlist, databaseLogin } =
   useRegistrationConfig();
 
@@ -369,6 +329,25 @@ watch(currentActor, async (currentActorValue, previousActorValue) => {
 
 onMounted(() => {});
 
+watch(identities, () => {
+  // If we don't have any identities, the user has validated their account,
+  // is logging for the first time but didn't create an identity somehow
+  if (identities.value && identities.value.length === 0) {
+    console.warn(
+      "We have no identities listed for current user",
+      identities.value
+    );
+    console.info("Pushing route to REGISTER_PROFILE");
+    router.push({
+      name: RouteName.REGISTER_PROFILE,
+      params: {
+        email: currentUser.value?.email,
+        userAlreadyActivated: "true",
+      },
+    });
+  }
+});
+
 const { onDone, mutate: setIdentity } = useMutation<{
   changeDefaultActor: { id: string; defaultActor: { id: string } };
 }>(UPDATE_DEFAULT_ACTOR);
@@ -398,11 +377,5 @@ const performLogout = async () => {
   if (route.meta["requiredAuth"] === true) {
     return router.push({ name: RouteName.HOME });
   }
-};
-
-const createProfile = () => {
-  router.push({
-    name: RouteName.CREATE_IDENTITY,
-  });
 };
 </script>
