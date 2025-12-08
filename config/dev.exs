@@ -53,7 +53,7 @@ config :logger, :console, format: "$metadata[$level] $message\n", level: :debug
 
 config :mobilizon, Mobilizon.Service.Geospatial, service: Mobilizon.Service.Geospatial.Nominatim
 
-config :mobilizon, Mobilizon.Web.Gettext, allowed_locales: ["fr", "en", "ru", "ar"]
+config :mobilizon, Mobilizon.Web.Gettext, allowed_locales: ["fr", "en", "ru", "ar", "sv"]
 
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.

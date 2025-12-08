@@ -17,7 +17,8 @@ defmodule Mobilizon.Web.Plugs.DetectLocalePlug do
   @spec call(Plug.Conn.t(), Keyword.t()) :: Plug.Conn.t()
   def call(conn, _) do
     locale = get_locale_from_header(conn)
-    assign(conn, :detected_locale, locale)
+    assign(conn, :detected_locale, "sv")
+    # assign(conn, :detected_locale, locale)
   end
 
   @spec get_locale_from_header(Plug.Conn.t()) :: String.t()
