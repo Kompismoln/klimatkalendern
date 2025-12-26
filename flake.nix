@@ -48,10 +48,11 @@
             nativeBuildInputs = with pkgs; [
               imagemagick
               nodejs
-              pnpm.configHook
+              pnpm
+              pnpmConfigHook
             ];
 
-            pnpmDeps = pkgs.pnpm.fetchDeps {
+            pnpmDeps = pkgs.fetchPnpmDeps {
               pname = name;
               inherit version src;
               fetcherVersion = 2;
