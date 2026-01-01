@@ -4,6 +4,22 @@
       {{ t("Calendar") }}
     </h1>
 
+    <h2>
+	    {{ t("Exporting events") }}
+    </h2>
+    <p>
+		    {{ t( "Press this button to export evenets to your calendar app. "+
+		    "You can choose which municipalities to include, "+
+		    "and when new events are posted you will receive updates."
+		    ) }}
+		    <br />
+	    <a href="https://klimatkalendern.vercel.app/">
+		    <o-button>
+		    {{ t("Export events to your calendar") }}
+		    </o-button>
+	    </a>
+    </p>
+
     <div class="p-2">
       <EventsCalendar v-if="!isMobile" />
       <EventsAgenda v-else />
