@@ -4,6 +4,8 @@
       {{ t("Calendar") }}
     </h1>
 
+    <CalendarExportBanner />
+
     <div class="p-2">
       <EventsCalendar v-if="!isMobile" />
       <EventsAgenda v-else />
@@ -14,6 +16,7 @@
 import { useI18n } from "vue-i18n";
 import EventsAgenda from "@/components/FullCalendar/EventsAgenda.vue";
 import EventsCalendar from "@/components/FullCalendar/EventsCalendar.vue";
+import CalendarExportBanner from "@/components/Banners/CalendarExportBanner.vue";
 import { onMounted } from "vue";
 import { getElementByXPath } from "@/utils/html";
 
@@ -29,6 +32,4 @@ onMounted(() => {
 });
 
 const { t } = useI18n({ useScope: "global" });
-
-const isMobile = window.innerWidth < 760;
 </script>
