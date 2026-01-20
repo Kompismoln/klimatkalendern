@@ -288,3 +288,16 @@ in the project directory to force a refresh of the environment.
 
 Your environment is now reset and you can follow the setup guide from
 step 2 under Postgresql ("Initial Postgres User and Database setup").
+
+
+## Following upstream mobilizon
+
+We strive to keep up to date with the [upstream repo](https://framagit.org/kaihuri/mobilizon). In order to ingest upstream changes, we follow the following procedure:
+
+1. Create a branch in our repo matching the release we want to ingest in upstream.
+2. Merge our `dev` into that branch, resolving any merge conflicts.
+3. Verify that the branch seems to work locally.
+5. Open a PR from that branch into `dev` and allow another maintainer to review the changes. Use a merge commit as a merging strategy. The effect in the history should be one commit on top of `dev` with the message "Merge Mobilizon vXX.XX" which has two parents - the previous dev tip, and the merge commit that was made on the upstream branch.
+6. After acceptance, as usual deploy from dev, see that it seems to work, and then make a deployment into `main`.
+
+
