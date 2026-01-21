@@ -1664,5 +1664,11 @@
   "Default picture when an event or group doesn't have one.": "Bild som används när en grupp eller ett event inte nar någon bild.",
   "Instruction video": "Instruktionsvideo",
   "Search:": "Sök:",
-  "Incoming events": "Kommande evenemang"
+  "Incoming events": "Kommande evenemang",
+  "Exporting events": "Kalenderexport",
+  "Press this button to export evenets to your calendar app. You can choose which municipalities to include, and when new events are posted you will receive updates.":
+  "Tryck här för att exportera evenemang till din kalendertjänst. Du kommer kunna välja vilka kommuner du vill inkludera, och när nya evenemang dyker upp läggs de automatiskt till i din kalender.",
+  "Export events": "Exportera evenemang",
+  "Export events to your calendar": "Exportera evenemang till din kalendertjänst",
+  "New: Exports!": "Nyhet: Kalenderexport!"
 }

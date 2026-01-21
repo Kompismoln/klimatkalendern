@@ -1,6 +1,6 @@
 <template>
   <LinkOrRouterLink
-    class="mbz-card snap-center dark:bg-mbz-purple"
+    class="mbz-card snap-center dark:bg-mbz-purple h-full rounded-lg overflow-hidden"
     :class="{
       'sm:flex sm:items-start': mode === 'row',
       'sm:max-w-xs w-[18rem] shrink-0 flex flex-col': mode === 'column',
@@ -9,7 +9,6 @@
     :isInternal="isInternal"
   >
     <div
-      class="rounded-lg"
       :class="{ 'sm:w-full sm:max-w-[20rem]': mode === 'row' }"
     >
       <div
@@ -40,6 +39,8 @@
       <figure class="block relative pt-40">
         <lazy-image-wrapper
           :picture="event.picture"
+          :rounded="false"
+          :fill-space="true"
           style="height: 100%; position: absolute; top: 0; left: 0; width: 100%"
         />
         <div
@@ -85,7 +86,7 @@
             :timezone="event.options.timezone"
           />
         </div>
-        <div class="w-full flex flex-col justify-between h-full">
+        <div class="w-full flex flex-col gap-1 h-full">
           <h2
             class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white"
             dir="auto"
