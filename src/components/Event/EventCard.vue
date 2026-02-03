@@ -3,13 +3,13 @@
     class="mbz-card snap-center dark:bg-mbz-purple h-full rounded-lg overflow-hidden"
     :class="{
       'sm:flex sm:items-start': mode === 'row',
-      'sm:max-w-xs w-[18rem] shrink-0 flex flex-col': mode === 'column',
+      'w-full shrink-0 flex flex-col': mode === 'column',
     }"
     :to="to"
     :isInternal="isInternal"
   >
     <div
-      :class="{ 'sm:w-full sm:max-w-[20rem]': mode === 'row' }"
+      :class="{ 'sm:w-full sm:max-w-[20rem] h-full': mode === 'row' }"
     >
       <div
         class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 hidden"
