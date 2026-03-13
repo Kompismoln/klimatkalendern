@@ -18,16 +18,15 @@
         "x86_64-linux"
         "aarch64-darwin"
       ];
-      forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
+      forAllSystems = nixpkgs.lib.genAttrs systems;
     in
     {
       packages = forAllSystems (
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          elixirPackage = pkgs.beam.packages.erlang_26.elixir_1_15;
           beamPackages = pkgs.beam.packages.erlang_26.extend (
-            self: super: {
+            self: _: {
               elixir = self.elixir_1_15;
             }
           );
@@ -38,7 +37,6 @@
               pname = "${name}-elixir";
               inherit src version;
             };
-            elixir = elixirPackage;
             inherit beamPackages mobilizon-frontend;
           };
           mobilizon-frontend = pkgs.stdenv.mkDerivation {
