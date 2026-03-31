@@ -812,6 +812,8 @@ let
           version = "${version}";
           sha256 = "f18e3c7668f82d3ae0b15f48d48feeb257e28aa5ab1b0dbf781c7312e5da029d";
         };
+        nativeBuildInputs = [ cmake ];
+        dontUseCmakeConfigure = true;
 
         beamDeps = [
           elixir_make

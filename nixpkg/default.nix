@@ -10,7 +10,6 @@
   nixfmt,
   mobilizon-frontend,
   mobilizon-src,
-  elixir,
 }:
 
 let
@@ -26,7 +25,7 @@ mixRelease rec {
 
   mixNixDeps = import ./mix.nix {
     inherit beamPackages lib;
-    overrides = (
+    overrides =
       final: prev:
       (lib.mapAttrs (
         _: value:
@@ -124,8 +123,7 @@ mixRelease rec {
           ];
         };
 
-      }
-    );
+      };
   };
 
   # Install the compiled js part
