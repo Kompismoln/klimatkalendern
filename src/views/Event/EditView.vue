@@ -204,6 +204,7 @@
           v-model="event.onlineAddress"
           placeholder="URL"
           id="website-url"
+          @blur="ensureHasHttp"
           expanded
         />
       </o-field>
@@ -288,6 +289,7 @@
           <o-input
             icon="link"
             type="url"
+            @blur="ensureHasHttp"
             v-model="event.externalParticipationUrl"
             :placeholder="t('External provider URL')"
             required
@@ -713,6 +715,18 @@ const props = withDefaults(
   }>(),
   { isUpdate: false, isDuplicate: false }
 );
+
+// Credit https://stackoverflow.com/a/28282844
+// and https://stackoverflow.com/a/49602559
+const ensureHasHttp = function (e) {
+  let string = e.target.value;
+  if (!string.startsWith("http")) {
+    string = "https://" + string;
+  }
+  e.target.value = string;
+  e.target.dispatchEvent(new CustomEvent("input"));
+  return e;
+};
 
 const eventId = computed(() => props.eventId);
 
