@@ -695,7 +695,7 @@ const props = withDefaults(
 // and https://stackoverflow.com/a/49602559
 const ensureHasHttp = function (e) {
   let string = e.target.value;
-  if (0 !== string.indexOf("http")) {
+  if (!string.startsWith("http")) {
     string = "https://" + string;
   }
   e.target.value = string;
