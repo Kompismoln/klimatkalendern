@@ -45,6 +45,13 @@
                   >{{ t("Glossary") }}</router-link
                 >
               </li>
+              <li>
+                <router-link
+                  class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                  :to="{ name: RouteName.CONTRIBUTE }"
+                  >{{ t("Contribute") }}</router-link
+                >
+              </li>
             </ul>
           </div>
         </aside>
@@ -53,55 +60,6 @@
         </div>
       </div>
     </section>
-    <div class="bg-secondary dark:bg-gray-700 p-6">
-      <div class="container mx-auto">
-        <h1 class="text-4xl font-bold text-black/70">
-          {{ t("Powered by Mobilizon") }}
-        </h1>
-        <p>
-          {{
-            t(
-              "A user-friendly, emancipatory and ethical tool for gathering, organising, and mobilising."
-            )
-          }}
-        </p>
-        <o-button
-          tag="a"
-          icon-left="open-in-new"
-          class="text-2xl bg-primary text-white leading-6"
-          href="https://mobilizon.org"
-          >{{ t("Learn more") }}</o-button
-        >
-      </div>
-    </div>
-    <div v-if="!currentUser || !currentUser.id" class="bg-purple-2 pb-3">
-      <div class="container mx-auto text-center py-10 px-6">
-        <div class="flex flex-wrap">
-          <div class="flex-1" v-if="config && config.registrationsOpen">
-            <h2 class="text-4xl text-violet-1 font-bold">
-              {{ t("Register on this instance") }}
-            </h2>
-            <o-button
-              tag="router-link"
-              class="bg-secondary text-lg text-black"
-              :to="{ name: RouteName.REGISTER }"
-              >{{ t("Create an account") }}</o-button
-            >
-          </div>
-          <div class="flex-1">
-            <h2 class="text-4xl text-violet-1 font-bold">
-              {{ t("Find another instance") }}
-            </h2>
-            <o-button
-              tag="a"
-              class="bg-secondary text-lg text-black"
-              href="https://mobilizon.org"
-              >{{ t("Pick an instance") }}</o-button
-            >
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 

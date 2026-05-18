@@ -121,6 +121,15 @@ export const routes = [
           announcer: { message: (): string => t("Glossary") as string },
         },
       },
+      {
+        path: "/contribute",
+        name: RouteName.CONTRIBUTE,
+        component: (): Promise<any> => import("@/views/About/ContributeView.vue"),
+        meta: {
+          requiredAuth: false,
+          announcer: { message: (): string => t("Contribute") as string },
+        },
+      },
     ],
   },
   {
