@@ -52,7 +52,8 @@ function formateDateGeneric(event: IEvent, locale?: Locale) {
     }
 
     // Start and end time.
-    return formatTimeRangeForEvents(b, e, locale);
+      return formatDateForEvent(b, locale) + " " +
+	      formatTimeRangeForEvents(b, e, locale);
   }
 
   // Multi day event

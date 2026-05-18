@@ -10,6 +10,7 @@
     v-on:update:address="updateAddress"
     :fromLocalStorage="true"
     :addressDefaultText="userLocation?.name"
+    :singleButton="true"
     :key="increated"
   />
   <!-- Welcome back -->

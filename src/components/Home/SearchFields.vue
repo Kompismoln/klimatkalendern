@@ -68,6 +68,7 @@
       class="search-Group min-w-40 mr-1 mb-1"
       native-type="submit"
       icon-left="account-multiple"
+      v-if="!singleButton"
     >
       {{ t("Groups") }}
     </o-button>
@@ -100,6 +101,7 @@ const props = defineProps<{
   search: string | null;
   distance: number | null;
   fromLocalStorage?: boolean | false;
+  singleButton?: boolean | false;
 }>();
 
 const router = useRouter();
