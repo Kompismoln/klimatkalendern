@@ -63,7 +63,7 @@ the local mobilizon instance.
 
 First run:
 ```
-mix dep.get                # Install elixir dependencies
+mix deps.get                # Install elixir dependencies
 mix mobilizon.instance gen # Generate server configuration
 ```
 
