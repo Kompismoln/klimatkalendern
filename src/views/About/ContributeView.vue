@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto px-2">
     <h1>{{ t("Contribute") }}</h1>
-    <div class="prose dark:prose-invert" v-if="config">
+    <div class="prose dark:prose-invert">
       <p>
         {{
           t(
@@ -41,10 +41,6 @@ import { computed } from "vue";
 import { useI18n } from "vue-i18n";
 import { ABOUT } from "../../graphql/config";
 import { IConfig } from "../../types/config.model";
-
-const { result: configResult } = useQuery<{ config: IConfig }>(ABOUT);
-
-const config = computed(() => configResult.value?.config);
 
 const { t } = useI18n({ useScope: "global" });
 
