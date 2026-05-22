@@ -26,6 +26,13 @@ import { useI18n } from "vue-i18n";
 import { ABOUT } from "../../graphql/config";
 import { IConfig } from "../../types/config.model";
 
+<<<<<<< HEAD
+=======
+const { result: configResult } = useQuery<{ config: IConfig }>(ABOUT);
+
+const config = computed(() => configResult.value?.config);
+
+>>>>>>> main
 const { t } = useI18n({ useScope: "global" });
 
 useHead({
