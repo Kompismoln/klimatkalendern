@@ -1,34 +1,18 @@
 <template>
   <div class="container mx-auto px-2">
     <h1>{{ t("Contribute") }}</h1>
-    <div class="prose dark:prose-invert" v-if="config">
+    <div class="prose dark:prose-invert">
       <p>
-        {{
-          t(
-	  "Klimatkalendern is used and loved by the Swedish climate movement, but there are still some rough edges to iron out. Would you like to be part of our work? We are currently looking for someone to join our team. All we do is on a volunteer basis, but we are happy to guide you on board."
-          )
-        }}
+        Klimatkalendern används och älskas av den svenska klimatrörelsen, men än finns det mycket att förbättra! Skulle du vilja hjälpa oss i detta arbete? Vi letar just nu efter någon som vill gå med i vårt team. Allt vi gör är på ideell basis, men vi hjälper dig gärna komma igång.
       </p>
       <p>
-        {{
-          t(
-	  "Klimatkalendern is built on top of the federated social platform Mobilizon. Head over to their website to find out about the Elixir, Phoenix, and VueJS tech stack. We mostly make cosmetic changes, and add features only when there is no good way around it."
-          ) 
-        }}
+        Klimatkalendern är byggd ovanpå den federerade sociala plattformen Mobilizon. Besök deras webbsida för att lära dig mer om deras techstack som inkluderar Elixir, Phoenix, och VueJS. Vi gör mest kosmetiska ändringar, och lägger endast till ny funktionalitet där det är nödvändigt.
 	<a href="https://docs.mobilizon.org/about/">
-	  {{
-	    t(
-	    "Link to mobilizon's website"
-	    )
-    	  }}
+          Länk till Mobilizons webbsida
 	</a>
       </p>
       <p>
-        {{
-          t(
-	  "If you're interested in contributing to klimatkalendern, please email info@klimatkalendern.nu and we'll take it from there!"
-          )
-        }}
+        Om du är det minsta intresserad av att hjälpa till med Klimatkalendern, hör av dig till info@klimatkalendern.nu så tar vi det därifrån!
       </p>
     </div>
   </div>
