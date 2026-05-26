@@ -206,8 +206,6 @@ Install Elixir Dependencies (again):
 mix deps.get
 ```
 
-If prompted to install `rebar3`, answer y (yes).
-
 **Compile the Application:**
 According to upstream documentation, some commands are run with `MIX_ENV=prod`
 the reason for this is unkown, we just do it because they do it.
