@@ -25,9 +25,9 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          beamPackages = pkgs.beam.packages.erlang_26.extend (
+          beamPackages = pkgs.beam.packages.erlang_27.extend (
             self: _: {
-              elixir = self.elixir_1_15;
+              elixir = self.elixir_1_17;
             }
           );
         in
@@ -53,8 +53,8 @@
             pnpmDeps = pkgs.fetchPnpmDeps {
               pname = name;
               inherit version src;
-              fetcherVersion = 2;
-              hash = "sha256-8KxtrnWP1Sfiw3QVN2y+cuBbWAGEritnNoPocBo04I4=";
+              fetcherVersion = 3;
+              hash = "sha256-OAexiodOUbq4Yt1P/OGBJWqN+34Dsrbsw30n76rKgYA=";
             };
 
             buildPhase = ''
@@ -79,7 +79,7 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          elixirPackage = pkgs.beam.packages.erlang_26.elixir_1_15;
+          elixirPackage = pkgs.beam.packages.erlang_27.elixir_1_17;
           inotify' = if pkgs.stdenv.isDarwin then pkgs.fswatch else pkgs.inotify-tools;
         in
         {

@@ -294,12 +294,12 @@ let
 
       db_connection = buildMix rec {
         name = "db_connection";
-        version = "2.6.0";
+        version = "2.10.1";
 
         src = fetchHex {
           pkg = "db_connection";
           version = "${version}";
-          sha256 = "c2f992d15725e721ec7fbc1189d4ecdb8afef76648c746a8e1cad35e3b8a35f3";
+          sha256 = "18ed94c6e627b4bf452dbd4df61b69a35a1e768525140bc1917b7a685026a6a3";
         };
 
         beamDeps = [ telemetry ];
@@ -307,12 +307,12 @@ let
 
       decimal = buildMix rec {
         name = "decimal";
-        version = "2.1.1";
+        version = "2.4.1";
 
         src = fetchHex {
           pkg = "decimal";
           version = "${version}";
-          sha256 = "53cfe5f497ed0e7771ae1a475575603d77425099ba5faef9394932b35020ffcc";
+          sha256 = "7e618897933a8455f19a727d7c5e50a2c071a544b700e5e724298ecb4340187f";
         };
 
         beamDeps = [ ];
@@ -388,12 +388,12 @@ let
 
       ecto = buildMix rec {
         name = "ecto";
-        version = "3.11.1";
+        version = "3.13.6";
 
         src = fetchHex {
           pkg = "ecto";
           version = "${version}";
-          sha256 = "ebd3d3772cd0dfcd8d772659e41ed527c28b2a8bde4b00fe03e0463da0f1983b";
+          sha256 = "8afa059bc16cd2c94739ec0a11e3e5df69d828125119109bef35f20a21a76af2";
         };
 
         beamDeps = [
@@ -470,12 +470,12 @@ let
 
       ecto_sql = buildMix rec {
         name = "ecto_sql";
-        version = "3.11.1";
+        version = "3.13.5";
 
         src = fetchHex {
           pkg = "ecto_sql";
           version = "${version}";
-          sha256 = "ce14063ab3514424276e7e360108ad6c2308f6d88164a076aac8a387e1fea634";
+          sha256 = "aa36751f4e6a2b56ae79efb0e088042e010ff4935fc8684e74c23b1f49e25fdc";
         };
 
         beamDeps = [
@@ -1165,12 +1165,12 @@ let
 
       jason = buildMix rec {
         name = "jason";
-        version = "1.4.1";
+        version = "1.4.5";
 
         src = fetchHex {
           pkg = "jason";
           version = "${version}";
-          sha256 = "fbb01ecdfd565b56261302f7e1fcc27c4fb8f32d56eab74db621fc154604a7a1";
+          sha256 = "b0c823996102bcd0239b3c2444eb00409b72f6a140c1950bc8b457d836b30684";
         };
 
         beamDeps = [ decimal ];
@@ -1705,12 +1705,12 @@ let
 
       postgrex = buildMix rec {
         name = "postgrex";
-        version = "0.17.4";
+        version = "0.22.2";
 
         src = fetchHex {
           pkg = "postgrex";
           version = "${version}";
-          sha256 = "6458f7d5b70652bc81c3ea759f91736c16a31be000f306d3c64bcdfe9a18b3cc";
+          sha256 = "8946382ddb06294f56026ac4278b3cc212bac8a2c82ed68b4087819ed1abc53b";
         };
 
         beamDeps = [
@@ -1932,12 +1932,12 @@ let
 
       telemetry = buildRebar3 rec {
         name = "telemetry";
-        version = "1.2.1";
+        version = "1.4.2";
 
         src = fetchHex {
           pkg = "telemetry";
           version = "${version}";
-          sha256 = "dad9ce9d8effc621708f99eac538ef1cbe05d6a874dd741de2e689c47feafed5";
+          sha256 = "928f6495066506077862c0d1646609eed891a4326bee3126ba54b60af61febb1";
         };
 
         beamDeps = [ ];
