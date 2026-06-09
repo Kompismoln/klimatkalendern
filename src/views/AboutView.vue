@@ -13,9 +13,6 @@
                 >{{ t("About this instance") }}</router-link
               >
             </p>
-            <p class="menu-label has-text-grey-dark">
-              {{ t("Legal") }}
-            </p>
             <ul>
               <li>
                 <router-link

@@ -12,7 +12,7 @@
 	</a>
       </p>
       <p>
-        Om du är det minsta intresserad av att hjälpa till med Klimatkalendern, hör av dig till info@klimatkalendern.nu så tar vi det därifrån!
+      Om du är det minsta intresserad av att hjälpa till med Klimatkalendern, hör av dig till <a href="mailto:info@klimatkalendern.nu">info@klimatkalendern.nu</a> så tar vi det därifrån!
       </p>
     </div>
   </div>
