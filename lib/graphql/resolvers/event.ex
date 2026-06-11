@@ -384,13 +384,21 @@ defmodule Mobilizon.GraphQL.Resolvers.Event do
          {:ok, args} <- verify_profile_change(args, event, user, actor),
          args <- extract_timezone(args, user.id),
          {:event_can_be_managed, true} <-
-           {:event_can_be_managed, can_group_event_be_updated_by?(event, actor)},
+           {:event_can_be_managed,
+            organizer_group_member?(%{
+              attributed_to_id: event.attributed_to && event.attributed_to.id,
+              organizer_actor_id: actor.id
+            })},
          new_actor = Actors.get_actor(Map.get(args, :attributed_to_id)),
          {:new_actor_is_group_or_nil, true} <-
            {:new_actor_is_group_or_nil, actor_is_group_or_nil?(new_actor)},
          new_event = %{event | attributed_to: new_actor},
          {:new_group_allowed, true} <-
-           {:new_group_allowed, can_group_event_be_updated_by?(new_event, actor)},
+           {:new_group_allowed,
+            organizer_group_member?(%{
+              attributed_to_id: new_event.attributed_to && new_event.attributed_to.id,
+              organizer_actor_id: actor.id
+            })},
          {:event_external, true} <- edit_event_external_checker(args),
          {:ok, %Activity{data: %{"object" => %{"type" => "Event"}}}, %Event{} = event} <-
            API.Events.update_event(args, event) do
