@@ -15,7 +15,7 @@
         <event-minimalist-card
           v-for="event in group.organizedEvents.elements
             .filter((event) => (longEvent ? event.longEvent : !event.longEvent))
-            .slice(0, 3)"
+            .slice(0, 10)"
           :event="event"
           :key="event.uuid"
         />
