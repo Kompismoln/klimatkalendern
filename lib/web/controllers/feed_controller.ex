@@ -27,7 +27,7 @@ defmodule Mobilizon.Web.FeedController do
 
       data =
         args
-        |> Search.search_events()
+        |> Search.search_events(1, 100)
         |> case do
           {:ok, page} -> page.elements
           _ -> {:error, "Failed to fetch events"}
@@ -85,8 +85,6 @@ defmodule Mobilizon.Web.FeedController do
       status_one_of: param_status_one_of(conn.params, "status_one_of", nil),
       search_target: param_search_target(conn.params, "search_target", :internal),
       type: param_type(conn.params, "type", nil),
-      page: 1,
-      limit: 100,
       sort_by: :created_at_asc
     }
   end
