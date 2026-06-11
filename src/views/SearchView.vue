@@ -23,11 +23,7 @@
         <span v-if="!filtersPanelOpened">{{ t("Hide filters") }}</span>
         <span v-else>{{ t("Show filters") }}</span>
       </o-button>
-      <form
-        @submit.prevent="doNewSearch"
-        :class="{ hidden: filtersPanelOpened }"
-        class="lg:block mt-4 px-2"
-      >
+      <form :class="{ hidden: filtersPanelOpened }" class="lg:block mt-4 px-2">
         <div
           class="py-4 border-b border-gray-200 dark:border-gray-500"
           v-show="globalSearchEnabled"
@@ -583,7 +579,7 @@
         </template>
       </div>
       <event-marker-map
-        v-if="mode === ViewMode.MAP"
+        v-if="mode === ViewMode.MAP && searchEvents && searchGroups"
         :contentType="contentType"
         :latitude="latitude"
         :longitude="longitude"
@@ -741,7 +737,15 @@ const statusOneOf = useRouteQuery(
   [EventStatus.CONFIRMED],
   arrayTransformer
 );
-const languageOneOf = useRouteQuery("languageOneOf", [], arrayTransformer);
+
+const rawLanguageOneOf = useRouteQuery("languageOneOf", [], arrayTransformer);
+
+// filter unknown lang given in the URL
+const languageOneOf = computed(() =>
+  (rawLanguageOneOf.value ?? []).filter(
+    (lang): lang is keyof typeof langs => lang in langs
+  )
+);
 
 const searchTarget = useRouteQuery(
   "target",
@@ -759,8 +763,8 @@ const sortByGroups = useRouteQuery(
   GroupSortValues.LAST_EVENT_ACTIVITY,
   enumTransformer(GroupSortValues)
 );
-const bbox = useRouteQuery("bbox", undefined);
-const zoom = useRouteQuery("zoom", undefined, integerTransformer);
+const bbox = useRouteQuery("bbox", null);
+const zoom = useRouteQuery("zoom", null, integerTransformer);
 
 const EVENT_PAGE_LIMIT = 16;
 
@@ -887,7 +891,7 @@ const searchIsUrl = computed((): boolean => {
   if (!searchDebounced.value) return false;
   try {
     url = new URL(searchDebounced.value);
-  } catch (_) {
+  } catch {
     return false;
   }
 
