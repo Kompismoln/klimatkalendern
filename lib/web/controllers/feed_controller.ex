@@ -85,7 +85,7 @@ defmodule Mobilizon.Web.FeedController do
       status_one_of: param_status_one_of(conn.params, "status_one_of", nil),
       search_target: param_search_target(conn.params, "search_target", :internal),
       type: param_type(conn.params, "type", nil),
-      sort_by: :created_at_asc
+      sort_by: :start_time_asc
     }
   end
 
