@@ -30,13 +30,13 @@
 	    <div class="p-2 flex-auto" :class="{ 'sm:flex-1': mode === 'row' }">
 	      <div class="relative flex flex-col h-full">
 		<div class="w-full flex flex-col gap-1 h-full">
-		  <h3
-		    class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white"
+		  <p
+		    class="mt-0 mb-2 text-xl line-clamp-3 font-bold text-violet-3 dark:text-white"
 		    dir="auto"
 		    :lang="event.language"
 		  >
                     {{ t("View more events and activities from ") +  organizerDisplayName(event) }}
-		  </h3>
+		  </p>
 		</div>
 	      </div>
 	    </div>
