@@ -147,5 +147,11 @@
     "vitest": "^4.0.2",
     "vue-i18n-extract": "^2.0.4",
     "vue-router-mock": "^2.0.0"
+  },
+  "overrides": {
+    "esbuild": "^0.28.0",
+    "vite": {
+      "esbuild": "^0.28.0"
+    }
   }
 }
