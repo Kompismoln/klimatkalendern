@@ -61,6 +61,13 @@ export const GROUP_MINIMAL_FIELDS_FRAGMENTS = gql`
     openness
     manuallyApprovesFollowers
     allowSeeParticipants
+  }
+  ${ACTOR_FRAGMENT}
+`;
+
+export const GROUP_PARTICIPANTS_FIELDS_FRAGMENTS = gql`
+  fragment GroupParticipantsFields on Group {
+    ...GroupMinimalFields
     members {
       elements {
         id
@@ -73,7 +80,7 @@ export const GROUP_MINIMAL_FIELDS_FRAGMENTS = gql`
       total
     }
   }
-  ${ACTOR_FRAGMENT}
+  ${GROUP_MINIMAL_FIELDS_FRAGMENTS}
 `;
 
 export const GROUP_VERY_BASIC_FIELDS_FRAGMENTS = gql`

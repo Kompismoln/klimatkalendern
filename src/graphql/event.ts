@@ -8,7 +8,10 @@ import {
 } from "./participant";
 import { TAG_FRAGMENT } from "./tags";
 import { CONVERSATIONS_QUERY_FRAGMENT } from "./conversations";
-import { GROUP_MINIMAL_FIELDS_FRAGMENTS } from "./group";
+import {
+  GROUP_MINIMAL_FIELDS_FRAGMENTS,
+  GROUP_PARTICIPANTS_FIELDS_FRAGMENTS,
+} from "./group";
 
 const FULL_EVENT_FRAGMENT = gql`
   fragment FullEvent on Event {
@@ -361,13 +364,13 @@ export const PARTICIPANTS = gql`
         ...ActorFragment
       }
       attributedTo {
-        ...GroupMinimalFields
+        ...GroupParticipantsFields
       }
     }
   }
   ${PARTICIPANTS_QUERY_FRAGMENT}
   ${ACTOR_FRAGMENT}
-  ${GROUP_MINIMAL_FIELDS_FRAGMENTS}
+  ${GROUP_PARTICIPANTS_FIELDS_FRAGMENTS}
 `;
 
 export const EVENT_PERSON_PARTICIPATION = gql`
