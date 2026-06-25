@@ -1075,6 +1075,10 @@ const boostLanguagesQuery = computed((): string[] => {
   return Array.from(languages);
 });
 
+function isEqual(a: unknown, b: unknown): boolean {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
+
 // When search criteria changes, reset page number to 1
 watch(
   [
@@ -1095,14 +1099,75 @@ watch(
     sortByGroups,
     boostLanguagesQuery,
   ],
-  ([newContentType]) => {
+  (newValues, oldValues) => {
+    const [
+      newContentType,
+      newSearchDebounced,
+      newGeoHashLocation,
+      newStart,
+      newEnd,
+      newRadius,
+      newIsOnline,
+      newCategoryOneOf,
+      newStatusOneOf,
+      newLanguageOneOf,
+      newSearchTarget,
+      newBbox,
+      newZoom,
+      newSortByEvents,
+      newSortByGroups,
+      newBoostLanguagesQuery,
+    ] = newValues;
+
+    const [
+      oldContentType,
+      oldSearchDebounced,
+      oldGeoHashLocation,
+      oldStart,
+      oldEnd,
+      oldRadius,
+      oldIsOnline,
+      oldCategoryOneOf,
+      oldStatusOneOf,
+      oldLanguageOneOf,
+      oldSearchTarget,
+      oldBbox,
+      oldZoom,
+      oldSortByEvents,
+      oldSortByGroups,
+      oldBoostLanguagesQuery,
+    ] = oldValues;
+
+    const filtersChanged =
+      !isEqual(newContentType, oldContentType) ||
+      !isEqual(newSearchDebounced, oldSearchDebounced) ||
+      !isEqual(newGeoHashLocation, oldGeoHashLocation) ||
+      !isEqual(newStart, oldStart) ||
+      !isEqual(newEnd, oldEnd) ||
+      !isEqual(newRadius, oldRadius) ||
+      !isEqual(newIsOnline, oldIsOnline) ||
+      !isEqual(newCategoryOneOf, oldCategoryOneOf) ||
+      !isEqual(newStatusOneOf, oldStatusOneOf) ||
+      !isEqual(newLanguageOneOf, oldLanguageOneOf) ||
+      !isEqual(newSearchTarget, oldSearchTarget) ||
+      !isEqual(newBbox, oldBbox) ||
+      !isEqual(newZoom, oldZoom) ||
+      !isEqual(newSortByEvents, oldSortByEvents) ||
+      !isEqual(newSortByGroups, oldSortByGroups) ||
+      !isEqual(newBoostLanguagesQuery, oldBoostLanguagesQuery);
+
+    // The watch is always triggered because useRouteQuery is linked to the URL.
+    // So when the URL changes, all watched elements (even if they are not really updated) are recreated.
+    // This bug triggers the watch, so we need to check whether our elements have really changed or not.
+    // https://framagit.org/kaihuri/mobilizon/-/work_items/1670
+    if (!filtersChanged) return;
+
     switch (newContentType) {
       case ContentType.EVENTS:
-        eventPage.value = 1;
-        break;
       case ContentType.LONGEVENTS:
         eventPage.value = 1;
         break;
+
       case ContentType.GROUPS:
         groupPage.value = 1;
         break;
