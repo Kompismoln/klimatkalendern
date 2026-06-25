@@ -69,16 +69,16 @@
           class="py-4 border-b border-gray-200 dark:border-gray-500"
           v-show="contentType !== 'GROUPS'"
         >
-          <button
+          <div
             :aria-label="t('Online events')"
             class="text-gray-400 hover:text-gray-500 dark:text-slate-100 hover:dark:text-slate-200"
-            @click="isOnline = !isOnline"
           >
-            <o-switch disabled v-model="isOnline"></o-switch>
-            <span class="px-4 font-medium text-gray-900 dark:text-slate-100">{{
-              t("Online events")
-            }}</span>
-          </button>
+            <o-switch v-model="isOnline"
+              ><span class="font-medium text-gray-900 dark:text-slate-100">{{
+                t("Online events")
+              }}</span></o-switch
+            >
+          </div>
         </div>
 
         <filter-section
