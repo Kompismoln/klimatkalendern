@@ -72,6 +72,9 @@ defmodule Mobilizon.Federation.ActivityStream.Converter.Event do
         metadata = get_metdata(object)
         contacts = get_contacts(object)
 
+        # If ActivityPub.endTime = "23:59:59" of same day of startTime => Mobilizon.ends_on = nil
+        # Inverse process that in "model_to_as"
+        # TODO : review time (begin/end) for event for 1 complet day
         ends_on =
           if object["endTime"] ==
                date_to_string(
@@ -138,6 +141,8 @@ defmodule Mobilizon.Federation.ActivityStream.Converter.Event do
 
     start_time = shift_tz(event.begins_on, event.options.timezone)
 
+    # ActivityPub.endTime don't must be nil.
+    # if Mobilizon.ends_on is nil => endTime = "23:59:59" of same day of startTime
     end_time =
       if event.ends_on == nil,
         do: default_end_time(start_time, event.options.timezone),
@@ -214,6 +219,7 @@ defmodule Mobilizon.Federation.ActivityStream.Converter.Event do
     }
   end
 
+  @spec calculate_timezone(map, Address.t() | nil) :: String.t()
   defp calculate_timezone(%{"timezone" => timezone}, %Address{geom: geom}) do
     TimezoneDetector.detect(
       timezone,
