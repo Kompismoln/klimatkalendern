@@ -6,7 +6,7 @@ exports[`InstanceView > Show simple 1`] = `
   <section class="flex flex-wrap md:flex-nowrap items-center justify-between gap-4">
     <div>
       <h2 class="text-4xl font-bold">Mobilizon</h2>
-      <p class="text-slate-700 dark:text-slate-400 my-4">Mobilizon for test</p>Software details: <span class="capitalize">Mobilizon - 5.2.3</span>
+      <p class="text-slate-700 dark:text-slate-400 my-4">Mobilizon for test</p>Software details: <span class="capitalize">Mobilizon - 5.2.4</span>
     </div><a data-oruga="button" role="button" tabindex="0" class="o-button mx-auto md:mx-0" href="https://mobilizon.test" target="_blank" rel="noopener noreferrer"><span class="o-button__wrapper"><!----><span class="o-button__label">Visit mobilizon.test</span><span data-oruga="icon" class="o-icon o-button__icon o-button__icon-right"><i class="mdi mdi-open-in-new mdi-24px"></i></span></span></a>
   </section>
   <section>
