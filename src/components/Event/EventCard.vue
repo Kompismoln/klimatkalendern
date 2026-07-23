@@ -16,7 +16,7 @@
 			:picture="{url:actorAvatarURL}"
           :rounded="false"
           :fill-space="true"
-          style="height: 100%; position: absolute; top: 0; left: 0; width: 100%; opacity: 0.4;"
+          style="height: 100%; position: absolute; top: 0; left: 0; width: 100%; filter:grayscale(1) brightness(0.5);"
         />
         <lazy-image-wrapper
 			
@@ -24,7 +24,7 @@
 			:picture="event.picture"
           :rounded="false"
           :fill-space="true"
-          style="height: 100%; position: absolute; top: 0; left: 0; width: 100%; opacity: 0.4;"
+          style="height: 100%; position: absolute; top: 0; left: 0; width: 100%; filter:grayscale(1) brightness(0.5);"
         />
       </figure>
 	    <div class="p-2 flex-auto" :class="{ 'sm:flex-1': mode === 'row' }">
