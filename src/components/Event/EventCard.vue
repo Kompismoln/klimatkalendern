@@ -31,7 +31,7 @@
 	      <div class="relative flex flex-col h-full">
 		<div class="w-full flex flex-col gap-1 h-full">
 		  <p
-		    class="mt-0 mb-2 text-xl line-clamp-3 font-bold text-violet-3 dark:text-white"
+		    class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white"
 		    dir="auto"
 		    :lang="event.language"
 		  >
