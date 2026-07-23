@@ -8,7 +8,42 @@
     :to="to"
     :isInternal="isInternal"
   >
-    <div
+    <div v-if="viewMoreFrom">
+      <figure class="block relative pt-40">
+        <lazy-image-wrapper
+			
+              v-if="actorAvatarURL"
+			:picture="{url:actorAvatarURL}"
+          :rounded="false"
+          :fill-space="true"
+          style="height: 100%; position: absolute; top: 0; left: 0; width: 100%; filter:grayscale(1) brightness(0.5);"
+        />
+        <lazy-image-wrapper
+			
+              v-else
+			:picture="event.picture"
+          :rounded="false"
+          :fill-space="true"
+          style="height: 100%; position: absolute; top: 0; left: 0; width: 100%; filter:grayscale(1) brightness(0.5);"
+        />
+      </figure>
+	    <div class="p-2 flex-auto" :class="{ 'sm:flex-1': mode === 'row' }">
+	      <div class="relative flex flex-col h-full">
+		<div class="w-full flex flex-col gap-1 h-full">
+		  <p
+		    class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white"
+		    dir="auto"
+		    :lang="event.language"
+		  >
+                    {{ t("View more events and activities from ") +  organizerDisplayName(event) }}
+		  </p>
+		</div>
+	      </div>
+	    </div>
+    </div>
+
+    <div v-else>
+    <div 
       :class="{ 'sm:w-full sm:max-w-[20rem] h-full': mode === 'row' }"
     >
       <div
@@ -38,7 +73,7 @@
 
       <figure class="block relative pt-40">
         <lazy-image-wrapper
-          :picture="event.picture"
+	  :picture="event.picture"
           :rounded="false"
           :fill-space="true"
           style="height: 100%; position: absolute; top: 0; left: 0; width: 100%"
@@ -179,6 +214,7 @@
         </div>
       </div>
     </div>
+    </div>
   </LinkOrRouterLink>
 </template>
 <style scoped>
@@ -223,6 +259,7 @@ const props = withDefaults(
     event: IEvent;
     options?: IEventCardOptions;
     mode?: "row" | "column";
+    viewMoreFrom?: false; 
   }>(),
   { mode: "column" }
 );
@@ -284,6 +321,11 @@ const to = computed(() => {
   }
   return { name: RouteName.EVENT, params: { uuid: props.event.uuid } };
 });
+
+//const ludvig = actorAvatarURL != null ? actorAvatarURL : "X"
+//const ludvig = (actorAvatarURL) ? "Z" : "X"
+const ludvig = actorAvatarURL
+//const viewMoreFrom = true
 
 const formatedDate = computed(() =>
   dtutils.formatEventDatetime(props.event, dateFnsLocale)

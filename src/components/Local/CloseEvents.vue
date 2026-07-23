@@ -39,10 +39,7 @@
         v-show="loading"
       />
       <span v-for="event in events.elements" :key="event.elem.uuid">
-        <more-content v-if="event.showActorMore" :to="event.actorMoreRoute">
-          {{ t("View more events and activities from ") + event.actorMoreName }}
-        </more-content>
-        <event-card v-else :event="event.elem" :key="event.elem.uuid" />
+        <event-card :event="event.elem" :key="event.elem.uuid" :viewMoreFrom="event.showActorMore" />
       </span>
       <more-content
         v-if="userLocation?.name && userLocation?.lat && userLocation?.lon"
