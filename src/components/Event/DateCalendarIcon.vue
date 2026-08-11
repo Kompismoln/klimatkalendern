@@ -73,11 +73,12 @@ div.datetime-container {
   .datetime-container-header .weekday {
     font-size: calc(9px * var(--small));
     font-weight: bold;
-    vertical-align: top;
+    color: white;
     line-height: calc(8px * var(--small));
   }
   .datetime-container-content {
     height: calc(22px * var(--small));
+    align-content: center;
   }
   .datetime-container-footer {
     height: calc(8px * var(--small));
@@ -87,6 +88,7 @@ div.datetime-container {
     font-weight: bold;
     vertical-align: top;
     line-height: calc(8px * var(--small));
+    color: white;
   }
 
   time {
