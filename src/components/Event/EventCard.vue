@@ -322,11 +322,6 @@ const to = computed(() => {
   return { name: RouteName.EVENT, params: { uuid: props.event.uuid } };
 });
 
-//const ludvig = actorAvatarURL != null ? actorAvatarURL : "X"
-//const ludvig = (actorAvatarURL) ? "Z" : "X"
-const ludvig = actorAvatarURL
-//const viewMoreFrom = true
-
 const formatedDate = computed(() =>
   dtutils.formatEventDatetime(props.event, dateFnsLocale)
 );
