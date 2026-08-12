@@ -60,8 +60,8 @@
                   (src + "/pnpm-lock.yaml")
                 ];
               };
-              fetcherVersion = 3;
-              hash = "sha256-EHD+93Hvn3o7i5Uv0npLK89IU9L5L4G7uQRzas+E2Ik=";
+              fetcherVersion = 4;
+              hash = "sha256-7oQ2Q/8X1Va8MZl00gB+MWQ96QIpBXsjq40Jnqc5iUg=";
             };
 
             buildPhase = ''
