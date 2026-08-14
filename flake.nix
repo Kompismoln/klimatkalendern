@@ -52,9 +52,16 @@
 
             pnpmDeps = pkgs.fetchPnpmDeps {
               pname = name;
-              inherit version src;
-              fetcherVersion = 3;
-              hash = "sha256-OAexiodOUbq4Yt1P/OGBJWqN+34Dsrbsw30n76rKgYA=";
+              inherit version;
+              src = pkgs.lib.fileset.toSource {
+                root = src;
+                fileset = pkgs.lib.fileset.unions [
+                  (src + "/package.json")
+                  (src + "/pnpm-lock.yaml")
+                ];
+              };
+              fetcherVersion = 4;
+              hash = "sha256-7oQ2Q/8X1Va8MZl00gB+MWQ96QIpBXsjq40Jnqc5iUg=";
             };
 
             buildPhase = ''
