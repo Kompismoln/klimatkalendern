@@ -369,6 +369,18 @@ type Participant {
   insertedAt: DateTime
 }
 
+"Represents a coorganizer to an event"
+type Coorganizer {
+  "The coorganizer entry ID"
+  id: Integer
+
+  "The event which the actor participates in"
+  event: Event
+
+  "The actor that participates to the event"
+  coorganizer: Actor
+}
+
 "The list of sortable fields for an user list"
 enum SortableUserField {
   "The user's ID"
@@ -2405,6 +2417,9 @@ type RootQueryType {
 
   "Get an event by uuid"
   event("The event's UUID" uuid: UUID!): Event
+
+  "Get a coorganizer by id"
+  coorganizer("The coorganizer entry id" id: ID!): Coorganizer
 
   "Get replies for thread"
   thread("The comment ID" id: ID!): [Comment]
