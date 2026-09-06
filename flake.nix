@@ -25,7 +25,7 @@
         system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          beamPackages = pkgs.beam.packages.erlang_27.extend (
+          beamPackages = pkgs.beam.packages.erlang_27.overrideScope (
             self: _: {
               elixir = self.elixir_1_17;
             }
