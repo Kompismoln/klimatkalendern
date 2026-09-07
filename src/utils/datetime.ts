@@ -77,29 +77,31 @@ function formatDateSv(event: IEvent, locale?: Locale) {
     b.getMonth() == e.getMonth() &&
     b.getDate() == e.getDate()
   ) {
+    let showStartTime = (event.options.showStartTime === true || b.getHours() != 0)
+    let showEndTime = showStartTime &&
+	    (event.options.showEndTime === true || e.getHours() != 0)
+    
     // No time information
-    if (!event.options.showStartTime) {
-      return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)}`;
+    if (showEndTime) {
+    	return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
     }
 
-    // With start time.
-    if (event.options.showStartTime && !event.options.showEndTime) {
+    if (showStartTime) {
       return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} ${getTimeSv(b)}`;
     }
 
-    // Start and end time.
-    return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
+    return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)}`;
   }
 
   // Multi day event
   if (b.getFullYear() == e.getFullYear() && b.getMonth() == e.getMonth()) {
-    return `${capitalize(bWeekDay)} ${b.getDate()} – ${eWeekDay} ${e.getDate()} ${getMonthSv(b)} ${getTimeRangeSv(b, e)}`;
+    return `${capitalize(bWeekDay)} ${b.getDate()} – ${eWeekDay} ${e.getDate()} ${getMonthSv(b)}`;
   }
 
   // NOTE: This code path is taken for events spanning different years to! But
   //       omitting year will not be confusing assuming events don't span many many monts
   //       or even many years.
-  return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(e)} – ${eWeekDay} ${e.getDate()} ${getMonthSv(e)} ${getTimeRangeSv(b, e)}`;
+  return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(e)} – ${eWeekDay} ${e.getDate()} ${getMonthSv(e)}`
 }
 
 function capitalize(s: string): string {
