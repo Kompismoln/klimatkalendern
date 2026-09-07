@@ -101,7 +101,7 @@ function formatDateSv(event: IEvent, locale?: Locale) {
   // NOTE: This code path is taken for events spanning different years to! But
   //       omitting year will not be confusing assuming events don't span many many monts
   //       or even many years.
-  return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(e)} – ${eWeekDay} ${e.getDate()} ${getMonthSv(e)}`
+  return `${capitalize(bWeekDay)} ${b.getDate()} ${getMonthSv(b)} – ${eWeekDay} ${e.getDate()} ${getMonthSv(e)}`
 }
 
 function capitalize(s: string): string {
