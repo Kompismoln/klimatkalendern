@@ -29,6 +29,7 @@
         class="lg:block mt-4 px-2"
       >
         <div
+          v-if="showGlobalSearchField"
           class="py-4 border-b border-gray-200 dark:border-gray-500"
           v-show="globalSearchEnabled"
         >
@@ -185,6 +186,7 @@
           </template>
         </filter-section>
         <filter-section
+          v-if="showEventStatusSearchField"
           v-show="contentType !== 'GROUPS'"
           v-model:opened="searchFilterSectionsOpenStatus.eventStatus"
           :title="t('Event status')"
@@ -236,6 +238,7 @@
         </filter-section>
 
         <filter-section
+        v-if="showLanguageSearchField"
           v-model:opened="searchFilterSectionsOpenStatus.eventLanguage"
           :title="t('Languages')"
         >
@@ -630,6 +633,10 @@ const search = useRouteQuery("search", "");
 const searchDebounced = refDebounced(search, 1000);
 const addressName = useRouteQuery("locationName", null);
 const address = ref<IAddress | null>(null);
+
+const showGlobalSearchField = false;
+const showLanguageSearchField = false;
+const showEventStatusSearchField = false;
 
 const userAddress = computed({
   get(): IAddress | null {
