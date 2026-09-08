@@ -457,6 +457,7 @@
                 ? 'calendar-star'
                 : 'calendar'
             "
+	    inline=true
           >
             <span v-if="searchIsUrl">
               {{ t("No event found at this address") }}
