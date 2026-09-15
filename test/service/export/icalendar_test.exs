@@ -22,9 +22,40 @@ defmodule Mobilizon.Service.ICalendarTest do
       ATTACH;FMTTYPE=#{event.picture.file.content_type}:#{event.picture.file.url}
       CATEGORIES:#{Enum.map_join(event.tags, ",", & &1.title)}
       DESCRIPTION:Ceci est une description avec une première phrase assez longue\\,\\n      puis sur une seconde ligne
-      DTEND:#{Value.to_ics(event.ends_on)}Z
+      DTEND;TZID=Europe/Stockholm:#{Value.to_ics(Timex.shift(event.ends_on, hours: 2))}
       DTSTAMP:#{Value.to_ics(event.publish_at)}Z
-      DTSTART:#{Value.to_ics(event.begins_on)}Z
+      DTSTART;TZID=Europe/Stockholm:#{Value.to_ics(Timex.shift(event.begins_on, hours: 2))}
+      GEO:#{event.physical_address |> Address.coords() |> Tuple.to_list() |> Enum.join(";")}
+      LOCATION:#{Address.representation(event.physical_address)}
+      ORGANIZER:#{event.organizer_actor.name}
+      STATUS:#{event.status |> to_string() |> String.upcase()}
+      SUMMARY:#{event.title}
+      UID:#{event.uuid}
+      URL:#{event.url}
+      END:VEVENT
+      END:VCALENDAR
+      """
+
+      assert {:ok, ics} == ICalendarService.export_public_event(event)
+    end
+  end
+
+  describe "export a full day event to ics" do
+    test "export basic infos" do
+      %Event{} = event = insert(:event_full_day)
+
+      ics = """
+      BEGIN:VCALENDAR
+      CALSCALE:GREGORIAN
+      VERSION:2.0
+      PRODID:-//Elixir ICalendar//Mobilizon #{Mobilizon.Config.instance_version()}//EN
+      BEGIN:VEVENT
+      ATTACH;FMTTYPE=#{event.picture.file.content_type}:#{event.picture.file.url}
+      CATEGORIES:#{Enum.map_join(event.tags, ",", & &1.title)}
+      DESCRIPTION:Ceci est une description avec une première phrase assez longue\\,\\n      puis sur une seconde ligne
+      DTEND:#{String.split(Value.to_ics(event.ends_on), "T") |> hd }
+      DTSTAMP:#{Value.to_ics(event.publish_at)}Z
+      DTSTART:20260918
       GEO:#{event.physical_address |> Address.coords() |> Tuple.to_list() |> Enum.join(";")}
       LOCATION:#{Address.representation(event.physical_address)}
       ORGANIZER:#{event.organizer_actor.name}
