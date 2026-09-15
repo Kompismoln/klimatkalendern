@@ -119,6 +119,20 @@ defmodule Mobilizon.Service.Export.ICalendar do
 
   @spec do_export_event(Event.t()) :: ICalendar.Event.t()
   defp do_export_event(%Event{} = event) do
+    # If there's no timezone, need to set stockholm to avoid date errors around midnight
+    event = 
+      if event.options.timezone == nil do
+        %Event{
+          event
+          | options: %EventOptions{
+            event.options
+            | timezone: "Europe/Stockholm"
+          }
+        }
+      else
+        event
+      end
+
     icalendar_event = %ICalendar.Event{
       summary: event.title,
       dtstart: begins_on(event),
@@ -167,8 +181,18 @@ defmodule Mobilizon.Service.Export.ICalendar do
     "Mobilizon #{Config.instance_version()}"
   end
 
+  defp begins_on(%Event{begins_on: begins_on, options: %EventOptions{show_start_time: false, timezone: timezone}}) do
+    {:ok, begin_date} = shift_tz(begins_on, timezone) |> Timex.format("{YYYY}{0M}{0D}")
+    begin_date
+  end
+
   defp begins_on(%Event{begins_on: begins_on, options: %EventOptions{timezone: timezone}}) do
     shift_tz(begins_on, timezone)
+  end
+
+  defp ends_on(%Event{ends_on: ends_on, options: %EventOptions{show_start_time: false, timezone: timezone}}) do
+    {:ok, end_date} = shift_tz(ends_on, timezone) |> Timex.format("{YYYY}{0M}{0D}")
+    end_date
   end
 
   defp ends_on(%Event{ends_on: ends_on, options: %EventOptions{timezone: timezone}}) do
