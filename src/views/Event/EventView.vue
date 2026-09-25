@@ -463,7 +463,6 @@ onMounted(async () => {
 
   observer.value = new IntersectionObserver(
     (entries) => {
-      // eslint-disable-next-line no-restricted-syntax
       for (const entry of entries) {
         if (entry) {
           loadComments.value = entry.isIntersecting || loadComments.value;

@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`GroupSettings > Show simple 1`] = `
+"<div>
+  <breadcrumbs-nav links="[object Object],[object Object],[object Object]"></breadcrumbs-nav>
+  <transition-stub name="fade" appear="false" persisted="false" css="true">
+    <!---->
+  </transition-stub>
+  <transition-stub name="fade" appear="false" persisted="false" css="true">
+    <article data-oruga="notification" class="o-notification o-notification--top">
+      <!---->
+      <div class="o-notification__wrapper">
+        <!---->
+        <div class="o-notification__content">You are not an administrator for this group.</div>
+      </div>
+    </article>
+  </transition-stub>
+</div>"
+`;

@@ -1,0 +1,96 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ParticipationButton > Show Basic 1`] = `
+"<div class="ml-auto w-min">
+  <div data-oruga="dropdown" class="o-dropdown o-dropdown--position-bottom-left">
+    <div class="o-dropdown__trigger" aria-haspopup="menu" aria-disabled="false" aria-controls="v-0"><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--large o-button--primary"><span class="o-button__wrapper"><!----><span class="o-button__label">Participate</span><span data-oruga="icon" class="o-icon o-icon--large o-button__icon o-button__icon-right"><i class="mdi mdi-menu-down mdi-48px"></i></span></span></button></div>
+    <!--teleport start-->
+    <!---->
+    <transition-stub name="fade" appear="false" persisted="false" css="true">
+      <div id="v-0" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--bottom-left" role="menu" aria-hidden="true" style="display: none;">
+        <div id="v-0-1" data-oruga="dropdown-item" data-id="dropdown-1" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem">
+          <div class="flex gap-2 items-center">
+            <figure class=""><img class="rounded-xl" src="https://mobilizon.fr/media/3a5f18c058a8193b1febfaf561f94ae8b91f85ac64c01ddf5ad7b251fb43baf5.jpg?name=profil.jpg" alt="" width="24" height="24"></figure>
+            <div class=""><span>as Thomas</span></div>
+          </div>
+        </div>
+        <div id="v-0-2" data-oruga="dropdown-item" data-id="dropdown-2" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem">with another identity…</div>
+      </div>
+    </transition-stub>
+    <!--teleport end-->
+  </div>
+</div>"
+`;
+
+exports[`ParticipationButton > Show Basic with confirmation 1`] = `
+"<div class="ml-auto w-min">
+  <div data-oruga="dropdown" class="o-dropdown o-dropdown--position-bottom-left">
+    <div class="o-dropdown__trigger" aria-haspopup="menu" aria-disabled="false" aria-controls="v-0"><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--large o-button--primary"><span class="o-button__wrapper"><!----><span class="o-button__label">Participate</span><span data-oruga="icon" class="o-icon o-icon--large o-button__icon o-button__icon-right"><i class="mdi mdi-menu-down mdi-48px"></i></span></span></button></div>
+    <!--teleport start-->
+    <!---->
+    <transition-stub name="fade" appear="false" persisted="false" css="true">
+      <div id="v-0" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--bottom-left" role="menu" aria-hidden="true" style="display: none;">
+        <div id="v-0-1" data-oruga="dropdown-item" data-id="dropdown-1" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem">
+          <div class="flex gap-2 items-center">
+            <figure class=""><img class="rounded-xl" src="https://mobilizon.fr/media/3a5f18c058a8193b1febfaf561f94ae8b91f85ac64c01ddf5ad7b251fb43baf5.jpg?name=profil.jpg" alt="" width="24" height="24"></figure>
+            <div class=""><span>as Thomas</span></div>
+          </div>
+        </div>
+        <div id="v-0-2" data-oruga="dropdown-item" data-id="dropdown-2" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem">with another identity…</div>
+      </div>
+    </transition-stub>
+    <!--teleport end-->
+  </div>
+</div>"
+`;
+
+exports[`ParticipationButton > Show Participating 1`] = `
+"<div class="ml-auto w-min">
+  <div data-oruga="dropdown" class="o-dropdown o-dropdown--position-bottom-left">
+    <div class="o-dropdown__trigger" aria-haspopup="menu" aria-disabled="false" aria-controls="v-0"><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--large o-button--success"><span class="o-button__wrapper"><span data-oruga="icon" class="o-icon o-icon--large o-button__icon o-button__icon-left"><i class="mdi mdi-check mdi-48px"></i></span><span class="o-button__label">I participate</span><span data-oruga="icon" class="o-icon o-icon--large o-button__icon o-button__icon-right"><i class="mdi mdi-menu-down mdi-48px"></i></span></span></button></div>
+    <!--teleport start-->
+    <!---->
+    <transition-stub name="fade" appear="false" persisted="false" css="true">
+      <div id="v-0" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--bottom-left" role="menu" aria-hidden="true" style="display: none;">
+        <div id="v-0-1" data-oruga="dropdown-item" data-id="dropdown-1" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem">Cancel my participation…</div>
+      </div>
+    </transition-stub>
+    <!--teleport end-->
+  </div>
+</div>"
+`;
+
+exports[`ParticipationButton > Show Pending approval 1`] = `
+"<div class="ml-auto w-min">
+  <div class="flex flex-col">
+    <div data-oruga="dropdown" class="o-dropdown o-dropdown--position-bottom-left">
+      <div class="o-dropdown__trigger" aria-haspopup="menu" aria-disabled="false" aria-controls="v-0"><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--large o-button--success"><span class="o-button__wrapper"><!----><span class="o-button__label"><template class="flex items-center"></template></span>
+          <!----></span>
+        </button></div>
+      <!--teleport start-->
+      <!---->
+      <transition-stub name="fade" appear="false" persisted="false" css="true">
+        <div id="v-0" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--bottom-left" role="menu" aria-hidden="true" style="display: none;">
+          <div id="v-0-1" data-oruga="dropdown-item" data-id="dropdown-1" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem">Change my identity…</div>
+          <div id="v-0-2" data-oruga="dropdown-item" data-id="dropdown-2" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem">Cancel my participation request…</div>
+        </div>
+      </transition-stub>
+      <!--teleport end-->
+    </div>
+    <p>Participation requested!</p>
+    <p>Waiting for organization team approval.</p>
+  </div>
+</div>"
+`;
+
+exports[`ParticipationButton > Show Rejected 1`] = `
+"<div class="ml-auto w-min">
+  <div><span>Unfortunately, your participation request was rejected by the organizers.</span></div>
+</div>"
+`;
+
+exports[`ParticipationButton > Show Unlogged 1`] = `
+"<div class="ml-auto w-min"><a href="/events/0123456789/participate/with-account" class="o-button o-button--large o-button--primary" data-oruga="button" role="button" tabindex="0" rel="nofollow" native-type="button"><span class="o-button__wrapper"><!----><span class="o-button__label">Participate</span>
+    <!----></span>
+  </a></div>"
+`;

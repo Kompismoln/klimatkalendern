@@ -66,7 +66,7 @@ import {
 import { computed, nextTick, ref } from "vue";
 import { useMapTiles } from "@/composition/apollo/config";
 import { useI18n } from "vue-i18n";
-import Locatecontrol from "leaflet.locatecontrol";
+import { LocateControl } from "leaflet.locatecontrol";
 import CrosshairsGps from "vue-material-design-icons/CrosshairsGps.vue";
 import MapMarker from "vue-material-design-icons/MapMarker.vue";
 import { useDebounceFn } from "@vueuse/core";
@@ -112,7 +112,7 @@ const mountLocateControl = () => {
   if (canDoGeoLocation.value && mapObject.value) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    locateControl.value = new Locatecontrol({
+    locateControl.value = new LocateControl({
       strings: { title: t("Show me where I am") as string },
       position: "topleft",
       drawCircle: false,

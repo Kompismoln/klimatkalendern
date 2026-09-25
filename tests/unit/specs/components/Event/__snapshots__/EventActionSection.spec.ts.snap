@@ -43,7 +43,7 @@ exports[`EventActionSection > event action section with basic informations 1`] =
         </o-field>
         <div class="buttons">
           <o-button native-type="button" class="button">Cancel</o-button>
-          <o-button variant="primary" native-type="submit">Confirm my participation</o-button>
+          <o-button variant="primary" type="submit">Confirm my participation</o-button>
         </div>
       </form>
     </section>
@@ -105,7 +105,7 @@ exports[`EventActionSection > event action section with creator as participant 1
         </o-field>
         <div class="buttons">
           <o-button native-type="button" class="button">Cancel</o-button>
-          <o-button variant="primary" native-type="submit">Confirm my participation</o-button>
+          <o-button variant="primary" type="submit">Confirm my participation</o-button>
         </div>
       </form>
     </section>
@@ -156,7 +156,7 @@ exports[`EventActionSection > event action section with participant 1`] = `
         </o-field>
         <div class="buttons">
           <o-button native-type="button" class="button">Cancel</o-button>
-          <o-button variant="primary" native-type="submit">Confirm my participation</o-button>
+          <o-button variant="primary" type="submit">Confirm my participation</o-button>
         </div>
       </form>
     </section>

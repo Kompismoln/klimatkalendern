@@ -61,6 +61,11 @@ defmodule Mobilizon.GraphQL.Schema.Actors.GroupType do
       description: "The type of the event's address"
     )
 
+    field(:allow_see_participants, :boolean,
+      description: "Option to allow group's member to see event's participants",
+      default_value: false
+    )
+
     # These one should have a privacy setting
     field(:followers_count, :integer,
       description: "Number of followers for this actor",
@@ -320,6 +325,12 @@ defmodule Mobilizon.GraphQL.Schema.Actors.GroupType do
       )
 
       arg(:physical_address, :address_input, description: "The physical address for the group")
+
+      arg(:allow_see_participants, :boolean,
+        description: "Option to allow group's member to see event's participants",
+        default_value: false
+      )
+
       middleware(Rajska.QueryAuthorization, permit: :user, scope: false)
       resolve(&Group.create_group/3)
     end
@@ -352,6 +363,11 @@ defmodule Mobilizon.GraphQL.Schema.Actors.GroupType do
       )
 
       arg(:physical_address, :address_input, description: "The physical address for the group")
+
+      arg(:allow_see_participants, :boolean,
+        description: "Option to allow group's member to see event's participants"
+      )
+
       middleware(Rajska.QueryAuthorization, permit: :user, scope: false)
       resolve(&Group.update_group/3)
     end

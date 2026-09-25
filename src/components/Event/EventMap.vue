@@ -87,7 +87,7 @@ const { t } = useI18n({ useScope: "global" });
 const RoutingParamType = {
   [RoutingType.OPENSTREETMAP]: {
     [RoutingTransportationType.FOOT]: "engine=fossgis_osrm_foot",
-    [RoutingTransportationType.BIKE]: "engine=fossgis_osrm_bike",
+    [RoutingTransportationType.BIKE]: "engine=fossgis_osrm_bicycle",
     [RoutingTransportationType.TRANSIT]: null,
     [RoutingTransportationType.CAR]: "engine=fossgis_osrm_car",
   },

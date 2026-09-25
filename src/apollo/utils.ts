@@ -22,7 +22,6 @@ type schemaType = {
   possibleTypes: possibleTypes[];
 };
 
-// eslint-disable-next-line no-underscore-dangle
 const types = introspectionQueryResultData.__schema.types as schemaType[];
 export const possibleTypes = types.reduce(
   (acc, type) => {
@@ -205,7 +204,7 @@ function doMerge<T = any>(
     // exception here, instead of recovering by appending incoming
     // onto the existing array.
     res = [...merged, ...previous];
-    // eslint-disable-next-line no-underscore-dangle
+
     res = uniqBy(res, (elem: any) => elem.__ref);
   }
   return res;

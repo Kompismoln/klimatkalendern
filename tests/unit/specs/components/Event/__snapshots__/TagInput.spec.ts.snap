@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TagInput > Show new 1`] = `
+"<div data-oruga="field" class="o-field taginput-field"><label id="v-0-0" for="tag-input-1" class="o-field__label">
+    <p class="inline-flex items-center gap-0.5">Add some tags
+    <div data-oruga="tooltip" class="o-tooltip">
+      <div class="o-tooltip__trigger" aria-haspopup="true" aria-describedby="v-0-2"><span aria-hidden="true" class="material-design-icon help-circle-outline-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="16" height="16" viewBox="0 0 24 24"><path d="M11,18H13V16H11V18M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20,12C20,16.41 16.41,20 12,20M12,6A4,4 0 0,0 8,10H10A2,2 0 0,1 12,8A2,2 0 0,1 14,10C14,12 11,11.75 11,15H13C13,12.75 16,12.5 16,10A4,4 0 0,0 12,6Z"><!--v-if--></path></svg></span></div>
+      <!--teleport start-->
+      <transition-stub name="fade" appear="false" persisted="false" css="true">
+        <div id="v-0-2" class="o-tooltip__content o-tooltip__content--auto o-tooltip__content--dark" role="tooltip" style="display: none;"><span class="o-tooltip__arrow o-tooltip__arrow--auto o-tooltip__arrow--dark"></span>You can add tags by hitting the Enter key or by adding a comma</div>
+      </transition-stub>
+      <!--teleport end-->
+    </div>
+    </p>
+  </label>
+  <div data-oruga="taginput" class="o-taginput o-taginput--expanded">
+    <div class="o-taginput__container"><span data-oruga="tag" class="o-tag o-taginput__item"><!----><span class="o-tag__label">Hello</span><button type="button" class="o-tag__close" aria-label="Remove" data-oruga="close"><span data-oruga="icon" class="o-icon"><i class="mdi mdi-close mdi-24px"></i></span></button></span>
+      <div data-oruga="autocomplete" class="o-dropdown o-dropdown--expanded o-dropdown--position-auto o-autocomplete o-taginput__autocomplete">
+        <div class="o-dropdown__trigger" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-disabled="false" aria-controls="v-0-4" aria-labelledby="v-0-0">
+          <div data-oruga="input" class="o-input o-input--expanded"><span data-oruga="icon" class="o-icon o-input__icon-left"><i class="mdi mdi-label mdi-24px"></i></span><input aria-labelledby="v-0-0" data="" allow-autocomplete="true" field="title" dir="auto" has-counter="false" aria-autocomplete="list" aria-controls="v-0-4" enterkeyhint="enter" id="tag-input-1" type="text" data-oruga-input="text" class="o-input__input o-taginput__input o-input__input--iconspace-left o-input__input--placeholder" maxlength="20" autocomplete="off" placeholder="Eg: Stockholm, Dance, Chess…">
+            <!---->
+            <!---->
+          </div>
+        </div>
+        <!--teleport start-->
+        <!---->
+        <transition-stub name="fade" appear="false" persisted="false" css="true">
+          <div id="v-0-4" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--auto" style="max-height: 200px; overflow: auto; display: none;" role="listbox" aria-labelledby="v-0-0" aria-multiselectable="false">
+            <!---->
+          </div>
+        </transition-stub>
+        <!--teleport end-->
+      </div>
+    </div><small class="o-taginput__counter">1 / 10</small>
+  </div>
+  <!---->
+</div>"
+`;

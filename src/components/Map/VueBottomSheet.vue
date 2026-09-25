@@ -130,6 +130,7 @@ const move = (event: any, type: any) => {
       moving.value = false;
       if (cardP.value < -30) {
         opened.value = false;
+        // eslint-disable-next-line no-constant-binary-expression
         cardP.value = (-cardH.value ?? 0) - stripe.value;
         document.body.style.overflow = "";
         emit("closed");

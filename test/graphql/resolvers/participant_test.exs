@@ -3,8 +3,8 @@ defmodule Mobilizon.GraphQL.Resolvers.ParticipantTest do
   use Mobilizon.Tests.Helpers
   use Oban.Testing, repo: Mobilizon.Storage.Repo
 
-  alias Mobilizon.Actors.Actor
   alias Mobilizon.{Actors, Config, Conversations, Events}
+  alias Mobilizon.Actors.Actor
   alias Mobilizon.Events.{Event, EventParticipantStats, Participant}
   alias Mobilizon.GraphQL.AbsintheHelpers
   alias Mobilizon.Service.Workers.LegacyNotifierBuilder
@@ -29,7 +29,16 @@ defmodule Mobilizon.GraphQL.Resolvers.ParticipantTest do
     user = insert(:user)
     actor = insert(:actor, user: user, preferred_username: "test")
 
-    {:ok, conn: conn, actor: actor, user: user}
+    event = insert(:event, join_options: :restricted, organizer_actor: actor)
+    insert(:participant, event: event, actor: actor, role: :creator)
+
+    insert(:participant,
+      event: event,
+      actor: insert(:actor, user: insert(:user), preferred_username: "test-part"),
+      role: :participant
+    )
+
+    {:ok, conn: conn, actor: actor, user: user, event: event}
   end
 
   describe "Participant Resolver" do
@@ -1381,6 +1390,283 @@ defmodule Mobilizon.GraphQL.Resolvers.ParticipantTest do
 
       assert %Participant{} = Events.get_participant(participant_id)
       assert_email_sent(to: @email)
+    end
+  end
+
+  describe "Participate list and permission" do
+    @event_participant """
+    query EventParticipants($uuid: UUID!, $roles: String, $page: Int, $limit: Int) {
+      event(uuid: $uuid) {
+        id,
+        uuid,
+        title,
+        participants(page: $page, limit: $limit, roles: $roles) {
+          elements {
+            role,
+            actor {
+                preferredUsername
+            }
+          }
+        },
+        organizerActor {
+          preferredUsername
+        }
+        attributedTo {
+          preferredUsername
+        }
+      }
+    }
+    """
+
+    test "No participate if not logging", %{conn: conn, actor: actor, event: event} do
+      res =
+        conn
+        |> AbsintheHelpers.graphql_query(
+          query: @event_participant,
+          variables: %{uuid: event.uuid}
+        )
+
+      assert hd(res["errors"])["message"] ==
+               "Not authorized to access object paginated_participant_list"
+    end
+
+    test "participates for owned event", %{conn: conn, actor: actor, user: user, event: event} do
+      res =
+        conn
+        |> auth_conn(user)
+        |> AbsintheHelpers.graphql_query(
+          query: @event_participant,
+          variables: %{uuid: event.uuid}
+        )
+
+      assert res["errors"] == nil
+      assert res["data"]["event"]["uuid"] == event.uuid
+
+      assert res["data"]["event"]["organizerActor"] == %{
+               "preferredUsername" => actor.preferred_username
+             }
+
+      assert res["data"]["event"]["attributedTo"] == nil
+
+      assert res["data"]["event"]["participants"]["elements"] == [
+               %{
+                 "actor" => %{
+                   "preferredUsername" => "test-part"
+                 },
+                 "role" => "PARTICIPANT"
+               },
+               %{
+                 "actor" => %{
+                   "preferredUsername" => actor.preferred_username
+                 },
+                 "role" => "CREATOR"
+               }
+             ]
+    end
+
+    test "participates for group event where user is admin (not allowed)", %{
+      conn: conn,
+      actor: actor,
+      user: user,
+      event: event
+    } do
+      group =
+        insert(:group,
+          allow_see_participants: false,
+          name: "group1",
+          preferred_username: "test-group"
+        )
+
+      insert(:member, parent: group, actor: actor, role: :administrator)
+
+      assert {:ok, activity, entity} =
+               Mobilizon.GraphQL.API.Events.update_event(%{attributed_to_id: group.id}, event)
+
+      assert entity.attributed_to.preferred_username == "test-group"
+
+      res =
+        conn
+        |> auth_conn(user)
+        |> AbsintheHelpers.graphql_query(
+          query: @event_participant,
+          variables: %{uuid: event.uuid}
+        )
+
+      assert res["errors"] == nil
+      assert res["data"]["event"]["uuid"] == event.uuid
+
+      assert res["data"]["event"]["organizerActor"] == %{
+               "preferredUsername" => actor.preferred_username
+             }
+
+      assert res["data"]["event"]["attributedTo"] == %{
+               "preferredUsername" => "test-group"
+             }
+
+      assert res["data"]["event"]["participants"]["elements"] == [
+               %{
+                 "actor" => %{
+                   "preferredUsername" => "test-part"
+                 },
+                 "role" => "PARTICIPANT"
+               },
+               %{
+                 "actor" => %{
+                   "preferredUsername" => actor.preferred_username
+                 },
+                 "role" => "CREATOR"
+               }
+             ]
+    end
+
+    test "participates for group event where user is admin (but allowed)", %{
+      conn: conn,
+      actor: actor,
+      user: user,
+      event: event
+    } do
+      group =
+        insert(:group,
+          allow_see_participants: true,
+          name: "group1",
+          preferred_username: "test-group"
+        )
+
+      insert(:member, parent: group, actor: actor, role: :administrator)
+
+      assert {:ok, activity, entity} =
+               Mobilizon.GraphQL.API.Events.update_event(%{attributed_to_id: group.id}, event)
+
+      assert entity.attributed_to.preferred_username == "test-group"
+
+      res =
+        conn
+        |> auth_conn(user)
+        |> AbsintheHelpers.graphql_query(
+          query: @event_participant,
+          variables: %{uuid: event.uuid}
+        )
+
+      assert res["errors"] == nil
+      assert res["data"]["event"]["uuid"] == event.uuid
+
+      assert res["data"]["event"]["organizerActor"] == %{
+               "preferredUsername" => actor.preferred_username
+             }
+
+      assert res["data"]["event"]["attributedTo"] == %{
+               "preferredUsername" => "test-group"
+             }
+
+      assert res["data"]["event"]["participants"]["elements"] == [
+               %{
+                 "actor" => %{
+                   "preferredUsername" => "test-part"
+                 },
+                 "role" => "PARTICIPANT"
+               },
+               %{
+                 "actor" => %{
+                   "preferredUsername" => actor.preferred_username
+                 },
+                 "role" => "CREATOR"
+               }
+             ]
+    end
+
+    test "participates for group event where user is member (not allowed)", %{
+      conn: conn,
+      actor: actor,
+      user: user,
+      event: event
+    } do
+      user_group = insert(:user)
+      actor_group = insert(:actor, user: user_group, preferred_username: "test")
+
+      group =
+        insert(:group,
+          allow_see_participants: false,
+          name: "group1",
+          preferred_username: "test-group"
+        )
+
+      insert(:member, parent: group, actor: actor, role: :administrator)
+      insert(:member, parent: group, actor: actor_group, role: :member)
+
+      assert {:ok, activity, entity} =
+               Mobilizon.GraphQL.API.Events.update_event(%{attributed_to_id: group.id}, event)
+
+      assert entity.attributed_to.preferred_username == "test-group"
+
+      res =
+        conn
+        |> auth_conn(user_group)
+        |> AbsintheHelpers.graphql_query(
+          query: @event_participant,
+          variables: %{uuid: event.uuid}
+        )
+
+      assert hd(res["errors"])["message"] ==
+               "Provided profile doesn't have moderator permissions on this event"
+    end
+
+    test "participates for group event where user is member (but allowed)", %{
+      conn: conn,
+      actor: actor,
+      user: user,
+      event: event
+    } do
+      user_group = insert(:user)
+      actor_group = insert(:actor, user: user_group, preferred_username: "test")
+
+      group =
+        insert(:group,
+          allow_see_participants: true,
+          name: "group1",
+          preferred_username: "test-group"
+        )
+
+      insert(:member, parent: group, actor: actor, role: :administrator)
+      insert(:member, parent: group, actor: actor_group, role: :member)
+
+      assert {:ok, activity, entity} =
+               Mobilizon.GraphQL.API.Events.update_event(%{attributed_to_id: group.id}, event)
+
+      assert entity.attributed_to.preferred_username == "test-group"
+
+      res =
+        conn
+        |> auth_conn(user_group)
+        |> AbsintheHelpers.graphql_query(
+          query: @event_participant,
+          variables: %{uuid: event.uuid}
+        )
+
+      assert res["errors"] == nil
+      assert res["data"]["event"]["uuid"] == event.uuid
+
+      assert res["data"]["event"]["organizerActor"] == %{
+               "preferredUsername" => actor.preferred_username
+             }
+
+      assert res["data"]["event"]["attributedTo"] == %{
+               "preferredUsername" => "test-group"
+             }
+
+      assert res["data"]["event"]["participants"]["elements"] == [
+               %{
+                 "actor" => %{
+                   "preferredUsername" => "test-part"
+                 },
+                 "role" => "PARTICIPANT"
+               },
+               %{
+                 "actor" => %{
+                   "preferredUsername" => actor.preferred_username
+                 },
+                 "role" => "CREATOR"
+               }
+             ]
     end
   end
 

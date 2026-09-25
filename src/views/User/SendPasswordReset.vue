@@ -30,7 +30,7 @@
         />
       </o-field>
       <p class="my-4 flex gap-2">
-        <o-button variant="primary" native-type="submit">
+        <o-button variant="primary" type="submit">
           {{ t("Submit") }}
         </o-button>
         <o-button
@@ -42,14 +42,19 @@
       </p>
     </form>
     <div v-else>
-      <o-notification variant="success" :closable="false" title="Success">
+      <o-notification
+        class="my-2"
+        variant="success"
+        :closable="false"
+        title="Success"
+      >
         {{
           t("We just sent an email to {email}", {
             email: emailValue,
           })
         }}
       </o-notification>
-      <o-notification variant="info">
+      <o-notification class="my-2" variant="info">
         {{
           t("Please check your spam folder if you didn't receive the email.")
         }}

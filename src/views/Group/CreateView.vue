@@ -198,12 +198,22 @@
           {{ t("Manually approve new followers") }}
         </o-checkbox>
       </fieldset>
+      <fieldset>
+        <legend class="mt-2">
+          <span class="field-label !mb-0">
+            {{ t("Permission") }}
+          </span>
+        </legend>
+        <o-checkbox v-model="group.allowSeeParticipants">
+          {{ t("Members can see events' participants") }}
+        </o-checkbox>
+      </fieldset>
 
       <o-button
         variant="primary"
         :disabled="loading"
         :loading="loading"
-        native-type="submit"
+        type="submit"
         class="mt-3"
       >
         {{ t("Create my group") }}
@@ -297,6 +307,7 @@ const buildVariables = computed(() => {
     visibility: group.value.visibility,
     openness: group.value.openness,
     manuallyApprovesFollowers: group.value.manuallyApprovesFollowers,
+    allowSeeParticipants: group.value.allowSeeParticipants,
   };
 
   if (cloneGroup.physicalAddress?.id || cloneGroup.physicalAddress?.geom) {

@@ -104,7 +104,7 @@
                 @click="publish(true)"
                 >{{ t("Save draft") }}</o-button
               >
-              <o-button variant="primary" native-type="submit">
+              <o-button variant="primary" type="submit">
                 <span v-if="isUpdate === false || post?.draft === true">{{
                   t("Publish")
                 }}</span>

@@ -23,7 +23,7 @@
               />
             </p>
             <p class="control">
-              <o-button variant="primary" native-type="submit">{{
+              <o-button variant="primary" type="submit">{{
                 t("Add an instance")
               }}</o-button>
               <o-loading

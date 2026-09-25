@@ -242,7 +242,6 @@ export class EventModel implements IEvent {
 
 export function removeTypeName(entity: any): any {
   if (entity?.__typename) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { __typename, ...purgedEntity } = entity;
     return purgedEntity;
   }

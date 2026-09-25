@@ -1,6 +1,6 @@
 import "./specs/mocks/matchMedia";
 import { config } from "@vue/test-utils";
-import { createHead } from "@unhead/vue";
+import { createHead } from "@unhead/vue/client";
 import { i18n } from "@/utils/i18n";
 import { afterEach, beforeEach, vi } from "vitest";
 

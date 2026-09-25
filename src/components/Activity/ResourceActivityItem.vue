@@ -189,6 +189,7 @@ const parentDirectory = computed((): string | undefined | null => {
     const parentPathResult = parentPath(subjectParams.value.resource_path);
     const directory = parentPathResult?.split("/");
     const res = directory?.pop();
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     res === "" ? null : res;
   }
   return null;

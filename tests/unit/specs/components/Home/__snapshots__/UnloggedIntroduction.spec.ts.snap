@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`UnloggedIntroduction > Show close 1`] = `
+"<section class="container mx-auto px-2 my-3">
+  <h1 class="dark:text-white font-bold">Gather ⋅ Organize ⋅ Mobilize</h1>
+  <p class="dark:text-white mb-2"></p>
+</section>"
+`;
+
+exports[`UnloggedIntroduction > Show open 1`] = `
+"<section class="container mx-auto px-2 my-3">
+  <h1 class="dark:text-white font-bold">Test! Test! Test!</h1>
+  <p class="dark:text-white mb-2">An instance that doesn't exist</p>
+</section>"
+`;

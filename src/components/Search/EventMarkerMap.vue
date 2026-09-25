@@ -166,7 +166,7 @@ onMounted(async () => {
   setLatLng(...initialView.value);
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  // eslint-disable-next-line no-underscore-dangle
+
   mapElement.value._onResize();
   mapElement.value.on("click", () => {
     activeElement.value = null;

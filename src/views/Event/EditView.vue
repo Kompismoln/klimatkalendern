@@ -803,7 +803,6 @@ const eventOptions = computed({
 onMounted(async () => {
   observer.value = new IntersectionObserver(
     (entries) => {
-      // eslint-disable-next-line no-restricted-syntax
       for (const entry of entries) {
         if (entry) {
           showFixedNavbar.value = !entry.isIntersecting;
@@ -1315,9 +1314,18 @@ So you cannot check consistensy in real time, only onBlur because of the moment 
 const consistencyBeginsOnBeforeEndsOn = () => {
   // Update endsOn to make sure endsOn is later than beginsOn
   if (endsOn.value && beginsOn.value && endsOn.value <= beginsOn.value) {
-    const newEndsOn = new Date(beginsOn.value);
-    newEndsOn.setUTCHours(beginsOn.value.getUTCHours() + 1);
+    // If the start date has changed, preserve the time difference
+    const newEndsOn = new Date(endsOn.value);
+    newEndsOn.setDate(beginsOn.value.getDate());
+    newEndsOn.setMonth(beginsOn.value.getMonth());
+    newEndsOn.setFullYear(beginsOn.value.getFullYear());
     endsOn.value = newEndsOn;
+    // If the end time is still earlier than the start time set a 1 hour difference
+    if (endsOn.value <= beginsOn.value) {
+      const newEndsOn2 = new Date(beginsOn.value);
+      newEndsOn2.setUTCHours(beginsOn.value.getUTCHours() + 1);
+      endsOn.value = newEndsOn2;
+    }
   }
 };
 
@@ -1336,7 +1344,6 @@ const timezones = computed((): Record<string, string[]> => {
         prefix2: string,
         suffix2: string
       ) => {
-        // eslint-disable-next-line no-param-reassign
         (acc2[prefix2] = acc2[prefix2] || []).push(suffix2);
         return acc2;
       };
@@ -1349,7 +1356,6 @@ const timezones = computed((): Record<string, string[]> => {
   );
 });
 
-// eslint-disable-next-line class-methods-use-this
 const sanitizeTimezone = (timezone: string): string => {
   return timezone
     .split("_")

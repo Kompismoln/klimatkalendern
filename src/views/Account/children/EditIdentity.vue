@@ -528,7 +528,6 @@ const handleErrors = (absintheErrors: AbsintheGraphQLErrors): void => {
   }
 };
 
-// eslint-disable-next-line class-methods-use-this
 const getInstanceHost = computed((): string => {
   return MOBILIZON_INSTANCE_HOST;
 });

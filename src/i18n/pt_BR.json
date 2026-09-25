@@ -1434,7 +1434,6 @@
   "You excluded member {member}.": "Você excluiu o membro {member}.",
   "You have access to this conversation as a member of the {group} group": "Você tem acesso a esta conversa como membro do grupo {group}",
   "You have attended {count} events in the past.": "Você não participou de nenhum evento no passado.|Você participou de um evento no passado.|Você participou de {count} eventos no passado.",
-  "You have been invited by {invitedBy} to the following group:": "Você foi convidado por {invitedBy} para o seguinte grupo:",
   "You have been logged-out": "Você foi desconectado",
   "You have been removed from this group's members.": "Você foi removido dos membros deste grupo.",
   "You have cancelled your participation": "Você cancelou a sua participação",

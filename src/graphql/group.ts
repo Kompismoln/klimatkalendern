@@ -60,6 +60,7 @@ export const GROUP_VERY_BASIC_FIELDS_FRAGMENTS = gql`
     visibility
     openness
     manuallyApprovesFollowers
+    allowSeeParticipants
     physicalAddress {
       description
       street
@@ -104,6 +105,7 @@ export const GROUP_BASIC_FIELDS_FRAGMENTS = gql`
     visibility
     openness
     manuallyApprovesFollowers
+    allowSeeParticipants
     physicalAddress {
       description
       street
@@ -301,6 +303,7 @@ export const CREATE_GROUP = gql`
     $visibility: GroupVisibility
     $openness: Openness
     $manuallyApprovesFollowers: Boolean
+    $allowSeeParticipants: Boolean
   ) {
     createGroup(
       preferredUsername: $preferredUsername
@@ -312,6 +315,7 @@ export const CREATE_GROUP = gql`
       visibility: $visibility
       openness: $openness
       manuallyApprovesFollowers: $manuallyApprovesFollowers
+      allowSeeParticipants: $allowSeeParticipants
     ) {
       ...ActorFragment
       banner {
@@ -334,6 +338,7 @@ export const UPDATE_GROUP = gql`
     $openness: Openness
     $physicalAddress: AddressInput
     $manuallyApprovesFollowers: Boolean
+    $allowSeeParticipants: Boolean
   ) {
     updateGroup(
       id: $id
@@ -345,6 +350,7 @@ export const UPDATE_GROUP = gql`
       openness: $openness
       physicalAddress: $physicalAddress
       manuallyApprovesFollowers: $manuallyApprovesFollowers
+      allowSeeParticipants: $allowSeeParticipants
     ) {
       ...GroupVeryBasicFields
     }

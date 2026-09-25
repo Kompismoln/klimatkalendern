@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SettingsView > Show simple 1`] = `
+"<div class="container mx-auto" preferredusername="my-group">
+  <h1 class="">Settings</h1>
+  <div class="flex flex-wrap gap-2">
+    <aside class="sm:max-w-xs flex-1 min-w-[320px]">
+      <ul>
+        <setting-menu-section-stub title="Settings" to="[object Object]"></setting-menu-section-stub>
+      </ul>
+    </aside>
+    <div class="flex-1">
+      <router-view-stub name="default"></router-view-stub>
+    </div>
+  </div>
+</div>"
+`;

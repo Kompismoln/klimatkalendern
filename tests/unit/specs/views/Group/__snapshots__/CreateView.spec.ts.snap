@@ -1,0 +1,122 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CreateView > Show simple 1`] = `
+"<section class="container mx-auto">
+  <h1>Create a new group</h1>
+  <form>
+    <div data-oruga="field" class="o-field"><label id="v-0-0" for="group-display-name" class="o-field__label">Group display name</label>
+      <div data-oruga="input" class="o-input o-input--expanded">
+        <!----><input aria-labelledby="v-0-0" aria-required="true" required="" id="group-display-name" type="text" data-oruga-input="text" class="o-input__input o-input__input--placeholder" autocomplete="off">
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field"><label class="label" for="group-preferred-username">Federated Group Name</label>
+      <div class="field-body">
+        <div data-oruga="field" class="o-field">
+          <!---->
+          <div data-oruga="input" class="o-input o-input--expanded">
+            <!----><input aria-labelledby="v-0-2" aria-describedby="v-0-3" aria-required="true" required="" pattern="[a-z0-9_]+" id="group-preferred-username" type="text" data-oruga-input="text" class="o-input__input o-input__input--placeholder" autocomplete="off">
+            <!---->
+            <!---->
+          </div>
+          <p class="control"><span class="button is-static">@localhost</span></p>
+          <p id="v-0-3" class="o-field__message">Only alphanumeric lowercased characters and underscores are supported.</p>
+        </div>
+      </div>
+      <!--v-if-->
+    </div>
+    <div data-oruga="field" class="o-field"><label id="v-0-4" for="group-summary" class="o-field__label">Description</label>
+      <!---->
+    </div>
+    <div class="address-autocomplete">
+      <div data-oruga="field" class="o-field !-mt-2 flex" id="FullAddressAutoComplete-o-field"><label id="v-0-0-0" for="full-address-autocomplete-1" class="o-field__label">Group address</label>
+        <!--v-if-->
+        <div data-oruga="autocomplete" class="o-dropdown o-dropdown--expanded o-dropdown--position-auto o-autocomplete">
+          <div class="o-dropdown__trigger" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-disabled="false" aria-controls="v-0-0-2" aria-labelledby="v-0-0-0">
+            <div data-oruga="input" class="o-input o-input--expanded"><span data-oruga="icon" class="o-icon o-input__icon-left"><i class="mdi mdi-map-marker mdi-24px"></i></span><input aria-labelledby="v-0-0-0" class="FullAddressAutoComplete-o-autocomplete !mt-0 !h-full o-input__input o-input__input--iconspace-left o-input__input--placeholder" aria-autocomplete="list" aria-controls="v-0-0-2" enterkeyhint="enter" id="full-address-autocomplete-1" type="text" data-oruga-input="text" autocomplete="off" placeholder="e.g. 10 Rue Jangot">
+              <!---->
+              <!---->
+            </div>
+          </div>
+          <!--teleport start-->
+          <!---->
+          <transition-stub name="fade" appear="false" persisted="false" css="true">
+            <div id="v-0-0-2" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--auto" style="max-height: 200px; overflow: auto; display: none;" role="listbox" aria-labelledby="v-0-0-0" aria-multiselectable="false">
+              <!---->
+              <!---->
+              <div id="v-0-0-2-1" data-oruga="dropdown-item" data-id="dropdown-1" class="o-dropdown__item o-dropdown__item--clickable o-autocomplete__item o-autocomplete__item--empty" role="option" tabindex="-1" aria-selected="false" aria-disabled="false"></div>
+              <!---->
+            </div>
+          </transition-stub>
+          <!--teleport end-->
+        </div><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--disabled reset-area !h-auto" disabled="" title="Clear address field"><span class="o-button__wrapper"><span data-oruga="icon" class="o-icon o-button__icon o-button__icon-left"><i class="mdi mdi-close mdi-24px"></i></span>
+          <!---->
+          <!----></span>
+        </button>
+        <!---->
+      </div>
+      <!--v-if-->
+      <!--v-if-->
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+    <div class="field"><b class="field-label">Avatar</b>
+      <div><label data-oruga="upload" class="o-upload !flex">
+          <div class="o-upload__draggable" role="button" tabindex="0">
+            <div class="w-100 text-center p-4 rounded-xl border-dashed border-2 border-gray-600"><span class="mx-auto flex w-fit"><span aria-hidden="true" class="material-design-icon upload-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"><!--v-if--></path></svg></span><span class="capitalize">Click to upload Avatar</span></span>
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+          </div><input type="file" data-oruga-input="file" accept="image/gif,image/png,image/jpeg,image/webp">
+        </label></div>
+      <!--v-if-->
+    </div>
+    <div class="field"><b class="field-label">Banner</b>
+      <div><label data-oruga="upload" class="o-upload !flex">
+          <div class="o-upload__draggable" role="button" tabindex="0">
+            <div class="w-100 text-center p-4 rounded-xl border-dashed border-2 border-gray-600"><span class="mx-auto flex w-fit"><span aria-hidden="true" class="material-design-icon upload-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9,16V10H5L12,3L19,10H15V16H9M5,20V18H19V20H5Z"><!--v-if--></path></svg></span><span class="capitalize">Click to upload Banner</span></span>
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+          </div><input type="file" data-oruga-input="file" accept="image/gif,image/png,image/jpeg,image/webp">
+        </label></div>
+      <!--v-if-->
+    </div>
+    <fieldset>
+      <legend class="field-label !mb-0 mt-2">Group visibility</legend>
+      <div data-oruga="radio" class="o-radio o-radio--checked"><input id="v-0-6" type="radio" data-oruga-input="radio" class="o-radio__input" name="groupVisibility" autocomplete="off" aria-checked="true" aria-labelledby="v-0-7" value="PUBLIC"><label id="v-0-7" for="v-0-6" class="o-radio__label">Visible everywhere on the web<br><small>The group will be publicly listed in search results and may be suggested in the explore section. Only public informations will be shown on it's page.</small></label></div>
+      <div data-oruga="radio" class="o-radio"><input id="v-0-8" type="radio" data-oruga-input="radio" class="o-radio__input" name="groupVisibility" autocomplete="off" aria-checked="false" aria-labelledby="v-0-9" value="UNLISTED"><label id="v-0-9" for="v-0-8" class="o-radio__label">Only accessible through link<br><small>You'll need to transmit the group URL so people may access the group's profile. The group won't be findable in Mobilizon's search or regular search engines.</small></label></div>
+    </fieldset>
+    <fieldset>
+      <legend class="mt-2"><span class="field-label !mb-0">New members</span><span>Members will also access private sections like discussions, resources and restricted posts.</span></legend>
+      <div data-oruga="field" class="o-field">
+        <!---->
+        <div data-oruga="radio" class="o-radio"><input aria-labelledby="v-0-10" id="v-0-12" type="radio" data-oruga-input="radio" class="o-radio__input" name="groupOpenness" autocomplete="off" aria-checked="false" value="OPEN"><label id="v-0-10" for="v-0-12" class="o-radio__label">Anyone can join freely<br><small>Anyone wanting to be a member from your group will be able to from your group page.</small></label></div>
+        <!---->
+      </div>
+      <div data-oruga="field" class="o-field">
+        <!---->
+        <div data-oruga="radio" class="o-radio o-radio--checked"><input aria-labelledby="v-0-13" id="v-0-15" type="radio" data-oruga-input="radio" class="o-radio__input" name="groupOpenness" autocomplete="off" aria-checked="true" value="MODERATED"><label id="v-0-13" for="v-0-15" class="o-radio__label">Moderate new members<br><small>Anyone can request being a member, but an administrator needs to approve the membership.</small></label></div>
+        <!---->
+      </div>
+      <div data-oruga="field" class="o-field">
+        <!---->
+        <div data-oruga="radio" class="o-radio"><input aria-labelledby="v-0-16" id="v-0-18" type="radio" data-oruga-input="radio" class="o-radio__input" name="groupOpenness" autocomplete="off" aria-checked="false" value="INVITE_ONLY"><label id="v-0-16" for="v-0-18" class="o-radio__label">Manually invite new members<br><small>The only way for your group to get new members is if an admininistrator invites them.</small></label></div>
+        <!---->
+      </div>
+    </fieldset>
+    <fieldset>
+      <legend class="mt-2"><span class="field-label !mb-0">Followers</span><span>Followers will receive new public events and posts.</span></legend>
+      <div data-oruga="checkbox" class="o-checkbox"><input id="v-0-19" type="checkbox" data-oruga-input="checkbox" class="o-checkbox__input" true-value="true" false-value="false" autocomplete="off" aria-checked="false" aria-labelledby="v-0-20"><label id="v-0-20" for="v-0-19" class="o-checkbox__label">Manually approve new followers</label></div>
+    </fieldset>
+    <fieldset>
+      <legend class="mt-2"><span class="field-label !mb-0">Permission</span></legend>
+      <div data-oruga="checkbox" class="o-checkbox o-checkbox--checked"><input id="v-0-21" type="checkbox" data-oruga-input="checkbox" class="o-checkbox__input" true-value="true" false-value="false" autocomplete="off" aria-checked="true" aria-labelledby="v-0-22"><label id="v-0-22" for="v-0-21" class="o-checkbox__label">Members can see events' participants</label></div>
+    </fieldset><button data-oruga="button" type="submit" role="button" tabindex="0" class="o-button o-button--primary mt-3"><span class="o-button__wrapper"><!----><span class="o-button__label">Create my group</span>
+      <!----></span>
+    </button>
+  </form>
+</section>"
+`;

@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PopoverActorCard > Show Group 1`] = `
+"<vmenu distance="16" triggers="hover" class="popover">
+  <div><b> Popover me !</b></div>
+</vmenu>"
+`;
+
+exports[`PopoverActorCard > Show Person 1`] = `
+"<vmenu distance="16" triggers="hover" class="popover">
+  <div><b> Popover me !</b></div>
+</vmenu>"
+`;

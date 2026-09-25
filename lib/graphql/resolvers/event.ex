@@ -160,7 +160,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Event do
         %{context: %{current_actor: %Actor{} = actor}} = _resolution
       ) do
     # Check that moderator has right
-    if can_event_be_updated_by?(event, actor) do
+    if can_event_be_access_by?(event, actor) do
       roles =
         case roles do
           nil ->

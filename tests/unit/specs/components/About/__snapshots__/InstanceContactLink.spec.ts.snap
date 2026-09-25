@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InstanceContactLink > Show email 1`] = `"<p><a dir="auto" title="someone@somewhere.tld" href="mailto:someone@somewhere.tld">someone@somewhere.tld</a></p>"`;
+
+exports[`InstanceContactLink > Show empty 1`] = `"<p><span>contact uninformed</span></p>"`;
+
+exports[`InstanceContactLink > Show string 1`] = `"<p><span dir="auto">someone</span></p>"`;
+
+exports[`InstanceContactLink > Show url 1`] = `"<p><a dir="auto" title="https://somewhere.com" href="https://somewhere.com">somewhere.com</a></p>"`;

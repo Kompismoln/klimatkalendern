@@ -82,7 +82,7 @@ describe("ParticipationSection", () => {
     );
 
     const cancelAnonymousParticipationButton = wrapper.find(
-      ".event-participation > button.o-btn--text"
+      ".event-participation > button.o-button--text"
     );
     expect(cancelAnonymousParticipationButton.text()).toBe(
       "Cancel anonymous participation"
@@ -108,7 +108,7 @@ describe("ParticipationSection", () => {
     );
 
     const cancelAnonymousParticipationButton = wrapper.find(
-      ".event-participation > button.o-btn--text"
+      ".event-participation > button.o-button--text"
     );
     expect(cancelAnonymousParticipationButton.text()).toBe(
       "Cancel anonymous participation"
@@ -146,7 +146,7 @@ describe("ParticipationSection", () => {
     });
 
     expect(wrapper.find(".event-participation").exists()).toBeFalsy();
-    expect(wrapper.find("button.o-btn--primary").text()).toBe(
+    expect(wrapper.find("button.o-button--primary").text()).toBe(
       "Event already passed"
     );
   });

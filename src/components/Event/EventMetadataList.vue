@@ -91,7 +91,7 @@
             <o-field :label="$t('Element value')">
               <o-input v-model="newElement.value" />
             </o-field>
-            <o-button class="mt-2" variant="primary" native-type="submit">{{
+            <o-button class="mt-2" variant="primary" type="submit">{{
               $t("Add")
             }}</o-button>
           </form>

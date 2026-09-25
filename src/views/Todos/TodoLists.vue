@@ -34,7 +34,7 @@
         <o-field :label="$t('List title')">
           <o-input v-model="newTodoList.title" />
         </o-field>
-        <o-button native-type="submit">{{ $t("Create a new list") }}</o-button>
+        <o-button type="submit">{{ $t("Create a new list") }}</o-button>
       </form>
       <div v-for="todoList in todoLists" :key="todoList.id">
         <router-link

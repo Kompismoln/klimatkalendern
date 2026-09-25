@@ -25,6 +25,7 @@ defmodule Mobilizon.Web.Resolvers.GroupTest do
     $summary: String
     $avatar: MediaInput
     $banner: MediaInput
+    $allowSeeParticipants: Boolean
     ) {
       createGroup(
         preferredUsername: $preferredUsername
@@ -32,6 +33,7 @@ defmodule Mobilizon.Web.Resolvers.GroupTest do
         summary: $summary
         banner: $banner
         avatar: $avatar
+        allowSeeParticipants: $allowSeeParticipants
       ) {
         preferredUsername
         type
@@ -39,6 +41,7 @@ defmodule Mobilizon.Web.Resolvers.GroupTest do
           uuid
           url
         }
+        allowSeeParticipants
       }
     }
     """
@@ -59,6 +62,7 @@ defmodule Mobilizon.Web.Resolvers.GroupTest do
                @new_group_params.preferredUsername
 
       assert res["data"]["createGroup"]["type"] == "GROUP"
+      assert res["data"]["createGroup"]["allowSeeParticipants"] == false
 
       res =
         conn
@@ -70,6 +74,44 @@ defmodule Mobilizon.Web.Resolvers.GroupTest do
 
       assert hd(res["errors"])["message"] ==
                "A profile or group with that name already exists"
+    end
+
+    test "creates a group with allowSeeParticipants to false",
+         %{conn: conn, user: user} do
+      res =
+        conn
+        |> auth_conn(user)
+        |> AbsintheHelpers.graphql_query(
+          query: @create_group_mutation,
+          variables: Map.put(@new_group_params, :allowSeeParticipants, false)
+        )
+
+      assert res["errors"] == nil
+
+      assert res["data"]["createGroup"]["preferredUsername"] ==
+               @new_group_params.preferredUsername
+
+      assert res["data"]["createGroup"]["type"] == "GROUP"
+      assert res["data"]["createGroup"]["allowSeeParticipants"] == false
+    end
+
+    test "creates a group with allowSeeParticipants to true",
+         %{conn: conn, user: user} do
+      res =
+        conn
+        |> auth_conn(user)
+        |> AbsintheHelpers.graphql_query(
+          query: @create_group_mutation,
+          variables: Map.put(@new_group_params, :allowSeeParticipants, true)
+        )
+
+      assert res["errors"] == nil
+
+      assert res["data"]["createGroup"]["preferredUsername"] ==
+               @new_group_params.preferredUsername
+
+      assert res["data"]["createGroup"]["type"] == "GROUP"
+      assert res["data"]["createGroup"]["allowSeeParticipants"] == true
     end
 
     test "doesn't creates a group if the username doesn't match the requirements",

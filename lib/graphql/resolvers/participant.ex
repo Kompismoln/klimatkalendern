@@ -309,7 +309,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Participant do
       }) do
     case Events.get_event_with_preload(event_id) do
       {:ok, %Event{} = event} ->
-        if can_event_be_updated_by?(event, moderator_actor) do
+        if can_event_be_access_by?(event, moderator_actor) do
           case export_format(format, event, roles, locale) do
             {:ok, path} ->
               {:ok, %{path: path, format: format}}

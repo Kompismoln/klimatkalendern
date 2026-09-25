@@ -118,7 +118,7 @@
         />
         <div class="flex gap-2 mt-2">
           <o-button
-            native-type="submit"
+            type="submit"
             :disabled="['<p></p>', '', comment.text].includes(updatedComment)"
             variant="primary"
             >{{ t("Update") }}</o-button

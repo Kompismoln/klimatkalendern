@@ -18,7 +18,7 @@
         />
       </o-field>
       <p class="flex flex-wrap gap-1 mt-2">
-        <o-button variant="primary" native-type="submit">
+        <o-button variant="primary" type="submit">
           {{ $t("Send the confirmation email again") }}
         </o-button>
         <o-button

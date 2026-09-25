@@ -5,8 +5,6 @@ import { EditorView } from "prosemirror-view";
 import Image from "@tiptap/extension-image";
 import { provideApolloClient, useMutation } from "@vue/apollo-composable";
 
-/* eslint-disable class-methods-use-this */
-
 const CustomImage = Image.extend({
   name: "image",
   addAttributes() {

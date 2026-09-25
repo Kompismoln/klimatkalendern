@@ -5,7 +5,7 @@
       :label-for="id"
       :message="fieldErrors"
       :variant="fieldErrors ? 'danger' : ''"
-      class="!-mt-2"
+      class="!-mt-2 flex"
       :labelClass="labelClass"
     >
       <template #label>
@@ -20,27 +20,26 @@
         :title="t('Use my location')"
       />
       <o-autocomplete
-        :data="addressData"
+        :key="keyaddress"
         v-model="queryTextWithDefault"
+        :options="addressData"
         :placeholder="placeholderWithDefault"
-        :formatter="(elem: IAddress) => addressFullName(elem)"
         :debounce="debounceDelay"
-        @input="asyncData"
         :icon="canShowLocateMeButton ? null : 'map-marker'"
         expanded
-        @select="setSelected"
         :id="id"
         :disabled="disabled"
-        dir="auto"
+        @update:input="asyncData"
+        @select="setSelected"
         class="FullAddressAutoComplete-o-autocomplete !mt-0 !h-full"
       >
         <template #default="{ option }">
           <p class="flex gap-1">
-            <o-icon :icon="addressToPoiInfos(option).poiIcon.icon" />
-            <b>{{ addressToPoiInfos(option).name }}</b>
+            <o-icon :icon="addressToPoiInfos(option.value).poiIcon.icon" />
+            <b>{{ addressToPoiInfos(option.value).name }}</b>
           </p>
           <p class="text-small">
-            {{ addressToPoiInfos(option).alternativeName }}
+            {{ addressToPoiInfos(option.value).alternativeName }}
           </p>
         </template>
         <template #empty>
@@ -151,7 +150,7 @@
         </o-field>
       </section>
       <footer class="mt-3 flex gap-2 items-center">
-        <o-button native-type="submit">
+        <o-button type="submit">
           {{ t("Save") }}
         </o-button>
         <o-button outlined type="button" @click="resetAddress">
@@ -204,6 +203,7 @@ import { useReverseGeocode } from "@/composition/apollo/address";
 import { useLazyQuery } from "@vue/apollo-composable";
 import { AddressSearchType } from "@/types/enums";
 import Loading from "vue-material-design-icons/Loading.vue";
+import type { OptionsProp } from "@oruga-ui/oruga-next";
 const MapLeaflet = defineAsyncComponent(
   () => import("@/components/LeafletMap.vue")
 );
@@ -234,6 +234,7 @@ const props = withDefaults(
 );
 
 const componentId = ref(0);
+const keyaddress = ref(0);
 
 const emit = defineEmits(["update:modelValue"]);
 
@@ -246,7 +247,7 @@ const mapDefaultZoom = computed(() => {
   return 5;
 });
 
-const addressData = ref<IAddress[]>([]);
+const addressData = ref<OptionsProp>();
 
 const defaultAddress = new Address();
 defaultAddress.geom = undefined;
@@ -313,7 +314,6 @@ const actualLabel = computed((): string => {
   return props.label ?? t("Find an address");
 });
 
-// eslint-disable-next-line class-methods-use-this
 const canShowLocateMeButton = computed((): boolean => {
   return window.isSecureContext;
 });
@@ -328,6 +328,15 @@ const { load: searchAddressLoad, refetch: searchAddressRefetch } =
   useLazyQuery<{
     searchAddress: IAddress[];
   }>(ADDRESS);
+
+function convert_to_complete(addesses: IAddress[]): OptionsProp {
+  return addesses.map((elem: IAddress) => {
+    return {
+      label: elem.description, // addressFullName(elem),
+      value: elem,
+    };
+  });
+}
 
 const asyncData = async (query: string): Promise<void> => {
   console.debug("Finding addresses");
@@ -359,8 +368,7 @@ const asyncData = async (query: string): Promise<void> => {
       isFetching.value = false;
       return;
     }
-    console.debug("onAddressSearchResult", result.searchAddress);
-    addressData.value = result.searchAddress;
+    addressData.value = convert_to_complete(result.searchAddress);
     isFetching.value = false;
   } catch (e) {
     console.error(e);
@@ -391,6 +399,8 @@ const resetAddress = (): void => {
   emit("update:modelValue", null);
   resetAddressAction(selected);
   queryTextWithDefault.value = "";
+  addressData.value = [];
+  keyaddress.value = keyaddress.value + 1;
 };
 
 const locateMe = async (): Promise<void> => {
@@ -432,13 +442,14 @@ const reverseGeoCode = async (e: LatLng, zoom: number) => {
       locale: locale.value as unknown as string,
     });
     if (!result) return;
-    addressData.value = result.reverseGeocode;
+    addressData.value = convert_to_complete(result.reverseGeocode);
 
-    if (addressData.value.length > 0) {
-      const foundAddress = addressData.value[0];
+    if (result.reverseGeocode.length > 0) {
+      const foundAddress = result.reverseGeocode[0];
       Object.assign(selected, foundAddress);
       console.debug("reverse geocode succeded, setting new address");
-      queryTextWithDefault.value = addressFullName(foundAddress);
+      queryText.value = foundAddress;
+      keyaddress.value = keyaddress.value + 1;
       emit("update:modelValue", selected);
     }
   } catch (err) {
@@ -446,7 +457,6 @@ const reverseGeoCode = async (e: LatLng, zoom: number) => {
   }
 };
 
-// eslint-disable-next-line no-undef
 const getLocation = async (): Promise<GeolocationPosition> => {
   let errorMessage = t("Failed to get location.");
   return new Promise((resolve, reject) => {

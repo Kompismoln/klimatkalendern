@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SearchFields > Show simple 1`] = `
+"<form data-v-a19720a3="" id="search-anchor" class="container mx-auto p-2 flex flex-col flex-wrap items-stretch gap-2 justify-center dark:text-slate-100" role="search" location="[object Object]">
+  <div data-v-a19720a3="" class="flex flex-col flex-wrap sm:flex-row gap-2 justify-center"><label data-v-a19720a3="" class="sr-only" for="search_field_input">Keyword, event title, group name, etc.</label>
+    <div data-v-a19720a3="" data-oruga="input" class="o-input o-input--expanded">
+      <!----><input class="min-w-48 o-input__input o-input__input--placeholder" autofocus="" autocapitalize="off" autocorrect="off" id="search_field_input" type="text" data-oruga-input="text" maxlength="1024" autocomplete="off" placeholder="Keyword, event title, group name, etc.">
+      <!---->
+      <!---->
+    </div>
+    <!---->
+  </div>
+  <div data-v-a19720a3="" class="flex flex-col flex-wrap sm:flex-row gap-2 justify-center"><button data-v-a19720a3="" data-oruga="button" type="submit" role="button" tabindex="0" class="o-button search-Event min-w-40"><span class="o-button__wrapper"><span data-oruga="icon" class="o-icon o-button__icon o-button__icon-left"><i class="mdi mdi-calendar mdi-24px"></i></span><span class="o-button__label">Events</span>
+      <!----></span>
+    </button>
+    <!--v-if--><button data-v-a19720a3="" data-oruga="button" type="submit" role="button" tabindex="0" class="o-button search-Group min-w-40"><span class="o-button__wrapper"><span data-oruga="icon" class="o-icon o-button__icon o-button__icon-left"><i class="mdi mdi-account-multiple mdi-24px"></i></span><span class="o-button__label">Groups</span>
+      <!----></span>
+    </button>
+  </div>
+</form>"
+`;

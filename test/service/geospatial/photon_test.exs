@@ -17,13 +17,14 @@ defmodule Mobilizon.Service.Geospatial.PhotonTest do
       |> expect(:call, fn
         %{
           method: :get,
-          url: "https://photon.komoot.de/api/?q=10%20rue%20Jangot&lang=en&limit=10"
+          url: "https://photon.komoot.io/api/?q=10%20rue%20Jangot&lang=en&limit=10"
         },
         _opts ->
           {:ok, %Tesla.Env{status: 200, body: data}}
       end)
 
       assert %Address{
+               origin_id: "photon:3078260611",
                locality: "Lyon",
                description: "10 Rue Jangot",
                region: "Auvergne-Rhône-Alpes",

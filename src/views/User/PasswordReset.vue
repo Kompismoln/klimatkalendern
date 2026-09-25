@@ -20,6 +20,7 @@
           minlength="6"
           v-model="credentials.password"
           expanded
+          @input="resetErrors()"
         />
       </o-field>
       <o-field :label="$t('Password (confirmation)')">
@@ -31,24 +32,18 @@
           minlength="6"
           v-model="credentials.passwordConfirmation"
           expanded
+          @input="resetErrors()"
         />
       </o-field>
-      <p class="my-4">
-        <o-button
-          variant="primary"
-          size="large"
-          native-type="submit"
-        >
-          {{ $t("Reset my password") }}
-        </o-button>
-      </p>
+      <o-button type="submit" class="my-2" variant="primary">{{
+        $t("Reset my password")
+      }}</o-button>
     </form>
   </section>
 </template>
 
 <script lang="ts" setup>
 import { RESET_PASSWORD } from "@/graphql/auth";
-import { saveUserData } from "@/utils/auth";
 import { ILogin } from "@/types/login.model";
 import RouteName from "@/router/name";
 import { reactive, ref, computed } from "vue";
@@ -100,8 +95,13 @@ resetPasswordMutationDone(({ data }) => {
     throw new Error("Data is undefined");
   }
 
-  saveUserData(data.resetPassword);
-  router.push({ name: RouteName.HOME });
+  alert(
+    t(
+      "Your password has been successfully changed. You now need to logged-in with your new password."
+    )
+  );
+
+  router.push({ name: RouteName.LOGIN });
   return;
 });
 
@@ -111,9 +111,20 @@ resetPasswordMutationError((err) => {
   });
 });
 
+const resetErrors = () => {
+  errors.value.splice(0);
+};
+
 const resetAction = (e: Event) => {
   e.preventDefault();
-  errors.value.splice(0);
+  resetErrors();
+
+  if (credentials.password != credentials.passwordConfirmation) {
+    errors.value.push(
+      t("Password and confirmation password must be identical.")
+    );
+    return;
+  }
 
   resetPasswordMutation({
     password: credentials.password,

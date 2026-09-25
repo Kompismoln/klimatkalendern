@@ -1,5 +1,3 @@
-/// <reference types="histoire/vue" />
-
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {

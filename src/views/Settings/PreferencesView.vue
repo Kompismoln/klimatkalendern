@@ -254,7 +254,6 @@ const timezones = computed((): Record<string, string[]> => {
         prefix2: string,
         suffix2: string
       ) => {
-        // eslint-disable-next-line no-param-reassign
         (acc2[prefix2] = acc2[prefix2] || []).push(suffix2);
         return acc2;
       };

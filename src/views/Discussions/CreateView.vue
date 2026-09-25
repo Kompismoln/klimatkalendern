@@ -52,7 +52,7 @@
         />
       </o-field>
 
-      <o-button class="mt-2" native-type="submit">
+      <o-button class="mt-2" type="submit">
         {{ t("Create the discussion") }}
       </o-button>
     </form>

@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AddressInfo > Show Basic 1`] = `
+"<address data-v-f169049d="" dir="auto">
+  <!--v-if-->
+  <p data-v-f169049d=""><span data-v-f169049d="" class="addressDescription" title="Locaux Motiv">Locaux Motiv</span><br data-v-f169049d=""><span data-v-f169049d="">10 Rue Jangot, 69007, Lyon</span><br data-v-f169049d="">
+    <!--v-if-->
+  </p>
+</address>"
+`;
+
+exports[`AddressInfo > Show Basic with timezone 1`] = `
+"<address data-v-f169049d="" dir="auto">
+  <!--v-if-->
+  <p data-v-f169049d=""><span data-v-f169049d="" class="addressDescription" title="Locaux Motiv">Locaux Motiv</span><br data-v-f169049d=""><span data-v-f169049d="">10 Rue Jangot, 69007, Lyon</span><br data-v-f169049d=""><small data-v-f169049d=""> 🌐 heure moyenne de Greenwich (UTC)</small></p>
+</address>"
+`;

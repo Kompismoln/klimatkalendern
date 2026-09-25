@@ -70,12 +70,9 @@
           </o-checkbox>
         </o-field>
         <div class="flex gap-2 my-2">
-          <o-button
-            :disabled="sendingForm"
-            variant="primary"
-            native-type="submit"
-            >{{ $t("Send email") }}</o-button
-          >
+          <o-button :disabled="sendingForm" variant="primary" type="submit">{{
+            $t("Send email")
+          }}</o-button>
           <o-button
             native-type="button"
             variant="text"

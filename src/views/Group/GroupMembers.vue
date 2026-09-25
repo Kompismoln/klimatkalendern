@@ -48,7 +48,7 @@
               />
             </p>
             <p class="control">
-              <o-button variant="primary" native-type="submit">{{
+              <o-button variant="primary" type="submit">{{
                 t("Invite member")
               }}</o-button>
             </p>

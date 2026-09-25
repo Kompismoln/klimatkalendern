@@ -232,7 +232,8 @@
 </template>
 
 <script lang="ts" setup>
-import { useEditor, EditorContent, BubbleMenu } from "@tiptap/vue-3";
+import { useEditor, EditorContent } from "@tiptap/vue-3";
+import { BubbleMenu } from "@tiptap/vue-3/menus";
 import Blockquote from "@tiptap/extension-blockquote";
 import BulletList from "@tiptap/extension-bullet-list";
 import Heading, { Level } from "@tiptap/extension-heading";

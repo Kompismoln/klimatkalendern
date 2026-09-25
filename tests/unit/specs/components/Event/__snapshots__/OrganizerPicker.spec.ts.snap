@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`OrganizerPicker > Show simple 1`] = `
+"<div data-v-4ef6e9b3="" class="max-w-md mx-auto">
+  <div data-v-4ef6e9b3="" data-oruga="input" class="o-input o-input--expanded">
+    <!----><input dir="auto" class="o-input__input o-input__input--placeholder" id="v-0" type="text" data-oruga-input="text" autocomplete="off" placeholder="Filter by profile or group name">
+    <!---->
+    <!---->
+  </div>
+  <transition-group-stub data-v-4ef6e9b3="" tag="ul" enteractiveclass="duration-300 ease-out" enterfromclass="transform opacity-0" entertoclass="opacity-100" leaveactiveclass="duration-200 ease-in" leavefromclass="opacity-100" leavetoclass="transform opacity-0" appear="false" persisted="false" css="true" class="grid grid-cols-1 gap-y-3 m-5 max-w-md mx-auto">
+    <li data-v-4ef6e9b3="" class="relative focus-within:shadow-lg"><input data-v-4ef6e9b3="" class="sr-only peer" type="radio" name="availableActors" id="availableActor-59" value="[object Object]"><label data-v-4ef6e9b3="" class="flex items-center gap-2 p-3 bg-white hover:bg-gray-50 dark:bg-violet-3 dark:hover:bg-violet-3/60 border border-gray-300 rounded-lg cursor-pointer peer-checked:ring-primary peer-checked:ring-2 peer-checked:border-transparent" for="availableActor-59"><span data-v-4ef6e9b3="" aria-hidden="true" class="material-design-icon account-circle-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="48" height="48" viewBox="0 0 24 24"><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"><!--v-if--></path></svg></span>
+        <div data-v-4ef6e9b3="" class="flex-1 w-px">
+          <h3 data-v-4ef6e9b3="" class="line-clamp-2">Someone</h3><small data-v-4ef6e9b3="" class="flex truncate">@me</small>
+        </div>
+      </label></li>
+    <li data-v-4ef6e9b3="" class="relative focus-within:shadow-lg"><input data-v-4ef6e9b3="" class="sr-only peer" type="radio" name="availableActors" id="availableActor-5" value="[object Object]"><label data-v-4ef6e9b3="" class="flex items-center gap-2 p-3 bg-white hover:bg-gray-50 dark:bg-violet-3 dark:hover:bg-violet-3/60 border border-gray-300 rounded-lg cursor-pointer peer-checked:ring-primary peer-checked:ring-2 peer-checked:border-transparent" for="availableActor-5"><span data-v-4ef6e9b3="" aria-hidden="true" class="material-design-icon account-circle-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="48" height="48" viewBox="0 0 24 24"><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"><!--v-if--></path></svg></span>
+        <div data-v-4ef6e9b3="" class="flex-1 w-px">
+          <h3 data-v-4ef6e9b3="" class="line-clamp-2">Sigmund</h3><small data-v-4ef6e9b3="" class="flex truncate">@hello</small>
+        </div>
+      </label></li>
+    <li data-v-4ef6e9b3="" class="relative focus-within:shadow-lg"><input data-v-4ef6e9b3="" class="sr-only peer" type="radio" name="availableActors" id="availableActor-89" value="[object Object]"><label data-v-4ef6e9b3="" class="flex items-center gap-2 p-3 bg-white hover:bg-gray-50 dark:bg-violet-3 dark:hover:bg-violet-3/60 border border-gray-300 rounded-lg cursor-pointer peer-checked:ring-primary peer-checked:ring-2 peer-checked:border-transparent" for="availableActor-89"><span data-v-4ef6e9b3="" aria-hidden="true" class="material-design-icon account-circle-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="48" height="48" viewBox="0 0 24 24"><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"><!--v-if--></path></svg></span>
+        <div data-v-4ef6e9b3="" class="flex-1 w-px">
+          <h3 data-v-4ef6e9b3="" class="line-clamp-2">College</h3><small data-v-4ef6e9b3="" class="flex truncate">@congregation</small>
+        </div>
+      </label></li>
+  </transition-group-stub>
+</div>"
+`;

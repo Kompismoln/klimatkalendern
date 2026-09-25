@@ -505,7 +505,7 @@
             </div>
           </div>
         </section>
-        <o-button native-type="submit" variant="primary">{{
+        <o-button type="submit" variant="primary">{{
           t("Save instance settings")
         }}</o-button>
       </form>

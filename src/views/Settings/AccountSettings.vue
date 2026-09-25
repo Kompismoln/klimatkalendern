@@ -204,7 +204,7 @@
                     <div class="flex items-center justify-center">
                       <o-button
                         class="mt-2"
-                        native-type="submit"
+                        type="submit"
                         variant="danger"
                         size="large"
                       >

@@ -1421,7 +1421,6 @@
   "You excluded member {member}.": "Du uteslöt medlem {member}.",
   "You have access to this conversation as a member of the {group} group": "Du har tillgång till detta samtal som medlem i {group}-gruppen",
   "You have attended {count} events in the past.": "Du har inte deltagit i några evenemang under de senaste åren.|Du har deltagit i ett evenemang under de senaste åren.|Du har deltagit i {count} evenemang under de senaste åren.",
-  "You have been invited by {invitedBy} to the following group:": "Du har blivit inbjuden av {invitedBy} till följande grupp:",
   "You have been logged-out": "Du har blivit utloggad",
   "You have been removed from this group's members.": "Du har blivit borttagen som gruppmedlem.",
   "You have cancelled your participation": "Du har avslutat ditt deltagande",

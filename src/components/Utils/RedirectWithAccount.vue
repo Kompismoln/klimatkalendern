@@ -100,6 +100,7 @@ const webFingerFetch = async (
   hostname: string,
   identity: string
 ): Promise<string> => {
+  // eslint-disable-next-line no-undef
   const scheme = process.env.NODE_ENV === "production" ? "https" : "http";
   const data = await (
     await fetch(

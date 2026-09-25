@@ -157,6 +157,12 @@
           </o-checkbox>
         </o-field>
 
+        <o-field :label="t('Permission')">
+          <o-checkbox v-model="editableGroup.allowSeeParticipants">
+            {{ t("Members can see events' participants") }}
+          </o-checkbox>
+        </o-field>
+
         <full-address-auto-complete
           :label="t('Group address')"
           v-model="currentAddress"
@@ -167,7 +173,7 @@
         <div class="flex flex-wrap gap-2 my-2">
           <o-button
             :loading="loadingUpdateGroup"
-            native-type="submit"
+            type="submit"
             variant="primary"
             >{{ t("Update group") }}</o-button
           >
@@ -340,6 +346,7 @@ const buildVariables = computed(() => {
     visibility: editableGroup.value?.visibility,
     openness: editableGroup.value?.openness,
     manuallyApprovesFollowers: editableGroup.value?.manuallyApprovesFollowers,
+    allowSeeParticipants: editableGroup.value?.allowSeeParticipants,
     physicalAddress,
     ...avatarObj,
     ...bannerObj,

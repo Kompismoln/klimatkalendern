@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MyGroups > Show simple 1`] = `
+"<section data-v-59f508e2="" class="container mx-auto px-1 mb-6">
+  <h1 data-v-59f508e2="" class="title">My groups</h1>
+  <p data-v-59f508e2="">Groups are spaces for coordination and preparation to better organize events and manage your community.</p>
+  <div data-v-59f508e2="" class="flex my-3"><a data-v-59f508e2="" href="/groups/create" class="o-button o-button--primary" data-oruga="button" role="button" tabindex="0"><span class="o-button__wrapper"><!----><span class="o-button__label">Create group</span>
+      <!----></span>
+    </a></div>
+  <transition-stub data-v-59f508e2="" name="fade" appear="false" persisted="false" css="true">
+    <!---->
+  </transition-stub>
+  <!--v-if-->
+  <!--v-if-->
+  <section data-v-59f508e2="" class="text-center not-found">
+    <div data-v-59f508e2="" class="">
+      <div data-v-59f508e2="" class="">
+        <div data-v-59f508e2="" class="text-center prose dark:prose-invert max-w-full">
+          <p data-v-59f508e2="">You are not part of any group. Do you wish to <a data-v-59f508e2="" href="/groups/create" class="">create a group</a> or <a data-v-59f508e2="" href="/search?contentType=GROUPS" class="">explore the groups</a>?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>"
+`;

@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MaterialIcon > Show CalendarStar 1`] = `"<async-component-wrapper-stub size="18"></async-component-wrapper-stub>"`;
+
+exports[`MaterialIcon > Show GoogleHangouts 1`] = `"<async-component-wrapper-stub size="18"></async-component-wrapper-stub>"`;
+
+exports[`MaterialIcon > Show account-multiple-plus 1`] = `"<async-component-wrapper-stub size="18"></async-component-wrapper-stub>"`;

@@ -129,7 +129,7 @@
         </o-field>
         <o-button
           class="my-2"
-          native-type="submit"
+          type="submit"
           :disabled="['<p></p>', ''].includes(newComment)"
           variant="primary"
           >{{ t("Reply") }}</o-button

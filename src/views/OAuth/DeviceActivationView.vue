@@ -56,7 +56,7 @@
       </div>
 
       <div class="text-center">
-        <o-button native-type="submit">{{ t("Continue") }}</o-button>
+        <o-button type="submit">{{ t("Continue") }}</o-button>
       </div>
     </form>
     <AuthorizeApplication

@@ -1,45 +1,60 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.209.6/containers/elixir-phoenix-postgres
+// For format details, see https://aka.ms/devcontainer.json.
 {
   "name": "Elixir, Phoenix, Node.js & PostgresSQL (Community)",
   "dockerComposeFile": "docker-compose.yml",
   "service": "elixir",
   "workspaceFolder": "/workspace",
 
-  // Set *default* container specific settings.json values on container create.
-  "settings": {
-    "sqltools.connections": [
-      {
-        "name": "Container database",
-        "driver": "PostgreSQL",
-        "previewLimit": 50,
-        "server": "localhost",
-        "port": 5432,
-        "database": "postgres",
-        "username": "postgres",
-        "password": "postgres"
-      }
-    ]
+  // Configure tool-specific properties.
+  "customizations": {
+    "vscode": {
+      // Container specific settings.json values.
+      "settings": {
+        "sqltools.connections": [
+          {
+            "name": "Container database",
+            "driver": "PostgreSQL",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "database": "postgres",
+            "username": "postgres",
+            "password": "postgres"
+          }
+        ]
+      },
+      // VSCode extensions to be automatically installed.
+      "extensions": [
+        "jakebecker.elixir-ls",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg"
+      ]
+    }
   },
-
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "jakebecker.elixir-ls",
-    "mtxr.sqltools",
-    "mtxr.sqltools-driver-pg"
-  ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   "forwardPorts": [4000, 4001, 5432],
 
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000",
+      "upgradePackages": "true"
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest",
+      "ppa": "false"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "mix deps.get",
-  // "runArgs": ["--userns=keep-id", "--privileged"],
-  // "containerUser": "vscode",
-  // "containerEnv": {
-  // 	"HOME": "/home/vscode",
-  // },
-  // "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,Z",
+  "postCreateCommand": "mix local.hex --force && mix local.rebar --force && mix archive.install --force hex phx_new 1.7.18",
 
   // Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
   "remoteUser": "vscode"

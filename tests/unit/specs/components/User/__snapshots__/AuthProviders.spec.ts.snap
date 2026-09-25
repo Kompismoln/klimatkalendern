@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AuthProviders > Show simple 1`] = `
+"<div><b>Sign in with</b>
+  <div class="flex gap-1 flex-wrap"><a data-oruga="button" role="button" tabindex="0" class="o-button o-button--outlined-primary" href="/auth/keycloak"><span class="o-button__wrapper"><span data-oruga="icon" class="o-icon o-button__icon o-button__icon-left"><i class="mdi mdi-lock mdi-24px"></i></span><span class="o-button__label"><span>Entreprise</span></span>
+      <!----></span>
+    </a><a data-oruga="button" role="button" tabindex="0" class="o-button o-button--outlined-primary" href="/auth/google"><span class="o-button__wrapper"><span data-oruga="icon" class="o-icon o-button__icon o-button__icon-left"><i class="mdi mdi-google mdi-24px"></i></span><span class="o-button__label"><span>Google</span></span>
+      <!----></span>
+    </a></div>
+</div>"
+`;

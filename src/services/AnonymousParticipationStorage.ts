@@ -44,7 +44,6 @@ function getLocalAnonymousParticipations(): Map<
 function purgeOldParticipations(
   participations: Map<string, IAnonymousParticipation>
 ): Map<string, IAnonymousParticipation> {
-  // eslint-disable-next-line no-restricted-syntax
   for (const [hashedUUID, { expiration }] of participations) {
     if (expiration < new Date()) {
       participations.delete(hashedUUID);

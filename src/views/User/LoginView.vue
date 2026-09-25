@@ -75,7 +75,7 @@
         <o-button
           variant="primary"
           size="large"
-          native-type="submit"
+          type="submit"
           :disabled="submitted"
         >
           {{ t("Login") }}

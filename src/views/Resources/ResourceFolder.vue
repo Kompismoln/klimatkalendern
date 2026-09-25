@@ -75,7 +75,7 @@
               />
             </o-field>
 
-            <o-button native-type="submit">{{ t("Rename resource") }}</o-button>
+            <o-button type="submit">{{ t("Rename resource") }}</o-button>
           </form>
         </section>
       </div>
@@ -138,7 +138,7 @@
             />
           </o-field>
 
-          <o-button class="mt-2" native-type="submit">{{
+          <o-button class="mt-2" type="submit">{{
             createResourceButtonLabel
           }}</o-button>
         </form>
@@ -208,7 +208,7 @@
               />
             </o-field>
 
-            <o-button native-type="submit" class="mt-2">{{
+            <o-button type="submit" class="mt-2">{{
               t("Create resource")
             }}</o-button>
           </form>
@@ -484,7 +484,6 @@ const createResourceButtonLabel = computed((): string => {
   return createSentenceForType(newResource.type);
 });
 
-// eslint-disable-next-line class-methods-use-this
 const postRefreshQueries = (): InternalRefetchQueriesInclude => {
   return [
     {

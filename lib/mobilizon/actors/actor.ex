@@ -63,7 +63,8 @@ defmodule Mobilizon.Actors.Actor do
           owner_shares: [Share.t()],
           memberships: [t],
           last_refreshed_at: DateTime.t(),
-          physical_address: Address.t()
+          physical_address: Address.t(),
+          allow_see_participants: boolean
         }
 
   @required_attrs [:preferred_username, :keys, :suspended, :url]
@@ -85,6 +86,7 @@ defmodule Mobilizon.Actors.Actor do
     :last_refreshed_at,
     :user_id,
     :physical_address_id,
+    :allow_see_participants,
     :visibility
   ]
   @attrs @required_attrs ++ @optional_attrs
@@ -97,12 +99,13 @@ defmodule Mobilizon.Actors.Actor do
     :user_id,
     :visibility,
     :openness,
-    :physical_address_id
+    :physical_address_id,
+    :allow_see_participants
   ]
   @update_attrs @update_required_attrs ++ @update_optional_attrs
 
   @registration_required_attrs [:preferred_username, :keys, :suspended, :url, :type]
-  @registration_optional_attrs [:domain, :name, :summary, :user_id]
+  @registration_optional_attrs [:domain, :name, :summary, :user_id, :allow_see_participants]
   @registration_attrs @registration_required_attrs ++ @registration_optional_attrs
 
   @remote_actor_creation_required_attrs [
@@ -129,7 +132,8 @@ defmodule Mobilizon.Actors.Actor do
     :manually_approves_followers,
     :visibility,
     :openness,
-    :physical_address_id
+    :physical_address_id,
+    :allow_see_participants
   ]
   @remote_actor_creation_attrs @remote_actor_creation_required_attrs ++
                                  @remote_actor_creation_optional_attrs
@@ -149,7 +153,8 @@ defmodule Mobilizon.Actors.Actor do
     :summary,
     :visibility,
     :openness,
-    :manually_approves_followers
+    :manually_approves_followers,
+    :allow_see_participants
   ]
   @group_creation_attrs @group_creation_required_attrs ++ @group_creation_optional_attrs
 
@@ -179,6 +184,7 @@ defmodule Mobilizon.Actors.Actor do
     field(:visibility, ActorVisibility, default: :private)
     field(:suspended, :boolean, default: false)
     field(:last_refreshed_at, :utc_datetime)
+    field(:allow_see_participants, :boolean, default: false)
 
     embeds_one(:avatar, File, on_replace: :update)
     embeds_one(:banner, File, on_replace: :update)

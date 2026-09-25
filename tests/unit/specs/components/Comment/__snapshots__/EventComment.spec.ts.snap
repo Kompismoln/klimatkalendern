@@ -1,0 +1,165 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`EventComment > Show Announcement 1`] = `
+"<li class="bg-white dark:bg-zinc-800 rounded p-2 bg-mbz-purple-50 dark:bg-mbz-purple-500">
+  <article id="comment-undefined" dir="auto" class="mbz-comment">
+    <div>
+      <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1">
+          <vmenu distance="16" triggers="hover" class="popover inline">
+            <figure><img class="rounded-xl" src="https://social.tcit.fr/system/accounts/avatars/000/000/001/original/a28c50ce5f2b13fd.jpg" alt="" width="24" height="24"></figure>
+          </vmenu><strong dir="auto" class="organizer">Thomas Citharel</strong>
+        </div><a href="/events/an-uuid#comment-undefined"><small>in almost 4 years</small></a>
+      </div>
+      <div dir="auto" class="prose dark:prose-invert xl:prose-lg !max-w-full text-black dark:text-white">hello</div>
+      <nav class="flex gap-1 mt-1"><button class="cursor-pointer flex hover:bg-zinc-300 dark:hover:bg-zinc-600 rounded p-1"><span aria-hidden="true" class="material-design-icon reply-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10,9V5L3,12L10,19V14.9C15,14.9 18.5,16.5 21,20C20,15 17,10 10,9Z"><!--v-if--></path></svg></span><span>Reply</span></button>
+        <div data-oruga="dropdown" class="o-dropdown o-dropdown--position-bottom-left" aria-role="list">
+          <div class="o-dropdown__trigger" aria-haspopup="menu" aria-disabled="false" aria-controls="v-0"><button class="cursor-pointer flex hover:bg-zinc-300 dark:hover:bg-zinc-600 rounded p-1"><span aria-hidden="true" class="material-design-icon dots-horizontal-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"><!--v-if--></path></svg></span><span class="sr-only">More options</span></button></div>
+          <!--teleport start-->
+          <!---->
+          <transition-stub name="fade" appear="false" persisted="false" css="true">
+            <div id="v-0" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--bottom-left" role="menu" aria-hidden="true" style="display: none;">
+              <div id="v-0-1" data-oruga="dropdown-item" data-id="dropdown-1" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem"><button class="flex items-center gap-1"><span aria-hidden="true" class="material-design-icon delete-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="16" height="16" viewBox="0 0 24 24"><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"><!--v-if--></path></svg></span><span>Delete</span></button></div>
+              <div id="v-0-2" data-oruga="dropdown-item" data-id="dropdown-2" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem"><button class="flex items-center gap-1"><span aria-hidden="true" class="material-design-icon alert-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="16" height="16" viewBox="0 0 24 24"><path d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z"><!--v-if--></path></svg></span><span>Report</span></button></div>
+            </div>
+          </transition-stub>
+          <!--teleport end-->
+        </div>
+      </nav>
+      <div class=""><button class="flex cursor-pointer hover:bg-zinc-300 dark:hover:bg-zinc-600 rounded p-1"><span aria-hidden="true" class="material-design-icon chevron-down-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"><!--v-if--></path></svg></span><span>View a reply</span></button></div>
+    </div>
+  </article>
+  <form style="display: none;">
+    <article class="flex gap-2">
+      <figure class="mt-4"><img src="https://social.tcit.fr/system/accounts/avatars/000/000/001/original/a28c50ce5f2b13fd.jpg" alt="" width="48" height="48" class="rounded-md"></figure>
+      <div class="flex-1">
+        <div class="flex gap-1 items-center"><strong>Thomas Citharel</strong><small dir="ltr">@tcit</small></div>
+        <div class="flex flex-col gap-2">
+          <!----><button data-oruga="button" type="submit" role="button" tabindex="0" class="o-button o-button--primary o-button--disabled self-end" disabled=""><span class="o-button__wrapper"><!----><span class="o-button__label">Post a reply</span>
+            <!----></span>
+          </button>
+        </div>
+      </div>
+    </article>
+  </form>
+  <!--v-if-->
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div has-modal-card="" close-button-aria-label="Close" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-modal="false" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <div data-v-e0cceef3="" class="p-2">
+          <header data-v-e0cceef3="" class="mb-3">
+            <h2 data-v-e0cceef3="" class="text-2xl">Report this comment</h2>
+          </header>
+          <section data-v-e0cceef3="">
+            <div data-v-e0cceef3="" class="flex gap-1 flex-row mb-3 bg-mbz-yellow dark:text-black p-3 rounded items-center"><span data-v-e0cceef3="" data-oruga="icon" class="o-icon o-icon--warning hidden md:block flex-1"><i class="mdi mdi-alert 48"></i></span>
+              <p data-v-e0cceef3="">The report will be sent to the moderators of your instance. You can explain why you report this content below.</p>
+            </div>
+            <div data-v-e0cceef3="">
+              <!--v-if-->
+              <div data-v-e0cceef3="" data-oruga="field" class="o-field"><label id="v-3" for="additional-comments" class="o-field__label">Additional comments</label>
+                <div data-v-e0cceef3="" data-oruga="input" class="o-input o-input--expanded o-input--textarea">
+                  <!----><textarea aria-labelledby="v-3" autofocus="" id="additional-comments" data-oruga-input="textarea" class="o-input__input o-input__input--placeholder"></textarea>
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+              <!--v-if-->
+            </div>
+          </section>
+          <footer data-v-e0cceef3="" class="flex gap-2 py-3"><button data-v-e0cceef3="" data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--outlined"><span class="o-button__wrapper"><!----><span class="o-button__label">Cancel</span>
+              <!----></span>
+            </button><button data-v-e0cceef3="" data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--primary"><span class="o-button__wrapper"><!----><span class="o-button__label">Send the report</span>
+              <!----></span>
+            </button></footer>
+        </div><button type="button" class="o-modal__close" aria-label="Close" data-oruga="close" style="display: none;"><span data-oruga="icon" class="o-icon o-icon--medium"><i class="mdi mdi-close mdi-36px"></i></span></button>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+</li>"
+`;
+
+exports[`EventComment > Show Basic 1`] = `
+"<li class="bg-white dark:bg-zinc-800 rounded p-2">
+  <article id="comment-undefined" dir="auto" class="mbz-comment">
+    <div>
+      <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1">
+          <vmenu distance="16" triggers="hover" class="popover inline">
+            <figure><img class="rounded-xl" src="https://social.tcit.fr/system/accounts/avatars/000/000/001/original/a28c50ce5f2b13fd.jpg" alt="" width="24" height="24"></figure>
+          </vmenu><strong dir="auto" class="organizer">Thomas Citharel</strong>
+        </div><a href="/events/an-uuid#comment-undefined"><small>in almost 4 years</small></a>
+      </div>
+      <div dir="auto" class="prose dark:prose-invert xl:prose-lg !max-w-full">hello</div>
+      <nav class="flex gap-1 mt-1"><button class="cursor-pointer flex hover:bg-zinc-300 dark:hover:bg-zinc-600 rounded p-1"><span aria-hidden="true" class="material-design-icon reply-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10,9V5L3,12L10,19V14.9C15,14.9 18.5,16.5 21,20C20,15 17,10 10,9Z"><!--v-if--></path></svg></span><span>Reply</span></button>
+        <div data-oruga="dropdown" class="o-dropdown o-dropdown--position-bottom-left" aria-role="list">
+          <div class="o-dropdown__trigger" aria-haspopup="menu" aria-disabled="false" aria-controls="v-0"><button class="cursor-pointer flex hover:bg-zinc-300 dark:hover:bg-zinc-600 rounded p-1"><span aria-hidden="true" class="material-design-icon dots-horizontal-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M16,12A2,2 0 0,1 18,10A2,2 0 0,1 20,12A2,2 0 0,1 18,14A2,2 0 0,1 16,12M10,12A2,2 0 0,1 12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12M4,12A2,2 0 0,1 6,10A2,2 0 0,1 8,12A2,2 0 0,1 6,14A2,2 0 0,1 4,12Z"><!--v-if--></path></svg></span><span class="sr-only">More options</span></button></div>
+          <!--teleport start-->
+          <!---->
+          <transition-stub name="fade" appear="false" persisted="false" css="true">
+            <div id="v-0" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--bottom-left" role="menu" aria-hidden="true" style="display: none;">
+              <div id="v-0-1" data-oruga="dropdown-item" data-id="dropdown-1" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem"><button class="flex items-center gap-1"><span aria-hidden="true" class="material-design-icon delete-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="16" height="16" viewBox="0 0 24 24"><path d="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"><!--v-if--></path></svg></span><span>Delete</span></button></div>
+              <div id="v-0-2" data-oruga="dropdown-item" data-id="dropdown-2" class="o-dropdown__item o-dropdown__item--clickable" role="menuitem" tabindex="-1" aria-disabled="false" aria-role="listitem"><button class="flex items-center gap-1"><span aria-hidden="true" class="material-design-icon alert-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="16" height="16" viewBox="0 0 24 24"><path d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z"><!--v-if--></path></svg></span><span>Report</span></button></div>
+            </div>
+          </transition-stub>
+          <!--teleport end-->
+        </div>
+      </nav>
+      <div class=""><button class="flex cursor-pointer hover:bg-zinc-300 dark:hover:bg-zinc-600 rounded p-1"><span aria-hidden="true" class="material-design-icon chevron-down-icon" role="img"><svg fill="currentColor" class="material-design-icon__svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"><!--v-if--></path></svg></span><span>View a reply</span></button></div>
+    </div>
+  </article>
+  <form style="display: none;">
+    <article class="flex gap-2">
+      <figure class="mt-4"><img src="https://social.tcit.fr/system/accounts/avatars/000/000/001/original/a28c50ce5f2b13fd.jpg" alt="" width="48" height="48" class="rounded-md"></figure>
+      <div class="flex-1">
+        <div class="flex gap-1 items-center"><strong>Thomas Citharel</strong><small dir="ltr">@tcit</small></div>
+        <div class="flex flex-col gap-2">
+          <!----><button data-oruga="button" type="submit" role="button" tabindex="0" class="o-button o-button--primary o-button--disabled self-end" disabled=""><span class="o-button__wrapper"><!----><span class="o-button__label">Post a reply</span>
+            <!----></span>
+          </button>
+        </div>
+      </div>
+    </article>
+  </form>
+  <!--v-if-->
+  <!--teleport start-->
+  <transition-stub name="zoom-out" appear="false" persisted="false" css="true">
+    <div has-modal-card="" close-button-aria-label="Close" data-oruga="modal" class="o-modal" tabindex="-1" role="dialog" aria-modal="false" style="display: none;">
+      <div class="o-modal__overlay" tabindex="-1"></div>
+      <div class="o-modal__content" style="max-width: 960px;">
+        <div data-v-e0cceef3="" class="p-2">
+          <header data-v-e0cceef3="" class="mb-3">
+            <h2 data-v-e0cceef3="" class="text-2xl">Report this comment</h2>
+          </header>
+          <section data-v-e0cceef3="">
+            <div data-v-e0cceef3="" class="flex gap-1 flex-row mb-3 bg-mbz-yellow dark:text-black p-3 rounded items-center"><span data-v-e0cceef3="" data-oruga="icon" class="o-icon o-icon--warning hidden md:block flex-1"><i class="mdi mdi-alert 48"></i></span>
+              <p data-v-e0cceef3="">The report will be sent to the moderators of your instance. You can explain why you report this content below.</p>
+            </div>
+            <div data-v-e0cceef3="">
+              <!--v-if-->
+              <div data-v-e0cceef3="" data-oruga="field" class="o-field"><label id="v-3" for="additional-comments" class="o-field__label">Additional comments</label>
+                <div data-v-e0cceef3="" data-oruga="input" class="o-input o-input--expanded o-input--textarea">
+                  <!----><textarea aria-labelledby="v-3" autofocus="" id="additional-comments" data-oruga-input="textarea" class="o-input__input o-input__input--placeholder"></textarea>
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+              <!--v-if-->
+            </div>
+          </section>
+          <footer data-v-e0cceef3="" class="flex gap-2 py-3"><button data-v-e0cceef3="" data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--outlined"><span class="o-button__wrapper"><!----><span class="o-button__label">Cancel</span>
+              <!----></span>
+            </button><button data-v-e0cceef3="" data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--primary"><span class="o-button__wrapper"><!----><span class="o-button__label">Send the report</span>
+              <!----></span>
+            </button></footer>
+        </div><button type="button" class="o-modal__close" aria-label="Close" data-oruga="close" style="display: none;"><span data-oruga="icon" class="o-icon o-icon--medium"><i class="mdi mdi-close mdi-36px"></i></span></button>
+      </div>
+    </div>
+  </transition-stub>
+  <!--teleport end-->
+</li>"
+`;

@@ -1,6 +1,6 @@
 defmodule Mobilizon.Service.Geospatial.Photon do
   @moduledoc """
-  [Photon](https://photon.komoot.de) backend.
+  [Photon](https://photon.komoot.io) backend.
   """
 
   alias Mobilizon.Addresses.Address
@@ -79,7 +79,8 @@ defmodule Mobilizon.Service.Geospatial.Photon do
         geom: coordinates,
         timezone: Provider.timezone(coordinates),
         postal_code: Map.get(properties, "postcode"),
-        street: properties |> street_address()
+        street: properties |> street_address(),
+        origin_id: "photon:" <> to_string(Map.get(properties, "osm_id"))
       }
     end)
   end

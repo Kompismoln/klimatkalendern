@@ -4,7 +4,7 @@
       {{ t("Your participation request is being validated") }}
     </h1>
     <div v-else>
-      <div v-if="failed && participation === undefined">
+      <div v-if="failed">
         <o-notification
           :title="t('Error while validating participation request')"
           variant="danger"
@@ -28,21 +28,10 @@
             t("Your participation still has to be approved by the organisers.")
           }}
         </p>
-        <div v-if="failed">
-          <o-notification
-            :title="
-              t('Error while updating participation status inside this browser')
-            "
-            variant="warning"
-          >
-            {{
-              t(
-                "We couldn't save your participation inside this browser. Not to worry, you have successfully confirmed your participation, we just couldn't save it's status in this browser because of a technical issue."
-              )
-            }}
-          </o-notification>
-        </div>
-        <div class="columns has-text-centered">
+        <div
+          class="columns has-text-centered"
+          v-if="participation?.event?.uuid"
+        >
           <div class="column">
             <o-button
               tag="router-link"
@@ -50,7 +39,7 @@
               size="large"
               :to="{
                 name: RouteName.EVENT,
-                params: { uuid: participation?.event.uuid },
+                params: { uuid: participation?.event?.uuid },
               }"
               >{{ t("Go to the event page") }}</o-button
             >
@@ -110,6 +99,9 @@ onDone(async ({ data }) => {
 
 onError((err) => {
   console.error(err);
+  // Sadly, the backend return an error 500 if the participant is already confirmed
+  // So we at least inform the user by an alert popup. Could be better.
+  alert(err.message);
   failed.value = true;
   loading.value = false;
 });

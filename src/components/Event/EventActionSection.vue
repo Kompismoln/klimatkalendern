@@ -327,7 +327,7 @@
               @keyup.enter="isJoinConfirmationModalActive = false"
               >{{ t("Cancel") }}
             </o-button>
-            <o-button variant="primary" native-type="submit">
+            <o-button variant="primary" type="submit">
               {{ t("Confirm my participation") }}
             </o-button>
           </div>
@@ -908,6 +908,7 @@ const openDeleteEventModal = () => {
     onConfirm: (result: string) => {
       console.debug("calling delete event", result);
       if (result.trim() === event.value?.title) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
         event.value?.id ? deleteEvent({ eventId: event.value?.id }) : null;
       }
     },

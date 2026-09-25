@@ -25,6 +25,29 @@ defmodule Mobilizon.GraphQL.Resolvers.Event.Utils do
     Event.can_be_managed_by?(event, actor_member_id)
   end
 
+  @spec can_event_be_access_by?(Event.t(), Actor.t()) ::
+          boolean
+  def can_event_be_access_by?(
+        %Event{attributed_to: %Actor{type: :Group, allow_see_participants: true}} = event,
+        %Actor{} = actor_member
+      ) do
+    Permission.can_access_group_object?(actor_member, event)
+  end
+
+  def can_event_be_access_by?(
+        %Event{attributed_to: %Actor{type: :Group, allow_see_participants: false}} = event,
+        %Actor{} = actor_member
+      ) do
+    can_event_be_updated_by?(event, actor_member)
+  end
+
+  def can_event_be_access_by?(
+        %Event{} = event,
+        %Actor{} = actor_member
+      ) do
+    can_event_be_updated_by?(event, actor_member)
+  end
+
   @spec can_event_be_deleted_by?(Event.t(), Actor.t()) ::
           boolean
   def can_event_be_deleted_by?(

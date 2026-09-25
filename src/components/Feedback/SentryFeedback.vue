@@ -11,7 +11,7 @@
         :placeholder="t(`I've clicked on X, then on Y`)"
       />
     </o-field>
-    <o-button icon-left="send" native-type="submit" variant="primary">{{
+    <o-button icon-left="send" type="submit" variant="primary">{{
       t("Send feedback")
     }}</o-button>
     <p class="prose dark:prose-invert">

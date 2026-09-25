@@ -45,7 +45,7 @@
     </o-notification>
     <o-button
       class="mt-3"
-      nativeType="submit"
+      type="submit"
       :disabled="selectedRoles.length == 0"
       >{{ t("Send") }}</o-button
     >

@@ -1475,6 +1475,9 @@ type RootMutationType {
 
     "The physical address for the group"
     physicalAddress: AddressInput
+
+    "Option to allow group's member to see event's participants"
+    allowSeeParticipants: Boolean
   ): Group
 
   "Update a group"

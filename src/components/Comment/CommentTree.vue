@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="">
-          <o-button native-type="submit" variant="primary" icon-left="send">{{
+          <o-button type="submit" variant="primary" icon-left="send">{{
             t("Send")
           }}</o-button>
         </div>

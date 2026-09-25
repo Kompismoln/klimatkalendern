@@ -247,7 +247,7 @@
             <o-button outlined @click="isEmailChangeModalActive = false">{{
               t("Close")
             }}</o-button>
-            <o-button native-type="submit" variant="primary">{{
+            <o-button type="submit" variant="primary">{{
               t("Change email")
             }}</o-button>
           </footer>
@@ -301,7 +301,7 @@
           <o-button @click="isRoleChangeModalActive = false" outlined>{{
             t("Close")
           }}</o-button>
-          <o-button native-type="submit" variant="primary">{{
+          <o-button type="submit" variant="primary">{{
             t("Change role")
           }}</o-button>
         </footer>
@@ -330,7 +330,7 @@
           <o-button @click="isConfirmationModalActive = false">{{
             t("Close")
           }}</o-button>
-          <o-button native-type="submit" variant="primary">{{
+          <o-button type="submit" variant="primary">{{
             t("Confirm user")
           }}</o-button>
         </footer>

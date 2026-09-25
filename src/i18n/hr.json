@@ -1391,7 +1391,6 @@
   "You excluded member {member}.": "Isključili ste člana {member}.",
   "You have access to this conversation as a member of the {group} group": "Imaš pristup ovoj konverzaciji kao član grupe {group}",
   "You have attended {count} events in the past.": "Broj događaja kojima si prisustvovao/la u prošlosti: 0.|Broj događaja kojima si prisustvovao/la u prošlosti: 1.|Broj događaja kojima si prisustvovao/la u prošlosti: {count}.",
-  "You have been invited by {invitedBy} to the following group:": "{invitedBy} su vas pozvali u grupu:",
   "You have been logged-out": "Odjavljen/a si",
   "You have been removed from this group's members.": "Izbačeni ste iz ove grupe.",
   "You have cancelled your participation": "Otkazali ste svoje sudjelovanje",

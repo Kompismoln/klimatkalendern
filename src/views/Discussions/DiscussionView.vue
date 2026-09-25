@@ -72,7 +72,7 @@
           <div class="flex gap-2 mt-2">
             <o-button
               variant="primary"
-              native-type="submit"
+              type="submit"
               icon-right="check"
               :title="t('Update discussion title')"
             />
@@ -133,7 +133,7 @@
         </o-field>
         <o-button
           class="my-2"
-          native-type="submit"
+          type="submit"
           :disabled="['<p></p>', ''].includes(newComment)"
           variant="primary"
           >{{ t("Reply") }}</o-button

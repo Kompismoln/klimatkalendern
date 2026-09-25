@@ -184,7 +184,7 @@
               variant="primary"
               size="large"
               :disabled="sendingForm"
-              native-type="submit"
+              type="submit"
             >
               {{ t("Create an account") }}
             </o-button>

@@ -162,7 +162,7 @@
             />
             <o-button
               :disabled="newComment.text.trim().length === 0"
-              native-type="submit"
+              type="submit"
               variant="primary"
               class="self-end"
               >{{ t("Post a reply") }}</o-button

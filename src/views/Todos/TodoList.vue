@@ -37,7 +37,7 @@
         <o-checkbox v-model="newTodo.status" />
         <o-input expanded v-model="newTodo.title" />
       </o-field>
-      <o-button native-type="submit">{{ $t("Add a todo") }}</o-button>
+      <o-button type="submit">{{ $t("Add a todo") }}</o-button>
     </form>
   </section>
 </template>

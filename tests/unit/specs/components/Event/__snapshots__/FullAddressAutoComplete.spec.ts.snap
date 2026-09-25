@@ -1,0 +1,138 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FullAddressAutoComplete > Show list 1`] = `
+"<div class="address-autocomplete">
+  <div data-oruga="field" class="o-field o-field--filled !-mt-2 flex" id="FullAddressAutoComplete-o-field"><label id="v-0-0" for="full-address-autocomplete-1" class="o-field__label">Find an address</label>
+    <!--v-if-->
+    <div data-oruga="autocomplete" class="o-dropdown o-dropdown--expanded o-dropdown--position-auto o-autocomplete">
+      <div class="o-dropdown__trigger" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-disabled="false" aria-controls="v-0-2" aria-labelledby="v-0-0">
+        <div data-oruga="input" class="o-input o-input--expanded"><span data-oruga="icon" class="o-icon o-input__icon-left"><i class="mdi mdi-map-marker mdi-24px"></i></span><input aria-labelledby="v-0-0" class="FullAddressAutoComplete-o-autocomplete !mt-0 !h-full o-input__input o-input__input--iconspace-left" aria-autocomplete="list" aria-controls="v-0-2" enterkeyhint="enter" id="full-address-autocomplete-1" type="text" data-oruga-input="text" autocomplete="off" placeholder="e.g. 10 Rue Jangot">
+          <!---->
+          <!---->
+        </div>
+      </div>
+      <!--teleport start-->
+      <!---->
+      <transition-stub name="fade" appear="false" persisted="false" css="true">
+        <div id="v-0-2" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--auto" style="max-height: 200px; overflow: auto; display: none;" role="listbox" aria-labelledby="v-0-0" aria-multiselectable="false">
+          <!---->
+          <!---->
+          <div id="v-0-2-2" data-oruga="dropdown-item" data-id="dropdown-2" class="o-dropdown__item o-dropdown__item--clickable o-autocomplete__item" role="option" tabindex="-1" aria-selected="false" aria-disabled="false">
+            <p class="flex gap-1"><span data-oruga="icon" class="o-icon"><i class="mdi mdi-city mdi-24px"></i></span><b>Lyon</b></p>
+            <p class="text-small">Auvergne-Rhône-Alpes, France</p>
+          </div>
+          <div id="v-0-2-3" data-oruga="dropdown-item" data-id="dropdown-3" class="o-dropdown__item o-dropdown__item--clickable o-autocomplete__item" role="option" tabindex="-1" aria-selected="false" aria-disabled="false">
+            <p class="flex gap-1"><span data-oruga="icon" class="o-icon"><i class="mdi mdi-map-marker mdi-24px"></i></span><b>Lyon County</b></p>
+            <p class="text-small">Kansas, États-Unis d'Amérique</p>
+          </div>
+          <div id="v-0-2-4" data-oruga="dropdown-item" data-id="dropdown-4" class="o-dropdown__item o-dropdown__item--clickable o-autocomplete__item" role="option" tabindex="-1" aria-selected="false" aria-disabled="false">
+            <p class="flex gap-1"><span data-oruga="icon" class="o-icon"><i class="mdi mdi-city mdi-24px"></i></span><b>Lyon</b></p>
+            <p class="text-small">Auvergne-Rhône-Alpes, France</p>
+          </div>
+          <div id="v-0-2-5" data-oruga="dropdown-item" data-id="dropdown-5" class="o-dropdown__item o-dropdown__item--clickable o-autocomplete__item" role="option" tabindex="-1" aria-selected="false" aria-disabled="false">
+            <p class="flex gap-1"><span data-oruga="icon" class="o-icon"><i class="mdi mdi-city mdi-24px"></i></span><b>Lyon</b></p>
+            <p class="text-small">Mississippi, États-Unis d'Amérique</p>
+          </div>
+          <!---->
+          <!---->
+        </div>
+      </transition-stub>
+      <!--teleport end-->
+    </div><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--disabled reset-area !h-auto" disabled="" title="Clear address field"><span class="o-button__wrapper"><span data-oruga="icon" class="o-icon o-button__icon o-button__icon-left"><i class="mdi mdi-close mdi-24px"></i></span>
+      <!---->
+      <!----></span>
+    </button>
+    <!---->
+  </div>
+  <!--v-if-->
+  <!--v-if-->
+</div>
+<!--v-if-->
+<!--v-if-->"
+`;
+
+exports[`FullAddressAutoComplete > Show list 2`] = `
+"<div class="address-autocomplete">
+  <div data-oruga="field" class="o-field o-field--filled !-mt-2 flex" id="FullAddressAutoComplete-o-field"><label id="v-0-0" for="full-address-autocomplete-1" class="o-field__label">Find an address</label>
+    <!--v-if-->
+    <div data-oruga="autocomplete" class="o-dropdown o-dropdown--expanded o-dropdown--position-bottom o-dropdown--active o-autocomplete">
+      <div class="o-dropdown__trigger" role="combobox" aria-haspopup="listbox" aria-expanded="true" aria-disabled="false" aria-controls="v-0-2" aria-labelledby="v-0-0">
+        <div data-oruga="input" class="o-input o-input--expanded"><span data-oruga="icon" class="o-icon o-input__icon-left"><i class="mdi mdi-map-marker mdi-24px"></i></span><input aria-labelledby="v-0-0" class="FullAddressAutoComplete-o-autocomplete !mt-0 !h-full o-input__input o-input__input--iconspace-left" aria-autocomplete="list" aria-controls="v-0-2" enterkeyhint="enter" id="full-address-autocomplete-1" type="text" data-oruga-input="text" autocomplete="off" placeholder="e.g. 10 Rue Jangot">
+          <!---->
+          <!---->
+        </div>
+      </div>
+      <!--teleport start-->
+      <!---->
+      <transition-stub name="fade" appear="false" persisted="false" css="true">
+        <div id="v-0-2" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--bottom o-dropdown__menu--active" style="max-height: 200px; overflow: auto;" role="listbox" aria-labelledby="v-0-0" aria-multiselectable="false">
+          <!---->
+          <!---->
+          <div id="v-0-2-2" data-oruga="dropdown-item" data-id="dropdown-2" class="o-dropdown__item o-dropdown__item--clickable o-autocomplete__item" role="option" tabindex="-1" aria-selected="false" aria-disabled="false">
+            <p class="flex gap-1"><span data-oruga="icon" class="o-icon"><i class="mdi mdi-city mdi-24px"></i></span><b>Lyon</b></p>
+            <p class="text-small">Auvergne-Rhône-Alpes, France</p>
+          </div>
+          <div id="v-0-2-3" data-oruga="dropdown-item" data-id="dropdown-3" class="o-dropdown__item o-dropdown__item--clickable o-autocomplete__item" role="option" tabindex="-1" aria-selected="false" aria-disabled="false">
+            <p class="flex gap-1"><span data-oruga="icon" class="o-icon"><i class="mdi mdi-map-marker mdi-24px"></i></span><b>Lyon County</b></p>
+            <p class="text-small">Kansas, États-Unis d'Amérique</p>
+          </div>
+          <div id="v-0-2-4" data-oruga="dropdown-item" data-id="dropdown-4" class="o-dropdown__item o-dropdown__item--clickable o-autocomplete__item" role="option" tabindex="-1" aria-selected="false" aria-disabled="false">
+            <p class="flex gap-1"><span data-oruga="icon" class="o-icon"><i class="mdi mdi-city mdi-24px"></i></span><b>Lyon</b></p>
+            <p class="text-small">Auvergne-Rhône-Alpes, France</p>
+          </div>
+          <div id="v-0-2-5" data-oruga="dropdown-item" data-id="dropdown-5" class="o-dropdown__item o-dropdown__item--clickable o-autocomplete__item" role="option" tabindex="-1" aria-selected="false" aria-disabled="false">
+            <p class="flex gap-1"><span data-oruga="icon" class="o-icon"><i class="mdi mdi-city mdi-24px"></i></span><b>Lyon</b></p>
+            <p class="text-small">Mississippi, États-Unis d'Amérique</p>
+          </div>
+          <!---->
+          <!---->
+        </div>
+      </transition-stub>
+      <!--teleport end-->
+    </div><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--disabled reset-area !h-auto" disabled="" title="Clear address field"><span class="o-button__wrapper"><span data-oruga="icon" class="o-icon o-button__icon o-button__icon-left"><i class="mdi mdi-close mdi-24px"></i></span>
+      <!---->
+      <!----></span>
+    </button>
+    <!---->
+  </div>
+  <!--v-if-->
+  <!--v-if-->
+</div>
+<!--v-if-->
+<!--v-if-->"
+`;
+
+exports[`FullAddressAutoComplete > Show simple 1`] = `
+"<div class="address-autocomplete">
+  <div data-oruga="field" class="o-field !-mt-2 flex" id="FullAddressAutoComplete-o-field"><label id="v-0-0" for="full-address-autocomplete-1" class="o-field__label">Find an address</label>
+    <!--v-if-->
+    <div data-oruga="autocomplete" class="o-dropdown o-dropdown--expanded o-dropdown--position-auto o-autocomplete">
+      <div class="o-dropdown__trigger" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-disabled="false" aria-controls="v-0-2" aria-labelledby="v-0-0">
+        <div data-oruga="input" class="o-input o-input--expanded"><span data-oruga="icon" class="o-icon o-input__icon-left"><i class="mdi mdi-map-marker mdi-24px"></i></span><input aria-labelledby="v-0-0" class="FullAddressAutoComplete-o-autocomplete !mt-0 !h-full o-input__input o-input__input--iconspace-left o-input__input--placeholder" aria-autocomplete="list" aria-controls="v-0-2" enterkeyhint="enter" id="full-address-autocomplete-1" type="text" data-oruga-input="text" autocomplete="off" placeholder="e.g. 10 Rue Jangot">
+          <!---->
+          <!---->
+        </div>
+      </div>
+      <!--teleport start-->
+      <!---->
+      <transition-stub name="fade" appear="false" persisted="false" css="true">
+        <div id="v-0-2" tabindex="-1" class="o-dropdown__menu o-dropdown__menu--auto" style="max-height: 200px; overflow: auto; display: none;" role="listbox" aria-labelledby="v-0-0" aria-multiselectable="false">
+          <!---->
+          <!---->
+          <div id="v-0-2-1" data-oruga="dropdown-item" data-id="dropdown-1" class="o-dropdown__item o-dropdown__item--clickable o-autocomplete__item o-autocomplete__item--empty" role="option" tabindex="-1" aria-selected="false" aria-disabled="false"></div>
+          <!---->
+        </div>
+      </transition-stub>
+      <!--teleport end-->
+    </div><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--disabled reset-area !h-auto" disabled="" title="Clear address field"><span class="o-button__wrapper"><span data-oruga="icon" class="o-icon o-button__icon o-button__icon-left"><i class="mdi mdi-close mdi-24px"></i></span>
+      <!---->
+      <!----></span>
+    </button>
+    <!---->
+  </div>
+  <!--v-if-->
+  <!--v-if-->
+</div>
+<!--v-if-->
+<!--v-if-->"
+`;

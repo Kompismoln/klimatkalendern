@@ -51,14 +51,14 @@
     </full-address-auto-complete>
     <o-button
       class="search-Event min-w-40 mr-1 mb-1"
-      native-type="submit"
+      type="submit"
       icon-left="calendar"
     >
       {{ t("Events") }}
     </o-button>
     <o-button
       class="search-Activity min-w-40 mr-1 mb-1"
-      native-type="submit"
+      type="submit"
       icon-left="calendar-star"
       v-if="isLongEvents"
     >
@@ -66,7 +66,7 @@
     </o-button>
     <o-button
       class="search-Group min-w-40 mr-1 mb-1"
-      native-type="submit"
+      type="submit"
       icon-left="account-multiple"
       v-if="!singleButton"
     >
@@ -169,7 +169,7 @@ const distanceList = computed(() => {
   const distances = [];
   [5, 10, 25, 50, 100, 150].forEach((value) => {
     distances.push({
-      distance: value,
+      value: value,
       label: t(
         "{number} kilometers",
         {

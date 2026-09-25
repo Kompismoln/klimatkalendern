@@ -19,9 +19,7 @@
       {{ error }}
     </o-notification>
     <footer class="flex gap-2 py-3 mx-2 justify-end">
-      <o-button :disabled="!canSend" nativeType="submit">{{
-        t("Send")
-      }}</o-button>
+      <o-button :disabled="!canSend" type="submit">{{ t("Send") }}</o-button>
     </footer>
   </form>
 </template>

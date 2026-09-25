@@ -71,6 +71,7 @@ export function defaultResolvers(
 export function htmlRemoveId(htmlText: string) {
   return htmlText
     .replaceAll(/ id="[a-z0-9]+" /gi, ' id="" ')
+    .replaceAll(/ aria-controls="[a-z0-9]+" /gi, ' aria-controls="" ')
     .replaceAll(/ for="[a-z0-9]+"/gi, ' for=""');
 }
 

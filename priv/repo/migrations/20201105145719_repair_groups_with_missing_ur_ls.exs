@@ -7,6 +7,12 @@ defmodule Mobilizon.Storage.Repo.Migrations.RepairGroupsWithMissingURLs do
   def up do
     Actor
     |> where([a], a.type == :Group and is_nil(a.domain))
+    |> select(
+      [a],
+      {a.id, a.url, a.outbox_url, a.inbox_url, a.following_url, a.followers_url,
+       a.shared_inbox_url, a.members_url, a.resources_url, a.posts_url, a.events_url, a.todos_url,
+       a.discussions_url, a.type, a.name, a.domain}
+    )
     |> Repo.all()
     |> Enum.each(&fix_group/1)
   end

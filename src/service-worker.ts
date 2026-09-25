@@ -21,7 +21,7 @@ declare const self: ServiceWorkerGlobalScope;
 // Use with precache injection
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-// eslint-disable-next-line no-underscore-dangle
+
 precacheAndRoute(self.__WB_MANIFEST);
 
 registerRoute(

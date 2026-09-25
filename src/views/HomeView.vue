@@ -550,8 +550,7 @@ onReverseGeocodeResult((result) => {
 
 const fetchAndSaveCurrentLocationName = async ({
   coords: { latitude, longitude, accuracy },
-}: // eslint-disable-next-line no-undef
-GeolocationPosition) => {
+}: GeolocationPosition) => {
   reverseGeoCodeInformation.latitude = latitude;
   reverseGeoCodeInformation.longitude = longitude;
   reverseGeoCodeInformation.accuracy = accuracy;

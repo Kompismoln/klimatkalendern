@@ -14,7 +14,7 @@ defmodule Mobilizon.Service.DateTimeTest do
       assert DateTimeTools.datetime_to_string(datetime, "fr") == "22 juin 2021, 15:25:29"
 
       assert DateTimeTools.datetime_to_string(datetime, "fr", :long) ==
-               "22 juin 2021, 15:25:29 UTC"
+               "22 juin 2021, 15:25:29 TU"
     end
 
     test "non existing or loaded locale fallbacks to english" do

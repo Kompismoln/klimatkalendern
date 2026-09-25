@@ -243,7 +243,7 @@ config :mobilizon, Mobilizon.Service.Geospatial.Nominatim,
 config :mobilizon, Mobilizon.Service.Geospatial.Addok,
   endpoint: "https://api-adresse.data.gouv.fr"
 
-config :mobilizon, Mobilizon.Service.Geospatial.Photon, endpoint: "https://photon.komoot.de"
+config :mobilizon, Mobilizon.Service.Geospatial.Photon, endpoint: "https://photon.komoot.io"
 
 config :mobilizon, Mobilizon.Service.Geospatial.GoogleMaps,
   api_key: nil,

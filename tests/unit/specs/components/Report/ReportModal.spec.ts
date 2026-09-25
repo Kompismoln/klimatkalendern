@@ -35,7 +35,7 @@ describe("ReportModal", () => {
 
     expect(wrapper.find("footer button:first-child").text()).toBe("Cancel");
 
-    const submit = wrapper.find("footer button.o-btn--primary");
+    const submit = wrapper.find("footer button.o-button--primary");
 
     expect(submit.text()).toBe("Send the report");
 
@@ -80,7 +80,7 @@ describe("ReportModal", () => {
       "The content came from another server. Transfer an anonymous copy of the report?"
     );
 
-    const submit = wrapper.find("footer button.o-btn--primary");
+    const submit = wrapper.find("footer button.o-button--primary");
     submit.trigger("click");
     await wrapper.vm.$nextTick();
 
@@ -99,7 +99,7 @@ describe("ReportModal", () => {
     switchButton.setValue();
     await wrapper.vm.$nextTick();
 
-    const submit = wrapper.find("footer button.o-btn--primary");
+    const submit = wrapper.find("footer button.o-button--primary");
     submit.trigger("click");
     await wrapper.vm.$nextTick();
 
@@ -117,7 +117,8 @@ describe("ReportModal", () => {
     expect(wrapper.find("header h2").text()).toBe("want to report something?");
 
     expect(wrapper.find("footer button:first-child").text()).toBe("nah");
-
-    expect(wrapper.find("footer button.o-btn--primary").text()).toBe("report!");
+    expect(wrapper.find("footer button.o-button--primary").text()).toBe(
+      "report!"
+    );
   });
 });
