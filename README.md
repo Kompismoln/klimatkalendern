@@ -301,3 +301,6 @@ We strive to keep up to date with the [upstream repo](https://framagit.org/kaihu
 6. After acceptance, as usual deploy from dev, see that it seems to work, and then make a deployment into `main`.
 
 
+## Announcement banner
+
+To show temporary announcements, there is code for it in "src/components/NavBar.vue", see the commented out code.
