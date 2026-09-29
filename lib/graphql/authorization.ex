@@ -11,7 +11,7 @@ defmodule Mobilizon.GraphQL.Authorization do
   alias Mobilizon.Applications.ApplicationToken
   alias Mobilizon.GraphQL.Authorization.AppScope
   alias Mobilizon.Users.User
-  import Mobilizon.Web.Gettext, only: [dgettext: 3]
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   @impl true
   def has_user_access?(%User{}, _scope, _rule), do: true

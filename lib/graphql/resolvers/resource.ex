@@ -12,7 +12,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Resource do
   alias Mobilizon.Storage.Page
   alias Mobilizon.Users.User
   alias Mobilizon.Web.MediaProxy
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   require Logger
 

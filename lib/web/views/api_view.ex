@@ -3,5 +3,5 @@ defmodule Mobilizon.Web.APIView do
   View for our the API terms
   """
   use Mobilizon.Web, :view
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 end

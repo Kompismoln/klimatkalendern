@@ -3,11 +3,11 @@ defmodule Mobilizon.Service.Export.Participants.CSV do
   Export a list of participants to CSV
   """
 
+  use Gettext, backend: Mobilizon.Web.Gettext
   alias Mobilizon.{Events, Export}
   alias Mobilizon.Events.Event
   alias Mobilizon.Storage.Repo
   alias Mobilizon.Web.Gettext
-  import Mobilizon.Web.Gettext, only: [gettext: 2]
   require Logger
 
   import Mobilizon.Service.Export.Participants.Common,

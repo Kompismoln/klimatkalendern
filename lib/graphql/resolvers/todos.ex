@@ -8,7 +8,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Todos do
   alias Mobilizon.Federation.ActivityPub.Actions
   alias Mobilizon.Storage.Page
   alias Mobilizon.Todos.{Todo, TodoList}
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   require Logger
 

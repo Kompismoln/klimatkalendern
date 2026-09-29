@@ -22,7 +22,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Admin do
 
   alias Mobilizon.GraphQL.Resolvers.Media, as: MediaResolver
 
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
   require Logger
 
   @spec list_action_logs(any(), map(), Absinthe.Resolution.t()) ::

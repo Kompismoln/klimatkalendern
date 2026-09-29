@@ -10,7 +10,7 @@ defmodule Mobilizon.Service.Metadata.Instance do
   alias Mobilizon.Service.Metadata.Utils
   alias Mobilizon.Web.Endpoint
   use Mobilizon.Web, :verified_routes
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   @doc """
   Build the list of tags for the instance

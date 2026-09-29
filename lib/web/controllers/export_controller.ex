@@ -7,7 +7,7 @@ defmodule Mobilizon.Web.ExportController do
   action_fallback(Mobilizon.Web.FallbackController)
   alias Mobilizon.Export
   import Mobilizon.Service.Export.Participants.Common, only: [enabled_formats: 0, export_path: 1]
-  import Mobilizon.Web.Gettext, only: [dgettext: 3]
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   # sobelow_skip ["Traversal.SendDownload"]
   @spec export(Plug.Conn.t(), map) :: {:error, :not_found} | Plug.Conn.t()

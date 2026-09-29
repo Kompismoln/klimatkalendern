@@ -9,7 +9,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Actor do
   alias Mobilizon.Federation.ActivityPub.Actions
   alias Mobilizon.Service.Workers.Background
   alias Mobilizon.Users.User
-  import Mobilizon.Web.Gettext, only: [dgettext: 2]
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   require Logger
 

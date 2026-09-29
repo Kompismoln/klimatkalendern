@@ -10,7 +10,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Discussion do
   alias Mobilizon.GraphQL.API.Comments
   alias Mobilizon.Storage.Page
   alias Mobilizon.Users.User
-  import Mobilizon.Web.Gettext
+  use Gettext, backend: Mobilizon.Web.Gettext
 
   @spec find_discussions_for_actor(Actor.t(), map(), Absinthe.Resolution.t()) ::
           {:ok, Page.t(Discussion.t())} | {:error, :unauthenticated}
