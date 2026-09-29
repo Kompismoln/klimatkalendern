@@ -73,6 +73,7 @@
         :class="'search-Group min-w-40 ' + select_button_class('GROUPS')"
         type="submit"
         icon-left="account-multiple"
+        v-if="!singleButton"
       >
         {{ t("Groups") + number_result("GROUPS") }}
       </o-button>
@@ -107,6 +108,7 @@ const props = defineProps<{
   distance: number | null;
   fromLocalStorage?: boolean | false;
   numberOfSearch: object | null;
+  singleButton?: boolean | false;
 }>();
 
 const router = useRouter();
