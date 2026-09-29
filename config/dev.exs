@@ -14,8 +14,8 @@ config :mobilizon, Mobilizon.Web.Endpoint,
   code_reloader: true,
   check_origin: false,
   watchers: [
-    node: [
-      "node_modules/.bin/vite",
+    pnpm: [
+      "vite",
       "--host",
       System.get_env("VITE_HOST", "localhost")
     ]
