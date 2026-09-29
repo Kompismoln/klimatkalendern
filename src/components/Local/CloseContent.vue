@@ -20,9 +20,7 @@
       <slot name="subtitle" />
     </div>
 
-    <div
-      class="grid gap-x-2 gap-y-2 grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))] justify-items-center"
-    >
+    <div class="grid gap-5 grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))]">
       <slot name="content" />
     </div>
   </div>

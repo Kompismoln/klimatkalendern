@@ -1,16 +1,14 @@
 <template>
   <LinkOrRouterLink
-    class="mbz-card snap-center dark:bg-mbz-purple rounded-lg overflow-hidden"
+    class="mbz-card snap-center dark:bg-mbz-purple h-full"
     :class="{
       'sm:flex sm:items-start': mode === 'row',
-      'sm:max-w-xs w-[18rem] shrink-0 flex flex-col': mode === 'column',
+      'w-full shrink-0 flex flex-col': mode === 'column',
     }"
     :to="to"
     :isInternal="isInternal"
   >
-    <div
-      :class="{ 'sm:w-full sm:max-w-[20rem]': mode === 'row' }"
-    >
+    <div :class="{ 'sm:w-full sm:max-w-[20rem] h-full': mode === 'row' }">
       <div
         class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 hidden"
         :class="{
@@ -86,7 +84,7 @@
             :timezone="event.options.timezone"
           />
         </div>
-        <div class="w-full flex flex-col justify-between h-full">
+        <div class="w-full flex flex-col gap-1 h-full">
           <h2
             class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white"
             dir="auto"
