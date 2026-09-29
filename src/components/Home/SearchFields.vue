@@ -11,7 +11,6 @@
       }}</label>
       <o-input
         class="min-w-48"
-        v-if="search != null"
         v-model="search"
         :placeholder="t('Keyword, event title, group name, etc.')"
         id="search_field_input"
