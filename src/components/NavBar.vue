@@ -1,13 +1,14 @@
 <template>
-  <nav class="bg-white border-gray-200 dark:bg-zinc-900" id="navbar">
+  <nav class="px-2 sm:px-4 py-2.5 dark:bg-zinc-900" id="navbar">
     <!-- Uncomment below to show announcement banner -->
-    <!--
-    <router-link :to="{ name: RouteName.EVENT_CALENDAR }" class="block p-1 w-full text-white bg-red-600 text-sm font-bold text-center">
-      {{ t("New: Exports!") }}
+    <router-link
+      :to="{ name: RouteName.CONTRIBUTE }"
+      class="block p-1 w-full text-white bg-red-600 text-sm font-bold text-center"
+    >
+      {{ t("Help wanted!") }}
     </router-link>
--->
     <div
-      class="container px-2 sm:px-4 py-2.5 mx-auto flex flex-wrap items-center gap-2 sm:gap-4"
+      class="container md:grid md:grid-flow-col md:items-start md:grid-cols-[auto,1fr,auto,auto] mx-auto flex flex-wrap items-center gap-2 sm:gap-4"
     >
       <router-link
         :to="{ name: RouteName.HOME }"
