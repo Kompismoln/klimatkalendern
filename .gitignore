@@ -56,3 +56,6 @@ stats.html
 /coverage
 /playwright-report/
 
+.envrc
+.direnv/
+priv/

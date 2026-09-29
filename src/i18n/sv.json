@@ -1523,7 +1523,7 @@
   "default Mobilizon terms": "standardvillkor för Mobilizon",
   "e.g. 10 Rue Jangot": "e.g. 10 Rue Jangot",
   "e.g. Accessibility, Twitch, PeerTube": "t.ex. Accessibility, Twitch, PeerTube",
-  "e.g. Nantes, Berlin, Cork, …": "t.ex. Nantes, Berlin, Cork, …",
+  "e.g. Nantes, Berlin, Cork, …": "t.ex. Göteborg, Malmö, …",
   "enable the feature": "aktivera funktionen",
   "explore the events": "utforska evenemang",
   "explore the groups": "utforska grupperna",
@@ -1636,5 +1636,12 @@
   "{username} was invited to {group}": "{username} blev inbjuden till {group}",
   "{user}'s follow request was accepted": "{user}s följarförfrågan accepterades",
   "{user}'s follow request was rejected": "{user}s följarförfrågan avvisades",
-  "© The OpenStreetMap Contributors": "© Alla bidragsgivare till OpenStreetMap"
+  "© The OpenStreetMap Contributors": "© Alla bidragsgivare till OpenStreetMap",
+  "Calendar": "Kalender",
+  "more than 1360 contributors": "över 1360 individuella sponsorer",
+  "View more events and activities": "Se fler evenemang",
+  "Last event activity": "Efter senaste evenemang",
+  "Decreasing number of members": "Flest medlemmar först",
+  "Decreasing creation date": "Senast skapade först",
+  "Last event activity": "Efter senaste evenemang"
 }
