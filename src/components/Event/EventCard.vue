@@ -8,170 +8,232 @@
     :to="to"
     :isInternal="isInternal"
   >
+    <!--
+<<<<<<< HEAD
     <div :class="{ 'sm:w-full sm:max-w-[20rem] h-full': mode === 'row' }">
-      <div
-        class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 hidden"
-        :class="{
-          'sm:hidden': mode === 'row',
-          'calendar-simple': !isDifferentBeginsEndsDate,
-          'calendar-double': isDifferentBeginsEndsDate,
-        }"
-      >
-        <date-calendar-icon
-          :small="true"
-          v-if="!mergedOptions.hideDate"
-          :date="event.beginsOn.toString()"
-        />
-        <MenuDown
-          :small="true"
-          class="left-3 relative"
-          v-if="!mergedOptions.hideDate && isDifferentBeginsEndsDate"
-        />
-        <date-calendar-icon
-          :small="true"
-          v-if="!mergedOptions.hideDate && isDifferentBeginsEndsDate"
-          :date="event.endsOn?.toString()"
-        />
-      </div>
-
+    ======= -->
+    <div v-if="viewMoreFrom">
       <figure class="block relative pt-40">
         <lazy-image-wrapper
+          v-if="actorAvatarURL"
+          :picture="{ url: actorAvatarURL }"
+          :rounded="false"
+          :fill-space="true"
+          style="
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            filter: grayscale(1) brightness(0.5);
+          "
+        />
+        <lazy-image-wrapper
+          v-else
           :picture="event.picture"
           :rounded="false"
           :fill-space="true"
-          style="height: 100%; position: absolute; top: 0; left: 0; width: 100%"
+          style="
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            filter: grayscale(1) brightness(0.5);
+          "
         />
-        <div
-          class="absolute top-3 right-0 ltr:-mr-1 rtl:-ml-1 z-10 max-w-xs no-underline flex flex-col gap-1 items-end"
-          v-show="mode === 'column'"
-          v-if="event.tags || event.status !== EventStatus.CONFIRMED"
-        >
-          <mobilizon-tag
-            variant="info"
-            v-if="event.status === EventStatus.TENTATIVE"
-          >
-            {{ t("Tentative") }}
-          </mobilizon-tag>
-          <mobilizon-tag
-            variant="danger"
-            v-if="event.status === EventStatus.CANCELLED"
-          >
-            {{ t("Cancelled") }}
-          </mobilizon-tag>
-          <router-link
-            :to="{ name: RouteName.TAG, params: { tag: tag.title } }"
-            v-for="tag in (event.tags || []).slice(0, 3)"
-            :key="tag.slug"
-          >
-            <mobilizon-tag dir="auto" :with-hash-tag="true">{{
-              tag.title
-            }}</mobilizon-tag>
-          </router-link>
-        </div>
       </figure>
+      <div class="p-2 flex-auto" :class="{ 'sm:flex-1': mode === 'row' }">
+        <div class="relative flex flex-col h-full">
+          <div class="w-full flex flex-col gap-1 h-full">
+            <p
+              class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white"
+              dir="auto"
+              :lang="event.language"
+            >
+              {{
+                t("View more events and activities from ") +
+                organizerDisplayName(event)
+              }}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="p-2 flex-auto" :class="{ 'sm:flex-1': mode === 'row' }">
-      <div class="relative flex flex-col h-full">
+
+    <div v-else>
+      <div :class="{ 'sm:w-full sm:max-w-[20rem] h-full': mode === 'row' }">
+        <!-- >>>>>>> 4b60e8f5f (nixpkgs bump + misc design fixes) -->
         <div
-          class="-mt-3 h-0 flex mb-3 ltr:ml-0 rtl:mr-0 items-end self-end"
-          :class="{ 'sm:hidden': mode === 'row' }"
+          class="-mt-3 h-0 mb-3 ltr:ml-0 rtl:mr-0 block relative z-10 hidden"
+          :class="{
+            'sm:hidden': mode === 'row',
+            'calendar-simple': !isDifferentBeginsEndsDate,
+            'calendar-double': isDifferentBeginsEndsDate,
+          }"
         >
-          <start-time-icon
-            class="hidden"
+          <date-calendar-icon
             :small="true"
-            v-if="!mergedOptions.hideDate && event.options.showStartTime"
+            v-if="!mergedOptions.hideDate"
             :date="event.beginsOn.toString()"
-            :timezone="event.options.timezone"
+          />
+          <MenuDown
+            :small="true"
+            class="left-3 relative"
+            v-if="!mergedOptions.hideDate && isDifferentBeginsEndsDate"
+          />
+          <date-calendar-icon
+            :small="true"
+            v-if="!mergedOptions.hideDate && isDifferentBeginsEndsDate"
+            :date="event.endsOn?.toString()"
           />
         </div>
-        <div class="w-full flex flex-col gap-1 h-full">
-          <h2
-            class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white"
-            dir="auto"
-            :lang="event.language"
+
+        <figure class="block relative pt-40">
+          <lazy-image-wrapper
+            :picture="event.picture"
+            :rounded="false"
+            :fill-space="true"
+            style="
+              height: 100%;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+            "
+          />
+          <div
+            class="absolute top-3 right-0 ltr:-mr-1 rtl:-ml-1 z-10 max-w-xs no-underline flex flex-col gap-1 items-end"
+            v-show="mode === 'column'"
+            v-if="event.tags || event.status !== EventStatus.CONFIRMED"
           >
-            {{ event.title }}
-          </h2>
-          <span
-            class="text-gray-700 dark:text-white font-semibold"
-            :class="{ 'sm:block': mode === 'row' }"
-          >
-            🗓 {{ formatedDate }}
-          </span>
-          <div class="">
-            <div
-              class="flex items-center text-violet-3 dark:text-white"
-              dir="auto"
+            <mobilizon-tag
+              variant="info"
+              v-if="event.status === EventStatus.TENTATIVE"
             >
-              <figure class="" v-if="actorAvatarURL">
-                <img
-                  class="rounded-xl"
-                  :src="actorAvatarURL"
-                  alt=""
-                  width="24"
-                  height="24"
-                  loading="lazy"
-                />
-              </figure>
-              <account-circle v-else />
-              <span class="font-semibold ltr:pl-2 rtl:pr-2">
-                {{ organizerDisplayName(event) }}
-              </span>
-            </div>
-            <inline-address
-              v-if="event.physicalAddress"
-              :physical-address="event.physicalAddress"
+              {{ t("Tentative") }}
+            </mobilizon-tag>
+            <mobilizon-tag
+              variant="danger"
+              v-if="event.status === EventStatus.CANCELLED"
+            >
+              {{ t("Cancelled") }}
+            </mobilizon-tag>
+            <router-link
+              :to="{ name: RouteName.TAG, params: { tag: tag.title } }"
+              v-for="tag in (event.tags || []).slice(0, 3)"
+              :key="tag.slug"
+            >
+              <mobilizon-tag dir="auto" :with-hash-tag="true">{{
+                tag.title
+              }}</mobilizon-tag>
+            </router-link>
+          </div>
+        </figure>
+      </div>
+      <div class="p-2 flex-auto" :class="{ 'sm:flex-1': mode === 'row' }">
+        <div class="relative flex flex-col h-full">
+          <div
+            class="-mt-3 h-0 flex mb-3 ltr:ml-0 rtl:mr-0 items-end self-end"
+            :class="{ 'sm:hidden': mode === 'row' }"
+          >
+            <start-time-icon
+              class="hidden"
+              :small="true"
+              v-if="!mergedOptions.hideDate && event.options.showStartTime"
+              :date="event.beginsOn.toString()"
+              :timezone="event.options.timezone"
             />
-            <div
-              class="flex items-center text-sm"
+          </div>
+          <div class="w-full flex flex-col gap-1 h-full">
+            <h2
+              class="mt-0 mb-2 text-2xl line-clamp-3 font-bold text-violet-3 dark:text-white"
               dir="auto"
-              v-else-if="event.options && event.options.isOnline"
+              :lang="event.language"
             >
-              <Video />
-              <span class="ltr:pl-2 rtl:pr-2">{{ t("Online") }}</span>
-            </div>
-            <div
-              class="mt-1 no-underline gap-1 items-center hidden"
-              :class="{ 'sm:flex': mode === 'row' }"
-              v-if="
-                event.tags ||
-                event.status !== EventStatus.CONFIRMED ||
-                event.participantStats?.participant > 0
-              "
+              {{ event.title }}
+            </h2>
+            <span
+              class="text-gray-700 dark:text-white font-semibold"
+              :class="{ 'sm:block': mode === 'row' }"
             >
-              <mobilizon-tag
-                variant="info"
-                v-if="event.participantStats?.participant > 0"
+              🗓 {{ formatedDate }}
+            </span>
+            <div class="">
+              <div
+                class="flex items-center text-violet-3 dark:text-white"
+                dir="auto"
               >
-                {{
-                  t(
-                    "{count} participants",
-                    { count: event.participantStats?.participant },
-                    event.participantStats?.participant
-                  )
-                }}
-              </mobilizon-tag>
-              <mobilizon-tag
-                variant="info"
-                v-if="event.status === EventStatus.TENTATIVE"
+                <figure class="" v-if="actorAvatarURL">
+                  <img
+                    class="rounded-xl"
+                    :src="actorAvatarURL"
+                    alt=""
+                    width="24"
+                    height="24"
+                    loading="lazy"
+                  />
+                </figure>
+                <account-circle v-else />
+                <span class="font-semibold ltr:pl-2 rtl:pr-2">
+                  {{ organizerDisplayName(event) }}
+                </span>
+              </div>
+              <inline-address
+                v-if="event.physicalAddress"
+                :physical-address="event.physicalAddress"
+              />
+              <div
+                class="flex items-center text-sm"
+                dir="auto"
+                v-else-if="event.options && event.options.isOnline"
               >
-                {{ t("Tentative") }}
-              </mobilizon-tag>
-              <mobilizon-tag
-                variant="danger"
-                v-if="event.status === EventStatus.CANCELLED"
+                <Video />
+                <span class="ltr:pl-2 rtl:pr-2">{{ t("Online") }}</span>
+              </div>
+              <div
+                class="mt-1 no-underline gap-1 items-center hidden"
+                :class="{ 'sm:flex': mode === 'row' }"
+                v-if="
+                  event.tags ||
+                  event.status !== EventStatus.CONFIRMED ||
+                  event.participantStats?.participant > 0
+                "
               >
-                {{ t("Cancelled") }}
-              </mobilizon-tag>
-              <router-link
-                :to="{ name: RouteName.TAG, params: { tag: tag.title } }"
-                v-for="tag in (event.tags || []).slice(0, 3)"
-                :key="tag.slug"
-              >
-                <mobilizon-tag :with-hash-tag="true" dir="auto">{{
-                  tag.title
-                }}</mobilizon-tag>
-              </router-link>
+                <mobilizon-tag
+                  variant="info"
+                  v-if="event.participantStats?.participant > 0"
+                >
+                  {{
+                    t(
+                      "{count} participants",
+                      { count: event.participantStats?.participant },
+                      event.participantStats?.participant
+                    )
+                  }}
+                </mobilizon-tag>
+                <mobilizon-tag
+                  variant="info"
+                  v-if="event.status === EventStatus.TENTATIVE"
+                >
+                  {{ t("Tentative") }}
+                </mobilizon-tag>
+                <mobilizon-tag
+                  variant="danger"
+                  v-if="event.status === EventStatus.CANCELLED"
+                >
+                  {{ t("Cancelled") }}
+                </mobilizon-tag>
+                <router-link
+                  :to="{ name: RouteName.TAG, params: { tag: tag.title } }"
+                  v-for="tag in (event.tags || []).slice(0, 3)"
+                  :key="tag.slug"
+                >
+                  <mobilizon-tag :with-hash-tag="true" dir="auto">{{
+                    tag.title
+                  }}</mobilizon-tag>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
@@ -221,6 +283,7 @@ const props = withDefaults(
     event: IEvent;
     options?: IEventCardOptions;
     mode?: "row" | "column";
+    viewMoreFrom?: false;
   }>(),
   { mode: "column" }
 );
