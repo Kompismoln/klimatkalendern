@@ -1,8 +1,5 @@
 <template>
-  <nav
-    class="px-2 sm:px-4 py-2.5 dark:bg-zinc-900"
-    id="navbar"
-  >
+  <nav class="px-2 sm:px-4 py-2.5 dark:bg-zinc-900" id="navbar">
     <div
       class="container md:grid md:grid-flow-col md:items-start md:grid-cols-[auto,1fr,auto,auto] mx-auto flex flex-wrap items-center gap-2 sm:gap-4"
     >
@@ -232,6 +229,61 @@
           ></path>
         </svg>
       </button>
+      <div
+        class="justify-between items-center w-full md:flex md:w-auto md:order-1"
+        id="mobile-menu-2"
+        :class="{ hidden: !showMobileMenu }"
+      >
+        <ul
+          class="flex flex-col md:flex-row md:space-x-8 mt-2 md:mt-0 md:font-lightbold"
+        >
+          <li class="m-auto">
+            <router-link
+              :to="{ name: RouteName.EVENT_CALENDAR }"
+              class="block relative py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("Calendar") }}
+              <span style="font-weight: bold; color: red"
+                >({{ t("New: Exports!") }})</span
+              ></router-link
+            >
+          </li>
+          <li class="m-auto" v-if="currentActor?.id">
+            <router-link
+              :to="{ name: RouteName.MY_EVENTS }"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("My events") }}</router-link
+            >
+          </li>
+          <li class="m-auto" v-if="currentActor?.id">
+            <router-link
+              :to="{ name: RouteName.MY_GROUPS }"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("My groups") }}</router-link
+            >
+          </li>
+          <li class="m-auto">
+            <a
+              href="https://www.youtube.com/watch?v=eb9_b4RB7nY"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("Instruction video") }}</a
+            >
+          </li>
+          <li class="m-auto" v-if="!currentActor?.id">
+            <router-link
+              :to="{ name: RouteName.LOGIN }"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("Login") }}</router-link
+            >
+          </li>
+          <li class="m-auto" v-if="!currentActor?.id && canRegister">
+            <router-link
+              :to="{ name: RouteName.REGISTER }"
+              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+              >{{ t("Register") }}</router-link
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
   <div v-if="currentUser?.id && !currentActor?.id" class="p-5">
