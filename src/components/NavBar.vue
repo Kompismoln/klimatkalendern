@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-zinc-900"
+    class="px-2 sm:px-4 py-2.5 dark:bg-zinc-900"
     id="navbar"
   >
     <div

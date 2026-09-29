@@ -1,6 +1,6 @@
 <template>
   <footer
-    class="bg-violet-2 color-secondary flex flex-col items-center py-3 px-3"
+    class="bg-green-900 color-secondary flex flex-col items-center py-3 px-3"
     ref="footer"
   >
     <ul

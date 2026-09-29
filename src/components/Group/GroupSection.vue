@@ -1,6 +1,6 @@
 <template>
-  <section class="flex flex-col border-2 border-yellow-1 rounded-lg">
-    <div class="flex items-stretch py-3 px-1 bg-yellow-1 text-violet-title">
+  <section class="flex flex-col border-2 border-green-400 rounded-lg">
+    <div class="flex items-stretch py-3 px-1 bg-green-400 text-violet-title">
       <div class="flex flex-1 gap-1">
         <o-icon :icon="icon" custom-size="36" />
         <h2 class="text-2xl font-medium mt-0">{{ title }}</h2>
