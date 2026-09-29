@@ -6,6 +6,7 @@
     :height="pictureOrDefault.metadata.height"
     :blurhash="pictureOrDefault.metadata.blurhash"
     :rounded="rounded"
+    :fillSpace="fillSpace"
   />
 </template>
 <script lang="ts" setup>
@@ -32,9 +33,11 @@ const DEFAULT_PICTURE = {
 const props = withDefaults(
   defineProps<{
     picture?: IMedia | null;
+    fillSpace?: boolean;
     rounded?: boolean;
   }>(),
   {
+    fillSpace: false,
     rounded: false,
   }
 );

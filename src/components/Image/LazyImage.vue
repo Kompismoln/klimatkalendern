@@ -13,8 +13,8 @@
       <!-- Show the real image on the top and fade in after loading -->
       <img
         ref="image"
-        class="transition-opacity duration-500 rounded-lg object-cover mx-auto h-full"
-        :class="imageOpacity"
+        class="transition-opacity duration-500 object-cover mx-auto h-full"
+        :class="imageOpacity, roundedImg, fillContainerSpace"
         alt=""
         src=""
         loading="lazy"
@@ -35,8 +35,9 @@ const props = withDefaults(
     width?: number;
     height?: number;
     rounded?: boolean;
+    fillSpace?: boolean;
   }>(),
-  { blurhash: null, width: 100, height: 100, rounded: false }
+  { blurhash: null, width: 100, height: 100, rounded: false, fillSpace: false, }
 );
 
 const isLoaded = ref(false);
@@ -54,6 +55,14 @@ const imageOpacity = computed(() =>
   isLoaded.value ? "opacity-100" : "opacity-0"
 );
 
+const roundedImg = computed(() =>
+  props.rounded ? "rounded-lg": ""
+);
+
+const fillContainerSpace = computed(() =>
+  props.fillSpace ? "w-full": ""
+);
+
 watchEffect(() => {
   // Image is visible (means: has entered the viewport),
   // so start loading by setting the src attribute
@@ -66,4 +75,5 @@ watchEffect(() => {
     };
   }
 });
+
 </script>
