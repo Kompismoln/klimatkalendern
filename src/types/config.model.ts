@@ -48,7 +48,6 @@ export interface IConfig {
   registrationsAllowlist: boolean;
   demoMode: boolean;
   longEvents: boolean;
-  durationOfLongEvent: number;
   countryCode: string;
   eventCategories: { id: string; label: string }[];
   languages: string[];

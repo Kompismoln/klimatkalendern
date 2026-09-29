@@ -9,7 +9,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Comment do
   alias Mobilizon.Events.{Event, EventOptions}
   alias Mobilizon.Service.AntiSpam
   alias Mobilizon.Users.User
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   alias Mobilizon.GraphQL.API.Comments
 

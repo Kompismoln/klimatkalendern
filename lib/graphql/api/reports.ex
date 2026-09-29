@@ -10,7 +10,7 @@ defmodule Mobilizon.GraphQL.API.Reports do
   alias Mobilizon.Reports.{Note, Report, ReportStatus}
   alias Mobilizon.Service.AntiSpam.Akismet
   alias Mobilizon.Users.User
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext, only: [dgettext: 2]
   require Logger
 
   @doc """

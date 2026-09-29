@@ -4,7 +4,7 @@ defmodule Mobilizon.Web.Email.Group do
   """
   use Phoenix.Swoosh, view: Mobilizon.Web.EmailView
 
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   alias Mobilizon.{Actors, Config, Users}
   alias Mobilizon.Actors.{Actor, Member}

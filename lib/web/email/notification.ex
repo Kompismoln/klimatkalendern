@@ -4,7 +4,7 @@ defmodule Mobilizon.Web.Email.Notification do
   """
   use Phoenix.Swoosh, view: Mobilizon.Web.EmailView
 
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   alias Mobilizon.Events.{Event, Participant}
   alias Mobilizon.Users.{Setting, User}

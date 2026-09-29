@@ -28,7 +28,7 @@ defmodule Mobilizon.Posts.Post do
   alias Mobilizon.Posts.Post.TitleSlug
   alias Mobilizon.Posts.PostVisibility
   use Mobilizon.Web, :verified_routes
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   @type t :: %__MODULE__{
           id: String.t(),

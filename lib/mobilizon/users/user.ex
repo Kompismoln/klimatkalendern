@@ -12,7 +12,7 @@ defmodule Mobilizon.Users.User do
   alias Mobilizon.Events.FeedToken
   alias Mobilizon.Users.{ActivitySetting, Setting, UserRole}
   alias Mobilizon.Web.Email.Checker
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   @type t :: %__MODULE__{
           email: String.t(),

@@ -3,7 +3,7 @@ defmodule Mobilizon.GraphQL.Schema.Custom.Timezone do
   The timezone scalar type allows timezone ID strings to be passed in and out.
   """
   use Absinthe.Schema.Notation
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext, only: [dgettext: 3]
 
   scalar :timezone, name: "Timezone" do
     description("""

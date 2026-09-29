@@ -8,7 +8,7 @@ defmodule Mobilizon.GraphQL.API.Groups do
   alias Mobilizon.GraphQL.Error
   alias Mobilizon.Federation.ActivityPub.{Actions, Activity}
   alias Mobilizon.Service.Formatter.HTML
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   @doc """
   Create a group

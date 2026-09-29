@@ -3,7 +3,7 @@ defmodule Mobilizon.Web.ExportView do
 
   alias Mobilizon.Service.Address
   alias Mobilizon.Service.DateTime, as: DateTimeRenderer
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   defdelegate datetime_to_string(datetime, locale \\ "en", format \\ :medium),
     to: DateTimeRenderer

@@ -6,7 +6,7 @@ defmodule Mobilizon.GraphQL.Resolvers.PushSubscription do
   alias Mobilizon.Storage.Page
   alias Mobilizon.Users
   alias Mobilizon.Users.{PushSubscription, User}
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   @doc """
   List all of an user's registered push subscriptions

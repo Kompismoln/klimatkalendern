@@ -13,7 +13,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Participant do
   alias Mobilizon.Web.Email
   alias Mobilizon.Web.Email.Checker
   require Logger
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
   import Mobilizon.GraphQL.Resolvers.Event.Utils
 
   @doc """

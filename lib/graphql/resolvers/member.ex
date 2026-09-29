@@ -10,7 +10,7 @@ defmodule Mobilizon.GraphQL.Resolvers.Member do
   alias Mobilizon.Federation.ActivityPub.Actor, as: ActivityPubActor
   alias Mobilizon.Storage.Page
   alias Mobilizon.Users.User
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext
 
   @doc """
   Find members for group.

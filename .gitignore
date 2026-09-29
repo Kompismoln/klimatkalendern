@@ -3,7 +3,10 @@
 /db
 /deps
 /*.ez
+/.direnv
 /result
+/priv
+/.git-old
 
 # Generated on crash by the VM
 erl_crash.dump
@@ -57,6 +60,3 @@ stats.html
 /coverage
 /playwright-report/
 
-.envrc
-.direnv/
-priv/

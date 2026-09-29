@@ -17,7 +17,7 @@ defmodule Mobilizon.Service.Activity.Renderer do
   }
 
   require Logger
-  use Gettext, backend: Mobilizon.Web.Gettext
+  import Mobilizon.Web.Gettext, only: [dgettext: 3]
 
   @type render :: %{
           body: String.t(),

@@ -6,7 +6,8 @@ defmodule Mobilizon.Service.Export.Participants.ODS do
   alias Mobilizon.{Events, Export, PythonPort, PythonWorker}
   alias Mobilizon.Events.Event
   alias Mobilizon.Storage.Repo
-  use Gettext, backend: Mobilizon.Web.Gettext
+  alias Mobilizon.Web.Gettext, as: GettextBackend
+  import Mobilizon.Web.Gettext, only: [gettext: 2]
 
   import Mobilizon.Service.Export.Participants.Common,
     only: [
@@ -74,7 +75,7 @@ defmodule Mobilizon.Service.Export.Participants.ODS do
   @spec save_ods_upload(String.t(), String.t(), Event.t()) ::
           {:ok, Export.t()} | {:error, atom() | Ecto.Changeset.t()}
   defp save_ods_upload(full_path, filename, %Event{id: event_id, title: title}) do
-    gettext_comment(
+    GettextBackend.gettext_comment(
       "File name template for exported list of participants. Should NOT contain spaces. Make sure the output is going to be something standardized that is acceptable as a file name on most systems."
     )
 
