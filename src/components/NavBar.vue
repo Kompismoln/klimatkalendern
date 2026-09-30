@@ -1,5 +1,5 @@
 <template>
-  <nav class="px-2 sm:px-4 py-2.5 dark:bg-zinc-900" id="navbar">
+  <nav class="bg-white dark:bg-zinc-900" id="navbar">
     <!-- Uncomment below to show announcement banner -->
     <router-link
       :to="{ name: RouteName.CONTRIBUTE }"
@@ -8,7 +8,7 @@
       {{ t("Help wanted!") }}
     </router-link>
     <div
-      class="container md:grid md:grid-flow-col md:items-start md:grid-cols-[auto,1fr,auto,auto] mx-auto flex flex-wrap items-center gap-2 sm:gap-4"
+      class="container px-2 sm:px-4 py-2.5 mx-auto flex flex-wrap items-center gap-2 sm:gap-4"
     >
       <router-link
         :to="{ name: RouteName.HOME }"
@@ -18,71 +18,6 @@
       >
         <MobilizonLogo class="w-40" />
       </router-link>
-      <div
-        class="w-full md:block md:self-center order-4 md:order-none"
-        id="mobile-menu-2"
-        :class="{ hidden: !showMobileMenu }"
-      >
-        <ul
-          class="flex flex-col md:gap-8 md:justify-start items-center md:flex-wrap md:flex-row mt-2 md:mt-0 md:font-lightbold"
-        >
-          <li>
-            <router-link
-              :to="{ name: RouteName.SEARCH }"
-              class="block relative py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Search") }}</router-link
-            >
-          </li>
-
-          <li>
-            <router-link
-              :to="{ name: RouteName.EVENT_CALENDAR }"
-              class="block relative py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Calendar")
-              }}<span class="absolute right-0 text-xs"
-                ><br />(beta)</span
-              ></router-link
-            >
-          </li>
-          <li v-if="currentActor?.id">
-            <router-link
-              :to="{ name: RouteName.MY_EVENTS }"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("My events") }}</router-link
-            >
-          </li>
-          <li v-if="currentActor?.id">
-            <router-link
-              :to="{ name: RouteName.MY_GROUPS }"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("My groups") }}</router-link
-            >
-          </li>
-          <li v-if="!currentUser?.isLoggedIn">
-            <router-link
-              :to="{ name: RouteName.LOGIN }"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Login") }}</router-link
-            >
-          </li>
-          <li v-if="!currentUser?.isLoggedIn && canRegister">
-            <router-link
-              :to="{ name: RouteName.REGISTER }"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ t("Register") }}</router-link
-            >
-          </li>
-          <li v-for="(link, index) in enabledExternalLinks" :key="index">
-            <a
-              :href="link.url"
-              rel="noopener noreferrer ugc"
-              target="_blank"
-              class="block py-2 pr-4 pl-3 text-zinc-700 border-b border-gray-100 hover:bg-zinc-50 md:hover:bg-transparent md:border-0 md:hover:text-mbz-purple-700 md:p-0 dark:text-zinc-400 md:dark:hover:text-white dark:hover:bg-zinc-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-              >{{ link.label }}</a
-            >
-          </li>
-        </ul>
-      </div>
       <div class="m-auto md:display:none;"></div>
       <div class="flex gap-2" v-if="currentUser?.isLoggedIn">
         <router-link
