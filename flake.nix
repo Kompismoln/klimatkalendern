@@ -12,7 +12,7 @@
     }:
     let
       name = "klimatkalendern";
-      version = "5.2.0";
+      version = "5.2.4";
       src = ./.;
       systems = [
         "x86_64-linux"
@@ -36,8 +36,9 @@
             mobilizon-src = {
               pname = "${name}-elixir";
               inherit src version;
+              patches = [ nixpkg/json_polyfill.patch ];
             };
-            inherit beamPackages mobilizon-frontend;
+            inherit mobilizon-frontend;
           };
           mobilizon-frontend = pkgs.stdenv.mkDerivation {
             pname = "${name}-frontend";
@@ -61,7 +62,7 @@
                 ];
               };
               fetcherVersion = 4;
-              hash = "sha256-7oQ2Q/8X1Va8MZl00gB+MWQ96QIpBXsjq40Jnqc5iUg=";
+              hash = "sha256-jkTRPUFud6RURaar7paN9R8Tduh3uRLkiGCjr8X9X5Y=";
             };
 
             buildPhase = ''
@@ -74,10 +75,6 @@
               mkdir -p $out/static
               cp -r priv/static/. $out/static
             '';
-            #postInstall = ''
-            #  mkdir -p $out/static
-            #  cp -r priv/static $out/static
-            #'';
           };
         }
       );
