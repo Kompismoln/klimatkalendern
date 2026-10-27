@@ -179,7 +179,7 @@ You have two options:
     file you downloaded.
 
    2. Patch the relay user
-    If the dump was taken from an instance running on "klimatkalendern.nu", it will have a relay user with that URL. But when you start locally, mobilizon searches for a realy user for your localhost address instead. This gives you a "Relay user not found" error. Start postgres, connect to the klimatkalendern database, and run:
+    If the dump was taken from an instance running on "klimatkalendern.nu", it will have a relay user with that URL. But when you start locally, mobilizon searches for a relay user for your localhost address instead. This gives you a "Relay user not found" error. Start postgres, connect to the klimatkalendern database, and run:
     ```sql
     UPDATE actors SET url = 'http://localhost:4000/relay' WHERE url = 'https://klimatkalendern.nu/relay';
     ```
