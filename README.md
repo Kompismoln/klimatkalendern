@@ -304,7 +304,7 @@ step 2 under Postgresql ("Initial Postgres User and Database setup").
 
 ## Following upstream mobilizon
 
-Keeping up to date with the latest [upstream changes](https://framagit.org/kaihuri/mobilizon) is useful for many reasons: it saves us time making improvements or solvign bugs that upstream developers have already resolved. It also reduces our security exposure, since it means running more up to date versions of dependencies. 
+Keeping up to date with the latest [upstream changes](https://framagit.org/kaihuri/mobilizon) is useful for many reasons: it saves us time making improvements or solving bugs that upstream developers have already resolved. It also reduces our security exposure, since it means running more up to date versions of dependencies. 
 We use a rebase-onto-upstream approach, which allows us to treat new upstream changes as a black box, and just apply our set of changes on top of those. Once we rebase onto a new upstream release, we force push that new tip as the new main. As long as our team and our set of changes is relatively small, we expect this to work relatively well. The procedure is:
 
 1. Create a new branch to bookmark the old main tip, e.g. `git checkout main; git checkout -b main-as-of-2026-01-01;`.
