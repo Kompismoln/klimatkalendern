@@ -169,8 +169,7 @@ You have two options:
   ```
 
 2. If you're using an existing database dump (e.g. dbdump.sql)
-   1. If you have existing data in the DB you need to clear it (see *Reset Database* section)
-   2. import the dump into klimatkalendern and migrate.
+   1. import the dump into the klimatkalendern database and migrate.
     ```bash
     psql -h localhost -U klimatkalendern -d klimatkalendern < path/to/your/downloaded/dbdump.sql
     mix ecto.migrate
@@ -179,7 +178,18 @@ You have two options:
     Make sure to replace path/to/your/downloaded/dbdump.sql with the actual path to the dump
     file you downloaded.
 
-    Download user-uploaded media files that match the database dump.
+   2. Patch the relay user
+    If the dump was taken from an instance running on "klimatkalendern.nu", it will have a relay user with that URL. But when you start locally, mobilizon searches for a relay user for your localhost address instead. This gives you a "Relay user not found" error. Start postgres, connect to the klimatkalendern database, and run:
+    ```bash
+    sudo -u postgres psql
+    ```
+
+    ```sql
+    \c klimatkalendern;
+    UPDATE actors SET url = 'http://localhost:4000/relay' WHERE url = 'https://klimatkalendern.nu/relay';
+    ```
+
+   3. Download user-uploaded media files that match the database dump.
     Unzip this archive into an `./uploads` directory at the root of the cloned project.
 
 **4. Verify Database Setup:**
@@ -280,6 +290,8 @@ DROP USER IF EXISTS klimatkalendern;
 
 Exit psql (type `\q` and press Enter).
 
+To load a new database dump, continue from the "Initial Postgres User and Database Setup" step above in the setup. 
+
 **Nix Environment Refresh:**
 
 If you are using nix develop directly, exit the shell and re-enter it.
@@ -292,14 +304,20 @@ step 2 under Postgresql ("Initial Postgres User and Database setup").
 
 ## Following upstream mobilizon
 
-We strive to keep up to date with the [upstream repo](https://framagit.org/kaihuri/mobilizon). In order to ingest upstream changes, we follow the following procedure:
+Keeping up to date with the latest [upstream changes](https://framagit.org/kaihuri/mobilizon) is useful for many reasons: it saves us time making improvements or solving bugs that upstream developers have already resolved. It also reduces our security exposure, since it means running more up to date versions of dependencies. 
+We use a rebase-onto-upstream approach, which allows us to treat new upstream changes as a black box, and just apply our set of changes on top of those. Once we rebase onto a new upstream release, we force push that new tip as the new main. As long as our team and our set of changes is relatively small, we expect this to work relatively well. The procedure is:
 
-1. Create a branch in our repo matching the release we want to ingest in upstream.
-2. Merge our `dev` into that branch, resolving any merge conflicts.
-3. Verify that the branch seems to work locally.
-5. Open a PR from that branch into `dev` and allow another maintainer to review the changes. Use a merge commit as a merging strategy. The effect in the history should be one commit on top of `dev` with the message "Merge Mobilizon vXX.XX" which has two parents - the previous dev tip, and the merge commit that was made on the upstream branch.
-6. After acceptance, as usual deploy from dev, see that it seems to work, and then make a deployment into `main`.
-
+1. Create a new branch to bookmark the old main tip, e.g. `git checkout main; git checkout -b main-as-of-2026-01-01;`.
+2. Pull new changes from upstream.
+3. Interactively rebase the tip of main onto the new latest release branch from upstream, e.g. assuming `5.2.4` is the remote release branch:
+```bash
+git checkout main;
+git checkout -b rebasing-onto-5.2.4;
+git rebase -i 5.2.4;
+``` 
+4. Perform the rebase until you are satisfied. Feel free to prune/revise the change history to make it cleaner.
+5. Push the new tip and create a pull request against main to allow for discussion and quality assurance, **although the PR is not intended to be merged.**
+6. Instead, once satisfied, close the PR and force push that branch to become the new "main", making sure to inform all developers to update their repos.
 
 ## Announcement banner
 
