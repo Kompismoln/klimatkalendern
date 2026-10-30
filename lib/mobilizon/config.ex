@@ -191,6 +191,9 @@ defmodule Mobilizon.Config do
 
   @spec default_language :: String.t()
   def default_language, do: instance_config()[:default_language]
+  
+  @spec instance_banner_announcement :: String.t() | nil
+  def instance_banner_announcement, do: config_cached_value("instance", "banner_announcement")
 
   @spec instance_registrations_allowlist :: list(String.t())
   def instance_registrations_allowlist, do: instance_config()[:registration_email_allowlist]
@@ -487,7 +490,8 @@ defmodule Mobilizon.Config do
       instance_privacy_policy_url: instance_privacy_url(),
       instance_rules: instance_rules(),
       instance_languages: instance_languages(),
-      external_links: external_links()
+      external_links: external_links(),
+      banner_announcement: instance_banner_announcement()
     }
   end
 

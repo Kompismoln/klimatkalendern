@@ -70,6 +70,20 @@
             />
           </div>
           <div class="field flex flex-col">
+            <label for="instance-banner-announcement">{{ t("Banner announcement") }}</label>
+            <small>
+              {{
+                t(
+                  'Text to display in the banner at the top of the page'
+                )
+              }}
+            </small>
+            <o-input
+              v-model="settingsToWrite.bannerAnnouncement"
+              id="instance-banner-announcement"
+            />
+          </div>
+          <div class="field flex flex-col">
             <label for="instance-contact">{{ t("Contact") }}</label>
             <small>
               {{ t("Can be an email or a link, or just plain text.") }}
@@ -563,6 +577,7 @@ const defaultAdminSettings: IAdminSettings = {
   registrationsModeration: false,
   instanceLanguages: [],
   externalLinks: [],
+  bannerAnnouncement: ""
 };
 
 const { onResult: onAdminSettingsResult } = useQuery<{

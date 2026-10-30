@@ -122,12 +122,12 @@ export const routes = [
         },
       },
       {
-        path: "/contribute",
-        name: RouteName.CONTRIBUTE,
-        component: (): Promise<any> => import("@/views/About/ContributeView.vue"),
+        path: "/announcement",
+        name: RouteName.ANNOUNCEMENT,
+        component: (): Promise<any> => import("@/views/About/AnnouncementView.vue"),
         meta: {
           requiredAuth: false,
-          announcer: { message: (): string => t("Contribute") as string },
+          announcer: { message: (): string => t("Announcement") as string },
         },
       },
     ],
