@@ -163,6 +163,10 @@ defmodule Mobilizon.GraphQL.Schema.AdminType do
     field(:external_links, list_of(:external_link),
       description: "List of URL that will be shown to users"
     )
+
+    field(:instance_announcement_title, :string, description: "Title of announcement to display at the top of the page")
+
+    field(:instance_announcement_body, :string, description: "Body of instance annoucement, displayed on its own page")
   end
 
   object :external_link do
@@ -497,6 +501,10 @@ defmodule Mobilizon.GraphQL.Schema.AdminType do
       arg(:external_links, list_of(:external_link_input),
         description: "Array of external links with label, status, and id"
       )
+
+      arg(:instance_announcement_title, :string, description: "Announcement title to display as a banner")
+
+      arg(:instance_announcement_body, :string, description: "Announcement body to display as its own page")
 
       middleware(Rajska.QueryAuthorization, permit: :administrator)
       resolve(&Admin.save_settings/3)
