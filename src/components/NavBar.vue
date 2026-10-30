@@ -256,16 +256,16 @@ import {
 import { ICurrentUser } from "@/types/current-user.model";
 import gql from 'graphql-tag'
 
-const announcement = ref<string>("ANNOUNCEMENT2");
-const { onResult: onSloganResult } = useQuery(gql`query AdminSettings {
+const announcement = ref<string>("");
+const { onResult: onAnnouncementResult } = useQuery(gql`query AdminSettings {
     adminSettings {
-      bannerAnnouncement
+      instanceAnnouncementTitle
     }
 }`);
 
-onSloganResult(async ({ data }) => {
+onAnnouncementResult(async ({ data }) => {
   if (!data) return;
-  announcement.value = data.adminSettings.bannerAnnouncement;
+  announcement.value = data.adminSettings.instanceAnnouncementTitle;
 });
 
 

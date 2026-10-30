@@ -70,7 +70,7 @@
             />
           </div>
           <div class="field flex flex-col">
-            <label for="instance-banner-announcement">{{ t("Banner announcement") }}</label>
+            <label for="instance-announcement-title">{{ t("Banner announcement title") }}</label>
             <small>
               {{
                 t(
@@ -79,8 +79,23 @@
               }}
             </small>
             <o-input
-              v-model="settingsToWrite.bannerAnnouncement"
-              id="instance-banner-announcement"
+              v-model="settingsToWrite.instanceAnnouncementTitle"
+              id="instance-annoucement-title"
+            />
+          </div>
+          <div class="field flex flex-col">
+            <label for="instance-announcement-body">{{ t("Banner announcement page content") }}</label>
+            <small>
+              {{
+                t(
+                  'Longer text of announcement to display in its own page'
+                )
+              }}
+            </small>
+            <o-input
+              type="textarea"
+              v-model="settingsToWrite.instanceAnnouncementBody"
+              id="instance-annoucement-body"
             />
           </div>
           <div class="field flex flex-col">
@@ -577,7 +592,8 @@ const defaultAdminSettings: IAdminSettings = {
   registrationsModeration: false,
   instanceLanguages: [],
   externalLinks: [],
-  bannerAnnouncement: ""
+  instanceAnnouncementTitle: "",
+  instanceAnnouncementBody: ""
 };
 
 const { onResult: onAdminSettingsResult } = useQuery<{
