@@ -280,7 +280,7 @@ config :mobilizon, :http_security,
     frame_src: [],
     frame_ancestors: []
   ],
-  referrer_policy: "same-origin"
+  referrer_policy: "strict-origin-when-cross-origin"
 
 config :mobilizon, :anonymous,
   participation: [
