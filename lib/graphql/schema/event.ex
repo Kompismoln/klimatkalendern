@@ -8,11 +8,12 @@ defmodule Mobilizon.GraphQL.Schema.EventType do
   import Absinthe.Resolution.Helpers, only: [dataloader: 1, dataloader: 2]
 
   alias Mobilizon.{Actors, Addresses, Discussions}
-  alias Mobilizon.GraphQL.Resolvers.{Conversation, Event, Media, Tag}
+  alias Mobilizon.GraphQL.Resolvers.{Conversation, Event, Coorganizer, Media, Tag}
   alias Mobilizon.GraphQL.Schema
 
   import_types(Schema.AddressType)
   import_types(Schema.Events.ParticipantType)
+  import_types(Schema.Events.CoorganizerType)
   import_types(Schema.TagType)
 
   @env Application.compile_env(:mobilizon, :env)
@@ -415,6 +416,13 @@ defmodule Mobilizon.GraphQL.Schema.EventType do
       arg(:uuid, non_null(:uuid), description: "The event's UUID")
       middleware(Rajska.QueryAuthorization, permit: :all)
       resolve(&Event.find_event/3)
+    end
+
+    @desc "Get coorganizer by id"
+    field :coorganizer, :coorganizer do
+      arg(:id, non_null(:id), description: "The event's ID")
+      middleware(Rajska.QueryAuthorization, permit: :all)
+      resolve(&Coorganizer.find_coorganizer/3)
     end
   end
 
