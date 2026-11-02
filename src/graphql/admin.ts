@@ -227,7 +227,8 @@ export const ADMIN_SETTINGS_FRAGMENT = gql`
     registrationsOpen
     registrationsModeration
     instanceLanguages
-    bannerAnnouncement
+    instanceAnnouncementTitle
+    instanceAnnouncementBody
   }
 `;
 
@@ -263,7 +264,8 @@ export const SAVE_ADMIN_SETTINGS = gql`
     $registrationsOpen: Boolean
     $registrationsModeration: Boolean
     $instanceLanguages: [String]
-    $bannerAnnouncement: String
+    $instanceAnnouncementTitle: String
+    $instanceAnnouncementBody: String
   ) {
     saveAdminSettings(
       instanceName: $instanceName
@@ -287,7 +289,8 @@ export const SAVE_ADMIN_SETTINGS = gql`
       registrationsOpen: $registrationsOpen
       registrationsModeration: $registrationsModeration
       instanceLanguages: $instanceLanguages
-      bannerAnnouncement: $bannerAnnouncement
+      instanceAnnouncementTitle: $instanceAnnouncementTitle
+      instanceAnnouncementBody: $instanceAnnouncementBody
     ) {
       ...adminSettingsFragment
     }
