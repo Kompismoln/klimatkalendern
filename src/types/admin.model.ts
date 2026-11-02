@@ -42,4 +42,5 @@ export interface IAdminSettings {
   registrationsOpen: boolean;
   registrationsModeration: boolean;
   instanceLanguages: string[];
+  instanceAnnouncementSlogan: string;
 }
