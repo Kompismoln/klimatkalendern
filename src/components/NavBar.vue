@@ -2,10 +2,11 @@
   <nav class="bg-white dark:bg-zinc-900" id="navbar">
     <!-- Uncomment below to show announcement banner -->
     <router-link
-      :to="{ name: RouteName.CONTRIBUTE }"
+      v-if=announcement
+      :to="{ name: RouteName.ANNOUNCEMENT }"
       class="block p-1 w-full text-white bg-red-600 text-sm font-bold text-center"
     >
-      {{ t("Help wanted!") }}
+      {{ announcement }}
     </router-link>
     <div
       class="container px-2 sm:px-4 py-2.5 mx-auto flex flex-wrap items-center gap-2 sm:gap-4"
@@ -261,7 +262,8 @@ import {
   useCurrentActorClient,
   useCurrentUserIdentities,
 } from "@/composition/apollo/actor";
-import { useLazyQuery } from "@vue/apollo-composable";
+import { useLazyQuery, useMutation, useQuery } from "@vue/apollo-composable";
+import { UPDATE_DEFAULT_ACTOR } from "@/graphql/actor";
 import { changeIdentity } from "@/utils/identity";
 import {
   useExternalLinksConfig,
@@ -273,6 +275,21 @@ import {
   UNREAD_ACTOR_CONVERSATIONS_SUBSCRIPTION,
 } from "@/graphql/user";
 import { ICurrentUser } from "@/types/current-user.model";
+import gql from 'graphql-tag'
+
+const announcement = ref<string>("ANNOUNCEMENT2");
+const { onResult: onSloganResult } = useQuery(gql`query AdminSettings {
+    adminSettings {
+      bannerAnnouncement
+    }
+}`);
+
+onSloganResult(async ({ data }) => {
+  if (!data) return;
+  announcement.value = data.adminSettings.bannerAnnouncement;
+});
+
+
 
 const { currentUser } = useCurrentUserClient();
 const { currentActor } = useCurrentActorClient();

@@ -163,6 +163,8 @@ defmodule Mobilizon.GraphQL.Schema.AdminType do
     field(:external_links, list_of(:external_link),
       description: "List of URL that will be shown to users"
     )
+
+    field(:banner_announcement, :string, description: "Announcement to display at the top of the page")
   end
 
   object :external_link do
@@ -497,6 +499,8 @@ defmodule Mobilizon.GraphQL.Schema.AdminType do
       arg(:external_links, list_of(:external_link_input),
         description: "Array of external links with label, status, and id"
       )
+
+      arg(:banner_announcement, :string, description: "Announcement to add on top of the homepage")
 
       middleware(Rajska.QueryAuthorization, permit: :administrator)
       resolve(&Admin.save_settings/3)
