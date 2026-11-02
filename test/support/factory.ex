@@ -212,6 +212,44 @@ defmodule Mobilizon.Factory do
     }
   end
 
+  @spec event_full_day_factory :: Mobilizon.Events.Event.t()
+  def event_full_day_factory do
+    actor = build(:actor)
+    # This specific time is the first second of the 18th in Sweden. Full day events are created with this time.
+    start = ~U[2026-09-17 22:00:00.00Z]
+    # By default new events are created with no timezone info.
+    # We need to test that Stockholm is inferred in that case, to avoid exporting the previous date
+
+    uuid = Ecto.UUID.generate()
+
+    %Mobilizon.Events.Event{
+      title: sequence("Ceci est un événement"),
+      description: "Ceci est une description avec une première phrase assez longue,
+      puis sur une seconde ligne",
+      begins_on: start,
+      ends_on: Timex.shift(start, hours: 2),
+      organizer_actor: actor,
+      attributed_to: nil,
+      category: "PARTY",
+      physical_address: build(:address),
+      visibility: :public,
+      tags: build_list(3, :tag),
+      mentions: [],
+      metadata: build_list(2, :event_metadata),
+      local: true,
+      publish_at: DateTime.utc_now(),
+      url: url(~p"/events/#{uuid}"),
+      picture: insert(:media),
+      uuid: uuid,
+      join_options: :free,
+      options: %{"show_start_time": false},
+      participant_stats: %{},
+      status: :confirmed,
+      contacts: [],
+      media: []
+    }
+  end
+
   @spec participant_factory :: Mobilizon.Events.Participant.t()
   def participant_factory do
     uuid = Ecto.UUID.generate()
