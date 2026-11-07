@@ -32,6 +32,50 @@
           ++ pkgs.lib.optional pkgs.stdenv.hostPlatform.isLinux pkgs.util-linux;
           text = builtins.readFile ./dev/dev-db.sh;
         };
+
+      # Dependency: the participant exports (lib/service/export/participants) call priv/python's
+      # modules, which take weasyprint (PDF) and pyexcel-ods3 (ODS); nixpkgs has no pyexcel-ods3.
+      mkExportPython =
+        pkgs:
+        pkgs.python3.withPackages (
+          ps:
+          let
+            pyexcel-ezodf = ps.buildPythonPackage rec {
+              pname = "pyexcel-ezodf";
+              version = "0.3.4";
+              pyproject = true;
+              src = ps.fetchPypi {
+                inherit pname version;
+                hash = "sha256-ly7uqbDkurYN/FzctzeMx7peBwoLcoJ0bAGCxd4BH/E=";
+              };
+              build-system = [ ps.setuptools ];
+              dependencies = [ ps.lxml ];
+              doCheck = false;
+              pythonImportsCheck = [ "ezodf" ];
+            };
+            pyexcel-ods3 = ps.buildPythonPackage rec {
+              pname = "pyexcel-ods3";
+              version = "0.6.1";
+              pyproject = true;
+              src = ps.fetchPypi {
+                inherit pname version;
+                hash = "sha256-U3QPybxukeQ83A7k9Ve7OyUthJPTTywR0mqTxTz+vC4=";
+              };
+              build-system = [ ps.setuptools ];
+              dependencies = [
+                ps.pyexcel-io
+                ps.lxml
+                pyexcel-ezodf
+              ];
+              doCheck = false;
+              pythonImportsCheck = [ "pyexcel_ods3" ];
+            };
+          in
+          [
+            ps.weasyprint
+            pyexcel-ods3
+          ]
+        );
     in
     {
       packages = forAllSystems (
@@ -105,6 +149,8 @@
             name = "${name}-devshell";
             packages = with pkgs; [
               (mkDevDb pkgs)
+              (mkExportPython pkgs)
+              exiftool
               (writeScriptBin "npm" ''echo "use pnpm"'')
               (writeScriptBin "npx" ''echo "use pnpm dlx"'')
               pnpm

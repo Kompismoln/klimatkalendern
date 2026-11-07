@@ -67,6 +67,10 @@ config :mobilizon, Mobilizon.Web.Upload, filters: [], link_name: false
 
 config :mobilizon, Mobilizon.Web.Upload.Uploader.Local, uploads: "test/uploads"
 
+# Accommodating for Python outside /usr/bin, as in the Nix dev shell: the participant exports take
+# the python3 on PATH, falling back to PythonPort's default.
+config :mobilizon, Mobilizon.PythonPort, path: System.find_executable("python3")
+
 config :mobilizon, :exports, path: "test/uploads/exports"
 
 config :mobilizon, Mobilizon.Service.SiteMap,
