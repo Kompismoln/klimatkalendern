@@ -65,7 +65,7 @@ defmodule Mobilizon.Service.PruneUploads do
 
     dir = Path.expand(Config.get!([Local, :uploads]))
     cutoff = System.os_time(:second) - grace_period * 3600
-    {used, unattached} = references()
+    {used, unattached} = references(cutoff)
 
     pruned =
       dir
@@ -82,15 +82,22 @@ defmodule Mobilizon.Service.PruneUploads do
   end
 
   # Returns the paths in use, and the ids of the unattached media rows by their path.
-  @spec references :: {MapSet.t(String.t()), %{String.t() => [integer()]}}
-  defp references do
+  @spec references(integer()) :: {MapSet.t(String.t()), %{String.t() => [integer()]}}
+  defp references(cutoff) do
     %{rows: pictures} =
       Repo.query!("""
       SELECT avatar ->> 'url' FROM actors WHERE avatar ->> 'url' IS NOT NULL
       UNION ALL SELECT banner ->> 'url' FROM actors WHERE banner ->> 'url' IS NOT NULL
       """)
 
-    %{rows: medias} = Repo.query!("SELECT m.id, m.file ->> 'url', #{@attached} FROM medias m")
+    # Fact: Dedupe stores a picture that's there already by leaving the file, and its mtime, as it
+    # is, so a media row younger than the grace period keeps its file whatever the file's age.
+    %{rows: medias} =
+      Repo.query!(
+        "SELECT m.id, m.file ->> 'url', (#{@attached}) OR m.inserted_at >= to_timestamp($1) FROM medias m",
+        [cutoff]
+      )
+
     %{rows: links} = Repo.query!(@linked_in_text)
 
     used =

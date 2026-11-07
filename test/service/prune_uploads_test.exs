@@ -26,8 +26,12 @@ defmodule Mobilizon.Service.PruneUploadsTest do
 
     insert(:event, picture: insert(:media, file: file("event%20picture.png")))
     insert(:event, description: ~s(<p><img src="#{url("linked.png")}"></p>))
-    unattached = insert(:media, file: file("unattached.png"))
-    shared = insert(:media, file: file("shared.png"))
+    # Fact: an unattached media row younger than the grace period keeps its file.
+    old_row =
+      NaiveDateTime.utc_now() |> NaiveDateTime.add(-3, :day) |> NaiveDateTime.truncate(:second)
+
+    unattached = insert(:media, file: file("unattached.png"), inserted_at: old_row)
+    shared = insert(:media, file: file("shared.png"), inserted_at: old_row)
     insert(:post, picture: insert(:media, file: file("shared.png")))
 
     for path <- [
@@ -89,6 +93,13 @@ defmodule Mobilizon.Service.PruneUploadsTest do
     assert {:ok, [_, _, _]} = PruneUploads.prune(dry_run: true)
     assert files(dir) == before
     assert Medias.get_media(unattached.id)
+  end
+
+  test "keeps an old file that a media row younger than the grace period has", %{tmp_dir: dir} do
+    insert(:media, file: file("nobody.png"))
+    assert {:ok, pruned} = PruneUploads.prune()
+    refute Enum.any?(pruned, &(&1.path == "nobody.png"))
+    assert "nobody.png" in files(dir)
   end
 
   test "keeps the files younger than the grace period", %{tmp_dir: dir} do
