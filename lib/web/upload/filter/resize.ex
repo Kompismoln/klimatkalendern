@@ -1,6 +1,6 @@
 defmodule Mobilizon.Web.Upload.Filter.Resize do
   @moduledoc """
-  Resize the pictures if they're bigger than maximum size.
+  Resize the pictures if they're bigger than maximum size, and strip their metadata.
 
   This filter requires `Mobilizon.Web.Upload.Filter.AnalyzeMetadata` to be performed before.
   """
@@ -25,8 +25,12 @@ defmodule Mobilizon.Web.Upload.Filter.Resize do
       ) do
     {new_width, new_height} = sizes = limit_sizes({width, height})
 
+    # Policy: metadata goes, as it can tell where a photo was taken (EXIF GPS), and as ImageMagick
+    # would otherwise stamp the file with the time (PNG date:create, date:modify), which gives the
+    # same picture a new hash, and so a new file, each time it's stored (see Filter.Dedupe).
     file
     |> Mogrify.open()
+    |> Mogrify.custom("strip")
     |> Mogrify.resize(string(sizes))
     |> Mogrify.save(in_place: true)
 
