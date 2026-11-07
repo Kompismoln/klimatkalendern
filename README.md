@@ -326,6 +326,18 @@ TZ=Europe/Paris LANG=fr_FR.UTF-8 pnpm test
 Claude Code cloud sessions run `.claude/hooks/session-start.sh`, which does all of the above setup.
 
 
+## Maintenance commands
+
+Commands are Mix tasks under `lib/mix/tasks/mobilizon/`: `mix mobilizon.<task>` in development,
+`mobilizon_ctl <task>` in a release. For instance, to delete the uploaded files nothing uses
+(see `Mobilizon.Service.PruneUploads`), list them first:
+
+```bash
+mobilizon_ctl media.prune --dry-run
+mobilizon_ctl media.prune --verbose
+```
+
+
 ## Following upstream mobilizon
 
 Keeping up to date with the latest [upstream changes](https://framagit.org/kaihuri/mobilizon) is useful for many reasons: it saves us time making improvements or solving bugs that upstream developers have already resolved. It also reduces our security exposure, since it means running more up to date versions of dependencies. 
