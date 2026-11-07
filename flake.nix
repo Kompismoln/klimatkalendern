@@ -19,6 +19,19 @@
         "aarch64-darwin"
       ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
+
+      mkDevDb =
+        pkgs:
+        pkgs.writeShellApplication {
+          name = "dev-db";
+          runtimeInputs = [
+            (pkgs.postgresql_16.withPackages (ps: [ ps.postgis ]))
+            pkgs.coreutils
+          ]
+          # Dependency: runuser, for running postgres as another user when invoked as root.
+          ++ pkgs.lib.optional pkgs.stdenv.hostPlatform.isLinux pkgs.util-linux;
+          text = builtins.readFile ./dev/dev-db.sh;
+        };
     in
     {
       packages = forAllSystems (
@@ -32,6 +45,7 @@
           );
         in
         rec {
+          dev-db = mkDevDb pkgs;
           default = pkgs.callPackage ./nixpkg {
             mobilizon-src = {
               pname = "${name}-elixir";
@@ -90,6 +104,7 @@
           default = pkgs.mkShell {
             name = "${name}-devshell";
             packages = with pkgs; [
+              (mkDevDb pkgs)
               (writeScriptBin "npm" ''echo "use pnpm"'')
               (writeScriptBin "npx" ''echo "use pnpm dlx"'')
               pnpm
