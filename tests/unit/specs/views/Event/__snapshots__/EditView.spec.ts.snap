@@ -2,7 +2,7 @@
 
 exports[`EditView > Create event - draft 1`] = `
 "<div class="container mx-auto">
-  <h1>Create a new event</h1>
+  <h1 class="">Create a new event</h1>
   <form>
     <h2>General information</h2>
     <div data-oruga="field" class="o-field"><label id="v-0-61" class="o-field__label">Headline picture</label>
@@ -113,7 +113,7 @@ exports[`EditView > Create event - draft 1`] = `
         </div>
       </div>
     </section>
-    <div class="flex flex-wrap gap-4">
+    <div class="flex flex-wrap gap-4 hidden">
       <div data-oruga="field" class="o-field o-field--filled w-full md:max-w-fit"><label id="v-0-56" for="" class="o-field__label">Category</label>
         <div data-oruga="select" class="o-select o-select--expanded">
           <!----><select aria-labelledby="v-0-56" id="" data-oruga-input="select" class="o-select__input o-select__input--arrowed" autocomplete="off">
@@ -187,8 +187,7 @@ exports[`EditView > Create event - draft 1`] = `
         </div>
       </div>
       <!---->
-    </div>
-    <!--v-if--><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--text block"><span class="o-button__wrapper"><!----><span class="o-button__label">Timezone parameters</span>
+    </div><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--text block"><span class="o-button__wrapper"><!----><span class="o-button__label">Timezone parameters</span>
       <!----></span>
     </button>
     <div class="my-6">
@@ -429,7 +428,7 @@ exports[`EditView > Create event - draft 1`] = `
 
 exports[`EditView > Create event - draft 2`] = `
 "<div class="container mx-auto">
-  <h1>Create a new event</h1>
+  <h1 class="">Create a new event</h1>
   <form>
     <h2>General information</h2>
     <div data-oruga="field" class="o-field"><label id="v-0-61" class="o-field__label">Headline picture</label>
@@ -540,7 +539,7 @@ exports[`EditView > Create event - draft 2`] = `
         </div>
       </div>
     </section>
-    <div class="flex flex-wrap gap-4">
+    <div class="flex flex-wrap gap-4 hidden">
       <div data-oruga="field" class="o-field o-field--filled w-full md:max-w-fit"><label id="v-0-56" for="" class="o-field__label">Category</label>
         <div data-oruga="select" class="o-select o-select--expanded">
           <!----><select aria-labelledby="v-0-56" id="" data-oruga-input="select" class="o-select__input o-select__input--arrowed" autocomplete="off">
@@ -614,8 +613,7 @@ exports[`EditView > Create event - draft 2`] = `
         </div>
       </div>
       <!---->
-    </div>
-    <!--v-if--><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--text block"><span class="o-button__wrapper"><!----><span class="o-button__label">Timezone parameters</span>
+    </div><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--text block"><span class="o-button__wrapper"><!----><span class="o-button__label">Timezone parameters</span>
       <!----></span>
     </button>
     <div class="my-6">
@@ -856,7 +854,7 @@ exports[`EditView > Create event - draft 2`] = `
 
 exports[`EditView > Update old event 1`] = `
 "<div class="container mx-auto">
-  <h1>Update event event-test</h1>
+  <h1 class="">Update event event-test</h1>
   <form>
     <h2>General information</h2>
     <div data-oruga="field" class="o-field"><label id="v-0-61" class="o-field__label">Headline picture</label>
@@ -967,7 +965,7 @@ exports[`EditView > Update old event 1`] = `
         </div>
       </div>
     </section>
-    <div class="flex flex-wrap gap-4">
+    <div class="flex flex-wrap gap-4 hidden">
       <div data-oruga="field" class="o-field o-field--filled w-full md:max-w-fit"><label id="v-0-56" for="" class="o-field__label">Category</label>
         <div data-oruga="select" class="o-select o-select--expanded">
           <!----><select aria-labelledby="v-0-56" id="" data-oruga-input="select" class="o-select__input o-select__input--arrowed" autocomplete="off">
@@ -1041,8 +1039,7 @@ exports[`EditView > Update old event 1`] = `
         </div>
       </div>
       <!---->
-    </div>
-    <!--v-if--><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--text block"><span class="o-button__wrapper"><!----><span class="o-button__label">Timezone parameters</span>
+    </div><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--text block"><span class="o-button__wrapper"><!----><span class="o-button__label">Timezone parameters</span>
       <!----></span>
     </button>
     <div class="my-6">
@@ -1283,7 +1280,7 @@ exports[`EditView > Update old event 1`] = `
 
 exports[`EditView > Update old event 2`] = `
 "<div class="container mx-auto">
-  <h1>Update event new title</h1>
+  <h1 class="">Update event new title</h1>
   <form>
     <h2>General information</h2>
     <div data-oruga="field" class="o-field"><label id="v-0-61" class="o-field__label">Headline picture</label>
@@ -1394,7 +1391,7 @@ exports[`EditView > Update old event 2`] = `
         </div>
       </div>
     </section>
-    <div class="flex flex-wrap gap-4">
+    <div class="flex flex-wrap gap-4 hidden">
       <div data-oruga="field" class="o-field o-field--filled w-full md:max-w-fit"><label id="v-0-56" for="" class="o-field__label">Category</label>
         <div data-oruga="select" class="o-select o-select--expanded">
           <!----><select aria-labelledby="v-0-56" id="" data-oruga-input="select" class="o-select__input o-select__input--arrowed" autocomplete="off">
@@ -1468,8 +1465,7 @@ exports[`EditView > Update old event 2`] = `
         </div>
       </div>
       <!---->
-    </div>
-    <!--v-if--><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--text block"><span class="o-button__wrapper"><!----><span class="o-button__label">Timezone parameters</span>
+    </div><button data-oruga="button" type="button" role="button" tabindex="0" class="o-button o-button--text block"><span class="o-button__wrapper"><!----><span class="o-button__label">Timezone parameters</span>
       <!----></span>
     </button>
     <div class="my-6">

@@ -20,7 +20,7 @@ exports[`GroupEvents > Show simple 1`] = `
             <div data-v-107f3c48="" class="event-preview mr-0 ml-0">
               <div data-v-107f3c48="" class="relative w-full">
                 <div data-v-107f3c48="" class="flex absolute bottom-2 left-2 z-10 date-component">
-                  <div data-v-1df97f42="" data-v-107f3c48="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white small" style="--small: 1.2;">
+                  <div data-v-1df97f42="" data-v-107f3c48="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-gray-800 dark:text-white small" style="--small: 1.2;">
                     <div data-v-1df97f42="" class="datetime-container-header bg-red-400 dark:bg-red-900"><time data-v-1df97f42="" datetime="2026-03-24T23:00:00.000Z" class="weekday">Wed</time></div>
                     <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2026-03-24T23:00:00.000Z" class="day block font-semibold">25</time><time data-v-1df97f42="" datetime="2026-03-24T23:00:00.000Z" class="month font-semibold block uppercase py-1 px-0">Mar</time></div>
                     <div data-v-1df97f42="" class="datetime-container-footer bg-red-400 dark:bg-red-900"><time data-v-1df97f42="" datetime="2026-03-24T23:00:00.000Z" class="year">2026</time></div>
@@ -30,7 +30,7 @@ exports[`GroupEvents > Show simple 1`] = `
                 </div>
                 <div data-v-107f3c48="" class="flex-1 object-cover flex-none h-40 md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg object-cover flex-none h-40 md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg">
                   <div class="h-full w-full max-w-100 min-h-[10rem]">
-                    <!-- Show the placeholder as background --><canvas width="32" height="32" class="transition-opacity duration-500 opacity-100"></canvas><!-- Show the real image on the top and fade in after loading --><img class="transition-opacity duration-500 rounded-lg object-cover mx-auto h-full opacity-0" alt="" src="/img/mobilizon_default_card.png" loading="lazy">
+                    <!-- Show the placeholder as background --><canvas width="32" height="32" class="transition-opacity duration-500 opacity-100"></canvas><!-- Show the real image on the top and fade in after loading --><img class="transition-opacity duration-500 object-cover mx-auto h-full opacity-0 rounded-lg" alt="" src="/img/mobilizon_default_card.png" loading="lazy">
                   </div>
                 </div>
               </div>
@@ -50,7 +50,7 @@ exports[`GroupEvents > Show simple 1`] = `
             <div data-v-107f3c48="" class="event-preview mr-0 ml-0">
               <div data-v-107f3c48="" class="relative w-full">
                 <div data-v-107f3c48="" class="flex absolute bottom-2 left-2 z-10 date-component">
-                  <div data-v-1df97f42="" data-v-107f3c48="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-black dark:text-white small" style="--small: 1.2;">
+                  <div data-v-1df97f42="" data-v-107f3c48="" class="datetime-container flex flex-col rounded-lg text-center justify-center overflow-hidden items-stretch bg-white dark:bg-gray-700 text-gray-800 dark:text-white small" style="--small: 1.2;">
                     <div data-v-1df97f42="" class="datetime-container-header bg-red-400 dark:bg-red-900"><time data-v-1df97f42="" datetime="2026-03-24T23:00:00.000Z" class="weekday">Wed</time></div>
                     <div data-v-1df97f42="" class="datetime-container-content"><time data-v-1df97f42="" datetime="2026-03-24T23:00:00.000Z" class="day block font-semibold">25</time><time data-v-1df97f42="" datetime="2026-03-24T23:00:00.000Z" class="month font-semibold block uppercase py-1 px-0">Mar</time></div>
                     <div data-v-1df97f42="" class="datetime-container-footer bg-red-400 dark:bg-red-900"><time data-v-1df97f42="" datetime="2026-03-24T23:00:00.000Z" class="year">2026</time></div>
@@ -60,7 +60,7 @@ exports[`GroupEvents > Show simple 1`] = `
                 </div>
                 <div data-v-107f3c48="" class="flex-1 object-cover flex-none h-40 md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg object-cover flex-none h-40 md:w-48 rounded-t-lg md:rounded-none md:rounded-l-lg">
                   <div class="h-full w-full max-w-100 min-h-[10rem]">
-                    <!-- Show the placeholder as background --><canvas width="32" height="32" class="transition-opacity duration-500 opacity-100"></canvas><!-- Show the real image on the top and fade in after loading --><img class="transition-opacity duration-500 rounded-lg object-cover mx-auto h-full opacity-0" alt="" src="/img/mobilizon_default_card.png" loading="lazy">
+                    <!-- Show the placeholder as background --><canvas width="32" height="32" class="transition-opacity duration-500 opacity-100"></canvas><!-- Show the real image on the top and fade in after loading --><img class="transition-opacity duration-500 object-cover mx-auto h-full opacity-0 rounded-lg" alt="" src="/img/mobilizon_default_card.png" loading="lazy">
                   </div>
                 </div>
               </div>
