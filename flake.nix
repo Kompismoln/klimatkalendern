@@ -36,7 +36,7 @@
             mobilizon-src = {
               pname = "${name}-elixir";
               inherit src version;
-              patches = [ nixpkg/json_polyfill.patch ];
+              patches = [ ];
             };
             inherit mobilizon-frontend;
           };
