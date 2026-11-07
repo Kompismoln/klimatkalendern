@@ -2,9 +2,11 @@ defmodule Mobilizon.GraphQL.Resolvers.ResourceTest do
   use Mobilizon.Web.ConnCase
 
   import Mobilizon.Factory
+  import Mox
 
   alias Mobilizon.Actors.{Actor, Member}
   alias Mobilizon.Resources.Resource
+  alias Mobilizon.Service.HTTP.RichMediaPreviewClient
   alias Mobilizon.Users.User
   alias Mobilizon.Web.MediaProxy
 
@@ -383,6 +385,27 @@ defmodule Mobilizon.GraphQL.Resolvers.ResourceTest do
   end
 
   describe "Resolver: Create a resource" do
+    # Accommodating for Cachex, which fetches the preview in a process of its own: the stub is global.
+    setup :set_mox_from_context
+
+    setup do
+      Cachex.clear(:rich_media_cache)
+      html = File.read!("test/fixtures/rich_media/mobilizon.org.html")
+
+      stub(RichMediaPreviewClient.Mock, :call, fn
+        %{method: :get, url: @resource_url} = env, _opts ->
+          {:ok,
+           %Tesla.Env{
+             env
+             | status: 200,
+               headers: [{"content-type", "text/html; charset=utf-8"}],
+               body: html
+           }}
+      end)
+
+      :ok
+    end
+
     test "create_resource/3 creates a resource for a group", %{
       conn: conn,
       user: user,

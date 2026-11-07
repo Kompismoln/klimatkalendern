@@ -90,6 +90,9 @@ config :tesla, Mobilizon.Service.HTTP.GeospatialClient,
 config :tesla, Mobilizon.Service.HTTP.HostMetaClient,
   adapter: Mobilizon.Service.HTTP.HostMetaClient.Mock
 
+config :tesla, Mobilizon.Service.HTTP.RichMediaPreviewClient,
+  adapter: Mobilizon.Service.HTTP.RichMediaPreviewClient.Mock
+
 config :mobilizon, Mobilizon.Service.Geospatial, service: Mobilizon.Service.Geospatial.Mock
 
 config :mobilizon, Oban, testing: :manual
