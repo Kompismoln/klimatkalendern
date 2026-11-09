@@ -256,7 +256,6 @@ defmodule Mobilizon.Federation.ActivityPub.Utils do
     :ok
   end
 
-  # TODO: Is this a map or a String?
   @spec do_maybe_relay_if_group_activity(map() | String.t(), list(String.t()) | String.t()) :: :ok
   defp do_maybe_relay_if_group_activity(object, attributed_to) when is_list(attributed_to),
     do: do_maybe_relay_if_group_activity(object, hd(attributed_to))
@@ -725,7 +724,7 @@ defmodule Mobilizon.Federation.ActivityPub.Utils do
     end
   end
 
-  @spec make_signature(Actor.t(), String.t(), DateTime.t()) :: list({atom(), String.t()})
+  @spec make_signature(Actor.t(), String.t(), DateTime.t()) :: list({String.t(), String.t()})
   defp make_signature(actor, id, date) do
     uri = URI.parse(id)
 
@@ -737,7 +736,7 @@ defmodule Mobilizon.Federation.ActivityPub.Utils do
         date: date
       })
 
-    [{:Signature, signature}]
+    [{"Signature", signature}]
   end
 
   @doc """
@@ -759,7 +758,7 @@ defmodule Mobilizon.Federation.ActivityPub.Utils do
   @spec maybe_date_fetch(Enum.t(), String.t()) :: Enum.t()
   def maybe_date_fetch(headers, date) do
     if Mobilizon.Config.get([:activitypub, :sign_object_fetches]) do
-      headers ++ [{:Date, date}]
+      headers ++ [{"Date", date}]
     else
       headers
     end

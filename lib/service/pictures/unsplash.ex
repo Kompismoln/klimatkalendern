@@ -21,7 +21,7 @@ defmodule Mobilizon.Service.Pictures.Unsplash do
     url = "#{unsplash_endpoint()}#{@unsplash_api}?query=#{location}&orientation=landscape"
 
     client =
-      GenericJSONClient.client(headers: [{:Authorization, "Client-ID #{unsplash_access_key()}"}])
+      GenericJSONClient.client(headers: [{"Authorization", "Client-ID #{unsplash_access_key()}"}])
 
     with {:ok, %{status: 200, body: body}} <- GenericJSONClient.get(client, url),
          results <- body["results"],
