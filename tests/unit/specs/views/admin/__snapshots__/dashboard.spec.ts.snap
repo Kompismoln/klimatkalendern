@@ -16,7 +16,7 @@ exports[`Dashboard > Show simple 1`] = `
     <div class="flex flex-wrap gap-4">
       <div>
         <h2>Last published event</h2>
-        <event-card-stub event="[object Object]" mode="column"></event-card-stub>
+        <event-card-stub event="[object Object]" mode="column" viewmorefrom="false"></event-card-stub>
       </div>
       <div>
         <h2>Last group created</h2>

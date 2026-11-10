@@ -259,7 +259,7 @@ defmodule Mobilizon.Discussions do
   end
 
   @doc """
-  Returns the list of comments by an actor and a list of ids.
+  Returns the list of comments by an actor and a list of ids, oldest first.
   """
   @spec list_comments_by_actor_and_ids(integer | String.t(), [integer | String.t()]) ::
           [Comment.t()]
@@ -270,6 +270,7 @@ defmodule Mobilizon.Discussions do
     Comment
     |> where([c], c.id in ^comment_ids)
     |> where([c], c.actor_id == ^actor_id)
+    |> order_by([c], asc: c.id)
     |> Repo.all()
   end
 

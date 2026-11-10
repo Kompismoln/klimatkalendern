@@ -246,9 +246,13 @@ defmodule Mobilizon.Mixfile do
       {:haversine, "~> 0.1.0"},
       {:ecto_dev_logger, "~> 0.7"},
       {:castore, "~> 1.0"},
-      {:credo_code_climate, "~> 0.1.0", only: [:dev, :test]},
-      {:json_polyfill, "~> 0.2"}
-    ] ++ oauth_deps()
+      {:credo_code_climate, "~> 0.1.0", only: [:dev, :test]}
+    ] ++ oauth_deps() ++ maybe_json_polyfill()
+  end
+
+  # Accommodating for json_polyfill, whose build fails where OTP (27+) ships :json itself.
+  defp maybe_json_polyfill do
+    if Code.ensure_loaded?(:json), do: [], else: [{:json_polyfill, "~> 0.2"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

@@ -40,7 +40,7 @@ defmodule Mobilizon.Web.Plugs.HTTPSecurityPlugTest do
     test "referrer-policy header reflects configured value", %{conn: conn} do
       resp = post(conn, "/api")
 
-      assert Conn.get_resp_header(resp, "referrer-policy") == ["same-origin"]
+      assert Conn.get_resp_header(resp, "referrer-policy") == ["strict-origin-when-cross-origin"]
 
       clear_config([:http_security, :referrer_policy], "no-referrer")
 

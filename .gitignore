@@ -1,5 +1,7 @@
 # App artifacts
 /_build
+# ExUnit's @tag :tmp_dir
+/tmp
 /db
 /deps
 /*.ez

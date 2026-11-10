@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`App component > renders a Vue component 1`] = `
-"<footer class="bg-violet-2 color-secondary flex flex-col items-center py-3 px-3">
+"<footer class="bg-green-900 color-secondary flex flex-col items-center py-3 px-3">
   <ul class="inline-flex flex-wrap justify-around gap-3 text-lg text-white underline decoration-yellow-1">
     <li>
       <o-select class="text-black dark:text-white" aria-label="Language" modelvalue="en_US" placeholder="Select a language">

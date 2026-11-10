@@ -6,9 +6,9 @@ defmodule Mobilizon.Federation.ActivityPub.Fetcher do
   """
   require Logger
 
-  alias Mobilizon.Federation.HTTPSignatures.Signature
   alias Mobilizon.Federation.ActivityPub.{Relay, Transmogrifier}
   alias Mobilizon.Federation.ActivityStream.Converter.Actor, as: ActorConverter
+  alias Mobilizon.Federation.HTTPSignatures.Signature
   alias Mobilizon.Service.ErrorReporting.Sentry
   alias Mobilizon.Service.HTTP.ActivityPub, as: ActivityPubClient
 
@@ -28,7 +28,7 @@ defmodule Mobilizon.Federation.ActivityPub.Fetcher do
     date = Signature.generate_date_header()
 
     headers =
-      [{:Accept, "application/activity+json"}]
+      [{"Accept", "application/activity+json"}]
       |> maybe_date_fetch(date)
       |> sign_fetch(on_behalf_of, url, date, options)
 

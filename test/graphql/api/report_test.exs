@@ -52,10 +52,14 @@ defmodule Mobilizon.GraphQL.API.ReportTest do
       %Actor{id: reported_id, url: reported_url} = reported = insert(:actor)
 
       %Comment{id: comment_1_id, url: comment_1_url} =
-        _comment_1 = insert(:comment, actor: reported)
+        comment_1 = insert(:comment, actor: reported)
 
       %Comment{id: comment_2_id, url: comment_2_url} =
         _comment_2 = insert(:comment, actor: reported)
+
+      # Fact: comment 1's update puts its new row version after comment 2's, so an unordered
+      # query returns comment 2 first.
+      comment_1 |> Ecto.Changeset.change(text: "Edited") |> Repo.update!()
 
       comment = "This is really not acceptable"
 

@@ -302,6 +302,42 @@ Your environment is now reset and you can follow the setup guide from
 step 2 under Postgresql ("Initial Postgres User and Database setup").
 
 
+## Running the tests
+
+Inside the Nix development shell, `dev-db` runs a throwaway PostgreSQL + PostGIS cluster on
+localhost:5432 with the `mobilizon` and `mobilizon_test` roles `config/dev.exs` and
+`config/test.exs` expect, instead of the OS-level setup above:
+
+```bash
+dev-db start            # also: stop, status, reset, enter [psql args...]
+MIX_ENV=test mix prepare_test
+mix test
+```
+
+If `mix tz_world.update` (part of `prepare_test`) can't reach GitHub's API, `MIX_ENV=test dev/tz-data.sh`
+installs the timezone data by other means.
+
+Frontend unit tests run with the timezone and locale their snapshots were made with:
+
+```bash
+TZ=Europe/Paris LANG=fr_FR.UTF-8 pnpm test
+```
+
+Claude Code cloud sessions run `.claude/hooks/session-start.sh`, which does all of the above setup.
+
+
+## Maintenance commands
+
+Commands are Mix tasks under `lib/mix/tasks/mobilizon/`: `mix mobilizon.<task>` in development,
+`mobilizon_ctl <task>` in a release. For instance, to delete the uploaded files nothing uses
+(see `Mobilizon.Service.PruneUploads`), list them first:
+
+```bash
+mobilizon_ctl media.prune --dry-run
+mobilizon_ctl media.prune --verbose
+```
+
+
 ## Following upstream mobilizon
 
 Keeping up to date with the latest [upstream changes](https://framagit.org/kaihuri/mobilizon) is useful for many reasons: it saves us time making improvements or solving bugs that upstream developers have already resolved. It also reduces our security exposure, since it means running more up to date versions of dependencies. 

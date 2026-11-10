@@ -7,6 +7,7 @@ defmodule Mobilizon.Service.RichMedia.Favicon do
 
   require Logger
   alias Mobilizon.Config
+  alias Mobilizon.Service.HTTP.RichMediaPreviewClient
 
   @options [
     max_body: 2_000_000,
@@ -21,7 +22,7 @@ defmodule Mobilizon.Service.RichMedia.Favicon do
     user_agent = Keyword.get(options, :user_agent, Config.instance_user_agent())
     headers = [{"User-Agent", user_agent}]
 
-    case Tesla.get(url, headers: headers, opts: @options) do
+    case RichMediaPreviewClient.get(url, headers: headers, opts: @options) do
       {:ok, %{status: code, body: body}} when code in 200..299 ->
         find_favicon_url(url, body, headers)
 
@@ -86,7 +87,7 @@ defmodule Mobilizon.Service.RichMedia.Favicon do
     uri = URI.parse(url)
     favicon_url = "#{uri.scheme}://#{uri.host}/favicon.ico"
 
-    case Tesla.head(favicon_url, headers: headers, opts: @options) do
+    case RichMediaPreviewClient.head(favicon_url, headers: headers, opts: @options) do
       {:ok, %{status: code}} when code in 200..299 ->
         {:ok, favicon_url}
 

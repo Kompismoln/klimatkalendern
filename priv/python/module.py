@@ -1,8 +1,8 @@
-import pkg_resources
+from importlib.metadata import PackageNotFoundError, distribution
 
 def has_package(package):
     try:
-        pkg_resources.get_distribution(package.decode('ascii'))
+        distribution(package.decode('ascii'))
         return True
-    except pkg_resources.DistributionNotFound:
+    except PackageNotFoundError:
         return False
