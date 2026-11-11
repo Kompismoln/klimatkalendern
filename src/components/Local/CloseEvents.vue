@@ -3,6 +3,48 @@
     class="container mx-auto px-2"
     :suggestGeoloc="false"
     v-on="attrs"
+    v-if="todayEvents && todayEvents.length >= 1"
+  >
+    <template #title>
+      <template v-if="userLocation?.name">
+        {{
+          t("Incoming events today nearby {position}", {
+            position: userLocation?.name,
+          })
+        }}
+      </template>
+      <template v-else>
+        {{ t("Incoming events today") }}
+      </template>
+    </template>
+    <template #content>
+      <skeleton-event-result
+        v-for="i in 6"
+        class="scroll-ml-6 snap-center shrink-0 w-[18rem] my-4"
+        :key="i"
+        v-show="loading"
+      />
+      <span v-for="event in todayEvents" :key="event.elem.uuid">
+        <event-card
+          v-if="event.showActorMore"
+          :event="event.elem"
+          :key="event.elem.uuid"
+          :viewMoreFrom="event.showActorMore"
+          :to="event.actorMoreRoute"
+        />
+        <event-card
+          v-else
+          :event="event.elem"
+          :key="event.elem.uuid"
+          :viewMoreFrom="event.showActorMore"
+        />
+      </span>
+    </template>
+  </close-content>
+  <close-content
+    class="container mx-auto px-2"
+    :suggestGeoloc="false"
+    v-on="attrs"
   >
     <template #title>
       <template v-if="userLocation?.name">
@@ -183,6 +225,19 @@ const events = computed(() =>
   filterTooMany(eventsQuery.result.value?.events ?? { elements: [], total: 0 })
 );
 watch(events, (e) => console.debug("events: ", e));
+
+const todayEvents = computed(() => {
+  let l = filterTooMany(
+    eventsQuery.result.value?.events ?? { elements: [], total: 0 }
+  ).elements;
+  console.debug(l);
+  return l.filter(
+    (e) =>
+      e.elem.beginsOn.slice(0, "YYYY-MM-DD".length) ==
+      new Date().toISOString().slice(0, "YYYY-MM-DD".length)
+  );
+});
+watch(todayEvents, (e) => console.debug("todayEvents: ", e));
 
 const loading = computed(() => props.doingGeoloc || eventsQuery.loading.value);
 watch(loading, (l) => console.debug("loading: ", l));
