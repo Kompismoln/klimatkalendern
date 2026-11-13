@@ -53,7 +53,7 @@
     </div>
     <div
       class="flex flex-col flex-wrap sm:flex-row gap-2 justify-center"
-      v-if="false"
+      v-if="!hideButtons"
     >
       <o-button
         :class="'search-Event min-w-40 ' + select_button_class('EVENTS')"
@@ -108,6 +108,7 @@ const props = defineProps<{
   distance: number | null;
   fromLocalStorage?: boolean | false;
   numberOfSearch: object | null;
+  hideButtons?: boolean | false;
 }>();
 
 const router = useRouter();

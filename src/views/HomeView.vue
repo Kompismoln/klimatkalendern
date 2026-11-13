@@ -16,6 +16,7 @@
     v-model:distance="distance"
     v-on:update:address="updateAddress"
     :fromLocalStorage="true"
+    :hideButtons="true"
     :addressDefaultText="userLocation?.name"
     :key="increated"
   />
