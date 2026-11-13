@@ -2,7 +2,7 @@
   <!-- <o-loading v-model:active="$apollo.loading" /> -->
 
   <!-- Quick publish -->
-  <!-- Quick publish -->
+  <quick-publish></quick-publish>
 
   <!-- Nice looking SVGs -->
   <!-- Unlogged introduction -->
@@ -168,6 +168,7 @@ import {
   storeRadiusInLocal,
 } from "@/utils/location";
 import { useServerProvidedLocation } from "@/composition/apollo/config";
+import QuickPublish from "@/components/Home/QuickPublish.vue";
 import ShortSearch from "@/components/Home/ShortSearch.vue";
 import { CONFIG } from "@/graphql/config";
 import { IConfig } from "@/types/config.model";
