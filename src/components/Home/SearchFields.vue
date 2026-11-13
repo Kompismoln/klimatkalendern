@@ -9,11 +9,9 @@
       <label class="sr-only" for="search_field_input">{{
         t("Keyword, event title, group name, etc.")
       }}</label>
-      <h2>
-        <b>{{ t("Search:") }}</b>
-      </h2>
       <o-input
         class="min-w-48"
+        v-if="search != null"
         v-model="search"
         :placeholder="t('Keyword, event title, group name, etc.')"
         id="search_field_input"
@@ -53,7 +51,10 @@
         </o-dropdown>
       </full-address-auto-complete>
     </div>
-    <div class="flex flex-col flex-wrap sm:flex-row gap-2 justify-center">
+    <div
+      class="flex flex-col flex-wrap sm:flex-row gap-2 justify-center"
+      v-if="false"
+    >
       <o-button
         :class="'search-Event min-w-40 ' + select_button_class('EVENTS')"
         type="submit"
@@ -73,7 +74,6 @@
         :class="'search-Group min-w-40 ' + select_button_class('GROUPS')"
         type="submit"
         icon-left="account-multiple"
-        v-if="!singleButton"
       >
         {{ t("Groups") + number_result("GROUPS") }}
       </o-button>
@@ -108,7 +108,6 @@ const props = defineProps<{
   distance: number | null;
   fromLocalStorage?: boolean | false;
   numberOfSearch: object | null;
-  singleButton?: boolean | false;
 }>();
 
 const router = useRouter();

@@ -10,6 +10,16 @@
 
   <!-- Search fields -->
   <short-search></short-search>
+  <search-fields
+    v-model:search="search"
+    v-model:address="userAddress"
+    v-model:distance="distance"
+    v-on:update:address="updateAddress"
+    :fromLocalStorage="true"
+    :addressDefaultText="userLocation?.name"
+    :key="increated"
+  />
+
   <!-- Welcome back -->
   <section
     class="container mx-auto"
