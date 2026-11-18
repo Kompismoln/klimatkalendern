@@ -4,19 +4,16 @@ Klimatkalendern is an event calendar for all activities in Sweden (or elsewhere)
 that aims to promote sustainablility.
 
 This git repo is a detached Mobilizon fork repurposed to serve klimatkalendern.nu.
-The fork diverges from Mobilizon 5.1.2 with changes tailored to our specific use case.
-As a consequence, this project is currently of limited use outside klimatkalendern.nu.
+The fork diverges from Mobilizon 5.2.4 with changes tailored to our specific use case.
 
 This README contains instructions for setting up the project locally,
 if you want to know more about Klimatkalendern, visit
 [klimatkalendern.nu](https://klimatkalendern.nu).
 
-Contributors are much welcome, we could use extra eyes on this.
-If you want to restore a state for testing and development, but don't have access
-to our storage, email us at info@klimatkalendern.nu.
+Contributors are sorely needed! Please email info@klimatkalendern.nu to help with develoment, testing, ideas for development, or organizing in the climate justice movement in Sweden.
 
 ## Setup
-Ensure you have a machine running either linux, macOS or wsl with git installed, then:
+Ensure you have a machine running either Linux, MacOS or WSL with git installed, then:
 
 **Clone this repo:**
     ```bash
@@ -38,7 +35,6 @@ in `flake.nix` under `devShell`.
     We recommend the lix.systems implementation as it allows flakes to be enabled during install.
 
     Follow the instructions on their respective websites.
-    * Nix: [https://nixos.org/download.html](https://nixos.org/download.html)
     * Lix: [https://lix.systems/](https://lix.systems/)
 
 2.  **Enter Development Environment:**
@@ -86,7 +82,7 @@ This setup assumes PostgreSQL is managed at the OS level.
 
 **1. Install PostgreSQL and PostGIS:**
 
-* **For Debian-based Linux:**
+* **For Ubuntu or other Debian-based Linux:**
     ```bash
     sudo apt update
     sudo apt install postgresql postgresql-contrib postgis
