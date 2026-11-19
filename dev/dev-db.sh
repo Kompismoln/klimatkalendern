@@ -3,8 +3,8 @@
 # localhost:${MOBILIZON_DATABASE_PORT:-5432} with the roles config/dev.exs and config/test.exs use.
 
 port="${MOBILIZON_DATABASE_PORT:-5432}"
-password="${MOBILIZON_DATABASE_PASSWORD:-mobilizon}"
-roles=(mobilizon mobilizon_test)
+password=klimatkalendern
+roles=(klimatkalendern klimatkalendern_test)
 
 # Accommodating for postgres, which refuses to run as root: as root (cloud sessions), the cluster
 # belongs to DEV_DB_OS_USER and lives where that user can reach it.
@@ -60,19 +60,26 @@ psql_su() {
 
 # Fact: ecto.create and the migrations create the database and its extensions (postgis, unaccent,
 # pg_trgm), which takes a superuser.
-setup_roles() {
+setup_db() {
   local role
   for role in "${roles[@]}"; do
     if [[ -z "$(psql_su -c "SELECT 1 FROM pg_roles WHERE rolname = '$role'")" ]]; then
       psql_su -c "CREATE ROLE $role WITH LOGIN SUPERUSER PASSWORD '$password'"
+      psql_su -c "CREATE DATABASE $role with OWNER $role"
+    fi
+    if ! PGPASSWORD="$password" psql -h localhost -U "$role" -d "$role" -q -v ON_ERROR_STOP=1 -f "./setup.sql"; then
+      echo "setup failed; reset with: dev-db stop && rm -rf $data" >&2
+      exit 1
     fi
   done
+
+  touch "$data/.setup-done"
 }
 
 start_db() {
   [[ -d $data ]] || init_pg
   pg_is_running || start_pg
-  setup_roles
+  [ -e "$data/.setup-done" ] || setup_db
 }
 
 stop_db() {
